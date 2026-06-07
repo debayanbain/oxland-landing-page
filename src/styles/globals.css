@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 230 64% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 230 64% 11%;
+
+    --primary: 230 100% 59%; /* #2F5BFF */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 244 76% 96%;
+    --secondary-foreground: 244 55% 41%;
+
+    --muted: 240 33% 97%;
+    --muted-foreground: 230 16% 45%;
+
+    --accent: 262 83% 58%; /* #7C3AED */
+    --accent-foreground: 0 0% 100%;
+
+    --border: 240 30% 92%;
+    --input: 240 30% 90%;
+    --ring: 230 100% 59%;
+
+    --radius: 0.9rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "ss01", "cv01";
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Page-wide smooth transitions on common interactive surfaces.
+     Cheap defaults (color + background + border + shadow + transform)
+     so hovers and state changes feel intentional everywhere. */
+  a,
+  button,
+  [role="button"],
+  input,
+  textarea,
+  select {
+    transition-property: color, background-color, border-color, box-shadow, transform, opacity;
+    transition-duration: 220ms;
+    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  ::selection {
+    background: rgba(124, 58, 237, 0.18);
+  }
+
+  @keyframes orbit {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(120deg, #2f5bff 0%, #4f46e5 40%, #7c3aed 80%);
+  }
+
+  .glass {
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+  }
+
+  .glass-dark {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+  }
+
+  .aurora {
+    background:
+      radial-gradient(60% 50% at 20% 10%, rgba(47, 91, 255, 0.18), transparent 60%),
+      radial-gradient(50% 45% at 85% 20%, rgba(124, 58, 237, 0.16), transparent 60%),
+      radial-gradient(45% 50% at 60% 90%, rgba(167, 139, 250, 0.16), transparent 60%);
+  }
+
+  .mask-fade-b {
+    -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+  }
+}

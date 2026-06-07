@@ -1,0 +1,45 @@
+---
+import Reveal from "@/components/Reveal.tsx";
+import WorkflowFlow from "@/components/sections/WorkflowFlow.tsx";
+---
+<section id="product" class="relative py-8 sm:py-10">
+  <div class="container">
+    <Reveal client:visible>
+      <div class="mx-auto max-w-2xl text-center">
+        <h2 class="font-display text-4xl font-extrabold tracking-tight text-brand-navy sm:text-5xl">
+          From raw land data to <span class="text-gradient">operational intelligence</span>
+        </h2>
+        <p class="mt-4 text-lg text-brand-navy/60">Three steps to a single, connected land operation.</p>
+      </div>
+    </Reveal>
+
+    <WorkflowFlow client:load />
+  </div>
+
+  <style is:global>
+    /* Continuous dash flow on top of the scroll-drawn path. Uses stroke-dashoffset
+       on the same dashed pattern, so dashes appear to chase each other along the line. */
+    .workflow-flow-marquee {
+      animation: workflow-flow-dash 1.6s linear infinite;
+    }
+    .workflow-flow-marquee-v {
+      animation: workflow-flow-dash-v 1.8s linear infinite;
+    }
+
+    @keyframes workflow-flow-dash {
+      from { stroke-dashoffset: 0; }
+      to   { stroke-dashoffset: -32; }
+    }
+    @keyframes workflow-flow-dash-v {
+      from { stroke-dashoffset: 0; }
+      to   { stroke-dashoffset: -32; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .workflow-flow-marquee,
+      .workflow-flow-marquee-v {
+        animation: none;
+      }
+    }
+  </style>
+</section>

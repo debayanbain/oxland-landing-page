@@ -1,0 +1,21 @@
+---
+import Reveal from "@/components/Reveal.tsx";
+import Analytics from "@/components/Analytics.tsx";
+---
+<section id="resources" class="relative py-8 sm:py-10">
+  <div class="container">
+    <Reveal client:visible>
+      <div class="mx-auto max-w-2xl text-center">
+        <h2 class="font-display text-4xl font-extrabold tracking-tight text-brand-navy sm:text-5xl">
+          Decisions backed by <span class="text-gradient">live data</span>
+        </h2>
+        <p class="mt-4 text-lg text-brand-navy/60">
+          Acquisition progress, parcel coverage, litigation status and budget — always current.
+        </p>
+      </div>
+    </Reveal>
+    <div class="mt-14">
+      <Analytics client:visible />
+    </div>
+  </div>
+</section>

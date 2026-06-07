@@ -1,0 +1,35 @@
+---
+import Reveal from "@/components/Reveal.tsx";
+import { Button } from "@/components/ui/button";
+---
+<section id="contact" class="relative py-6 sm:py-10">
+  <div class="container">
+    <Reveal client:visible>
+      <div class="relative overflow-hidden rounded-[36px] bg-brand-gradient px-8 py-16 text-center shadow-float sm:px-12 sm:py-20">
+        <!-- ambient texture -->
+        <div class="pointer-events-none absolute inset-0 opacity-30" style="background-image:radial-gradient(circle at 20% 20%, rgba(255,255,255,0.35), transparent 40%), radial-gradient(circle at 80% 60%, rgba(255,255,255,0.2), transparent 45%);"></div>
+        <div class="pointer-events-none absolute inset-0 bg-grid-faint [background-size:40px_40px] opacity-20"></div>
+
+        <div class="relative mx-auto max-w-2xl">
+          <h2 class="font-display text-4xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl">
+            Ready to modernize your land operations?
+          </h2>
+          <p class="mt-5 text-lg leading-relaxed text-white/80">
+            Bring parcels, acquisitions, litigation, documents, GIS intelligence and reporting into one platform.
+          </p>
+          <div class="mt-9 flex flex-wrap items-center justify-center gap-3">
+            <Button variant="secondary" size="lg" className="bg-white text-brand-indigo hover:bg-white">
+              Book Demo
+            </Button>
+            <Button
+              size="lg"
+              className="border border-white/40 bg-white/10 text-white shadow-none hover:bg-white/20 hover:shadow-none"
+            >
+              Explore Platform
+            </Button>
+          </div>
+        </div>
+      </div>
+    </Reveal>
+  </div>
+</section>

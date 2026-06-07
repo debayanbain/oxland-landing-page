@@ -1,0 +1,80 @@
+---
+import Reveal from "@/components/Reveal.tsx";
+import Icon from "@/components/Icon.astro";
+
+const features = [
+  { icon: "handshake", label: "Land Acquisition" },
+  { icon: "map", label: "Parcel Tracking" },
+  { icon: "scale", label: "Litigation Management" },
+  { icon: "route", label: "Proposal Workflow" },
+  { icon: "layers", label: "GIS Layer Integration" },
+  { icon: "upload", label: "Document Uploads" },
+  { icon: "trending", label: "Reporting & Analytics" },
+  { icon: "users", label: "Team Collaboration" },
+];
+---
+<section id="solutions" class="relative py-8 sm:py-10">
+  <div class="container grid items-center gap-14 lg:grid-cols-2">
+    <Reveal client:visible className="order-2 lg:order-1">
+      <span class="text-sm font-semibold uppercase tracking-[0.2em] text-brand-indigo/70">Platform</span>
+      <h2 class="mt-3 font-display text-4xl font-extrabold tracking-tight text-brand-navy sm:text-5xl">
+        Everything your land team needs, in one place
+      </h2>
+      <p class="mt-4 text-lg leading-relaxed text-brand-navy/60">
+        Say goodbye to scattered spreadsheets and disconnected tools. Oxland unifies acquisitions,
+        parcels, litigation, documents and GIS into one intelligent workspace.
+      </p>
+      <div class="mt-8 grid grid-cols-2 gap-3">
+        {features.map((f) => (
+          <div class="flex items-center gap-3 rounded-xl border border-border bg-white/70 px-3.5 py-3 backdrop-blur-sm transition-colors hover:border-brand-indigo/30">
+            <span class="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-secondary text-brand-indigo">
+              <Icon name={f.icon} size={18} />
+            </span>
+            <span class="text-sm font-semibold text-brand-navy">{f.label}</span>
+          </div>
+        ))}
+      </div>
+    </Reveal>
+
+    <Reveal client:visible delay={0.12} className="order-1 lg:order-2">
+      <div class="relative">
+        <div class="absolute -inset-6 rounded-[32px] bg-[radial-gradient(closest-side,rgba(124,58,237,0.14),transparent)]"></div>
+        <div class="relative overflow-hidden rounded-3xl border border-white/70 bg-white/85 p-5 shadow-float backdrop-blur-xl">
+          <div class="flex items-center justify-between border-b border-border pb-3">
+            <span class="font-display text-sm font-bold text-brand-navy">Acquisition Pipeline</span>
+            <span class="rounded-full bg-secondary px-2.5 py-1 text-[11px] font-semibold text-brand-indigo">This month</span>
+          </div>
+          <div class="mt-4 space-y-3">
+            {[
+              { s: "Identified", w: "92%", c: "from-brand-blue to-brand-indigo", v: "147" },
+              { s: "Under negotiation", w: "64%", c: "from-brand-indigo to-brand-purple", v: "98" },
+              { s: "Documentation", w: "41%", c: "from-brand-purple to-brand-lavender", v: "63" },
+              { s: "Closed", w: "28%", c: "from-emerald-400 to-emerald-500", v: "42" },
+            ].map((row) => (
+              <div>
+                <div class="mb-1 flex justify-between text-xs font-medium text-brand-navy/60">
+                  <span>{row.s}</span><span>{row.v} parcels</span>
+                </div>
+                <div class="h-2.5 overflow-hidden rounded-full bg-secondary">
+                  <div class={`h-full rounded-full bg-gradient-to-r ${row.c}`} style={`width:${row.w}`}></div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div class="mt-5 grid grid-cols-3 gap-3 border-t border-border pt-4">
+            {[
+              { k: "Coverage", v: "67 ac" },
+              { k: "Cases open", v: "78" },
+              { k: "Budget", v: "₹1.2M" },
+            ].map((m) => (
+              <div class="rounded-xl bg-secondary/60 p-3 text-center">
+                <div class="font-display text-lg font-bold text-brand-navy">{m.v}</div>
+                <div class="text-[11px] text-brand-navy/50">{m.k}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </Reveal>
+  </div>
+</section>

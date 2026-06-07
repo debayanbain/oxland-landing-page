@@ -1,0 +1,35 @@
+---
+import Reveal from "@/components/Reveal.tsx";
+import Icon from "@/components/Icon.astro";
+
+const items = [
+  { icon: "gauge", metric: "3.2×", title: "Faster acquisitions", desc: "Close parcels quicker with a unified pipeline." },
+  { icon: "layers", metric: "1", title: "Centralized operations", desc: "Every workflow in a single source of truth." },
+  { icon: "trending", metric: "100%", title: "Better visibility", desc: "Live dashboards across projects and teams." },
+  { icon: "zap", metric: "70%", title: "Less manual work", desc: "Automate documents, approvals and reporting." },
+];
+---
+<section class="relative py-6 sm:py-8">
+  <div class="container">
+    <Reveal client:visible>
+      <p class="text-center text-sm font-semibold uppercase tracking-[0.2em] text-brand-indigo/70">
+        Trusted by modern land teams
+      </p>
+    </Reveal>
+
+    <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {items.map((it, i) => (
+        <Reveal client:visible delay={i * 0.08}>
+          <div class="group h-full rounded-2xl border border-border bg-white/70 p-6 shadow-card backdrop-blur-sm transition-all hover:-translate-y-1 hover:shadow-float">
+            <div class="grid h-11 w-11 place-items-center rounded-xl bg-secondary text-brand-indigo transition-colors group-hover:bg-brand-gradient group-hover:text-white">
+              <Icon name={it.icon} size={20} />
+            </div>
+            <div class="mt-5 font-display text-3xl font-extrabold text-brand-navy">{it.metric}</div>
+            <div class="mt-1 font-semibold text-brand-navy">{it.title}</div>
+            <p class="mt-1.5 text-sm leading-relaxed text-brand-navy/55">{it.desc}</p>
+          </div>
+        </Reveal>
+      ))}
+    </div>
+  </div>
+</section>

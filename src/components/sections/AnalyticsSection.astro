@@ -1,10 +1,11 @@
 ---
 import Reveal from "@/components/Reveal.tsx";
+import ScrollScale from "@/components/ScrollScale.tsx";
 import Analytics from "@/components/Analytics.tsx";
 ---
 <section id="resources" class="relative py-8 sm:py-10">
   <div class="container">
-    <Reveal client:visible>
+    <Reveal client:visible variant="blur-up">
       <div class="mx-auto max-w-2xl text-center">
         <h2 class="font-display text-4xl font-extrabold tracking-tight text-brand-navy sm:text-5xl">
           Decisions backed by <span class="text-gradient">live data</span>
@@ -14,8 +15,8 @@ import Analytics from "@/components/Analytics.tsx";
         </p>
       </div>
     </Reveal>
-    <div class="mt-14">
+    <ScrollScale client:visible from={0.92} lift={40} className="mt-14">
       <Analytics client:visible />
-    </div>
+    </ScrollScale>
   </div>
 </section>

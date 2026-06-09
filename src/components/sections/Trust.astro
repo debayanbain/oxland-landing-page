@@ -1,5 +1,5 @@
 ---
-import Reveal from "@/components/Reveal.tsx";
+import Reveal, { RevealGroup, RevealItem } from "@/components/Reveal.tsx";
 import Icon from "@/components/Icon.astro";
 
 const items = [
@@ -8,8 +8,18 @@ const items = [
   { icon: "trending", metric: "100%", title: "Better visibility", desc: "Live dashboards across projects and teams." },
   { icon: "zap", metric: "70%", title: "Less manual work", desc: "Automate documents, approvals and reporting." },
 ];
+
+const logos = [
+  { src: "/company-logo/vedanta.svg", alt: "Vedanta" },
+  { src: "/company-logo/BALCO.jpg", alt: "BALCO" },
+  { src: "/company-logo/ECL.jpg", alt: "ECL" },
+  { src: "/company-logo/waaree.png", alt: "Waaree" },
+];
+
+// duplicate enough times for a seamless marquee even with only 4 logos
+const logoTrack = [...logos, ...logos, ...logos, ...logos];
 ---
-<section class="relative py-6 sm:py-8">
+<section class="relative pt-2 pb-6 sm:pt-4 sm:pb-8">
   <div class="container">
     <Reveal client:visible>
       <p class="text-center text-sm font-semibold uppercase tracking-[0.2em] text-brand-indigo/70">
@@ -17,9 +27,34 @@ const items = [
       </p>
     </Reveal>
 
-    <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-      {items.map((it, i) => (
-        <Reveal client:visible delay={i * 0.08}>
+    <Reveal client:visible delay={0.1}>
+      <div class="group/row relative mt-8 overflow-hidden">
+        {/* edge fades */}
+        <div class="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-background to-transparent sm:w-40"></div>
+        <div class="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-background to-transparent sm:w-40"></div>
+
+        <div
+          class="flex w-max items-center gap-14 animate-marquee-x [animation-play-state:running] group-hover/row:[animation-play-state:paused] sm:gap-20"
+          style="--marquee-duration: 36s;"
+        >
+          {logoTrack.map((logo, i) => (
+            <div class="flex h-12 shrink-0 items-center justify-center" aria-hidden={i >= logos.length ? "true" : undefined}>
+              <img
+                src={logo.src}
+                alt={i < logos.length ? logo.alt : ""}
+                loading="lazy"
+                decoding="async"
+                class="h-10 w-auto max-w-[160px] select-none object-contain opacity-90 transition-all duration-300 hover:opacity-100 hover:scale-105 sm:h-12 sm:max-w-[180px]"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </Reveal>
+
+    <RevealGroup client:visible stagger={0.08} className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {items.map((it) => (
+        <RevealItem variant="blur-up" y={22}>
           <div class="group h-full rounded-2xl border border-border bg-white/70 p-6 shadow-card backdrop-blur-sm transition-all hover:-translate-y-1 hover:shadow-float">
             <div class="grid h-11 w-11 place-items-center rounded-xl bg-secondary text-brand-indigo transition-colors group-hover:bg-brand-gradient group-hover:text-white">
               <Icon name={it.icon} size={20} />
@@ -28,8 +63,8 @@ const items = [
             <div class="mt-1 font-semibold text-brand-navy">{it.title}</div>
             <p class="mt-1.5 text-sm leading-relaxed text-brand-navy/55">{it.desc}</p>
           </div>
-        </Reveal>
+        </RevealItem>
       ))}
-    </div>
+    </RevealGroup>
   </div>
 </section>

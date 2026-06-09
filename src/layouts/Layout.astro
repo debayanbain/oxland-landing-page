@@ -1,5 +1,7 @@
 ---
 import "@/styles/globals.css";
+import SmoothScroll from "@/components/SmoothScroll.tsx";
+import ParallaxBackground from "@/components/Parallax.tsx";
 
 interface Props {
   title?: string;
@@ -34,11 +36,8 @@ const {
     <title>{title}</title>
   </head>
   <body class="relative overflow-x-hidden bg-background">
-    <!-- Ambient background layers -->
-    <div class="pointer-events-none fixed inset-0 -z-10">
-      <div class="absolute inset-0 aurora"></div>
-      <div class="absolute inset-0 bg-grid-faint [background-size:54px_54px] opacity-50 mask-fade-b"></div>
-    </div>
+    <SmoothScroll client:load />
+    <ParallaxBackground client:load />
     <slot />
   </body>
 </html>

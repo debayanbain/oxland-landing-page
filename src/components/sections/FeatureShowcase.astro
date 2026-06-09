@@ -1,5 +1,6 @@
 ---
-import Reveal from "@/components/Reveal.tsx";
+import Reveal, { RevealGroup, RevealItem } from "@/components/Reveal.tsx";
+import ScrollScale from "@/components/ScrollScale.tsx";
 import Icon from "@/components/Icon.astro";
 
 const features = [
@@ -15,7 +16,7 @@ const features = [
 ---
 <section id="solutions" class="relative py-8 sm:py-10">
   <div class="container grid items-center gap-14 lg:grid-cols-2">
-    <Reveal client:visible className="order-2 lg:order-1">
+    <Reveal client:visible variant="blur-up" className="order-2 lg:order-1">
       <span class="text-sm font-semibold uppercase tracking-[0.2em] text-brand-indigo/70">Platform</span>
       <h2 class="mt-3 font-display text-4xl font-extrabold tracking-tight text-brand-navy sm:text-5xl">
         Everything your land team needs, in one place
@@ -24,19 +25,21 @@ const features = [
         Say goodbye to scattered spreadsheets and disconnected tools. Oxland unifies acquisitions,
         parcels, litigation, documents and GIS into one intelligent workspace.
       </p>
-      <div class="mt-8 grid grid-cols-2 gap-3">
+      <RevealGroup client:visible stagger={0.05} delay={0.1} className="mt-8 grid grid-cols-2 gap-3">
         {features.map((f) => (
-          <div class="flex items-center gap-3 rounded-xl border border-border bg-white/70 px-3.5 py-3 backdrop-blur-sm transition-colors hover:border-brand-indigo/30">
-            <span class="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-secondary text-brand-indigo">
-              <Icon name={f.icon} size={18} />
-            </span>
-            <span class="text-sm font-semibold text-brand-navy">{f.label}</span>
-          </div>
+          <RevealItem variant="blur-up" y={16}>
+            <div class="flex items-center gap-3 rounded-xl border border-border bg-white/70 px-3.5 py-3 backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-brand-indigo/30 hover:shadow-card">
+              <span class="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-secondary text-brand-indigo">
+                <Icon name={f.icon} size={18} />
+              </span>
+              <span class="text-sm font-semibold text-brand-navy">{f.label}</span>
+            </div>
+          </RevealItem>
         ))}
-      </div>
+      </RevealGroup>
     </Reveal>
 
-    <Reveal client:visible delay={0.12} className="order-1 lg:order-2">
+    <ScrollScale client:visible from={0.9} lift={50} className="order-1 lg:order-2">
       <div class="relative">
         <div class="absolute -inset-6 rounded-[32px] bg-[radial-gradient(closest-side,rgba(124,58,237,0.14),transparent)]"></div>
         <div class="relative overflow-hidden rounded-3xl border border-white/70 bg-white/85 p-5 shadow-float backdrop-blur-xl">
@@ -75,6 +78,6 @@ const features = [
           </div>
         </div>
       </div>
-    </Reveal>
+    </ScrollScale>
   </div>
 </section>

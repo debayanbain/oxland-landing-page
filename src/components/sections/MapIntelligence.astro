@@ -1,5 +1,6 @@
 ---
 import Reveal from "@/components/Reveal.tsx";
+import ScrollScale from "@/components/ScrollScale.tsx";
 import Icon from "@/components/Icon.astro";
 import MapIntelligenceInteractive from "./MapIntelligenceInteractive.tsx";
 
@@ -9,7 +10,7 @@ const caps = ["Parcel overlays", "Boundaries", "Acquisition zones", "Affected ar
   <div class="container">
     <div class="overflow-hidden rounded-[36px] border border-white/70 bg-white/70 shadow-card backdrop-blur-md">
       <div class="grid items-stretch gap-0 lg:grid-cols-[0.92fr_1.08fr]">
-        <Reveal client:visible className="flex flex-col justify-center p-8 sm:p-12 lg:p-14">
+        <Reveal client:visible variant="blur-up" className="flex flex-col justify-center p-8 sm:p-12 lg:p-14">
           <div class="inline-flex w-max items-center gap-2 rounded-full border border-brand-indigo/15 bg-brand-indigo/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.22em] text-brand-indigo">
             <span class="relative inline-flex h-2 w-2">
               <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-indigo opacity-60"></span>
@@ -47,9 +48,9 @@ const caps = ["Parcel overlays", "Boundaries", "Acquisition zones", "Affected ar
           </div>
         </Reveal>
 
-        <Reveal client:visible delay={0.12} className="relative p-6 lg:p-8">
+        <ScrollScale client:visible from={0.9} lift={40} className="relative p-6 lg:p-8">
           <MapIntelligenceInteractive client:load />
-        </Reveal>
+        </ScrollScale>
       </div>
     </div>
   </div>

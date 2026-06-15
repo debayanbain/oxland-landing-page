@@ -1,5 +1,17 @@
 {
   "enabledPlugins": {
     "ui-ux-pro-max@ui-ux-pro-max-skill": true
+  },
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '{\"hookSpecificOutput\":{\"hookEventName\":\"UserPromptSubmit\",\"additionalContext\":\"REQUIRED: Use the codegraph MCP tools for ALL code search and exploration in this repo. Call mcp__codegraph__codegraph_explore FIRST for any how-does-X-work, where-is-X, or architecture question; codegraph_search for symbol lookup; codegraph_callers/codegraph_callees/codegraph_impact for relationships. Do not use grep/Glob/Read loops for code discovery.\"}}'"
+          }
+        ]
+      }
+    ]
   }
 }

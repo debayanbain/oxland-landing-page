@@ -28,8 +28,11 @@ const industries = [
       {industries.map((it) => (
         <RevealItem variant="blur-up" y={22}>
           <div class="group h-full rounded-2xl border border-border bg-white/70 p-6 shadow-card backdrop-blur-sm transition-all hover:-translate-y-1.5 hover:border-brand-indigo/30 hover:shadow-float">
-            <span class="grid h-12 w-12 place-items-center rounded-2xl bg-secondary text-brand-indigo transition-all group-hover:bg-brand-gradient group-hover:text-white">
-              <Icon name={it.icon} size={22} />
+            <span class="relative overflow-hidden grid h-12 w-12 place-items-center rounded-2xl bg-secondary text-brand-indigo transition-all duration-300 group-hover:text-white">
+              <span class="absolute inset-0 bg-brand-gradient opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
+              <span class="relative z-10">
+                <Icon name={it.icon} size={22} />
+              </span>
             </span>
             <h3 class="mt-5 font-display text-lg font-bold text-brand-navy">{it.title}</h3>
             <p class="mt-1.5 text-sm leading-relaxed text-brand-navy/55">{it.desc}</p>

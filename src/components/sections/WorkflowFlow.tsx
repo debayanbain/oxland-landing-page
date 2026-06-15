@@ -68,6 +68,8 @@ export default function WorkflowFlow() {
 
   const cometX = useTransform(flow, [0, 1], [PATH_START_X, PATH_END_X]);
   const cometYMobile = useTransform(flow, [0, 1], [0, 1000]);
+  const beamX1 = useTransform(cometX, (x) => x - 180);
+  const beamY1Mobile = useTransform(cometYMobile, (y) => y - 200);
 
   // Pre-computed sparkle positions and stagger delays — deterministic
   // so they're stable across renders.
@@ -89,7 +91,7 @@ export default function WorkflowFlow() {
   return (
     <div className="relative mt-16">
       {/* ============= Desktop horizontal stage ============= */}
-      <div className="pointer-events-none absolute left-0 right-0 top-[14px] hidden lg:block">
+      <div className="pointer-events-none absolute left-0 right-0 top-[-6px] hidden lg:block">
         <svg
           viewBox="0 0 1000 80"
           preserveAspectRatio="none"
@@ -117,6 +119,20 @@ export default function WorkflowFlow() {
               <stop offset="35%" stopColor="#A78BFA" stopOpacity="0.7" />
               <stop offset="100%" stopColor="#7C3AED" stopOpacity="0" />
             </radialGradient>
+            <motion.linearGradient
+              id="wf-beam-grad"
+              x1={beamX1}
+              x2={cometX}
+              y1={40}
+              y2={40}
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop offset="0%" stopColor="#4F46E5" stopOpacity={0} />
+              <stop offset="30%" stopColor="#4F46E5" stopOpacity={0.15} />
+              <stop offset="70%" stopColor="#7C3AED" stopOpacity={0.65} />
+              <stop offset="95%" stopColor="#A78BFA" stopOpacity={0.9} />
+              <stop offset="100%" stopColor="#FFFFFF" stopOpacity={1} />
+            </motion.linearGradient>
           </defs>
 
           {/* Ambient glow behind the spine */}
@@ -137,7 +153,7 @@ export default function WorkflowFlow() {
             vectorEffect="non-scaling-stroke"
           />
           {/* Continuous chase on the upper echo */}
-          <motion.line
+          <line
             x1={210}
             y1={18}
             x2={790}
@@ -148,9 +164,7 @@ export default function WorkflowFlow() {
             strokeDasharray="2 5"
             strokeLinecap="round"
             vectorEffect="non-scaling-stroke"
-            initial={{ strokeDashoffset: 0 }}
-            animate={{ strokeDashoffset: [0, -14] }}
-            transition={{ duration: 1.6, repeat: Infinity, ease: "linear" }}
+            className="workflow-flow-marquee-echo"
           />
 
           {/* Lower echo */}
@@ -166,7 +180,7 @@ export default function WorkflowFlow() {
             strokeLinecap="round"
             vectorEffect="non-scaling-stroke"
           />
-          <motion.line
+          <line
             x1={210}
             y1={62}
             x2={790}
@@ -177,9 +191,7 @@ export default function WorkflowFlow() {
             strokeDasharray="2 5"
             strokeLinecap="round"
             vectorEffect="non-scaling-stroke"
-            initial={{ strokeDashoffset: 0 }}
-            animate={{ strokeDashoffset: [0, 14] }}
-            transition={{ duration: 1.8, repeat: Infinity, ease: "linear" }}
+            className="workflow-flow-marquee-echo-reverse"
           />
 
           {/* === Tick marks bridging echoes to the spine === */}
@@ -191,44 +203,40 @@ export default function WorkflowFlow() {
           ))}
 
           {/* === Main spine === */}
-          {/* Soft base — always visible, prominent */}
+          {/* Base track — stable white */}
           <line
-            x1={PATH_START_X}
-            y1={40}
-            x2={PATH_END_X}
-            y2={40}
-            stroke="#C7D2FE"
-            strokeWidth={4}
-            strokeLinecap="round"
-            vectorEffect="non-scaling-stroke"
-          />
-          {/* Bright gradient overlay — always at full length */}
-          <line
-            x1={PATH_START_X}
-            y1={40}
-            x2={PATH_END_X}
-            y2={40}
-            stroke="url(#wf-grad)"
-            strokeWidth={3}
-            strokeLinecap="round"
-            strokeOpacity={0.95}
-            vectorEffect="non-scaling-stroke"
-          />
-          {/* Marching highlight dashes on the spine */}
-          <motion.line
             x1={PATH_START_X}
             y1={40}
             x2={PATH_END_X}
             y2={40}
             stroke="#ffffff"
-            strokeOpacity={0.85}
-            strokeWidth={2}
-            strokeDasharray="12 22"
+            strokeWidth={3}
             strokeLinecap="round"
             vectorEffect="non-scaling-stroke"
-            initial={{ strokeDashoffset: 0 }}
-            animate={{ strokeDashoffset: [0, -34] }}
-            transition={{ duration: 1.6, repeat: Infinity, ease: "linear" }}
+          />
+          {/* Glowing beam shadow (blur) */}
+          <motion.line
+            x1={PATH_START_X}
+            y1={40}
+            x2={PATH_END_X}
+            y2={40}
+            stroke="url(#wf-beam-grad)"
+            strokeWidth={6}
+            strokeLinecap="round"
+            opacity={0.4}
+            style={{ filter: "blur(3px)" }}
+            vectorEffect="non-scaling-stroke"
+          />
+          {/* Glowing beam core (bright) */}
+          <motion.line
+            x1={PATH_START_X}
+            y1={40}
+            x2={PATH_END_X}
+            y2={40}
+            stroke="url(#wf-beam-grad)"
+            strokeWidth={2.5}
+            strokeLinecap="round"
+            vectorEffect="non-scaling-stroke"
           />
 
           {/* Twinkling sparkles along the spine */}
@@ -299,6 +307,20 @@ export default function WorkflowFlow() {
               <stop offset="35%" stopColor="#A78BFA" stopOpacity="0.7" />
               <stop offset="100%" stopColor="#7C3AED" stopOpacity="0" />
             </radialGradient>
+            <motion.linearGradient
+              id="wf-beam-grad-v"
+              x1={20}
+              x2={20}
+              y1={beamY1Mobile}
+              y2={cometYMobile}
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop offset="0%" stopColor="#4F46E5" stopOpacity={0} />
+              <stop offset="30%" stopColor="#4F46E5" stopOpacity={0.15} />
+              <stop offset="70%" stopColor="#7C3AED" stopOpacity={0.65} />
+              <stop offset="95%" stopColor="#A78BFA" stopOpacity={0.9} />
+              <stop offset="100%" stopColor="#FFFFFF" stopOpacity={1} />
+            </motion.linearGradient>
           </defs>
 
           <line
@@ -306,36 +328,34 @@ export default function WorkflowFlow() {
             y1={0}
             x2={20}
             y2={1000}
-            stroke="#C7D2FE"
-            strokeWidth={4}
-            strokeLinecap="round"
-            vectorEffect="non-scaling-stroke"
-          />
-          <line
-            x1={20}
-            y1={0}
-            x2={20}
-            y2={1000}
-            stroke="url(#wf-grad-v)"
+            stroke="#ffffff"
             strokeWidth={3}
             strokeLinecap="round"
-            strokeOpacity={0.95}
             vectorEffect="non-scaling-stroke"
           />
+          {/* Glowing beam shadow (blur) */}
           <motion.line
             x1={20}
             y1={0}
             x2={20}
             y2={1000}
-            stroke="#ffffff"
-            strokeOpacity={0.85}
-            strokeWidth={2}
-            strokeDasharray="12 22"
+            stroke="url(#wf-beam-grad-v)"
+            strokeWidth={6}
+            strokeLinecap="round"
+            opacity={0.4}
+            style={{ filter: "blur(3px)" }}
+            vectorEffect="non-scaling-stroke"
+          />
+          {/* Glowing beam core (bright) */}
+          <motion.line
+            x1={20}
+            y1={0}
+            x2={20}
+            y2={1000}
+            stroke="url(#wf-beam-grad-v)"
+            strokeWidth={2.5}
             strokeLinecap="round"
             vectorEffect="non-scaling-stroke"
-            initial={{ strokeDashoffset: 0 }}
-            animate={{ strokeDashoffset: [0, -34] }}
-            transition={{ duration: 1.6, repeat: Infinity, ease: "linear" }}
           />
 
           <motion.circle cx={20} cy={cometYMobile} r={20} fill="url(#wf-comet-v)" />

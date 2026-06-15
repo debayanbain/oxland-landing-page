@@ -468,10 +468,6 @@ export default function Hero() {
     offset: ["start start", "end start"],
   });
 
-  // Sun glow shrinks / fades
-  const sunScale = useTransform(scrollYProgress, [0, 1], [1, 1.45]);
-  const sunOpacity = useTransform(scrollYProgress, [0, 0.6, 1], [1, 0.55, 0]);
-
   // Dashboard scroll animation: starts 3D-tilted, flat early so it sits straight
   // by the time it lands in view. Tilt/scale finish at 18% scroll; only Y keeps moving.
   const rotateX = useTransform(scrollYProgress, [0, 0.5], [15, 0]);
@@ -503,6 +499,10 @@ export default function Hero() {
             scale: reduce ? 1.08 : landScale,
             opacity: reduce ? 0.7 : landOpacity,
             transformOrigin: "center bottom",
+            WebkitMaskImage:
+              "linear-gradient(to bottom, transparent 0%, transparent 12%, rgba(0,0,0,0.08) 28%, rgba(0,0,0,0.5) 55%, white 90%)",
+            maskImage:
+              "linear-gradient(to bottom, transparent 0%, transparent 12%, rgba(0,0,0,0.08) 28%, rgba(0,0,0,0.5) 55%, white 90%)",
           }}
         >
           <img
@@ -510,27 +510,11 @@ export default function Hero() {
             alt=""
             aria-hidden
             className="h-full w-full object-cover"
-            style={{
-              WebkitMaskImage:
-                "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.35) 22%, rgba(0,0,0,0.9) 55%, white 100%)",
-              maskImage:
-                "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.35) 22%, rgba(0,0,0,0.9) 55%, white 100%)",
-            }}
           />
           {/* tint to match brand */}
           <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-white/30 mix-blend-soft-light" />
         </motion.div>
 
-        {/* sun / radial glow */}
-        <motion.div
-          className="absolute left-1/2 top-[-160px] h-[680px] w-[680px] -translate-x-1/2 rounded-full"
-          style={{
-            background:
-              "radial-gradient(closest-side, rgba(255,240,210,0.95) 0%, rgba(255,225,180,0.55) 32%, rgba(167,139,250,0.18) 62%, transparent 75%)",
-            scale: reduce ? 1 : sunScale,
-            opacity: reduce ? 1 : sunOpacity,
-          }}
-        />
         {/* soft horizon tint over land photo */}
         <div className="absolute inset-x-0 bottom-0 h-[28%] bg-gradient-to-t from-white via-white/70 to-transparent" />
       </div>

@@ -71,13 +71,13 @@ export default function Navbar() {
                 }
               : undefined
           }
-          className={cn(
-            "flex items-center justify-between",
-            "border transition-[background-color,border-color,backdrop-filter] duration-500",
-            scrolled
-              ? "mt-3 w-full max-w-[1100px] gap-4 border-solid px-3.5 py-2"
-              : "mt-0 w-full max-w-[1280px] gap-6 rounded-none border-transparent bg-transparent px-6 py-4 backdrop-blur-0"
-          )}
+        className={cn(
+          "flex items-center justify-between",
+          "transition-all duration-500",
+          scrolled
+            ? "mt-3 w-full max-w-[1100px] gap-4 border border-solid px-3.5 py-2"
+            : "mt-0 w-full max-w-[1280px] gap-6 rounded-none border-0 border-transparent bg-transparent px-6 py-4 backdrop-blur-0"
+        )}
         >
           <Logo />
 

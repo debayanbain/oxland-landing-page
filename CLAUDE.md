@@ -10,6 +10,7 @@ npm run build      # static output -> dist/
 npm run preview    # serve built site
 npx shadcn@latest add <name>   # add a shadcn-style ui primitive (writes into src/components/ui)
 ```
+For finding anthing always use codegraph.
 
 There is no test runner, linter, or formatter wired up — don't invent one. After a non-trivial change, run `npm run build` to catch type errors (Astro runs `tsc` as part of the build).
 

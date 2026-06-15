@@ -2,37 +2,84 @@
 import Reveal from "@/components/Reveal.tsx";
 import Magnetic from "@/components/Magnetic.tsx";
 import { Button } from "@/components/ui/button";
+import { Layers, MapPin, BarChart3, ShieldCheck, ArrowRight } from "lucide-react";
 ---
-<section id="contact" class="relative py-6 sm:py-10">
+<section id="contact" class="relative py-12 sm:py-16">
   <div class="container">
     <Reveal client:visible variant="scale">
-      <div class="relative overflow-hidden rounded-[36px] bg-brand-gradient px-8 py-16 text-center shadow-float sm:px-12 sm:py-20">
-        <!-- ambient texture -->
-        <div class="pointer-events-none absolute inset-0 opacity-30" style="background-image:radial-gradient(circle at 20% 20%, rgba(255,255,255,0.35), transparent 40%), radial-gradient(circle at 80% 60%, rgba(255,255,255,0.2), transparent 45%);"></div>
-        <div class="pointer-events-none absolute inset-0 bg-grid-faint [background-size:40px_40px] opacity-20"></div>
+      <!-- Card acts as the mask via overflow-hidden -->
+      <div class="relative overflow-hidden rounded-[36px] bg-[#EEF2FF] bg-[url('/4.png')] bg-cover bg-center shadow-float">
 
-        <div class="relative mx-auto max-w-2xl">
-          <h2 class="font-display text-4xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl">
-            Ready to modernize your land operations?
-          </h2>
-          <p class="mt-5 text-lg leading-relaxed text-white/80">
-            Bring parcels, acquisitions, litigation, documents, GIS intelligence and reporting into one platform.
-          </p>
-          <div class="mt-9 flex flex-wrap items-center justify-center gap-3">
-            <Magnetic client:visible strength={0.25}>
-              <Button variant="secondary" size="lg" className="bg-white text-brand-indigo hover:bg-white">
-                Book Demo
-              </Button>
-            </Magnetic>
-            <Magnetic client:visible strength={0.2}>
-              <Button
-                size="lg"
-                className="border border-white/40 bg-white/10 text-white shadow-none hover:bg-white/20 hover:shadow-none"
-              >
-                Explore Platform
-              </Button>
-            </Magnetic>
+        <div class="grid items-stretch lg:grid-cols-12">
+
+          {/* ── Left Column (Content) ── */}
+          <div class="lg:col-span-7 flex flex-col items-center sm:items-start text-center sm:text-left px-6 py-12 sm:px-12 sm:py-16 lg:px-16 lg:py-20">
+
+            {/* CTA Badge */}
+            <span class="inline-flex items-center rounded-full bg-brand-indigo px-3 py-1 text-xs font-semibold tracking-wider text-white uppercase shadow-sm">
+              CTA
+            </span>
+
+            {/* Heading */}
+            <h2 class="mt-5 font-display text-4xl font-extrabold leading-tight tracking-tight text-brand-navy sm:text-5xl lg:text-6xl">
+              Manage land. <br />
+              Make <span class="bg-gradient-to-r from-brand-indigo to-brand-purple bg-clip-text text-transparent">better decisions, faster.</span>
+            </h2>
+
+            {/* Description */}
+            <p class="mt-5 text-base sm:text-lg leading-relaxed text-brand-navy/70 max-w-xl">
+              Oxland helps you centralize land data, visualize insights, and streamline your land management workflow — all in one place.
+            </p>
+
+            {/* Features Grid */}
+            <div class="mt-9 grid grid-cols-2 gap-6 sm:grid-cols-4 sm:gap-4 w-full">
+              <div class="flex flex-col items-center text-center sm:items-start sm:text-left">
+                <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white/80 text-brand-indigo">
+                  <Layers size={24} />
+                </div>
+                <span class="mt-3 text-xs font-bold leading-snug text-brand-navy/85 max-w-[110px]">Centralized Land Data</span>
+              </div>
+              <div class="flex flex-col items-center text-center sm:items-start sm:text-left">
+                <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white/80 text-blue-600">
+                  <MapPin size={24} />
+                </div>
+                <span class="mt-3 text-xs font-bold leading-snug text-brand-navy/85 max-w-[110px]">Map & Parcel Visualization</span>
+              </div>
+              <div class="flex flex-col items-center text-center sm:items-start sm:text-left">
+                <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white/80 text-indigo-600">
+                  <BarChart3 size={24} />
+                </div>
+                <span class="mt-3 text-xs font-bold leading-snug text-brand-navy/85 max-w-[110px]">Powerful Insights</span>
+              </div>
+              <div class="flex flex-col items-center text-center sm:items-start sm:text-left">
+                <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white/80 text-brand-purple">
+                  <ShieldCheck size={24} />
+                </div>
+                <span class="mt-3 text-xs font-bold leading-snug text-brand-navy/85 max-w-[110px]">Secure & Reliable</span>
+              </div>
+            </div>
+
+            {/* CTA Button */}
+            <div class="mt-10">
+              <Magnetic client:visible strength={0.15}>
+                <Button size="lg" className="h-12 rounded-xl bg-brand-gradient px-8 text-white shadow-soft hover:shadow-soft/80 group">
+                  Get Started
+                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </Button>
+              </Magnetic>
+            </div>
           </div>
+
+          {/* ── Right Column (Phone image — clipped by card overflow-hidden) ── */}
+          <div class="lg:col-span-5 relative hidden lg:flex items-end justify-center overflow-hidden">
+            <img
+              src="/oxland.png"
+              alt="Oxland mobile app"
+              class="w-full max-w-[520px] object-contain object-bottom select-none translate-y-8"
+              draggable="false"
+            />
+          </div>
+
         </div>
       </div>
     </Reveal>

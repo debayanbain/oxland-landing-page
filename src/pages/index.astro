@@ -3,13 +3,14 @@ import Layout from "@/layouts/Layout.astro";
 import Navbar from "@/components/Navbar.tsx";
 import Hero from "@/components/Hero.tsx";
 import Trust from "@/components/sections/Trust.astro";
+import FeaturesGrid from "@/components/sections/FeaturesGrid.astro";
 import LaptopShowcase from "@/components/LaptopShowcase.tsx";
 import Workflow from "@/components/sections/Workflow.astro";
 import FeatureShowcase from "@/components/sections/FeatureShowcase.astro";
 import MapIntelligence from "@/components/sections/MapIntelligence.astro";
 import AnalyticsSection from "@/components/sections/AnalyticsSection.astro";
+import Integrations from "@/components/sections/Integrations.astro";
 import Industries from "@/components/sections/Industries.astro";
-import Testimonials from "@/components/sections/Testimonials.astro";
 import FaqSection from "@/components/sections/FaqSection.astro";
 import FinalCta from "@/components/sections/FinalCta.astro";
 import Footer from "@/components/sections/Footer.astro";
@@ -19,13 +20,14 @@ import Footer from "@/components/sections/Footer.astro";
   <main>
     <Hero client:load />
     <Trust />
+    <FeaturesGrid />
     <LaptopShowcase client:visible />
     <Workflow />
     <FeatureShowcase />
     <MapIntelligence />
     <AnalyticsSection />
+    <Integrations />
     <Industries />
-    <Testimonials />
     <FaqSection />
     <FinalCta />
   </main>

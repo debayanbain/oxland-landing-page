@@ -8,4 +8,9 @@ export default defineConfig({
     react(),
     tailwind({ applyBaseStyles: false }),
   ],
+  vite: {
+    server: {
+      allowedHosts: [".ngrok-free.dev"],
+    },
+  },
 });

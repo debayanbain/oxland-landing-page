@@ -1,7 +1,6 @@
 ---
 import "@/styles/globals.css";
 import SmoothScroll from "@/components/SmoothScroll.tsx";
-import ParallaxBackground from "@/components/Parallax.tsx";
 
 interface Props {
   title?: string;
@@ -37,7 +36,6 @@ const {
   </head>
   <body class="relative overflow-x-hidden bg-background">
     <SmoothScroll client:load />
-    <ParallaxBackground client:load />
     <slot />
   </body>
 </html>

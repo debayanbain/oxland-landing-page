@@ -22,22 +22,46 @@ import WorkflowFlow from "@/components/sections/WorkflowFlow.tsx";
     .workflow-flow-marquee {
       animation: workflow-flow-dash 1.6s linear infinite;
     }
+    .workflow-flow-marquee-reverse {
+      animation: workflow-flow-dash-reverse 1.8s linear infinite;
+    }
     .workflow-flow-marquee-v {
       animation: workflow-flow-dash-v 1.8s linear infinite;
+    }
+    .workflow-flow-marquee-echo {
+      animation: workflow-flow-dash-echo 1.6s linear infinite;
+    }
+    .workflow-flow-marquee-echo-reverse {
+      animation: workflow-flow-dash-echo-reverse 1.8s linear infinite;
     }
 
     @keyframes workflow-flow-dash {
       from { stroke-dashoffset: 0; }
-      to   { stroke-dashoffset: -32; }
+      to   { stroke-dashoffset: -34; }
+    }
+    @keyframes workflow-flow-dash-reverse {
+      from { stroke-dashoffset: 0; }
+      to   { stroke-dashoffset: 34; }
     }
     @keyframes workflow-flow-dash-v {
       from { stroke-dashoffset: 0; }
-      to   { stroke-dashoffset: -32; }
+      to   { stroke-dashoffset: -34; }
+    }
+    @keyframes workflow-flow-dash-echo {
+      from { stroke-dashoffset: 0; }
+      to   { stroke-dashoffset: -14; }
+    }
+    @keyframes workflow-flow-dash-echo-reverse {
+      from { stroke-dashoffset: 0; }
+      to   { stroke-dashoffset: 14; }
     }
 
     @media (prefers-reduced-motion: reduce) {
       .workflow-flow-marquee,
-      .workflow-flow-marquee-v {
+      .workflow-flow-marquee-reverse,
+      .workflow-flow-marquee-v,
+      .workflow-flow-marquee-echo,
+      .workflow-flow-marquee-echo-reverse {
         animation: none;
       }
     }

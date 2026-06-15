@@ -37,6 +37,7 @@ export default function ScrollScale({
   return (
     <div ref={ref} className={className}>
       <motion.div
+        className="w-full"
         style={
           reduce
             ? undefined

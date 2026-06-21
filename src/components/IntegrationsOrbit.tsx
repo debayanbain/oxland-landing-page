@@ -225,8 +225,8 @@ export default function IntegrationsOrbit() {
               rx="460"
               ry="210"
               stroke="rgba(111, 66, 193, 0.15)"
-              strokeWidth="2"
-              strokeDasharray="6 8"
+              strokeWidth="3"
+              strokeDasharray="3 10"
               className="orbit-track-dashed will-change-transform"
             />
 

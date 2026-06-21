@@ -41,43 +41,156 @@ const features = [
 
     <ScrollScale client:visible from={0.9} lift={50} className="order-1 lg:order-2">
       <div class="relative">
-        <div class="absolute -inset-6 rounded-[32px] bg-[radial-gradient(closest-side,rgba(124,58,237,0.14),transparent)]"></div>
-        <div class="relative overflow-hidden rounded-3xl border border-white/70 bg-white/85 p-5 shadow-float backdrop-blur-xl">
-          <div class="flex items-center justify-between border-b border-border pb-3">
-            <span class="font-display text-sm font-bold text-brand-navy">Acquisition Pipeline</span>
-            <span class="rounded-full bg-secondary px-2.5 py-1 text-[11px] font-semibold text-brand-indigo">This month</span>
+        {/* Dashboard card — light, brand-matched */}
+        <div class="dash-card relative overflow-hidden rounded-[24px] border border-slate-200/80 bg-white shadow-[0_32px_80px_-24px_rgba(47,71,160,0.28),0_8px_32px_-8px_rgba(124,58,237,0.12)]">
+
+          {/* Top gradient accent bar */}
+          <div class="h-[3px] w-full bg-gradient-to-r from-[#2F5BFF] via-[#7C3AED] to-[#10B981]"></div>
+
+          {/* Header */}
+          <div class="flex items-center justify-between border-b border-slate-100 bg-slate-50/80 px-5 py-3.5">
+            <div class="flex items-center gap-2.5">
+              <span class="relative flex h-2 w-2">
+                <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-70" style="animation-duration:2s"></span>
+                <span class="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
+              </span>
+              <span class="font-display text-[13px] font-bold tracking-tight text-brand-navy">Acquisition Intelligence</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-emerald-600">Live</span>
+              <span class="rounded-full bg-slate-100 px-2.5 py-0.5 text-[10px] font-medium text-brand-navy/40">Jun 2025</span>
+            </div>
           </div>
-          <div class="mt-4 space-y-3">
-            {[
-              { s: "Identified", w: "92%", c: "from-brand-blue to-brand-indigo", v: "147" },
-              { s: "Under negotiation", w: "64%", c: "from-brand-indigo to-brand-purple", v: "98" },
-              { s: "Documentation", w: "41%", c: "from-brand-purple to-brand-lavender", v: "63" },
-              { s: "Closed", w: "28%", c: "from-emerald-400 to-emerald-500", v: "42" },
-            ].map((row) => (
-              <div>
-                <div class="mb-1 flex justify-between text-xs font-medium text-brand-navy/60">
-                  <span>{row.s}</span><span>{row.v} parcels</span>
+
+          <div class="p-5">
+
+            {/* KPI stat tiles */}
+            <div class="grid grid-cols-3 gap-2 mb-5">
+              {[
+                { label: "Total Parcels", value: "350",  sub: "+18.6%", subColor: "#059669", accent: "rgba(16,185,129,0.07)", border: "rgba(16,185,129,0.2)",
+                  sparkPath: "M0 18 L8 14 L16 16 L24 10 L32 12 L40 6 L48 8 L56 2", sparkColor: "#10B981" },
+                { label: "Coverage",      value: "67 ac", sub: "+4.2%",  subColor: "#2F5BFF", accent: "rgba(47,91,255,0.06)",  border: "rgba(47,91,255,0.18)",
+                  sparkPath: "M0 16 L8 12 L16 14 L24 8 L32 10 L40 5 L48 7 L56 3", sparkColor: "#2F5BFF" },
+                { label: "Budget Used",   value: "₹1.2M", sub: "82% utilized", subColor: "#7C3AED", accent: "rgba(124,58,237,0.06)", border: "rgba(124,58,237,0.18)",
+                  sparkPath: "M0 14 L8 10 L16 12 L24 7 L32 9 L40 4 L48 6 L56 2", sparkColor: "#7C3AED" },
+              ].map((stat) => (
+                <div
+                  class="relative overflow-hidden rounded-xl border p-3 transition-transform hover:-translate-y-0.5"
+                  style={`background: ${stat.accent}; border-color: ${stat.border}`}
+                >
+                  <div class="text-[9px] font-semibold uppercase tracking-widest text-brand-navy/45 mb-1">{stat.label}</div>
+                  <div class="font-display text-xl font-extrabold text-brand-navy leading-none">{stat.value}</div>
+                  <div class="mt-1 text-[10px] font-bold" style={`color: ${stat.subColor}`}>{stat.sub}</div>
+                  {/* Mini sparkline */}
+                  <div class="absolute bottom-2 right-2 opacity-50">
+                    <svg width="56" height="20" viewBox="0 0 56 20" fill="none" aria-hidden="true">
+                      <path d={stat.sparkPath} stroke={stat.sparkColor} stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
                 </div>
-                <div class="h-2.5 overflow-hidden rounded-full bg-secondary">
-                  <div class={`h-full rounded-full bg-gradient-to-r ${row.c}`} style={`width:${row.w}`}></div>
+              ))}
+            </div>
+
+            {/* Pipeline header */}
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-[11px] font-bold uppercase tracking-widest text-brand-navy/45">Acquisition Pipeline</span>
+              <span class="text-[10px] text-brand-navy/30">350 parcels total</span>
+            </div>
+
+            {/* Pipeline — donut chart */}
+            <div class="flex items-center gap-4">
+              {/* Donut SVG */}
+              <div class="relative h-[110px] w-[110px] shrink-0">
+                <svg viewBox="0 0 130 130" class="donut-svg h-full w-full" aria-hidden="true">
+                  <circle cx="65" cy="65" r="52" fill="none" stroke="rgb(241 245 249)" stroke-width="16"/>
+                  <circle class="donut-seg seg-0" cx="65" cy="65" r="52" fill="none" stroke="#2F5BFF" stroke-width="16" stroke-dasharray="132.17 194.56" stroke-dashoffset="326.73"/>
+                  <circle class="donut-seg seg-1" cx="65" cy="65" r="52" fill="none" stroke="#7C3AED" stroke-width="16" stroke-dasharray="88.11 238.62"  stroke-dashoffset="191.56"/>
+                  <circle class="donut-seg seg-2" cx="65" cy="65" r="52" fill="none" stroke="#A78BFA" stroke-width="16" stroke-dasharray="56.65 270.08"  stroke-dashoffset="100.45"/>
+                  <circle class="donut-seg seg-3" cx="65" cy="65" r="52" fill="none" stroke="#10B981" stroke-width="16" stroke-dasharray="37.77 288.96"  stroke-dashoffset="40.79"/>
+                </svg>
+                <div class="pointer-events-none absolute inset-0 flex flex-col items-center justify-center">
+                  <span class="text-[19px] font-extrabold leading-none text-brand-navy">350</span>
+                  <span class="mt-0.5 text-[9px] font-medium text-brand-navy/40">parcels</span>
                 </div>
               </div>
-            ))}
-          </div>
-          <div class="mt-5 grid grid-cols-3 gap-3 border-t border-border pt-4">
-            {[
-              { k: "Coverage", v: "67 ac" },
-              { k: "Cases open", v: "78" },
-              { k: "Budget", v: "₹1.2M" },
-            ].map((m) => (
-              <div class="rounded-xl bg-secondary/60 p-3 text-center">
-                <div class="font-display text-lg font-bold text-brand-navy">{m.v}</div>
-                <div class="text-[11px] text-brand-navy/50">{m.k}</div>
+              {/* Legend */}
+              <div class="flex flex-1 flex-col gap-[9px]">
+                {[
+                  { s: "Identified",        v: 147, color: "#2F5BFF", tagBg: "rgba(47,91,255,0.1)",    tagColor: "#2F5BFF", tag: "Active"      },
+                  { s: "Under Negotiation", v: 98,  color: "#7C3AED", tagBg: "rgba(124,58,237,0.1)",   tagColor: "#7C3AED", tag: "In Progress" },
+                  { s: "Documentation",     v: 63,  color: "#A78BFA", tagBg: "rgba(167,139,250,0.12)", tagColor: "#7C3AED", tag: "Review"      },
+                  { s: "Closed",            v: 42,  color: "#10B981", tagBg: "rgba(16,185,129,0.1)",   tagColor: "#059669", tag: "Done"        },
+                ].map((row) => (
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-1.5">
+                      <span class="h-2 w-2 rounded-full" style={`background:${row.color}`}></span>
+                      <span class="text-[10.5px] font-medium text-brand-navy/65">{row.s}</span>
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                      <span class="rounded-md px-1.5 py-0.5 text-[9px] font-bold" style={`background:${row.tagBg};color:${row.tagColor}`}>{row.tag}</span>
+                      <span class="text-[11px] font-bold text-brand-navy">{row.v}</span>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
+
+            {/* Activity feed */}
+            <div class="mt-5 border-t border-slate-100 pt-4">
+              <div class="text-[9px] font-bold uppercase tracking-widest text-brand-navy/35 mb-3">Recent Activity</div>
+              <div class="space-y-2">
+                {[
+                  { msg: "Parcel KA-441 — owner meeting confirmed", time: "2m ago",  dot: "#10B981" },
+                  { msg: "Litigation #LC-089 — status updated",      time: "1h ago",  dot: "#F59E0B" },
+                  { msg: "Survey report uploaded · Plot 128",         time: "3h ago",  dot: "#2F5BFF" },
+                ].map((a) => (
+                  <div class="flex items-center gap-2.5 rounded-lg px-2 py-1.5 transition-colors hover:bg-slate-50">
+                    <span class="h-1.5 w-1.5 shrink-0 rounded-full" style={`background: ${a.dot}`}></span>
+                    <div class="min-w-0 flex-1">
+                      <div class="truncate text-[11px] text-brand-navy/60">{a.msg}</div>
+                    </div>
+                    <div class="shrink-0 text-[9px] font-medium text-brand-navy/30">{a.time}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
     </ScrollScale>
   </div>
 </section>
+
+<style>
+  .donut-svg { transform: rotate(-90deg); display: block; }
+
+  .donut-seg { opacity: 0; transition: opacity 0.45s ease; }
+
+  .dash-card.in-view .seg-0 { opacity: 1; transition-delay: 0s; }
+  .dash-card.in-view .seg-1 { opacity: 1; transition-delay: 0.13s; }
+  .dash-card.in-view .seg-2 { opacity: 1; transition-delay: 0.26s; }
+  .dash-card.in-view .seg-3 { opacity: 1; transition-delay: 0.39s; }
+</style>
+
+<script>
+  (function () {
+    const cards = document.querySelectorAll(".dash-card");
+    if (cards.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in-view");
+          } else {
+            entry.target.classList.remove("in-view");
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    cards.forEach((card) => observer.observe(card));
+  })();
+</script>

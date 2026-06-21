@@ -3,12 +3,14 @@ import Layout from "@/layouts/Layout.astro";
 import Navbar from "@/components/Navbar.tsx";
 import Hero from "@/components/Hero.tsx";
 import Trust from "@/components/sections/Trust.astro";
+import Testimonials from "@/components/sections/Testimonials.astro";
 import FeaturesGrid from "@/components/sections/FeaturesGrid.astro";
 import LaptopShowcase from "@/components/LaptopShowcase.tsx";
 import Workflow from "@/components/sections/Workflow.astro";
 import FeatureShowcase from "@/components/sections/FeatureShowcase.astro";
 import MapIntelligence from "@/components/sections/MapIntelligence.astro";
 import AnalyticsSection from "@/components/sections/AnalyticsSection.astro";
+import PricingSection from "@/components/sections/PricingSection.tsx";
 import Integrations from "@/components/sections/Integrations.astro";
 import Industries from "@/components/sections/Industries.astro";
 import FaqSection from "@/components/sections/FaqSection.astro";
@@ -26,7 +28,9 @@ import Footer from "@/components/sections/Footer.astro";
     <FeatureShowcase />
     <MapIntelligence />
     <AnalyticsSection />
+    <PricingSection client:visible />
     <Integrations />
+    <Testimonials />
     <Industries />
     <FaqSection />
     <FinalCta />

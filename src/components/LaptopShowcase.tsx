@@ -10,17 +10,17 @@ export default function LaptopShowcase() {
     offset: ["start end", "end start"],
   });
 
-  const rotateX = useTransform(scrollYProgress, [0.05, 0.45], [-90, 0]);
-  const screenOpacity = useTransform(scrollYProgress, [0.3, 0.5], [0, 1]);
-  const scale = useTransform(scrollYProgress, [0.0, 0.4], [0.92, 1]);
-  const glow = useTransform(scrollYProgress, [0.1, 0.5], [0, 1]);
+  const rotateX = useTransform(scrollYProgress, [0.08, 0.4], [-90, 0]);
+  const screenOpacity = useTransform(scrollYProgress, [0.28, 0.42], [0, 1]);
+  const scale = useTransform(scrollYProgress, [0.05, 0.38], [0.92, 1]);
+  const glow = useTransform(scrollYProgress, [0.08, 0.4], [0, 1]);
 
   return (
     <section
       id="preview"
       ref={ref}
-      className="relative py-12 sm:py-16"
-      style={{ minHeight: reduce ? undefined : "180vh" }}
+      className="relative py-8 sm:py-10"
+      style={{ minHeight: reduce ? undefined : "120vh" }}
     >
       <div className="container">
         <div className="mx-auto max-w-2xl text-center">
@@ -35,7 +35,7 @@ export default function LaptopShowcase() {
           </p>
         </div>
 
-        <div className={reduce ? "mt-14" : "sticky top-24 mt-14"}>
+        <div className={reduce ? "mt-6" : "sticky top-20 mt-6"}>
           <div className="relative mx-auto" style={{ perspective: 2200, maxWidth: 1200 }}>
             <motion.div
               aria-hidden
@@ -56,7 +56,7 @@ export default function LaptopShowcase() {
           </div>
         </div>
 
-        {!reduce && <div className="h-[80vh]" aria-hidden />}
+        {!reduce && <div className="h-[20vh]" aria-hidden />}
       </div>
     </section>
   );

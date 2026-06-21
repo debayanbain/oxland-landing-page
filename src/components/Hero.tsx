@@ -11,8 +11,6 @@ import {
   ShieldCheck,
   MapPinned,
   Layers,
-  Bell,
-  Search,
   Activity,
   FileText,
   Settings,
@@ -21,7 +19,6 @@ import {
   Map,
   BarChart3,
   Building2,
-  ChevronDown,
   Download,
   RefreshCw,
   Plus,
@@ -109,225 +106,29 @@ function ScrollCloud({
 }
 
 /* ============================================================
-   Dashboard mock — large, centered, matching the reference
+   Dashboard mock — light-themed, brand-matched, interactive
    ============================================================ */
+
+const PIPELINE = [
+  { label: "Identified",        value: 147, max: 350, gradient: "from-brand-blue to-brand-indigo",    status: "Active",      statusCls: "bg-indigo-50 text-brand-indigo" },
+  { label: "Under Negotiation", value: 98,  max: 350, gradient: "from-brand-indigo to-brand-purple",  status: "In Progress", statusCls: "bg-amber-50 text-amber-600" },
+  { label: "Documentation",     value: 63,  max: 350, gradient: "from-brand-purple to-brand-lavender",status: "Review",      statusCls: "bg-violet-50 text-violet-600" },
+  { label: "Closed",            value: 42,  max: 350, gradient: "from-emerald-400 to-emerald-500",    status: "Done",        statusCls: "bg-emerald-50 text-emerald-600" },
+];
+
+const ACTIVITY = [
+  { dot: "bg-emerald-500", text: "Parcel KA-441 — owner meeting confirmed", time: "2m ago" },
+  { dot: "bg-amber-500",   text: "Litigation #LC-089 — status updated",     time: "1h ago" },
+  { dot: "bg-brand-blue",  text: "Survey report uploaded · Plot 128",        time: "3h ago" },
+];
 
 function DashboardMock() {
   return (
-    <div className="relative mx-auto w-full max-w-[1080px] overflow-hidden rounded-[28px] border border-white/80 bg-white/95 shadow-[0_40px_120px_-30px_rgba(47,71,160,0.45),0_18px_50px_-20px_rgba(124,58,237,0.25)] backdrop-blur-2xl">
-      {/* shimmer top edge */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/90 to-transparent" />
-
-      <div className="flex">
-        {/* SIDEBAR */}
-        <aside className="relative hidden w-[200px] shrink-0 bg-gradient-to-b from-[#5046E5] via-[#4F46E5] to-[#6D28D9] p-4 sm:block">
-          {/* logo */}
-          <div className="flex items-center gap-2 px-1.5 pb-5 pt-1">
-            <span className="grid h-8 w-8 place-items-center rounded-xl bg-white/15 ring-1 ring-white/20">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-                <path d="M12 2C7.6 2 4 5.5 4 9.8c0 5.2 6.5 11.2 7.4 12a1 1 0 0 0 1.3 0c.9-.8 7.3-6.8 7.3-12C20 5.5 16.4 2 12 2Z" fill="white"/>
-                <circle cx="12" cy="9.6" r="2.6" fill="#4F46E5"/>
-              </svg>
-            </span>
-            <span className="font-display text-[15px] font-bold text-white tracking-tight">oxland</span>
-          </div>
-
-          <SideItem icon={LayoutDashboard} label="Dashboard" active />
-          <SideItem icon={Database} label="Master Data" />
-          <SideItem icon={Settings} label="Settings" />
-          <SideItem icon={FileText} label="Menu List" />
-          <SideItem icon={Map} label="Locations" />
-          <SideItem icon={Layers} label="Projects" />
-          <SideItem icon={BarChart3} label="Analytics" />
-          <SideItem icon={MapPinned} label="Land Acquisition" />
-          <SideItem icon={Building2} label="Plot Management" />
-
-          {/* workspace card */}
-          <div className="absolute inset-x-4 bottom-4 rounded-2xl border border-white/15 bg-white/10 p-2.5 backdrop-blur">
-            <div className="flex items-center gap-2">
-              <span className="grid h-7 w-7 place-items-center rounded-lg bg-white text-[9px] font-bold text-brand-indigo">TATA</span>
-              <div className="leading-tight">
-                <div className="text-[8.5px] font-medium text-white/70 uppercase tracking-wider">Workspace</div>
-                <div className="text-[11px] font-bold text-white">TATA GROUP</div>
-              </div>
-            </div>
-          </div>
-        </aside>
-
-        {/* MAIN */}
-        <div className="min-w-0 flex-1">
-          {/* top bar */}
-          <div className="flex items-center justify-between gap-3 border-b border-slate-200/70 px-5 py-3.5">
-            <div className="flex items-center gap-2 text-[12px] text-brand-navy/60">
-              <span className="font-semibold text-brand-navy">Home</span>
-              <span className="text-brand-navy/30">›</span>
-              <span className="text-brand-indigo">Dashboard</span>
-            </div>
-            <div className="flex items-center gap-2.5">
-              <div className="hidden items-center gap-1.5 rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 md:flex">
-                <Search size={12} className="text-brand-navy/40" />
-                <span className="text-[11px] text-brand-navy/40">Search reports, projects…</span>
-              </div>
-              <button className="grid h-8 w-8 place-items-center rounded-full bg-brand-indigo/10 text-brand-indigo">
-                <Activity size={14} />
-              </button>
-              <button className="relative grid h-8 w-8 place-items-center rounded-full bg-slate-100 text-brand-navy/70">
-                <Bell size={14} />
-                <span className="absolute right-1.5 top-1.5 h-1.5 w-1.5 rounded-full bg-rose-500" />
-              </button>
-              <div className="flex items-center gap-1 rounded-full bg-slate-100 py-1 pl-1 pr-2">
-                <span className="grid h-6 w-6 place-items-center rounded-full bg-gradient-to-br from-brand-indigo to-brand-purple text-[9px] font-bold text-white">RK</span>
-                <ChevronDown size={12} className="text-brand-navy/40" />
-              </div>
-            </div>
-          </div>
-
-          {/* body */}
-          <div className="p-5">
-            <div className="flex items-end justify-between gap-3">
-              <div>
-                <h3 className="font-display text-[18px] font-extrabold tracking-tight text-brand-navy">
-                  Oxland — Land Management &amp; Insights
-                </h3>
-                <p className="mt-0.5 text-[11.5px] text-brand-navy/55">
-                  Visualized to match your filters, projects overview, uploaded data, and map &amp; parcels.
-                </p>
-              </div>
-              <div className="hidden items-center gap-2 md:flex">
-                <button className="flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-2.5 py-1.5 text-[10.5px] font-semibold text-brand-navy/70">
-                  Last 30 Days <ChevronDown size={11} />
-                </button>
-                <button className="flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-2.5 py-1.5 text-[10.5px] font-semibold text-brand-navy/70">
-                  <Download size={11} /> Export PDF
-                </button>
-                <button className="flex items-center gap-1.5 rounded-full bg-brand-indigo px-2.5 py-1.5 text-[10.5px] font-semibold text-white shadow-soft">
-                  <Plus size={11} /> New Project
-                </button>
-              </div>
-            </div>
-
-            {/* KPI cards */}
-            <div className="mt-4 grid grid-cols-2 gap-2.5 md:grid-cols-4">
-              <KpiCard label="No. of Projects" value="15" delta="+2%" tone="indigo" icon={FileText} />
-              <KpiCard label="Total Plots" value="120" delta="+5%" tone="blue" icon={Layers} />
-              <KpiCard label="Interested Areas" value="164" delta="+12%" tone="amber" icon={MapPinned} />
-              <KpiCard label="Overall Cases" value="78" delta="−3%" tone="rose" icon={BarChart3} negative />
-            </div>
-
-            {/* charts row */}
-            <div className="mt-3 grid grid-cols-1 gap-2.5 lg:grid-cols-[1.05fr_0.95fr_0.7fr]">
-              {/* area-wise layers */}
-              <div className="rounded-2xl border border-slate-200/80 bg-white p-3.5">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <div className="text-[11px] font-bold text-brand-navy">Area-Wise Layers</div>
-                  </div>
-                  <button className="flex items-center gap-1 rounded-full border border-slate-200 px-2 py-0.5 text-[9.5px] font-semibold text-brand-navy/65">
-                    Overall Projects <ChevronDown size={10} />
-                  </button>
-                </div>
-                <div className="mt-3 space-y-2">
-                  <BarRow label="States Layer" value={12} max={120} />
-                  <BarRow label="Districts Layer" value={45} max={120} />
-                  <BarRow label="Villages Layer" value={85} max={120} />
-                  <BarRow label="Plot Layer" value={120} max={120} />
-                </div>
-                <div className="mt-3 text-[9px] text-brand-navy/45">
-                  Shows number of layers at each stage used: Plot Layer → Village Layer
-                </div>
-              </div>
-
-              {/* recent project preview / map */}
-              <div className="rounded-2xl border border-slate-200/80 bg-white p-3.5">
-                <div className="flex items-center justify-between">
-                  <div className="text-[11px] font-bold text-brand-navy">Recent Project Preview</div>
-                  <span className="text-[9.5px] font-semibold text-brand-indigo">Open ↗</span>
-                </div>
-                <div className="relative mt-2.5 h-[148px] overflow-hidden rounded-xl border border-slate-200/70 bg-gradient-to-br from-emerald-50 via-slate-50 to-indigo-50">
-                  <svg viewBox="0 0 300 150" className="absolute inset-0 h-full w-full">
-                    <defs>
-                      <pattern id="map-grid" width="14" height="14" patternUnits="userSpaceOnUse">
-                        <path d="M 14 0 L 0 0 0 14" fill="none" stroke="rgba(79,70,229,0.05)" strokeWidth="0.6" />
-                      </pattern>
-                    </defs>
-                    <rect width="300" height="150" fill="url(#map-grid)" />
-                    {/* river */}
-                    <path d="M -10 60 C 60 50, 120 90, 180 75 S 310 50, 320 60" stroke="#7DD3FC" strokeWidth="6" fill="none" opacity="0.65" strokeLinecap="round" />
-                    {/* roads */}
-                    <path d="M 30 130 L 270 20" stroke="#FBBF24" strokeWidth="1.5" fill="none" opacity="0.5" />
-                    <path d="M 0 100 L 300 110" stroke="#94A3B8" strokeWidth="1" fill="none" opacity="0.4" strokeDasharray="3 3" />
-                    {/* parcel highlight */}
-                    <polygon points="120,55 195,45 200,110 130,118" fill="rgba(220,38,38,0.18)" stroke="#DC2626" strokeWidth="1.4" />
-                    <text x="148" y="86" fontSize="9" fontWeight="700" fill="#7F1D1D">Manger</text>
-                    {/* pin */}
-                    <g transform="translate(160 30)">
-                      <circle r="4" fill="#4F46E5" />
-                      <circle r="9" fill="#4F46E5" opacity="0.15" />
-                    </g>
-                  </svg>
-                  <button className="absolute bottom-2 right-2 grid h-7 w-7 place-items-center rounded-full border border-white/80 bg-white/95 text-brand-navy/70 shadow-soft">
-                    <Plus size={12} />
-                  </button>
-                </div>
-              </div>
-
-              {/* summary report */}
-              <div className="rounded-2xl border border-slate-200/80 bg-white p-3.5">
-                <div className="flex items-center justify-between">
-                  <div className="text-[11px] font-bold text-brand-navy">Summary Report</div>
-                  <span className="flex items-center gap-1 text-[9.5px] font-semibold text-brand-indigo">
-                    <RefreshCw size={9} /> Refresh
-                  </span>
-                </div>
-                <div className="mt-2 flex gap-1.5">
-                  <span className="rounded-full bg-brand-indigo px-2 py-0.5 text-[9px] font-bold text-white">This Month</span>
-                  <span className="rounded-full bg-slate-100 px-2 py-0.5 text-[9px] font-semibold text-brand-navy/65">All Over</span>
-                </div>
-                {/* donut */}
-                <div className="relative mx-auto mt-2 h-[100px] w-[100px]">
-                  <svg viewBox="0 0 36 36" className="-rotate-90">
-                    <circle cx="18" cy="18" r="15.9" fill="none" stroke="#EEF2FF" strokeWidth="3.5" />
-                    <circle
-                      cx="18" cy="18" r="15.9" fill="none"
-                      stroke="#4F46E5" strokeWidth="3.5"
-                      strokeDasharray="78 100" strokeLinecap="round"
-                    />
-                    <circle
-                      cx="18" cy="18" r="15.9" fill="none"
-                      stroke="#FBBF24" strokeWidth="3.5"
-                      strokeDasharray="14 100" strokeDashoffset="-78" strokeLinecap="round"
-                    />
-                  </svg>
-                  <div className="absolute inset-0 grid place-items-center">
-                    <div className="text-center">
-                      <div className="font-display text-[18px] font-extrabold text-brand-navy leading-none">78</div>
-                      <div className="text-[8.5px] text-brand-navy/50 mt-0.5">Total Cases</div>
-                    </div>
-                  </div>
-                </div>
-                <div className="mt-2 rounded-xl border border-slate-100 bg-slate-50/60 p-2">
-                  <div className="text-[8.5px] font-semibold uppercase tracking-wider text-brand-navy/45">My Assets</div>
-                  <div className="mt-0.5 flex items-baseline gap-1">
-                    <span className="font-display text-[15px] font-extrabold text-brand-navy">67</span>
-                    <span className="text-[9.5px] font-semibold text-brand-navy/55">acres</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* trust strip */}
-            <div className="mt-3 hidden items-center justify-between gap-2 rounded-2xl border border-slate-200/80 bg-gradient-to-r from-indigo-50/60 to-white px-4 py-2.5 md:flex">
-              <TrustChip icon={ShieldCheck} title="Secure. Reliable. Always Up-to-date." subtitle="Your data is encrypted and backed up." />
-              <Divider />
-              <TrustChip badge="99.9%" title="Uptime Guarantee" />
-              <Divider />
-              <TrustChip badge="24/7" title="Customer Support" />
-              <Divider />
-              <TrustChip icon={ShieldCheck} title="Secure" subtitle="Data Protection" />
-            </div>
-          </div>
-        </div>
-      </div>
+    <div className="relative mx-auto w-full max-w-[1080px] overflow-hidden rounded-[28px] border border-slate-200/60 bg-white shadow-[0_40px_120px_-30px_rgba(47,71,160,0.35),0_18px_50px_-20px_rgba(124,58,237,0.2)]">
+      <img src="/dashboard.png" alt="dashboard mock"
+        height={500}
+        width={1080}
+      />
     </div>
   );
 }

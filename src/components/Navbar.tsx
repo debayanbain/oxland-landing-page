@@ -12,19 +12,7 @@ const SPRING = { type: "spring" as const, stiffness: 380, damping: 34, mass: 0.7
 function Logo() {
   return (
     <a href="#" className="flex items-center gap-2.5">
-      <span className="grid h-9 w-9 place-items-center rounded-xl bg-brand-gradient text-white shadow-soft">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-          <path
-            d="M12 2C7.6 2 4 5.5 4 9.8c0 5.2 6.5 11.2 7.4 12a1 1 0 0 0 1.3 0c.9-.8 7.3-6.8 7.3-12C20 5.5 16.4 2 12 2Z"
-            fill="white"
-            fillOpacity="0.92"
-          />
-          <circle cx="12" cy="9.6" r="2.6" fill="#4F46E5" />
-        </svg>
-      </span>
-      <span className="font-display text-xl font-bold tracking-tight text-brand-navy">
-        Oxland
-      </span>
+      <img src="/oxland.svg" alt="Oxland" width={100} height={50}/>
     </a>
   );
 }

@@ -1,84 +1,64 @@
 import { useEffect, useState, useRef } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 
-const CARDS = [
+interface CardTypes {
+  name: string;
+  brand: string;
+  angle: number;
+  floatDelay: number;
+  type: "image" | "svg";
+  src?: string;
+  renderIcon?: () => React.ReactNode;
+}
+
+const CARDS: CardTypes[] = [
   {
-    name: "FlowSync",
+    name: "SAP",
     brand: "orange",
     angle: 190,
     floatDelay: 0,
     type: "image",
-    src: "/FlowSyncc.png"
+    src: "/sap.png"
   },
   {
-    name: "PipeFlow",
+    name: "Oracle ERP",
     brand: "blue",
     angle: 225,
     floatDelay: -1.5,
-    type: "svg",
-    renderIcon: () => (
-      <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-        <circle cx="20" cy="20" r="13" stroke="#0C65FF" strokeWidth="7.5" strokeDasharray="62 20" strokeLinecap="round" transform="rotate(-120 20 20)" />
-        <circle cx="20" cy="20" r="4.5" fill="#0C65FF" />
-      </svg>
-    )
+    type: "image",
+    src: 'oracle.png',
   },
   {
-    name: "LinkHive",
+    name: "Microsoft Dynamics",
     brand: "indigo",
     angle: 145,
     floatDelay: -3.0,
     type: "image",
-    src: "/LinkHive.png"
+    src: "/Microsoft Dynamics.png"
   },
   {
-    name: "CoreSuite",
+    name: "Tally",
     brand: "cyan",
     angle: 315,
     floatDelay: -4.5,
-    type: "svg",
-    renderIcon: () => (
-      <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-        <circle cx="20" cy="20" r="12" stroke="#00A3FF" strokeWidth="6.5" strokeDasharray="45 30" strokeLinecap="round" />
-        <circle cx="20" cy="20" r="12" stroke="#0057FF" strokeWidth="6.5" strokeDasharray="15 60" strokeLinecap="round" transform="rotate(120 20 20)" />
-        <path d="M20 14A6 6 0 1 1 14 20" stroke="#0057FF" strokeWidth="3.5" strokeLinecap="round" />
-      </svg>
-    )
+    type: "image",
+    src: 'tally.png',
   },
   {
-    name: "GrowMate",
+    name: "Zoho Books",
     brand: "green",
     angle: 350,
     floatDelay: -2.0,
-    type: "svg",
-    renderIcon: () => (
-      <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-        <circle cx="20" cy="20" r="4" fill="#00C288" />
-        <circle cx="20" cy="9" r="4" fill="#00C288" />
-        <circle cx="20" cy="31" r="4" fill="#00C288" />
-        <circle cx="9" cy="20" r="4" fill="#00C288" />
-        <circle cx="31" cy="20" r="4" fill="#00C288" />
-        <circle cx="12" cy="12" r="2.5" fill="#00C288" opacity="0.6" />
-        <circle cx="28" cy="12" r="2.5" fill="#00C288" opacity="0.6" />
-        <circle cx="12" cy="28" r="2.5" fill="#00C288" opacity="0.6" />
-        <circle cx="28" cy="28" r="2.5" fill="#00C288" opacity="0.6" />
-      </svg>
-    )
+    type: "image",
+    src: '/Zoho Books.png'
   },
   {
-    name: "WorkStream",
+    name: "Google Maps",
     brand: "emerald",
     angle: 45,
     floatDelay: -3.5,
-    type: "svg",
-    renderIcon: () => (
-      <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-        <rect x="7" y="7" width="12" height="12" rx="4.5" fill="#00C875" />
-        <rect x="21" y="7" width="12" height="12" rx="4.5" fill="#00C875" />
-        <rect x="7" y="21" width="12" height="12" rx="4.5" fill="#00C875" />
-        <rect x="21" y="21" width="12" height="12" rx="4.5" fill="#00C875" />
-      </svg>
-    )
+    type: "image",
+    src: '/googlemaps.png'
   }
 ];
 
@@ -150,7 +130,7 @@ export default function IntegrationsOrbit() {
       ref={containerRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative w-full max-w-[1050px] h-[550px] flex items-center justify-center overflow-visible"
+      className="relative w-full max-w-[1050px] h-[550px] flex items-center justify-center overflow-visible md:translate-x-8"
     >
       {/* Parallax moving wrapper */}
       <motion.div

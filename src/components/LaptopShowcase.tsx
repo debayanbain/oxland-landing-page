@@ -171,7 +171,7 @@ function BrowserWindow() {
       {/* Embedded walkthrough video */}
       <div className="relative flex-1 overflow-hidden bg-black">
         <iframe
-          src="https://www.youtube.com/embed/jGXP2aehwPQ?autoplay=1&mute=1&loop=1&playlist=jGXP2aehwPQ&controls=1&modestbranding=1&rel=0"
+          src="https://www.youtube.com/embed/NddqGC3FFts?autoplay=1&mute=1&loop=1&playlist=NddqGC3FFts&controls=1&modestbranding=1&rel=0"
           title="Oxland walkthrough"
           className="absolute inset-0 h-full w-full"
           frameBorder={0}
@@ -179,6 +179,7 @@ function BrowserWindow() {
           referrerPolicy="strict-origin-when-cross-origin"
           allowFullScreen
         />
+        
       </div>
     </div>
   );

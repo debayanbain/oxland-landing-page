@@ -1,0 +1,169 @@
+---
+import Reveal from "@/components/Reveal.tsx";
+import { ArrowRight, Plane, Radio, CheckCircle2, MapPinned, Signal, Battery, Activity } from "lucide-react";
+
+const bullets = [
+  "Offline-first Android app for field surveyors",
+  "DGCA-pilot drone capture · orthomosaic + DTM + DSM",
+  "LoRa-based IoT for stockpile & encroachment alerts",
+  "Auto-stitching of geo-tagged photos to parcels",
+];
+---
+
+<section id="fieldops" class="relative bg-[#f6f7fc]/60 py-20 sm:py-28">
+  <div class="container">
+    <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+      {/* LEFT — visual */}
+      <Reveal client:visible variant="slide-right" delay={0.05}>
+        <div class="relative aspect-[5/4]">
+          <div class="relative h-full w-full overflow-hidden rounded-3xl border border-brand-navy/10 shadow-float" style="background: linear-gradient(160deg, #0B1437 0%, #1a2454 60%, #2a1b5a 100%);">
+            {/* Sky grid */}
+            <div class="pointer-events-none absolute inset-0 opacity-[0.08]" style="background-image: linear-gradient(rgba(255,255,255,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.4) 1px, transparent 1px); background-size: 40px 40px;"></div>
+
+            {/* Aurora */}
+            <div class="pointer-events-none absolute inset-0">
+              <div class="absolute -top-20 -right-10 h-72 w-72 rounded-full blur-3xl opacity-60" style="background: radial-gradient(closest-side, rgba(124,58,237,0.6), transparent 70%);"></div>
+              <div class="absolute -bottom-20 -left-10 h-72 w-72 rounded-full blur-3xl opacity-50" style="background: radial-gradient(closest-side, rgba(47,91,255,0.55), transparent 70%);"></div>
+            </div>
+
+            {/* Drone path SVG */}
+            <svg viewBox="0 0 500 400" class="absolute inset-0 h-full w-full">
+              <defs>
+                <linearGradient id="path-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#A78BFA" />
+                  <stop offset="100%" stop-color="#2F5BFF" />
+                </linearGradient>
+              </defs>
+              <path d="M 60 320 Q 130 220 200 280 T 350 200 T 460 100" fill="none" stroke="url(#path-grad)" stroke-width="2" stroke-dasharray="6 4" stroke-linecap="round">
+                <animate attributeName="stroke-dashoffset" from="0" to="-20" dur="1.2s" repeatCount="indefinite" />
+              </path>
+
+              {/* Waypoint markers */}
+              {[
+                { x: 60, y: 320 },
+                { x: 200, y: 280 },
+                { x: 350, y: 200 },
+                { x: 460, y: 100 },
+              ].map((p) => (
+                <>
+                  <circle cx={p.x} cy={p.y} r="5" fill="#A78BFA" />
+                  <circle cx={p.x} cy={p.y} r="11" fill="none" stroke="#A78BFA" stroke-width="1.5" opacity="0.4">
+                    <animate attributeName="r" values="5;18;5" dur="2s" repeatCount="indefinite" />
+                    <animate attributeName="opacity" values="0.6;0;0.6" dur="2s" repeatCount="indefinite" />
+                  </circle>
+                </>
+              ))}
+            </svg>
+
+            {/* Drone telemetry HUD */}
+            <div class="absolute left-4 top-4 rounded-2xl border border-white/15 bg-white/[0.08] p-3 backdrop-blur-md">
+              <div class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider text-white/70">
+                <Plane size={11} class="text-brand-lavender" />
+                Drone telemetry · DGCA-licensed
+              </div>
+              <div class="mt-2 grid grid-cols-3 gap-3 text-white">
+                <div>
+                  <div class="flex items-center gap-1 text-[9px] uppercase tracking-wider text-white/45">
+                    <Signal size={9} /> Signal
+                  </div>
+                  <div class="mt-0.5 font-display text-sm font-extrabold">98%</div>
+                </div>
+                <div>
+                  <div class="flex items-center gap-1 text-[9px] uppercase tracking-wider text-white/45">
+                    <Battery size={9} /> Battery
+                  </div>
+                  <div class="mt-0.5 font-display text-sm font-extrabold">73%</div>
+                </div>
+                <div>
+                  <div class="flex items-center gap-1 text-[9px] uppercase tracking-wider text-white/45">
+                    <Activity size={9} /> Alt
+                  </div>
+                  <div class="mt-0.5 font-display text-sm font-extrabold">120m</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Surveyor pin */}
+            <div class="absolute right-6 top-1/2 -translate-y-1/2 rounded-2xl border border-white/15 bg-white/[0.08] p-3 backdrop-blur-md text-white">
+              <div class="flex items-center gap-2">
+                <span class="grid h-9 w-9 place-items-center rounded-xl bg-brand-purple text-white shadow-[0_4px_14px_rgba(124,58,237,0.5)]">
+                  <MapPinned size={14} strokeWidth={2.25} />
+                </span>
+                <div>
+                  <div class="text-[10px] font-bold uppercase tracking-wider text-white/55">Surveyors active</div>
+                  <div class="font-display text-base font-extrabold">12 on-field</div>
+                </div>
+              </div>
+              <div class="mt-3 space-y-1 text-[11px]">
+                <div class="flex items-center justify-between">
+                  <span class="text-white/60">Ravi (Sehore)</span>
+                  <span class="rounded-full bg-success/20 px-1.5 py-0.5 text-[9px] font-bold uppercase text-success">Live</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span class="text-white/60">Priya (Bhopal)</span>
+                  <span class="rounded-full bg-success/20 px-1.5 py-0.5 text-[9px] font-bold uppercase text-success">Live</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span class="text-white/60">Anil (Vidisha)</span>
+                  <span class="rounded-full bg-warning/20 px-1.5 py-0.5 text-[9px] font-bold uppercase text-warning">Sync</span>
+                </div>
+              </div>
+            </div>
+
+            {/* IoT stat */}
+            <div class="absolute bottom-4 left-4 right-4 grid grid-cols-3 gap-2">
+              <div class="rounded-xl border border-white/15 bg-white/[0.08] p-2.5 backdrop-blur-md">
+                <div class="text-[9px] font-bold uppercase tracking-wider text-white/50">Capture today</div>
+                <div class="mt-0.5 font-display text-base font-extrabold text-white">68.4 ha</div>
+              </div>
+              <div class="rounded-xl border border-white/15 bg-white/[0.08] p-2.5 backdrop-blur-md">
+                <div class="text-[9px] font-bold uppercase tracking-wider text-white/50">IoT sensors</div>
+                <div class="mt-0.5 font-display text-base font-extrabold text-white">128 online</div>
+              </div>
+              <div class="rounded-xl border border-white/15 bg-white/[0.08] p-2.5 backdrop-blur-md">
+                <div class="text-[9px] font-bold uppercase tracking-wider text-white/50">Alerts</div>
+                <div class="mt-0.5 font-display text-base font-extrabold text-warning">3 new</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Reveal>
+
+      {/* RIGHT — copy */}
+      <Reveal client:visible variant="slide-left">
+        <div>
+          <div class="inline-flex items-center gap-2 rounded-full border border-brand-indigo/20 bg-brand-indigo/5 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-brand-indigo">
+            <span class="font-extrabold">04</span>
+            <span class="h-1 w-6 rounded-full bg-brand-indigo/40"></span>
+            Field Operations
+          </div>
+          <h2 class="mt-5 font-display text-4xl font-extrabold leading-tight tracking-tight text-brand-navy sm:text-5xl">
+            Drone, surveyor, sensor —{" "}
+            <span class="bg-gradient-to-r from-brand-indigo to-brand-purple bg-clip-text text-transparent">one operational picture.</span>
+          </h2>
+          <p class="mt-5 text-base leading-relaxed text-brand-navy/65 sm:text-lg">
+            Field teams capture on Android (online or offline), drones fly DGCA-licensed missions, and LoRa sensors stream telemetry — all flowing into the same parcel record. No reconciliation. No "which copy is current". Just the truth, updated by the people on the ground.
+          </p>
+
+          <ul class="mt-7 space-y-3">
+            {bullets.map((b) => (
+              <li class="flex items-start gap-3 text-sm text-brand-navy/80">
+                <span class="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-brand-indigo/10 text-brand-indigo">
+                  <CheckCircle2 size={13} strokeWidth={2.5} />
+                </span>
+                {b}
+              </li>
+            ))}
+          </ul>
+
+          <div class="mt-8 flex items-center gap-3">
+            <a href="#" class="group inline-flex items-center gap-2 rounded-full bg-brand-gradient px-5 py-2.5 text-sm font-semibold text-white shadow-soft transition-all hover:shadow-float">
+              See field-ops module
+              <ArrowRight size={14} strokeWidth={2.5} class="transition-transform group-hover:translate-x-0.5" />
+            </a>
+          </div>
+        </div>
+      </Reveal>
+    </div>
+  </div>
+</section>

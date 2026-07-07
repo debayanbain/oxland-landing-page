@@ -1,17 +1,25 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence, useReducedMotion, LayoutGroup } from "framer-motion";
 import { Menu, X, ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-const NAV = ["Product", "Solutions", "Industries", "Resources", "Pricing", "Contact"];
+type NavItem = { label: string; href: string };
+const NAV: NavItem[] = [
+  { label: "Home", href: "/" },
+  { label: "Features", href: "/features" },
+  { label: "Pricing", href: "/pricing" },
+  { label: "Blog", href: "/blog" },
+  { label: "About Us", href: "/about" },
+  { label: "Contact Us", href: "/contact" },
+];
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 const SPRING = { type: "spring" as const, stiffness: 380, damping: 34, mass: 0.7 };
 
 function Logo() {
   return (
-    <a href="#" className="flex items-center gap-2.5">
+    <a href="/" className="flex items-center gap-2.5">
       <img src="/oxland.svg" alt="Oxland" width={100} height={50}/>
     </a>
   );
@@ -75,17 +83,16 @@ export default function Navbar() {
               className="hidden items-center gap-0.5 lg:flex"
             >
               {NAV.map((item) => {
-                const href = `#${item.toLowerCase()}`;
-                const isHovered = hovered === item;
+                const isHovered = hovered === item.label;
                 return (
-                  <li key={item} className="relative">
+                  <li key={item.label} className="relative">
                     <a
-                      href={href}
-                      onMouseEnter={() => setHovered(item)}
-                      onFocus={() => setHovered(item)}
+                      href={item.href}
+                      onMouseEnter={() => setHovered(item.label)}
+                      onFocus={() => setHovered(item.label)}
                       className="relative z-10 inline-block rounded-full px-3.5 py-1.5 text-[13.5px] font-medium text-brand-navy/75 transition-colors hover:text-brand-navy"
                     >
-                      {item}
+                      {item.label}
                     </a>
                     <AnimatePresence>
                       {isHovered && !reduce && (
@@ -107,19 +114,29 @@ export default function Navbar() {
           </LayoutGroup>
 
           <div className="hidden items-center gap-1.5 lg:flex">
-            <a
-              href="#preview"
+            <button
+              type="button"
+              onClick={() =>
+                window.dispatchEvent(
+                  new CustomEvent("oxland:open-contact", { detail: { reason: "demo" } })
+                )
+              }
               className="rounded-full px-3.5 py-1.5 text-[13.5px] font-medium text-brand-navy/75 transition-colors hover:text-brand-navy"
             >
-              View Platform
-            </a>
-            <Button size="sm" className="group rounded-full">
-              Book Demo
+              Book Now
+            </button>
+            <a
+              href="https://app.oxland.in"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={cn(buttonVariants({ size: "sm" }), "group")}
+            >
+              Sign in
               <ArrowRight
                 size={14}
                 className="ml-0.5 transition-transform duration-300 group-hover:translate-x-0.5"
               />
-            </Button>
+            </a>
           </div>
 
           <button
@@ -176,7 +193,7 @@ export default function Navbar() {
               >
                 {NAV.map((item) => (
                   <motion.li
-                    key={item}
+                    key={item.label}
                     variants={{
                       hidden: { opacity: 0, y: 12, filter: "blur(6px)" },
                       show: {
@@ -188,11 +205,11 @@ export default function Navbar() {
                     }}
                   >
                     <a
-                      href={`#${item.toLowerCase()}`}
+                      href={item.href}
                       onClick={() => setOpen(false)}
                       className="flex items-center justify-between rounded-2xl px-4 py-3.5 text-base font-semibold text-brand-navy/85 transition-colors hover:bg-secondary"
                     >
-                      <span>{item}</span>
+                      <span>{item.label}</span>
                       <ArrowRight
                         size={16}
                         className="text-brand-navy/30 transition-transform group-hover:translate-x-0.5"
@@ -215,13 +232,24 @@ export default function Navbar() {
                     variant="secondary"
                     size="sm"
                     className="flex-1 rounded-full"
-                    onClick={() => setOpen(false)}
+                    onClick={() => {
+                      setOpen(false);
+                      window.dispatchEvent(
+                        new CustomEvent("oxland:open-contact", { detail: { reason: "demo" } })
+                      );
+                    }}
                   >
-                    View Platform
+                    Book Now
                   </Button>
-                  <Button size="sm" className="flex-1 rounded-full" onClick={() => setOpen(false)}>
-                    Book Demo
-                  </Button>
+                  <a
+                    href="https://app.oxland.in"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setOpen(false)}
+                    className={cn(buttonVariants({ size: "sm" }), "flex-1")}
+                  >
+                    Sign in
+                  </a>
                 </motion.li>
               </motion.ul>
             </motion.div>

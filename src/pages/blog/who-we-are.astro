@@ -1,0 +1,304 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Reveal from "@/components/Reveal.tsx";
+import BlogSidebar from "@/components/BlogSidebar.tsx";
+import { ArrowLeft, Clock, Calendar, Share2, Bookmark, ArrowRight, Quote } from "lucide-react";
+
+const post = {
+  category: "Company",
+  categoryPalette: "bg-brand-indigo/10 text-brand-indigo",
+  title: "Who We Are — And How We're Helping India's Land Ops Teams",
+  subtitle: "Land acquisition in India is stuck between a spreadsheet, a court order and a scanned PDF. Here's why we built Oxland — and what it means for the people who actually run these projects.",
+  date: "12 Mar 2026",
+  readTime: "6 min read",
+  image: "/features-background.png",
+};
+
+const author = {
+  name: "Akash Devnath",
+  role: "Co-founder · Oxland",
+  initials: "AD",
+  bio: "Building the workspace Indian land teams deserve. Ex-infra land acquisition lead, DGCA-licensed drone pilot, occasional GIS nerd.",
+  socials: {
+    linkedin: "https://linkedin.com",
+    instagram: "https://instagram.com",
+    facebook: "https://facebook.com",
+  },
+};
+
+const bullets = [
+  {
+    title: "One parcel record, every workflow attached",
+    body: "GIS, ownership, litigation, R&R, drone captures — all stitched to the same object. No reconciliation, no orphaned data.",
+  },
+  {
+    title: "Cadastre-first, not spreadsheet-first",
+    body: "We start with the map and the RoR, then layer everything else on top. It's the only sane way to build for Indian land.",
+  },
+  {
+    title: "Field ops is a first-class citizen",
+    body: "Offline Android app, DGPS uploads, drone integration, IoT for stockpile and encroachment. The people on the ground are our primary user.",
+  },
+  {
+    title: "Compliance out of the box",
+    body: "DPDP Act, SOC 2, ISO 27001, MeitY empanelment, GeM-ready. So legal and procurement don't have to slow down evaluation.",
+  },
+];
+---
+
+<Layout
+  title={`${post.title} — Oxland Blog`}
+  description={post.subtitle}
+>
+  <main class="relative">
+
+    {/* -------------------- ARTICLE HEADER + FEATURED IMAGE -------------------- */}
+    <section class="relative isolate overflow-hidden pt-28 pb-8 sm:pt-32 sm:pb-12">
+      <div class="pointer-events-none absolute inset-0 -z-10">
+        <div class="absolute inset-0 bg-grid-faint [background-size:42px_42px] opacity-30"></div>
+        <div class="absolute -top-40 left-1/2 h-[480px] w-[720px] -translate-x-1/2 rounded-full opacity-50 blur-3xl" style="background: radial-gradient(closest-side, rgba(79,70,229,0.28), rgba(124,58,237,0.14) 50%, transparent 75%);"></div>
+      </div>
+
+      <div class="container relative">
+        {/* Breadcrumb */}
+        <Reveal client:visible variant="fade-up">
+          <a
+            href="/blog"
+            class="inline-flex items-center gap-1.5 text-[13px] font-semibold text-brand-navy/55 transition-colors hover:text-brand-indigo"
+          >
+            <ArrowLeft size={13} strokeWidth={2.5} />
+            Back to blog
+          </a>
+        </Reveal>
+
+        {/* Article meta */}
+        <div class="mx-auto mt-6 max-w-3xl">
+          <Reveal client:visible variant="fade-up" delay={0.06}>
+            <span class={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider ${post.categoryPalette}`}>
+              {post.category}
+            </span>
+          </Reveal>
+
+          <Reveal client:visible variant="blur-up" delay={0.12}>
+            <h1 class="mt-4 font-display text-3xl font-extrabold leading-[1.1] tracking-tight text-brand-navy sm:text-4xl lg:text-5xl">
+              {post.title}
+            </h1>
+          </Reveal>
+
+          <Reveal client:visible variant="fade-up" delay={0.2}>
+            <p class="mt-5 text-base leading-relaxed text-brand-navy/65 sm:text-lg">
+              {post.subtitle}
+            </p>
+          </Reveal>
+
+          <Reveal client:visible variant="fade-up" delay={0.28}>
+            <div class="mt-6 flex flex-wrap items-center gap-4 text-xs text-brand-navy/55">
+              <div class="flex items-center gap-2">
+                <span class="grid h-8 w-8 place-items-center rounded-full bg-gradient-to-br from-brand-indigo to-brand-purple font-display text-[10px] font-extrabold text-white shadow-soft">
+                  {author.initials}
+                </span>
+                <span class="font-semibold text-brand-navy">{author.name}</span>
+              </div>
+              <span class="h-4 w-px bg-brand-navy/15"></span>
+              <span class="flex items-center gap-1.5">
+                <Calendar size={12} strokeWidth={2.5} />
+                {post.date}
+              </span>
+              <span class="flex items-center gap-1.5">
+                <Clock size={12} strokeWidth={2.5} />
+                {post.readTime}
+              </span>
+              <span class="ml-auto flex items-center gap-1.5">
+                <button type="button" class="grid h-8 w-8 place-items-center rounded-full border border-brand-navy/10 text-brand-navy/60 hover:bg-brand-navy/[0.04]" aria-label="Share">
+                  <Share2 size={13} strokeWidth={2.5} />
+                </button>
+                <button type="button" class="grid h-8 w-8 place-items-center rounded-full border border-brand-navy/10 text-brand-navy/60 hover:bg-brand-navy/[0.04]" aria-label="Save">
+                  <Bookmark size={13} strokeWidth={2.5} />
+                </button>
+              </span>
+            </div>
+          </Reveal>
+        </div>
+      </div>
+    </section>
+
+    {/* -------------------- FEATURED IMAGE -------------------- */}
+    <section class="relative pt-6 pb-14 sm:pt-10 sm:pb-20">
+      <div class="container">
+        <Reveal client:visible variant="scale">
+          <div class="relative aspect-[16/8] overflow-hidden rounded-[28px] border border-brand-navy/10 shadow-float">
+            <img
+              src={post.image}
+              alt={post.title}
+              class="h-full w-full object-cover"
+              draggable="false"
+            />
+            <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-brand-navy/25 via-transparent to-transparent"></div>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+
+    {/* -------------------- ARTICLE + SIDEBAR -------------------- */}
+    <section class="relative pb-16 sm:pb-24">
+      <div class="container">
+        <div class="grid gap-10 md:grid-cols-[minmax(0,1fr)_300px] md:gap-10 lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-14">
+
+          {/* ------- MAIN ARTICLE ------- */}
+          <article class="relative">
+            <Reveal client:visible variant="fade-up">
+              <div class="prose prose-lg max-w-none">
+                <p class="text-[17px] leading-[1.75] text-brand-navy/80">
+                  <span class="font-display text-5xl font-extrabold leading-none text-brand-indigo float-left mr-3 mt-1">O</span>
+                  xland started with a frustration a lot of people in Indian infrastructure share but rarely say out loud. Every serious land project — corridor, transmission line, industrial park, renewable farm — runs on a stack that looks basically the same everywhere: four spreadsheets, a legacy GIS install, two case-tracking tools, a WhatsApp group and a folder of scanned PDFs.
+                </p>
+                <p class="mt-5 text-[17px] leading-[1.75] text-brand-navy/80">
+                  Then someone at the top asks "what's the status of parcel 128/2?" and it takes three days and four calls to find out.
+                </p>
+              </div>
+            </Reveal>
+
+            {/* Section: The problem we saw */}
+            <Reveal client:visible variant="fade-up" delay={0.05}>
+              <h2 class="mt-12 font-display text-2xl font-extrabold text-brand-navy sm:text-[28px]">
+                The problem we saw
+              </h2>
+              <p class="mt-4 text-[16px] leading-[1.75] text-brand-navy/75">
+                The invisible tax on every land project isn't the price of the platform — it's the hours spent reconciling three sources of truth. The GIS says one thing, the case tracker says another, the field team's WhatsApp update contradicts both. Someone in the middle spends a week aligning them, and the answer they land on is already stale.
+              </p>
+              <p class="mt-4 text-[16px] leading-[1.75] text-brand-navy/75">
+                We wanted to remove that tax. Not with a prettier spreadsheet. With a workspace where the parcel <em>is</em> the object, and everything else — the litigation case, the drone survey, the compensation ledger, the owner's KYC — attaches to it.
+              </p>
+            </Reveal>
+
+            {/* Pull quote */}
+            <Reveal client:visible variant="scale" delay={0.1}>
+              <div class="relative my-12 rounded-3xl border border-brand-indigo/15 bg-gradient-to-br from-brand-indigo/5 via-white to-brand-purple/5 p-8">
+                <Quote size={28} strokeWidth={2.5} class="text-brand-indigo/40" />
+                <p class="mt-3 font-display text-xl font-bold leading-snug text-brand-navy sm:text-2xl">
+                  "One parcel record is the source of truth. No parallel spreadsheets, no side-of-desk trackers, no <span class="bg-gradient-to-r from-brand-indigo to-brand-purple bg-clip-text text-transparent">'let me check with the field team'</span>."
+                </p>
+              </div>
+            </Reveal>
+
+            {/* Section: What we built */}
+            <Reveal client:visible variant="fade-up" delay={0.05}>
+              <h2 class="font-display text-2xl font-extrabold text-brand-navy sm:text-[28px]">
+                What we built
+              </h2>
+              <p class="mt-4 text-[16px] leading-[1.75] text-brand-navy/75">
+                Oxland is twelve modules stitched together around a single parcel-first data model. But the philosophy underneath is what we care about — these four things are non-negotiable in every release:
+              </p>
+            </Reveal>
+
+            {/* Bullet cards */}
+            <div class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
+              {bullets.map((b, i) => (
+                <Reveal client:visible delay={0.08 + i * 0.06}>
+                  <div class="rounded-2xl border border-brand-navy/10 bg-white p-5 shadow-card">
+                    <div class="flex items-start gap-3">
+                      <span class="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-brand-indigo text-white font-display text-xs font-extrabold">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <div>
+                        <h3 class="font-display text-[15px] font-extrabold text-brand-navy leading-tight">
+                          {b.title}
+                        </h3>
+                        <p class="mt-1.5 text-[13px] leading-relaxed text-brand-navy/65">
+                          {b.body}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+
+            {/* Section: Where we're going */}
+            <Reveal client:visible variant="fade-up" delay={0.1}>
+              <h2 class="mt-14 font-display text-2xl font-extrabold text-brand-navy sm:text-[28px]">
+                Where we're going
+              </h2>
+              <p class="mt-4 text-[16px] leading-[1.75] text-brand-navy/75">
+                In the next twelve months, we're doubling down on three things: deeper GIS integrations with state revenue portals, an AI layer that reads court orders and auto-links them to the right parcels, and a proper mobile-first R&R workflow that field officers can run without training.
+              </p>
+              <p class="mt-4 text-[16px] leading-[1.75] text-brand-navy/75">
+                We're also hiring — engineers, GIS specialists, land-ops leads and a founding designer. If any of this reads like the thing you'd want to work on, our <a href="/contact" class="font-semibold text-brand-indigo underline decoration-brand-indigo/30 underline-offset-4 hover:decoration-brand-indigo">contact page</a> goes straight to a human.
+              </p>
+              <p class="mt-4 text-[16px] leading-[1.75] text-brand-navy/75">
+                And if you're running a land project right now and any of this rings true, the best way to see what we're building is to <a href="#" class="font-semibold text-brand-indigo underline decoration-brand-indigo/30 underline-offset-4 hover:decoration-brand-indigo">book a walkthrough on your data</a>. Forty-five minutes, no slides.
+              </p>
+              <p class="mt-6 text-[15px] font-medium leading-relaxed text-brand-navy/85">
+                Thanks for reading — and for whatever's on the other side of your screen, we hope this made it a little clearer why we started this thing.
+              </p>
+            </Reveal>
+
+            {/* Article footer — share bar */}
+            <Reveal client:visible variant="fade-up" delay={0.12}>
+              <div class="mt-14 flex flex-col items-start justify-between gap-4 rounded-2xl border border-brand-navy/8 bg-brand-navy/[0.02] p-5 sm:flex-row sm:items-center">
+                <div class="flex items-center gap-3">
+                  <span class="grid h-10 w-10 place-items-center rounded-full bg-gradient-to-br from-brand-indigo to-brand-purple font-display text-[11px] font-extrabold text-white shadow-soft">
+                    {author.initials}
+                  </span>
+                  <div>
+                    <div class="text-sm font-bold text-brand-navy">Written by {author.name}</div>
+                    <div class="text-[11px] text-brand-navy/55">{author.role}</div>
+                  </div>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="text-[11px] font-semibold text-brand-navy/55">Share this piece</span>
+                  <button type="button" class="grid h-8 w-8 place-items-center rounded-full border border-brand-navy/10 bg-white text-brand-navy/60 hover:bg-brand-navy/[0.04]" aria-label="Share">
+                    <Share2 size={13} strokeWidth={2.5} />
+                  </button>
+                </div>
+              </div>
+            </Reveal>
+          </article>
+
+          {/* ------- SIDEBAR ------- */}
+          <div class="md:sticky md:top-24 md:self-start">
+            <BlogSidebar client:load author={author} />
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    {/* -------------------- READ NEXT / CTA -------------------- */}
+    <section class="relative py-16 sm:py-20">
+      <div class="container">
+        <Reveal client:visible variant="scale">
+          <div class="relative overflow-hidden rounded-[32px] border border-brand-navy/8 bg-gradient-to-br from-[#f7f8ff] via-white to-[#f4e8ff] p-8 shadow-card sm:p-12">
+            <div class="pointer-events-none absolute -top-20 -right-20 h-64 w-64 rounded-full opacity-55 blur-3xl" style="background: radial-gradient(closest-side, rgba(79,70,229,0.28), transparent 70%);"></div>
+            <div class="pointer-events-none absolute -bottom-20 -left-20 h-64 w-64 rounded-full opacity-55 blur-3xl" style="background: radial-gradient(closest-side, rgba(124,58,237,0.28), transparent 70%);"></div>
+
+            <div class="relative flex flex-col items-center justify-between gap-6 text-center sm:flex-row sm:text-left">
+              <div class="max-w-xl">
+                <div class="inline-flex items-center gap-2 rounded-full border border-brand-indigo/20 bg-white/70 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-brand-indigo backdrop-blur-sm">
+                  Read next
+                </div>
+                <h3 class="mt-3 font-display text-2xl font-extrabold text-brand-navy sm:text-3xl">
+                  Explore the rest of the{" "}
+                  <span class="bg-gradient-to-r from-brand-indigo to-brand-purple bg-clip-text text-transparent">
+                    Oxland archive.
+                  </span>
+                </h3>
+                <p class="mt-2 text-sm text-brand-navy/60">
+                  Case studies, teardowns and dispatches from the team — a new piece every fortnight.
+                </p>
+              </div>
+              <a
+                href="/blog"
+                class="group inline-flex shrink-0 items-center gap-2 rounded-xl bg-brand-gradient px-6 py-3 text-sm font-semibold text-white shadow-soft transition-all hover:shadow-float"
+              >
+                Browse all articles
+                <ArrowRight size={14} strokeWidth={2.5} class="transition-transform group-hover:translate-x-0.5" />
+              </a>
+            </div>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+
+  </main>
+</Layout>

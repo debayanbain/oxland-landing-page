@@ -1,0 +1,58 @@
+---
+import Reveal from "@/components/Reveal.tsx";
+import CountUp from "@/components/CountUp.tsx";
+import { Cpu, Layers3, Gauge, ServerCog } from "lucide-react";
+
+type Metric = {
+  icon: any;
+  to: number;
+  decimals?: number;
+  prefix?: string;
+  suffix?: string;
+  separator?: boolean;
+  label: string;
+  detail: string;
+};
+
+const metrics: Metric[] = [
+  { icon: Cpu, to: 99.97, decimals: 2, suffix: "%", separator: false, label: "Platform uptime", detail: "Rolling 12-month SLA across all India-region tenants." },
+  { icon: Layers3, to: 142, suffix: "+", label: "GIS layers shipped", detail: "Cadastre, RoR, encumbrance, land-use, NHAI, forest, more." },
+  { icon: Gauge, to: 4.2, decimals: 1, suffix: "s", separator: false, label: "Median page load", detail: "On 4G across tier-2 districts — engineered for the field." },
+  { icon: ServerCog, to: 24, suffix: "×7", label: "NOC monitoring", detail: "Real humans + automated remediation, never just dashboards." },
+];
+---
+
+<section class="relative py-10 sm:py-14">
+  <div class="container">
+    <Reveal client:visible>
+      <div class="relative overflow-hidden rounded-[32px] border border-brand-navy/10 bg-brand-navy shadow-float">
+        <div class="pointer-events-none absolute inset-0 opacity-[0.08]" style="background-image: linear-gradient(to right, rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.5) 1px, transparent 1px); background-size: 44px 44px;"></div>
+        <div class="pointer-events-none absolute -top-32 -left-20 h-80 w-80 rounded-full blur-3xl opacity-60" style="background: radial-gradient(closest-side, rgba(79,70,229,0.55), transparent 70%);"></div>
+        <div class="pointer-events-none absolute -bottom-32 -right-20 h-80 w-80 rounded-full blur-3xl opacity-50" style="background: radial-gradient(closest-side, rgba(124,58,237,0.55), transparent 70%);"></div>
+
+        <div class="relative grid grid-cols-2 divide-x divide-white/10 lg:grid-cols-4">
+          {metrics.map((m, i) => (
+            <div class={`group relative px-6 py-10 sm:px-8 ${i >= 2 ? "border-t border-white/10 lg:border-t-0" : ""}`}>
+              <span class="grid h-10 w-10 place-items-center rounded-xl bg-white/10 text-brand-lavender ring-1 ring-white/15 backdrop-blur-md">
+                <m.icon size={16} strokeWidth={2.25} />
+              </span>
+              <div class="mt-5 flex items-baseline gap-1">
+                <CountUp
+                  client:visible
+                  to={m.to}
+                  decimals={m.decimals ?? 0}
+                  prefix={m.prefix ?? ""}
+                  suffix={m.suffix ?? ""}
+                  separator={m.separator ?? true}
+                  className="font-display text-4xl font-extrabold tracking-tight bg-gradient-to-r from-white via-brand-lavender to-white bg-clip-text text-transparent tabular-nums sm:text-5xl"
+                />
+              </div>
+              <p class="mt-3 text-sm font-semibold text-white">{m.label}</p>
+              <p class="mt-1 text-xs leading-relaxed text-white/55">{m.detail}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </Reveal>
+  </div>
+</section>

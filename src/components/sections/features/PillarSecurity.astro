@@ -1,0 +1,140 @@
+---
+import Reveal from "@/components/Reveal.tsx";
+import { ArrowRight, ShieldCheck, Bell, CheckCircle2, Lock, KeyRound } from "lucide-react";
+
+const bullets = [
+  "Granular RBAC — field surveyor to project director",
+  "SSO + SCIM provisioning for enterprise IT",
+  "DPDP Act 2023 + ISO 27001 audited",
+  "Smart alerts — deadlines, hearings, encroachments",
+];
+
+const roles = [
+  { name: "Field Surveyor", color: "from-brand-blue to-brand-indigo", perms: { Records: "View", Acquisition: "—", Litigation: "—", Reports: "View" } },
+  { name: "Project Manager", color: "from-brand-indigo to-brand-purple", perms: { Records: "Edit", Acquisition: "Edit", Litigation: "View", Reports: "Edit" } },
+  { name: "Legal Counsel", color: "from-brand-purple to-brand-lavender", perms: { Records: "View", Acquisition: "View", Litigation: "Edit", Reports: "View" } },
+  { name: "Director", color: "from-brand-indigo to-brand-blue", perms: { Records: "Admin", Acquisition: "Admin", Litigation: "Admin", Reports: "Admin" } },
+];
+
+const alerts = [
+  { tone: "warning", icon: "🟡", text: "Hearing tomorrow · Case LC-089", time: "in 14h" },
+  { tone: "indigo", icon: "🟣", text: "Award deadline · 12 parcels", time: "in 3d" },
+  { tone: "success", icon: "🟢", text: "Survey complete · 28 parcels", time: "2h ago" },
+];
+---
+
+<section id="security" class="relative bg-[#f6f7fc]/60 py-20 sm:py-28">
+  <div class="container">
+    <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+      {/* LEFT — visual */}
+      <Reveal client:visible variant="slide-right" delay={0.05}>
+        <div class="space-y-4">
+          {/* RBAC matrix card */}
+          <div class="overflow-hidden rounded-3xl border border-brand-navy/10 bg-white shadow-float">
+            <div class="flex items-center justify-between border-b border-brand-navy/8 bg-gradient-to-r from-brand-indigo/5 to-brand-purple/5 px-5 py-3">
+              <div class="flex items-center gap-2">
+                <span class="grid h-7 w-7 place-items-center rounded-lg bg-brand-indigo/10 text-brand-indigo">
+                  <KeyRound size={13} strokeWidth={2.25} />
+                </span>
+                <div class="text-[10px] font-bold uppercase tracking-wider text-brand-navy/55">Role-based access matrix</div>
+              </div>
+            </div>
+            <div class="divide-y divide-brand-navy/6">
+              <div class="grid grid-cols-[1.4fr_repeat(4,1fr)] gap-2 px-5 py-2 text-[10px] font-bold uppercase tracking-wider text-brand-navy/45">
+                <div>Role</div>
+                <div class="text-center">Records</div>
+                <div class="text-center">Acquisition</div>
+                <div class="text-center">Litigation</div>
+                <div class="text-center">Reports</div>
+              </div>
+              {roles.map((r) => (
+                <div class="grid grid-cols-[1.4fr_repeat(4,1fr)] items-center gap-2 px-5 py-3 hover:bg-brand-indigo/[0.025]">
+                  <div class="flex items-center gap-2">
+                    <span class={`h-6 w-6 rounded-full bg-gradient-to-br ${r.color}`}></span>
+                    <span class="text-xs font-semibold text-brand-navy">{r.name}</span>
+                  </div>
+                  {Object.values(r.perms).map((v) => (
+                    <div class="text-center">
+                      <span class={`inline-flex items-center justify-center rounded-full px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider ${
+                        v === "Admin" ? "bg-brand-indigo text-white" :
+                        v === "Edit" ? "bg-brand-indigo/15 text-brand-indigo" :
+                        v === "View" ? "bg-brand-navy/8 text-brand-navy/70" :
+                        "text-brand-navy/30"
+                      }`}>
+                        {v}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Alerts card */}
+          <div class="overflow-hidden rounded-3xl border border-brand-navy/10 bg-white shadow-card">
+            <div class="flex items-center justify-between border-b border-brand-navy/8 px-5 py-3">
+              <div class="flex items-center gap-2">
+                <span class="grid h-7 w-7 place-items-center rounded-lg bg-brand-purple/10 text-brand-purple">
+                  <Bell size={13} strokeWidth={2.25} />
+                </span>
+                <div class="text-[10px] font-bold uppercase tracking-wider text-brand-navy/55">Smart alerts</div>
+              </div>
+              <span class="rounded-full bg-warning/15 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider text-warning">3 new</span>
+            </div>
+            <ul class="divide-y divide-brand-navy/6">
+              {alerts.map((a) => (
+                <li class="flex items-center justify-between gap-3 px-5 py-3">
+                  <div class="flex items-center gap-3">
+                    <span class={`h-2 w-2 rounded-full ${a.tone === "warning" ? "bg-warning" : a.tone === "indigo" ? "bg-brand-indigo" : "bg-success"} animate-pulse-soft`}></span>
+                    <span class="text-sm font-semibold text-brand-navy">{a.text}</span>
+                  </div>
+                  <span class="text-[10px] font-bold uppercase tracking-wider text-brand-navy/45">{a.time}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </Reveal>
+
+      {/* RIGHT — copy */}
+      <Reveal client:visible variant="slide-left">
+        <div>
+          <div class="inline-flex items-center gap-2 rounded-full border border-brand-indigo/20 bg-brand-indigo/5 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-brand-indigo">
+            <span class="font-extrabold">06</span>
+            <span class="h-1 w-6 rounded-full bg-brand-indigo/40"></span>
+            Alerts & Security
+          </div>
+          <h2 class="mt-5 font-display text-4xl font-extrabold leading-tight tracking-tight text-brand-navy sm:text-5xl">
+            Locked down by role.{" "}
+            <span class="bg-gradient-to-r from-brand-indigo to-brand-purple bg-clip-text text-transparent">Awake on every deadline.</span>
+          </h2>
+          <p class="mt-5 text-base leading-relaxed text-brand-navy/65 sm:text-lg">
+            A surveyor sees what a surveyor needs. A director sees everything. Smart alerts flag the deadline you forgot, the hearing tomorrow, the encroachment your IoT just spotted. The platform is paranoid about access — and forgiving of your memory.
+          </p>
+
+          <ul class="mt-7 space-y-3">
+            {bullets.map((b) => (
+              <li class="flex items-start gap-3 text-sm text-brand-navy/80">
+                <span class="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-brand-indigo/10 text-brand-indigo">
+                  <CheckCircle2 size={13} strokeWidth={2.5} />
+                </span>
+                {b}
+              </li>
+            ))}
+          </ul>
+
+          <div class="mt-8 flex flex-wrap items-center gap-3">
+            <a href="#" class="group inline-flex items-center gap-2 rounded-full bg-brand-gradient px-5 py-2.5 text-sm font-semibold text-white shadow-soft transition-all hover:shadow-float">
+              See security & compliance
+              <ArrowRight size={14} strokeWidth={2.5} class="transition-transform group-hover:translate-x-0.5" />
+            </a>
+            <div class="inline-flex items-center gap-2 rounded-full border border-brand-navy/10 bg-white px-4 py-2 text-xs font-semibold text-brand-navy/70">
+              <Lock size={12} class="text-brand-indigo" />
+              SOC 2 · ISO 27001 · DPDP
+            </div>
+          </div>
+        </div>
+      </Reveal>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,104 @@
+---
+import Reveal from "@/components/Reveal.tsx";
+import AnimatedTimeline from "@/components/sections/features/AnimatedTimeline.tsx";
+import { ArrowRight, ScanText, Gavel, CheckCircle2, Clock } from "lucide-react";
+
+const bullets = [
+  "Vernacular OCR — Hindi, Marathi, Tamil, Telugu, Kannada + 5 more",
+  "Auto-link orders, hearings and orders-of-cost to parcels",
+  "E-sign + DSC for award letters and consent",
+  "Multi-level approval workflows (configurable per project)",
+];
+---
+
+<section id="documents" class="relative py-20 sm:py-28">
+  <div class="container">
+    <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+      {/* LEFT — copy */}
+      <Reveal client:visible variant="slide-right">
+        <div>
+          <div class="inline-flex items-center gap-2 rounded-full border border-brand-indigo/20 bg-brand-indigo/5 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-brand-indigo">
+            <span class="font-extrabold">05</span>
+            <span class="h-1 w-6 rounded-full bg-brand-indigo/40"></span>
+            Documents & Litigation
+          </div>
+          <h2 class="mt-5 font-display text-4xl font-extrabold leading-tight tracking-tight text-brand-navy sm:text-5xl">
+            Every document, every order —{" "}
+            <span class="bg-gradient-to-r from-brand-indigo to-brand-purple bg-clip-text text-transparent">indexed and linked.</span>
+          </h2>
+          <p class="mt-5 text-base leading-relaxed text-brand-navy/65 sm:text-lg">
+            Court orders in Hindi, ROR in Marathi, mutation registers in Telugu — Oxland OCRs them, tags every khasra, owner and section reference, and threads them into the case + parcel timeline. Litigation stops being a folder of PDFs and becomes a queryable system.
+          </p>
+
+          <ul class="mt-7 space-y-3">
+            {bullets.map((b) => (
+              <li class="flex items-start gap-3 text-sm text-brand-navy/80">
+                <span class="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-brand-indigo/10 text-brand-indigo">
+                  <CheckCircle2 size={13} strokeWidth={2.5} />
+                </span>
+                {b}
+              </li>
+            ))}
+          </ul>
+
+          <div class="mt-8 flex items-center gap-3">
+            <a href="#" class="group inline-flex items-center gap-2 rounded-full bg-brand-gradient px-5 py-2.5 text-sm font-semibold text-white shadow-soft transition-all hover:shadow-float">
+              Explore litigation module
+              <ArrowRight size={14} strokeWidth={2.5} class="transition-transform group-hover:translate-x-0.5" />
+            </a>
+          </div>
+        </div>
+      </Reveal>
+
+      {/* RIGHT — case timeline visual */}
+      <Reveal client:visible variant="slide-left" delay={0.1}>
+        <div class="relative">
+          <div class="relative overflow-hidden rounded-3xl border border-brand-navy/10 bg-white p-7 shadow-float">
+            <div class="pointer-events-none absolute -top-20 -right-20 h-56 w-56 rounded-full opacity-60 blur-3xl" style="background: radial-gradient(closest-side, rgba(79,70,229,0.28), transparent 70%);"></div>
+
+            <div class="relative">
+              <div class="flex items-center justify-between">
+                <div>
+                  <div class="text-[10px] font-bold uppercase tracking-wider text-brand-navy/55">Case timeline</div>
+                  <div class="mt-0.5 font-display text-lg font-extrabold text-brand-navy">LC-2025/089 · Award u/s 19</div>
+                </div>
+                <span class="inline-flex items-center gap-1 rounded-full bg-brand-indigo/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-brand-indigo">
+                  <Gavel size={10} />
+                  Litigation
+                </span>
+              </div>
+
+              <AnimatedTimeline client:visible />
+            </div>
+          </div>
+
+          {/* OCR chip */}
+          <div class="absolute -bottom-4 -left-4 hidden rounded-2xl border border-brand-navy/10 bg-white p-3 shadow-card sm:block">
+            <div class="flex items-center gap-2">
+              <span class="grid h-9 w-9 place-items-center rounded-xl bg-brand-purple/10 text-brand-purple">
+                <ScanText size={16} strokeWidth={2.25} />
+              </span>
+              <div>
+                <div class="text-[10px] font-bold uppercase tracking-wider text-brand-navy/55">OCR processed</div>
+                <div class="font-display text-sm font-extrabold text-brand-navy">1.2M pages</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Hearing chip */}
+          <div class="absolute -top-4 -right-4 hidden rounded-2xl border border-brand-navy/10 bg-white p-3 shadow-card sm:block">
+            <div class="flex items-center gap-2">
+              <span class="grid h-9 w-9 place-items-center rounded-xl bg-brand-indigo/10 text-brand-indigo">
+                <Clock size={16} strokeWidth={2.25} />
+              </span>
+              <div>
+                <div class="text-[10px] font-bold uppercase tracking-wider text-brand-navy/55">Hearings this week</div>
+                <div class="font-display text-sm font-extrabold text-brand-navy">14 scheduled</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Reveal>
+    </div>
+  </div>
+</section>

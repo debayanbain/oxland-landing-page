@@ -1,0 +1,164 @@
+---
+import Reveal from "@/components/Reveal.tsx";
+import { ArrowRight, Map, Layers3, Compass, CheckCircle2 } from "lucide-react";
+
+const bullets = [
+  "Snap-to-cadastre parcel drawing",
+  "Custom GIS layers per state",
+  "DGPS / total-station upload",
+  "Polygon overlap & encroachment detection",
+];
+---
+
+<section id="gis" class="relative py-20 sm:py-28">
+  <div class="container">
+    <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+      {/* LEFT — copy */}
+      <Reveal client:visible variant="slide-right">
+        <div>
+          <div class="inline-flex items-center gap-2 rounded-full border border-brand-indigo/20 bg-brand-indigo/5 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-brand-indigo">
+            <span class="font-extrabold">01</span>
+            <span class="h-1 w-6 rounded-full bg-brand-indigo/40"></span>
+            GIS-First Mapping
+          </div>
+          <h2 class="mt-5 font-display text-4xl font-extrabold leading-tight tracking-tight text-brand-navy sm:text-5xl">
+            Turn cadastre into{" "}
+            <span class="bg-gradient-to-r from-brand-indigo to-brand-purple bg-clip-text text-transparent">decisions you can defend.</span>
+          </h2>
+          <p class="mt-5 text-base leading-relaxed text-brand-navy/65 sm:text-lg">
+            Drop a polygon on the cadastre, snap it to district boundaries, and Oxland surfaces every parcel inside — survey number, owner, mutation status, ongoing case, all in one click. Layer management is built for the way state revenue departments actually work.
+          </p>
+
+          <ul class="mt-7 space-y-3">
+            {bullets.map((b) => (
+              <li class="flex items-start gap-3 text-sm text-brand-navy/80">
+                <span class="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-brand-indigo/10 text-brand-indigo">
+                  <CheckCircle2 size={13} strokeWidth={2.5} />
+                </span>
+                {b}
+              </li>
+            ))}
+          </ul>
+
+          <div class="mt-8 flex items-center gap-3">
+            <a href="#" class="group inline-flex items-center gap-2 rounded-full bg-brand-gradient px-5 py-2.5 text-sm font-semibold text-white shadow-soft transition-all hover:shadow-float">
+              Explore GIS module
+              <ArrowRight size={14} strokeWidth={2.5} class="transition-transform group-hover:translate-x-0.5" />
+            </a>
+            <a href="#" class="inline-flex items-center gap-2 rounded-full border border-brand-navy/12 px-5 py-2.5 text-sm font-semibold text-brand-navy/80 hover:bg-brand-navy/5">
+              See sample map
+            </a>
+          </div>
+        </div>
+      </Reveal>
+
+      {/* RIGHT — visual */}
+      <Reveal client:visible variant="slide-left" delay={0.1}>
+        <div class="relative aspect-[5/4]">
+          {/* Map card */}
+          <div class="relative h-full w-full overflow-hidden rounded-3xl border border-brand-navy/10 bg-gradient-to-br from-[#f5f7ff] to-[#eef0fc] shadow-float">
+            {/* Map grid backdrop */}
+            <div
+              class="pointer-events-none absolute inset-0 opacity-50"
+              style="background-image: linear-gradient(rgba(79,70,229,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(79,70,229,0.08) 1px, transparent 1px); background-size: 32px 32px;"
+            ></div>
+
+            {/* Animated parcels SVG */}
+            <svg viewBox="0 0 500 400" class="absolute inset-0 h-full w-full">
+              <defs>
+                <linearGradient id="parcel-grad-1" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#4F46E5" stop-opacity="0.35" />
+                  <stop offset="100%" stop-color="#7C3AED" stop-opacity="0.25" />
+                </linearGradient>
+                <linearGradient id="parcel-grad-2" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#2F5BFF" stop-opacity="0.3" />
+                  <stop offset="100%" stop-color="#4F46E5" stop-opacity="0.2" />
+                </linearGradient>
+              </defs>
+
+              {/* AOI rectangle */}
+              <rect x="120" y="80" width="280" height="220" fill="rgba(255,193,7,0.08)" stroke="#F59E0B" stroke-width="2" stroke-dasharray="6 4" rx="4" />
+
+              {/* Selected parcels */}
+              <polygon points="160,130 240,120 250,200 170,210" fill="url(#parcel-grad-1)" stroke="#4F46E5" stroke-width="2" />
+              <polygon points="250,120 340,135 330,210 250,200" fill="url(#parcel-grad-2)" stroke="#4F46E5" stroke-width="2" />
+              <polygon points="170,210 250,200 260,270 175,265" fill="url(#parcel-grad-1)" stroke="#4F46E5" stroke-width="2" />
+              <polygon points="250,200 330,210 340,275 260,270" fill="url(#parcel-grad-2)" stroke="#4F46E5" stroke-width="2" />
+              <polygon points="340,135 390,140 385,210 330,210" fill="rgba(167,139,250,0.18)" stroke="#7C3AED" stroke-width="1.5" stroke-dasharray="4 4" />
+
+              {/* Unselected outline parcels */}
+              <polygon points="60,150 120,140 130,220 70,225" fill="none" stroke="#0B1437" stroke-width="1" stroke-opacity="0.18" />
+              <polygon points="60,225 130,220 140,300 70,305" fill="none" stroke="#0B1437" stroke-width="1" stroke-opacity="0.18" />
+              <polygon points="400,150 460,160 455,240 390,235" fill="none" stroke="#0B1437" stroke-width="1" stroke-opacity="0.18" />
+
+              {/* Parcel labels */}
+              <g font-family="Geist, sans-serif" font-size="11" font-weight="700" fill="#0B1437">
+                <text x="195" y="170" text-anchor="middle">128</text>
+                <text x="290" y="170" text-anchor="middle">202</text>
+                <text x="215" y="240" text-anchor="middle">255</text>
+                <text x="295" y="240" text-anchor="middle">280</text>
+              </g>
+
+              {/* Animated cursor dot */}
+              <circle cx="345" cy="245" r="6" fill="#4F46E5">
+                <animate attributeName="r" values="6;9;6" dur="2s" repeatCount="indefinite" />
+              </circle>
+              <circle cx="345" cy="245" r="14" fill="none" stroke="#4F46E5" stroke-width="1.5" opacity="0.4">
+                <animate attributeName="r" values="6;22;6" dur="2s" repeatCount="indefinite" />
+                <animate attributeName="opacity" values="0.6;0;0.6" dur="2s" repeatCount="indefinite" />
+              </circle>
+
+              {/* Compass coordinate */}
+              <text x="470" y="30" text-anchor="end" font-family="Geist, sans-serif" font-size="10" font-weight="600" fill="#0B1437" fill-opacity="0.55">23.215°N · 77.412°E</text>
+            </svg>
+
+            {/* Layer panel */}
+            <div class="absolute left-4 top-4 max-w-[180px] rounded-2xl border border-brand-navy/8 bg-white/95 p-3 shadow-card backdrop-blur-md">
+              <div class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider text-brand-navy/55">
+                <Layers3 size={11} class="text-brand-indigo" />
+                Layers
+              </div>
+              <ul class="mt-2 space-y-1.5">
+                {["Cadastre", "Land use", "Encumbrance", "Acquisition"].map((l, idx) => (
+                  <li class="flex items-center justify-between text-[11px] text-brand-navy/75">
+                    <span>{l}</span>
+                    <span class={`grid h-3.5 w-7 place-items-center rounded-full p-0.5 ${idx < 3 ? "bg-brand-indigo justify-end" : "bg-brand-navy/10 justify-start"}`}>
+                      <span class="h-2.5 w-2.5 rounded-full bg-white"></span>
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Stat strip */}
+            <div class="absolute bottom-4 left-4 right-4 grid grid-cols-3 gap-2">
+              {[
+                { label: "Parcels", value: "142" },
+                { label: "Acquired", value: "68 ha" },
+                { label: "Affected", value: "31 ha" },
+              ].map((s, idx) => (
+                <div class="rounded-xl border border-brand-navy/8 bg-white/95 p-2.5 backdrop-blur-md shadow-soft">
+                  <div class="text-[9px] font-bold uppercase tracking-wider text-brand-navy/45">{s.label}</div>
+                  <div class={`mt-0.5 font-display text-base font-extrabold ${idx === 1 ? "text-brand-indigo" : "text-brand-navy"}`}>{s.value}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Floating chip */}
+          <div class="absolute -bottom-4 -right-4 hidden rounded-2xl border border-brand-navy/10 bg-white p-3 shadow-card sm:block">
+            <div class="flex items-center gap-2">
+              <span class="grid h-9 w-9 place-items-center rounded-xl bg-brand-indigo/10 text-brand-indigo">
+                <Compass size={16} strokeWidth={2.25} />
+              </span>
+              <div>
+                <div class="text-[10px] font-bold uppercase tracking-wider text-brand-navy/55">Snap accuracy</div>
+                <div class="font-display text-sm font-extrabold text-brand-navy">±0.2 m DGPS</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Reveal>
+    </div>
+  </div>
+</section>

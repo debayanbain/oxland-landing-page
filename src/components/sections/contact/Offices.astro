@@ -1,0 +1,157 @@
+---
+import Reveal from "@/components/Reveal.tsx";
+import { MapPin, Phone, Mail, Clock, ArrowUpRight } from "lucide-react";
+
+const offices = [
+  {
+    city: "Bengaluru",
+    tag: "HQ",
+    address: "42, Bellandur Tech Park, Outer Ring Road, Bengaluru 560103, Karnataka",
+    phone: "+91 80 4000 8800",
+    email: "hello@oxland.in",
+    hours: "Mon – Sat · 9 AM – 7 PM IST",
+    palette: "indigo",
+    coords: "12.9°N · 77.6°E",
+  },
+  {
+    city: "Mumbai",
+    tag: "Enterprise",
+    address: "12F, Peninsula Business Park, Lower Parel West, Mumbai 400013, Maharashtra",
+    phone: "+91 22 4000 8800",
+    email: "mumbai@oxland.in",
+    hours: "Mon – Fri · 9 AM – 7 PM IST",
+    palette: "purple",
+    coords: "19.0°N · 72.8°E",
+  },
+  {
+    city: "New Delhi",
+    tag: "Public sector",
+    address: "9th Floor, DLF Cyber Park, Sector 20, Gurugram 122001, Delhi NCR",
+    phone: "+91 11 4000 8800",
+    email: "delhi@oxland.in",
+    hours: "Mon – Fri · 10 AM – 7 PM IST",
+    palette: "blue",
+    coords: "28.6°N · 77.2°E",
+  },
+];
+
+const paletteMap = {
+  indigo: { tag: "bg-brand-indigo/10 text-brand-indigo ring-brand-indigo/25", grad: "from-brand-indigo to-brand-purple", chip: "bg-brand-indigo/10 text-brand-indigo" },
+  purple: { tag: "bg-brand-purple/10 text-brand-purple ring-brand-purple/25", grad: "from-brand-purple to-brand-lavender", chip: "bg-brand-purple/10 text-brand-purple" },
+  blue: { tag: "bg-brand-blue/10 text-brand-blue ring-brand-blue/25", grad: "from-brand-blue to-brand-indigo", chip: "bg-brand-blue/10 text-brand-blue" },
+};
+---
+
+<section id="offices" class="relative py-16 sm:py-24">
+  <div class="container">
+    <Reveal client:visible>
+      <div class="mx-auto max-w-3xl text-center">
+        <div class="inline-flex items-center gap-2 rounded-full border border-brand-indigo/20 bg-brand-indigo/5 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-brand-indigo">
+          <span class="h-1.5 w-1.5 rounded-full bg-brand-indigo"></span>
+          Offices
+        </div>
+        <h2 class="mt-5 font-display text-4xl font-extrabold tracking-tight text-brand-navy sm:text-5xl">
+          Three offices,{" "}
+          <span class="bg-gradient-to-r from-brand-indigo to-brand-purple bg-clip-text text-transparent">one team.</span>
+        </h2>
+        <p class="mt-4 text-base text-brand-navy/60">
+          Product, sales and delivery teams sit across Bengaluru, Mumbai and Delhi — with field consultants across all major Indian states.
+        </p>
+      </div>
+    </Reveal>
+
+    <div class="mt-14 grid grid-cols-1 gap-5 lg:grid-cols-3">
+      {offices.map((o, i) => {
+        const p = paletteMap[o.palette as keyof typeof paletteMap];
+        return (
+          <Reveal client:visible delay={i * 0.08}>
+            <article class="group relative h-full overflow-hidden rounded-3xl border border-brand-navy/10 bg-white shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-float">
+              {/* Map preview header */}
+              <div class="relative h-40 overflow-hidden" style="background: linear-gradient(135deg, #f5f7ff 0%, #eef0fc 100%);">
+                <div
+                  class="pointer-events-none absolute inset-0 opacity-60"
+                  style="background-image: linear-gradient(rgba(79,70,229,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(79,70,229,0.08) 1px, transparent 1px); background-size: 22px 22px;"
+                ></div>
+                {/* Stylised map SVG */}
+                <svg viewBox="0 0 320 160" class="absolute inset-0 h-full w-full">
+                  <defs>
+                    <linearGradient id={`office-grad-${i}`} x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color={o.palette === "indigo" ? "#4F46E5" : o.palette === "purple" ? "#7C3AED" : "#2F5BFF"} stop-opacity="0.28" />
+                      <stop offset="100%" stop-color={o.palette === "indigo" ? "#7C3AED" : o.palette === "purple" ? "#A78BFA" : "#4F46E5"} stop-opacity="0.18" />
+                    </linearGradient>
+                  </defs>
+                  {/* Roads */}
+                  <path d="M 0 90 Q 80 60 160 80 T 320 70" fill="none" stroke="rgba(11,20,55,0.12)" stroke-width="1.5" />
+                  <path d="M 0 130 Q 100 110 200 125 T 320 115" fill="none" stroke="rgba(11,20,55,0.1)" stroke-width="1" />
+                  <path d="M 140 0 L 155 160" fill="none" stroke="rgba(11,20,55,0.1)" stroke-width="1" />
+                  {/* Districts */}
+                  <polygon points="60,50 130,45 140,100 65,105" fill={`url(#office-grad-${i})`} stroke={o.palette === "indigo" ? "#4F46E5" : o.palette === "purple" ? "#7C3AED" : "#2F5BFF"} stroke-width="1" stroke-opacity="0.4" />
+                  <polygon points="150,50 220,58 218,110 155,105" fill={`url(#office-grad-${i})`} stroke={o.palette === "indigo" ? "#4F46E5" : o.palette === "purple" ? "#7C3AED" : "#2F5BFF"} stroke-width="1" stroke-opacity="0.4" />
+                  <polygon points="220,58 285,50 285,110 218,110" fill="rgba(167,139,250,0.15)" stroke="#7C3AED" stroke-width="1" stroke-opacity="0.3" stroke-dasharray="3 3" />
+                  {/* Office pin */}
+                  <g transform="translate(160, 78)">
+                    <circle r="24" fill={o.palette === "indigo" ? "#4F46E5" : o.palette === "purple" ? "#7C3AED" : "#2F5BFF"} fill-opacity="0.15">
+                      <animate attributeName="r" values="24;30;24" dur="2.4s" repeatCount="indefinite" />
+                    </circle>
+                    <circle r="10" fill={o.palette === "indigo" ? "#4F46E5" : o.palette === "purple" ? "#7C3AED" : "#2F5BFF"} />
+                    <circle r="4" fill="white" />
+                  </g>
+                </svg>
+                {/* Coord readout */}
+                <div class="absolute right-3 top-3 rounded-md bg-white/85 px-2 py-1 text-[10px] font-bold text-brand-navy/70 shadow-soft ring-1 ring-brand-navy/8 backdrop-blur-sm">
+                  {o.coords}
+                </div>
+                {/* City tag */}
+                <div class={`absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider ring-1 backdrop-blur-md ${p.tag}`}>
+                  {o.tag}
+                </div>
+              </div>
+
+              {/* Body */}
+              <div class="p-6">
+                <h3 class="font-display text-xl font-extrabold text-brand-navy">{o.city}</h3>
+                <div class={`mt-1 h-0.5 w-10 rounded-full bg-gradient-to-r ${p.grad}`}></div>
+
+                <ul class="mt-5 space-y-3">
+                  <li class="flex items-start gap-3">
+                    <span class={`mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-lg ${p.chip}`}>
+                      <MapPin size={14} strokeWidth={2.5} />
+                    </span>
+                    <span class="text-[13px] leading-snug text-brand-navy/75">{o.address}</span>
+                  </li>
+                  <li class="flex items-center gap-3">
+                    <span class={`grid h-8 w-8 shrink-0 place-items-center rounded-lg ${p.chip}`}>
+                      <Phone size={14} strokeWidth={2.5} />
+                    </span>
+                    <a href={`tel:${o.phone.replace(/\s+/g, "")}`} class="text-[13px] font-semibold text-brand-navy hover:text-brand-indigo">
+                      {o.phone}
+                    </a>
+                  </li>
+                  <li class="flex items-center gap-3">
+                    <span class={`grid h-8 w-8 shrink-0 place-items-center rounded-lg ${p.chip}`}>
+                      <Mail size={14} strokeWidth={2.5} />
+                    </span>
+                    <a href={`mailto:${o.email}`} class="text-[13px] font-semibold text-brand-navy hover:text-brand-indigo">
+                      {o.email}
+                    </a>
+                  </li>
+                  <li class="flex items-center gap-3">
+                    <span class={`grid h-8 w-8 shrink-0 place-items-center rounded-lg ${p.chip}`}>
+                      <Clock size={14} strokeWidth={2.5} />
+                    </span>
+                    <span class="text-[13px] text-brand-navy/70">{o.hours}</span>
+                  </li>
+                </ul>
+
+                <a href="#" class="mt-6 inline-flex items-center gap-1.5 text-[12px] font-bold text-brand-indigo hover:underline">
+                  Get directions
+                  <ArrowUpRight size={12} strokeWidth={2.5} />
+                </a>
+              </div>
+            </article>
+          </Reveal>
+        );
+      })}
+    </div>
+  </div>
+</section>

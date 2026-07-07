@@ -1,0 +1,95 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Reveal from "@/components/Reveal.tsx";
+import BlogArchive from "@/components/sections/blog/BlogArchive.tsx";
+import { ArrowRight } from "lucide-react";
+---
+
+<Layout
+  title="Blog — Oxland | Notes from the frontier of Indian land ops"
+  description="Long reads, teardowns and dispatches from the team building Oxland — India's land acquisition and litigation operating system."
+>
+  <main class="relative">
+
+    {/* -------------------- HERO -------------------- */}
+    <section class="relative isolate overflow-hidden pt-32 pb-8 sm:pt-40 sm:pb-10">
+      <div class="pointer-events-none absolute inset-0 -z-10">
+        <div class="absolute inset-0 bg-grid-faint [background-size:42px_42px] opacity-35"></div>
+        <div
+          class="absolute -top-40 left-1/2 h-[520px] w-[820px] -translate-x-1/2 rounded-full opacity-55 blur-3xl"
+          style="background: radial-gradient(closest-side, rgba(79,70,229,0.28), rgba(124,58,237,0.16) 50%, transparent 75%);"
+        ></div>
+        <img src="/cloud1.png" alt="" aria-hidden="true" class="absolute -top-4 left-[5%] w-[260px] opacity-60 blur-[2px] select-none" />
+      </div>
+
+      <div class="container relative">
+        <div class="mx-auto max-w-3xl text-center">
+          <Reveal client:visible variant="blur-up">
+            <div class="inline-flex items-center gap-2 rounded-full border border-brand-indigo/20 bg-brand-indigo/5 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-brand-indigo">
+              <span class="h-1.5 w-1.5 rounded-full bg-brand-indigo animate-pulse-soft"></span>
+              The Oxland Blog
+            </div>
+          </Reveal>
+
+          <Reveal client:visible variant="blur-up" delay={0.08}>
+            <h1 class="mt-6 font-display text-5xl font-extrabold leading-[1.05] tracking-tight text-brand-navy sm:text-6xl">
+              Notes from{" "}
+              <span class="bg-gradient-to-r from-brand-blue via-brand-indigo to-brand-purple bg-clip-text text-transparent">
+                the frontier of Indian land ops.
+              </span>
+            </h1>
+          </Reveal>
+
+          <Reveal client:visible variant="fade-up" delay={0.16}>
+            <p class="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-brand-navy/65">
+              Case studies from real acquisitions, teardowns of the tools we build, and honest dispatches from the people building Oxland — a piece a fortnight, no filler.
+            </p>
+          </Reveal>
+        </div>
+      </div>
+    </section>
+
+    {/* -------------------- INTERACTIVE ARCHIVE (filter + search + grid) -------------------- */}
+    <BlogArchive client:load />
+
+    {/* -------------------- NEWSLETTER -------------------- */}
+    <section class="relative py-16 sm:py-20">
+      <div class="container">
+        <Reveal client:visible variant="scale">
+          <div class="relative overflow-hidden rounded-[32px] border border-brand-navy/8 bg-gradient-to-br from-[#f7f8ff] via-white to-[#f4e8ff] p-8 shadow-card sm:p-12">
+            <div class="pointer-events-none absolute -top-24 -right-16 h-56 w-56 rounded-full opacity-55 blur-3xl" style="background: radial-gradient(closest-side, rgba(124,58,237,0.28), transparent 70%);"></div>
+
+            <div class="relative flex flex-col items-start gap-6 lg:flex-row lg:items-center lg:justify-between">
+              <div class="max-w-xl">
+                <div class="inline-flex items-center gap-2 rounded-full border border-brand-indigo/20 bg-white/70 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-brand-indigo backdrop-blur-sm">
+                  Newsletter
+                </div>
+                <h3 class="mt-4 font-display text-2xl font-extrabold leading-tight text-brand-navy sm:text-3xl">
+                  A well-crafted piece,{" "}
+                  <span class="bg-gradient-to-r from-brand-indigo to-brand-purple bg-clip-text text-transparent">
+                    every other Thursday.
+                  </span>
+                </h3>
+                <p class="mt-3 text-sm leading-relaxed text-brand-navy/65">
+                  No churn tactics, no cross-promo. Just long-form pieces from the team building Oxland.
+                </p>
+              </div>
+              <form class="flex w-full max-w-md items-center gap-2 rounded-full border border-brand-navy/10 bg-white p-1.5 pl-4 shadow-soft">
+                <input
+                  type="email"
+                  placeholder="Your work email"
+                  class="w-full bg-transparent text-sm text-brand-navy outline-none placeholder:text-brand-navy/40"
+                />
+                <button type="submit" class="inline-flex items-center gap-1.5 rounded-full bg-brand-gradient px-4 py-2 text-xs font-semibold text-white shadow-soft transition-all hover:shadow-float">
+                  Subscribe
+                  <ArrowRight size={12} strokeWidth={2.5} />
+                </button>
+              </form>
+            </div>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+
+  </main>
+</Layout>

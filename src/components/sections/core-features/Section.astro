@@ -1,0 +1,109 @@
+---
+import Reveal from "@/components/Reveal.tsx";
+import { ArrowRight } from "lucide-react";
+
+interface Bullet {
+  icon: any;
+  text: string;
+}
+
+interface Props {
+  id: string;
+  index: number;
+  eyebrow: string;
+  heading: string;
+  headingAccent: string;
+  description: string;
+  bullets: Bullet[];
+  reversed?: boolean;
+  bg?: string;
+  accent?: "indigo" | "blue" | "purple";
+}
+
+const {
+  id,
+  index,
+  eyebrow,
+  heading,
+  headingAccent,
+  description,
+  bullets,
+  reversed = false,
+  bg,
+  accent = "indigo",
+} = Astro.props;
+
+const chip =
+  accent === "indigo" ? "border-brand-indigo/20 bg-brand-indigo/5 text-brand-indigo" :
+  accent === "blue" ? "border-brand-blue/25 bg-brand-blue/5 text-brand-blue" :
+  "border-brand-purple/25 bg-brand-purple/5 text-brand-purple";
+
+const dash =
+  accent === "indigo" ? "bg-brand-indigo/40" :
+  accent === "blue" ? "bg-brand-blue/40" :
+  "bg-brand-purple/40";
+
+const gradient =
+  accent === "indigo" ? "from-brand-indigo to-brand-purple" :
+  accent === "blue" ? "from-brand-blue to-brand-indigo" :
+  "from-brand-purple to-brand-lavender";
+
+const iconBg =
+  accent === "indigo" ? "bg-brand-indigo/10 text-brand-indigo" :
+  accent === "blue" ? "bg-brand-blue/10 text-brand-blue" :
+  "bg-brand-purple/10 text-brand-purple";
+---
+
+<section id={id} class={`relative py-20 sm:py-28 ${bg ?? ""}`}>
+  <div class="container">
+    <div class={`grid items-center gap-12 lg:gap-16 ${reversed ? "lg:grid-cols-[1fr_1.05fr]" : "lg:grid-cols-[1.05fr_1fr]"}`}>
+      <!-- COPY -->
+      <Reveal client:visible variant={reversed ? "slide-left" : "slide-right"} className={reversed ? "lg:order-2" : ""}>
+        <div>
+          <div class={`inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-widest ${chip}`}>
+            <span class="font-extrabold">{String(index).padStart(2, "0")}</span>
+            <span class={`h-1 w-6 rounded-full ${dash}`}></span>
+            {eyebrow}
+          </div>
+
+          <h2 class="mt-5 font-display text-4xl font-extrabold leading-tight tracking-tight text-brand-navy sm:text-5xl">
+            {heading}{" "}
+            <span class={`bg-gradient-to-r ${gradient} bg-clip-text text-transparent`}>
+              {headingAccent}
+            </span>
+          </h2>
+
+          <p class="mt-5 text-base leading-relaxed text-brand-navy/65 sm:text-lg">
+            {description}
+          </p>
+
+          <ul class="mt-8 grid grid-cols-1 gap-x-6 gap-y-3 sm:grid-cols-2">
+            {bullets.map((b) => {
+              const Icon = b.icon;
+              return (
+                <li class="flex items-start gap-3 text-sm text-brand-navy/80">
+                  <span class={`mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-lg ${iconBg}`}>
+                    <Icon size={13} strokeWidth={2.25} />
+                  </span>
+                  <span class="pt-0.5">{b.text}</span>
+                </li>
+              );
+            })}
+          </ul>
+
+          <div class="mt-9 flex items-center gap-3">
+            <a href="#" class={`group inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold text-white shadow-soft transition-all hover:shadow-float bg-gradient-to-r ${gradient}`}>
+              Explore more
+              <ArrowRight size={14} strokeWidth={2.5} class="transition-transform group-hover:translate-x-0.5" />
+            </a>
+          </div>
+        </div>
+      </Reveal>
+
+      <!-- VISUAL slot -->
+      <Reveal client:visible variant={reversed ? "slide-right" : "slide-left"} delay={0.1} className={reversed ? "lg:order-1" : ""}>
+        <slot />
+      </Reveal>
+    </div>
+  </div>
+</section>

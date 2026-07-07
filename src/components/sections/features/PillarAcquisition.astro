@@ -1,0 +1,119 @@
+---
+import Reveal from "@/components/Reveal.tsx";
+import AnimatedFunnel from "@/components/sections/features/AnimatedFunnel.tsx";
+import { ArrowRight, CheckCircle2, Workflow, IndianRupee, Users2 } from "lucide-react";
+
+const bullets = [
+  "Multi-stage acquisition pipeline with auto-handoffs",
+  "Compensation award computation (RFCTLARR + state rules)",
+  "E-sign + DSC support for consent letters",
+  "Disbursement ledger with bank-reconciliation export",
+];
+---
+
+<section id="acquisition" class="relative py-20 sm:py-28">
+  <div class="container">
+    <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+      {/* LEFT — copy */}
+      <Reveal client:visible variant="slide-right">
+        <div>
+          <div class="inline-flex items-center gap-2 rounded-full border border-brand-indigo/20 bg-brand-indigo/5 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-brand-indigo">
+            <span class="font-extrabold">03</span>
+            <span class="h-1 w-6 rounded-full bg-brand-indigo/40"></span>
+            Acquisition Pipeline
+          </div>
+          <h2 class="mt-5 font-display text-4xl font-extrabold leading-tight tracking-tight text-brand-navy sm:text-5xl">
+            From identified parcel to{" "}
+            <span class="bg-gradient-to-r from-brand-indigo to-brand-purple bg-clip-text text-transparent">disbursed compensation.</span>
+          </h2>
+          <p class="mt-5 text-base leading-relaxed text-brand-navy/65 sm:text-lg">
+            One pipeline runs the entire acquisition lifecycle — identification, valuation, negotiation, consent capture, award computation and disbursement — with every owner, every payment and every approval versioned for audit.
+          </p>
+
+          <ul class="mt-7 space-y-3">
+            {bullets.map((b) => (
+              <li class="flex items-start gap-3 text-sm text-brand-navy/80">
+                <span class="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-brand-indigo/10 text-brand-indigo">
+                  <CheckCircle2 size={13} strokeWidth={2.5} />
+                </span>
+                {b}
+              </li>
+            ))}
+          </ul>
+
+          <div class="mt-8 flex items-center gap-3">
+            <a href="#" class="group inline-flex items-center gap-2 rounded-full bg-brand-gradient px-5 py-2.5 text-sm font-semibold text-white shadow-soft transition-all hover:shadow-float">
+              Walk through the pipeline
+              <ArrowRight size={14} strokeWidth={2.5} class="transition-transform group-hover:translate-x-0.5" />
+            </a>
+          </div>
+        </div>
+      </Reveal>
+
+      {/* RIGHT — pipeline visual */}
+      <Reveal client:visible variant="slide-left" delay={0.1}>
+        <div class="relative">
+          <div class="relative overflow-hidden rounded-3xl border border-brand-navy/10 bg-white p-7 shadow-float">
+            {/* decorative */}
+            <div class="pointer-events-none absolute -top-24 -right-24 h-64 w-64 rounded-full opacity-50 blur-3xl" style="background: radial-gradient(closest-side, rgba(124,58,237,0.3), transparent 70%);"></div>
+
+            <div class="relative">
+              <div class="flex items-center justify-between">
+                <div>
+                  <div class="text-[10px] font-bold uppercase tracking-wider text-brand-navy/55">Acquisition pipeline</div>
+                  <div class="mt-0.5 font-display text-lg font-extrabold text-brand-navy">Bhopal-Sehore corridor · Phase 2</div>
+                </div>
+                <span class="inline-flex items-center gap-1.5 rounded-full bg-success/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-success">
+                  <span class="h-1.5 w-1.5 rounded-full bg-success animate-pulse-soft"></span>
+                  Live
+                </span>
+              </div>
+
+              {/* funnel stages — animated on scroll */}
+              <div class="mt-6">
+                <AnimatedFunnel client:visible />
+              </div>
+
+              {/* Bottom cards */}
+              <div class="mt-7 grid grid-cols-2 gap-3 border-t border-brand-navy/8 pt-6">
+                <div class="rounded-2xl border border-brand-navy/8 p-4">
+                  <div class="flex items-center gap-2">
+                    <span class="grid h-8 w-8 place-items-center rounded-xl bg-brand-indigo/10 text-brand-indigo">
+                      <IndianRupee size={14} strokeWidth={2.25} />
+                    </span>
+                    <div class="text-[10px] font-bold uppercase tracking-wider text-brand-navy/55">Awards issued</div>
+                  </div>
+                  <div class="mt-2 font-display text-2xl font-extrabold text-brand-navy tabular-nums">₹ 24.6 Cr</div>
+                  <div class="text-[10px] text-brand-navy/45">42 parcels · this quarter</div>
+                </div>
+                <div class="rounded-2xl border border-brand-navy/8 p-4">
+                  <div class="flex items-center gap-2">
+                    <span class="grid h-8 w-8 place-items-center rounded-xl bg-brand-purple/10 text-brand-purple">
+                      <Users2 size={14} strokeWidth={2.25} />
+                    </span>
+                    <div class="text-[10px] font-bold uppercase tracking-wider text-brand-navy/55">Affected families</div>
+                  </div>
+                  <div class="mt-2 font-display text-2xl font-extrabold text-brand-navy tabular-nums">218</div>
+                  <div class="text-[10px] text-brand-navy/45">R&R packets prepared</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Floating workflow chip */}
+          <div class="absolute -top-4 -left-4 hidden rounded-2xl border border-brand-navy/10 bg-white p-3 shadow-card sm:block">
+            <div class="flex items-center gap-2">
+              <span class="grid h-9 w-9 place-items-center rounded-xl bg-brand-indigo/10 text-brand-indigo">
+                <Workflow size={16} strokeWidth={2.25} />
+              </span>
+              <div>
+                <div class="text-[10px] font-bold uppercase tracking-wider text-brand-navy/55">Avg cycle time</div>
+                <div class="font-display text-sm font-extrabold text-brand-navy">11.4 months</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Reveal>
+    </div>
+  </div>
+</section>

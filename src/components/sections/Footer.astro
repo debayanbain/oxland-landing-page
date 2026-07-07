@@ -1,59 +1,119 @@
 ---
 import Reveal from "@/components/Reveal.tsx";
 
-const columns = [
-  { title: "Product", links: ["Land Acquisition", "Parcel Tracking", "Litigation", "GIS Layers", "Reporting"] },
-  { title: "Solutions", links: ["Real Estate", "Infrastructure", "Renewables", "Government", "Enterprise"] },
-  { title: "Resources", links: ["Documentation", "Guides", "API", "Changelog", "Status"] },
-  { title: "Company", links: ["About", "Careers", "Contact", "Partners", "Blog"] },
+const PLATFORM = [
+  { label: "GIS Based Land Mapping", id: "gis" },
+  { label: "Digital Land Records", id: "records" },
+  { label: "Ownership Management", id: "ownership" },
+  { label: "Land Acquisition Management", id: "acquisition" },
+  { label: "Litigation Management", id: "litigation" },
+  { label: "R&R Management", id: "rr" },
+];
+
+const OPERATIONS = [
+  { label: "Land Rate & Valuation", id: "valuation" },
+  { label: "Encroachment Detection", id: "encroachment" },
+  { label: "Document Workflow & Approvals", id: "workflow" },
+  { label: "Alerts & Notifications", id: "alerts" },
+  { label: "Easy Integrations", id: "integrations" },
+  { label: "Simple Data Upload", id: "upload" },
+];
+
+const COMPANY = [
+  { label: "About Us", href: "/about" },
+  { label: "Contact Us", href: "/contact" },
+  { label: "Pricing", href: "/pricing" },
+  { label: "Blog", href: "/blog" },
 ];
 ---
 <footer class="relative border-t border-border bg-white/60 backdrop-blur-sm">
-  <div class="container py-10">
+  <div class="container py-14">
     <Reveal client:visible>
-    <div class="grid gap-12 lg:grid-cols-[1.4fr_2.6fr]">
-      <div>
+      <div class="grid gap-12 lg:grid-cols-[1fr_2.6fr]">
+        {/* LEFT — logo + tagline + newsletter */}
         <div>
-          <img src="/oxland.svg" alt="oxland logo" height={28} width={120} />
-        </div>
-        <p class="mt-4 max-w-xs text-sm leading-relaxed text-brand-navy/55">
-          The operating system for modern land acquisition and management teams.
-        </p>
-        <div class="mt-6">
-          <label class="text-xs font-semibold text-brand-navy/70">Stay updated</label>
-          <div class="mt-2 flex max-w-sm items-center gap-2 rounded-full border border-border bg-white p-1.5 pl-4">
-            <input type="email" placeholder="Your email address" class="w-full bg-transparent text-sm text-brand-navy outline-none placeholder:text-brand-navy/40" />
-            <button class="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-brand-gradient text-white">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-            </button>
+          <div>
+            <img src="/oxland.svg" alt="oxland logo" height={28} width={120} />
+          </div>
+          <p class="mt-4 max-w-xs text-sm leading-relaxed text-brand-navy/55">
+            The operating system for modern land acquisition and management teams.
+          </p>
+          <div class="mt-6">
+            <label class="text-xs font-semibold text-brand-navy/70">Stay updated</label>
+            <div class="mt-2 flex max-w-sm items-center gap-2 rounded-full border border-border bg-white p-1.5 pl-4">
+              <input type="email" placeholder="Your email address" class="w-full bg-transparent text-sm text-brand-navy outline-none placeholder:text-brand-navy/40" />
+              <button class="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-brand-gradient text-white">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </button>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="grid grid-cols-2 gap-8 sm:grid-cols-4">
-        {columns.map((col) => (
+        {/* RIGHT — Platform + Operations + Company */}
+        <div class="grid gap-8 sm:grid-cols-3">
+          {/* Platform */}
           <div>
-            <h4 class="text-xs font-bold uppercase tracking-wider text-brand-navy/45">{col.title}</h4>
-            <ul class="mt-4 space-y-2.5">
-              {col.links.map((l) => (
-                <li><a href="#" class="text-sm text-brand-navy/65 transition-colors hover:text-brand-indigo">{l}</a></li>
+            <h4 class="text-xs font-bold uppercase tracking-wider text-brand-navy/45">Platform</h4>
+            <ul class="mt-5 space-y-2.5">
+              {PLATFORM.map((f) => (
+                <li>
+                  <a
+                    href={`/features#${f.id}`}
+                    class="text-sm text-brand-navy/65 transition-colors hover:text-brand-indigo"
+                  >
+                    {f.label}
+                  </a>
+                </li>
               ))}
             </ul>
           </div>
-        ))}
-      </div>
-    </div>
 
-    </Reveal>
-    <Reveal client:visible delay={0.12}>
-    <div class="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border pt-6 sm:flex-row">
-      <p class="text-xs text-brand-navy/50">© 2026 Oxland. All rights reserved.</p>
-      <div class="flex items-center gap-5 text-xs text-brand-navy/50">
-        <a href="#" class="transition-colors hover:text-brand-indigo">Privacy Policy</a>
-        <a href="#" class="transition-colors hover:text-brand-indigo">Terms</a>
-        <a href="#" class="transition-colors hover:text-brand-indigo">Contact</a>
+          {/* Operations */}
+          <div>
+            <h4 class="text-xs font-bold uppercase tracking-wider text-brand-navy/45">Operations</h4>
+            <ul class="mt-5 space-y-2.5">
+              {OPERATIONS.map((f) => (
+                <li>
+                  <a
+                    href={`/features#${f.id}`}
+                    class="text-sm text-brand-navy/65 transition-colors hover:text-brand-indigo"
+                  >
+                    {f.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Company */}
+          <div>
+            <h4 class="text-xs font-bold uppercase tracking-wider text-brand-navy/45">Company</h4>
+            <ul class="mt-5 space-y-2.5">
+              {COMPANY.map((c) => (
+                <li>
+                  <a
+                    href={c.href}
+                    class="text-sm text-brand-navy/65 transition-colors hover:text-brand-indigo"
+                  >
+                    {c.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </div>
-    </div>
+    </Reveal>
+
+    <Reveal client:visible delay={0.12}>
+      <div class="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border pt-6 sm:flex-row">
+        <p class="text-xs text-brand-navy/50">© 2026 Oxland. All rights reserved.</p>
+        <div class="flex items-center gap-5 text-xs text-brand-navy/50">
+          <a href="#" class="transition-colors hover:text-brand-indigo">Privacy Policy</a>
+          <a href="#" class="transition-colors hover:text-brand-indigo">Terms</a>
+          <a href="/contact" class="transition-colors hover:text-brand-indigo">Contact</a>
+        </div>
+      </div>
     </Reveal>
   </div>
 </footer>

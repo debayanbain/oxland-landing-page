@@ -1,0 +1,22 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import ContactHero from "@/components/sections/contact/ContactHero.tsx";
+import ContactMain from "@/components/sections/contact/ContactMain.tsx";
+import LiveStats from "@/components/sections/contact/LiveStats.astro";
+import Offices from "@/components/sections/contact/Offices.astro";
+import ContactFaq from "@/components/sections/contact/ContactFaq.tsx";
+import ContactCta from "@/components/sections/contact/ContactCta.astro";
+---
+<Layout
+  title="Contact — Oxland | Talk to the land-ops team"
+  description="Get in touch with Oxland — six specialised channels for sales, support, partnerships, tenders and press. Offices in Bengaluru, Mumbai and Delhi. Reply within 4 hours."
+>
+  <main class="relative">
+    <ContactHero client:load />
+    <ContactMain client:load />
+    <LiveStats />
+    <Offices />
+    <ContactFaq client:visible />
+    <ContactCta />
+  </main>
+</Layout>

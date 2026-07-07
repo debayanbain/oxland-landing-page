@@ -1,0 +1,40 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import FeaturesHero from "@/components/sections/features/FeaturesHero.tsx";
+import Trust from "@/components/sections/Trust.astro";
+import PillarsJumpNav from "@/components/sections/features/PillarsJumpNav.astro";
+import PillarGIS from "@/components/sections/features/PillarGIS.astro";
+import PillarRecords from "@/components/sections/features/PillarRecords.astro";
+import PillarAcquisition from "@/components/sections/features/PillarAcquisition.astro";
+import PillarFieldOps from "@/components/sections/features/PillarFieldOps.astro";
+import PillarDocuments from "@/components/sections/features/PillarDocuments.astro";
+import PillarSecurity from "@/components/sections/features/PillarSecurity.astro";
+import CapabilityMatrix from "@/components/sections/features/CapabilityMatrix.astro";
+import MetricsBand from "@/components/sections/features/MetricsBand.astro";
+import FeaturesTestimonial from "@/components/sections/features/FeaturesTestimonial.astro";
+import FeaturesFaq from "@/components/sections/features/FeaturesFaq.tsx";
+import FeaturesCta from "@/components/sections/features/FeaturesCta.tsx";
+---
+<Layout
+  title="Features Preview — Oxland | Interactive orbit demo"
+  description="Preview build of the Oxland features page — kept for reference."
+>
+  <main class="relative">
+    <FeaturesHero client:load />
+    <div class="pt-6 sm:pt-10">
+      <Trust />
+    </div>
+    <PillarsJumpNav />
+    <PillarGIS />
+    <PillarRecords />
+    <PillarAcquisition />
+    <PillarFieldOps />
+    <PillarDocuments />
+    <PillarSecurity />
+    <CapabilityMatrix />
+    <MetricsBand />
+    <FeaturesTestimonial />
+    <FeaturesFaq client:visible />
+    <FeaturesCta client:visible />
+  </main>
+</Layout>

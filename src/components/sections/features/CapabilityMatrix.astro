@@ -1,0 +1,69 @@
+---
+import Reveal from "@/components/Reveal.tsx";
+import {
+  Languages,
+  Workflow,
+  History,
+  Database,
+  GitBranch,
+  Smartphone,
+  Webhook,
+  BarChart3,
+  PieChart,
+  Cloud,
+  Banknote,
+  FileSpreadsheet,
+} from "lucide-react";
+
+const items = [
+  { icon: Languages, title: "10-language OCR", text: "Hindi, Marathi, Tamil, Telugu, Kannada, Bengali, Gujarati, Punjabi, Malayalam, Odia.", tint: "from-brand-indigo/12 to-brand-purple/8" },
+  { icon: Workflow, title: "Configurable workflows", text: "Build approval matrices that mirror your state's revenue rules — no code needed.", tint: "from-brand-blue/12 to-brand-indigo/8" },
+  { icon: History, title: "Full version history", text: "Every parcel, document and case carries a complete audit trail.", tint: "from-brand-purple/12 to-brand-lavender/8" },
+  { icon: Database, title: "GeoPackage exports", text: "Take your data out anytime in open formats — GeoPackage, GeoJSON, CSV.", tint: "from-brand-indigo/12 to-brand-blue/8" },
+  { icon: GitBranch, title: "Parcel branching", text: "Sub-divide a parcel after partial acquisition with one click — chain stays intact.", tint: "from-brand-purple/12 to-brand-indigo/8" },
+  { icon: Smartphone, title: "Offline mobile app", text: "Survey, geo-tag and capture without signal — auto-sync when back online.", tint: "from-brand-blue/12 to-brand-purple/8" },
+  { icon: Webhook, title: "Webhooks & API", text: "Stream events to your data warehouse, BI tool or SAP module.", tint: "from-brand-indigo/12 to-brand-purple/8" },
+  { icon: BarChart3, title: "Live dashboards", text: "Per-project, per-state, per-counsel dashboards — every metric is queryable.", tint: "from-brand-purple/12 to-brand-lavender/8" },
+  { icon: PieChart, title: "DSR auto-export", text: "Daily status reports generated and mailed on your cadence — no manual prep.", tint: "from-brand-blue/12 to-brand-indigo/8" },
+  { icon: Cloud, title: "On-prem or India cloud", text: "Sovereign cloud, NIC, CDAC or your own VPC — your call.", tint: "from-brand-indigo/12 to-brand-blue/8" },
+  { icon: Banknote, title: "Compensation ledger", text: "Disbursement reconciled with the bank file — no orphaned payments.", tint: "from-brand-purple/12 to-brand-indigo/8" },
+  { icon: FileSpreadsheet, title: "Spreadsheet imports", text: "Drag in messy XLSX — our parser cleans, dedupes and maps to parcels.", tint: "from-brand-indigo/12 to-brand-purple/8" },
+];
+---
+
+<section class="relative py-20 sm:py-28">
+  <div class="container">
+    <Reveal client:visible>
+      <div class="mx-auto max-w-3xl text-center">
+        <div class="inline-flex items-center gap-2 rounded-full border border-brand-indigo/20 bg-brand-indigo/5 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-brand-indigo">
+          <span class="h-1.5 w-1.5 rounded-full bg-brand-indigo"></span>
+          Capability matrix
+        </div>
+        <h2 class="mt-5 font-display text-4xl font-extrabold tracking-tight text-brand-navy sm:text-5xl">
+          12 more capabilities{" "}
+          <span class="bg-gradient-to-r from-brand-indigo to-brand-purple bg-clip-text text-transparent">working quietly under the hood.</span>
+        </h2>
+        <p class="mt-4 text-base text-brand-navy/60">
+          The pillars are the headlines. These are the workhorses — the things you stop thinking about because they just work.
+        </p>
+      </div>
+    </Reveal>
+
+    <div class="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {items.map((item, i) => (
+        <Reveal client:visible delay={i * 0.04}>
+          <article class="group relative h-full overflow-hidden rounded-2xl border border-brand-navy/10 bg-white p-6 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-float">
+            <div class={`pointer-events-none absolute -top-14 -right-14 h-36 w-36 rounded-full bg-gradient-to-br ${item.tint} blur-3xl opacity-50 transition-opacity duration-500 group-hover:opacity-100`}></div>
+            <div class="relative">
+              <span class="grid h-11 w-11 place-items-center rounded-xl bg-white text-brand-indigo shadow-[0_2px_8px_rgba(11,20,55,0.08)] ring-1 ring-brand-navy/8">
+                <item.icon size={18} strokeWidth={2.25} />
+              </span>
+              <h3 class="mt-4 font-display text-base font-extrabold text-brand-navy">{item.title}</h3>
+              <p class="mt-2 text-[13px] leading-relaxed text-brand-navy/65">{item.text}</p>
+            </div>
+          </article>
+        </Reveal>
+      ))}
+    </div>
+  </div>
+</section>

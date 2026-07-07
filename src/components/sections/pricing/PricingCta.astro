@@ -1,0 +1,100 @@
+---
+import Reveal from "@/components/Reveal.tsx";
+import Magnetic from "@/components/Magnetic.tsx";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, Calendar, Phone, MailOpen } from "lucide-react";
+---
+
+<section class="relative py-16 sm:py-24">
+  <div class="container">
+    <Reveal client:visible variant="scale">
+      <div class="relative overflow-hidden rounded-[36px] bg-brand-navy">
+        {/* Background gradients */}
+        <div class="pointer-events-none absolute inset-0">
+          <div
+            class="absolute -top-32 -left-20 h-[420px] w-[420px] rounded-full blur-3xl opacity-60"
+            style="background: radial-gradient(closest-side, rgba(79,70,229,0.55), transparent 70%);"
+          ></div>
+          <div
+            class="absolute -bottom-40 -right-20 h-[480px] w-[480px] rounded-full blur-3xl opacity-50"
+            style="background: radial-gradient(closest-side, rgba(124,58,237,0.55), transparent 70%);"
+          ></div>
+          <div
+            class="absolute inset-0 opacity-[0.08]"
+            style="background-image: linear-gradient(to right, rgba(255,255,255,0.4) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.4) 1px, transparent 1px); background-size: 48px 48px;"
+          ></div>
+        </div>
+
+        <div class="relative grid items-center gap-10 px-8 py-16 lg:grid-cols-[1.4fr_1fr] lg:px-16 lg:py-24">
+          <div>
+            <span class="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-md px-3 py-1 text-xs font-semibold uppercase tracking-widest text-white/90 ring-1 ring-white/20">
+              <span class="h-1.5 w-1.5 rounded-full bg-brand-lavender animate-pulse-soft"></span>
+              Ready to talk
+            </span>
+
+            <h2 class="mt-6 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
+              Bring your land operation{" "}
+              <span class="bg-gradient-to-r from-brand-lavender via-white to-brand-lavender bg-clip-text text-transparent">into one workspace.</span>
+            </h2>
+
+            <p class="mt-6 max-w-xl text-base leading-relaxed text-white/70 sm:text-lg">
+              Walk us through one of your active projects. We'll come back with a tailored fit, a deployment timeline and an honest price — within 48 hours.
+            </p>
+
+            <div class="mt-9 flex flex-wrap items-center gap-4">
+              <Magnetic client:visible strength={0.18}>
+                <Button size="lg" className="h-12 rounded-xl bg-white px-7 text-brand-navy hover:bg-white/90 shadow-soft group">
+                  Book a tailored walkthrough
+                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </Button>
+              </Magnetic>
+              <a
+                href="/#contact"
+                class="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-5 py-3 text-sm font-semibold text-white backdrop-blur-md transition-colors hover:bg-white/10"
+              >
+                Request a written quote
+              </a>
+            </div>
+          </div>
+
+          {/* Right contact cards */}
+          <div class="grid gap-3">
+            <div class="group rounded-2xl border border-white/15 bg-white/[0.06] p-5 backdrop-blur-md transition-all hover:bg-white/[0.1]">
+              <div class="flex items-center gap-3">
+                <span class="grid h-10 w-10 place-items-center rounded-xl bg-brand-indigo text-white shadow-[0_4px_14px_rgba(79,70,229,0.45)]">
+                  <Calendar size={16} strokeWidth={2.25} />
+                </span>
+                <div>
+                  <p class="text-xs font-bold uppercase tracking-wider text-white/60">Book a 30-min call</p>
+                  <p class="text-sm font-bold text-white">Land-ops product walkthrough</p>
+                </div>
+              </div>
+            </div>
+            <div class="group rounded-2xl border border-white/15 bg-white/[0.06] p-5 backdrop-blur-md transition-all hover:bg-white/[0.1]">
+              <div class="flex items-center gap-3">
+                <span class="grid h-10 w-10 place-items-center rounded-xl bg-brand-purple text-white shadow-[0_4px_14px_rgba(124,58,237,0.45)]">
+                  <Phone size={16} strokeWidth={2.25} />
+                </span>
+                <div>
+                  <p class="text-xs font-bold uppercase tracking-wider text-white/60">Call sales</p>
+                  <p class="text-sm font-bold text-white">+91 80 4000 8800</p>
+                </div>
+              </div>
+            </div>
+            <div class="group rounded-2xl border border-white/15 bg-white/[0.06] p-5 backdrop-blur-md transition-all hover:bg-white/[0.1]">
+              <div class="flex items-center gap-3">
+                <span class="grid h-10 w-10 place-items-center rounded-xl bg-brand-blue text-white shadow-[0_4px_14px_rgba(47,91,255,0.45)]">
+                  <MailOpen size={16} strokeWidth={2.25} />
+                </span>
+                <div>
+                  <p class="text-xs font-bold uppercase tracking-wider text-white/60">Procurement & RFPs</p>
+                  <p class="text-sm font-bold text-white">sales@oxland.in</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Reveal>
+  </div>
+</section>

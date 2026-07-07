@@ -1,0 +1,127 @@
+---
+import Reveal from "@/components/Reveal.tsx";
+import { Plane, ScanText, Users, Radio, Layers3, Headphones, ArrowUpRight } from "lucide-react";
+
+const addons = [
+  {
+    icon: Plane,
+    title: "Drone survey credits",
+    subtitle: "100-acre packs",
+    price: "₹ 48,000",
+    unit: "/ pack",
+    description: "Orthomosaic + DTM + DSM capture by a certified DGCA pilot, delivered as a GIS-ready package.",
+    tint: "from-brand-blue/12 to-brand-indigo/8",
+    iconColor: "text-brand-blue",
+  },
+  {
+    icon: ScanText,
+    title: "OCR page packs",
+    subtitle: "50,000 pages",
+    price: "₹ 18,000",
+    unit: "/ pack",
+    description: "Vernacular OCR across 10 Indian languages with auto-tagging of khasra, khata and survey numbers.",
+    tint: "from-brand-indigo/12 to-brand-purple/8",
+    iconColor: "text-brand-indigo",
+  },
+  {
+    icon: Users,
+    title: "Field surveyor seats",
+    subtitle: "Offline-first app",
+    price: "₹ 1,499",
+    unit: "/ seat / mo",
+    description: "Lightweight Android seats for field teams — survey, geo-tag, capture photos, sync when online.",
+    tint: "from-brand-purple/12 to-brand-lavender/8",
+    iconColor: "text-brand-purple",
+  },
+  {
+    icon: Radio,
+    title: "IoT sensor bundles",
+    subtitle: "10-device starter",
+    price: "₹ 89,000",
+    unit: "/ bundle",
+    description: "LoRa-based sensors for stockpile, encroachment and wildlife corridors. Includes 12 months of telemetry.",
+    tint: "from-brand-blue/12 to-brand-purple/8",
+    iconColor: "text-brand-blue",
+  },
+  {
+    icon: Layers3,
+    title: "Custom GIS layer onboarding",
+    subtitle: "One-time setup",
+    price: "₹ 2,40,000",
+    unit: "/ state",
+    description: "We onboard state-specific cadastre, RoR and revenue layers — clean, version-controlled, query-ready.",
+    tint: "from-brand-indigo/12 to-brand-blue/8",
+    iconColor: "text-brand-indigo",
+  },
+  {
+    icon: Headphones,
+    title: "Dedicated CSM + NOC",
+    subtitle: "Quarterly engagement",
+    price: "₹ 1,80,000",
+    unit: "/ quarter",
+    description: "Named customer success manager, 24×7 NOC support, quarterly QBR with your land-ops leadership.",
+    tint: "from-brand-purple/12 to-brand-indigo/8",
+    iconColor: "text-brand-purple",
+  },
+];
+---
+
+<section id="addons" class="relative py-16 sm:py-24">
+  <div class="container">
+    <div class="grid items-end gap-8 lg:grid-cols-[1fr_auto] mb-12">
+      <Reveal client:visible>
+        <div>
+          <div class="inline-flex items-center gap-2 rounded-full border border-brand-indigo/20 bg-brand-indigo/5 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-brand-indigo">
+            <span class="h-1.5 w-1.5 rounded-full bg-brand-indigo"></span>
+            Modular add-ons
+          </div>
+          <h2 class="mt-4 font-display text-4xl font-extrabold tracking-tight text-brand-navy sm:text-5xl">
+            Add only what your{" "}
+            <span class="bg-gradient-to-r from-brand-indigo to-brand-purple bg-clip-text text-transparent">project actually needs.</span>
+          </h2>
+          <p class="mt-4 max-w-2xl text-base text-brand-navy/60">
+            Every add-on is consumable, transparent and meterable — no surprise minimums, no hidden tiers. Add or pause from your workspace, anytime.
+          </p>
+        </div>
+      </Reveal>
+    </div>
+
+    <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {addons.map((a, i) => (
+        <Reveal client:visible delay={i * 0.06}>
+          <article class={`group relative h-full overflow-hidden rounded-3xl border border-brand-navy/10 bg-white p-7 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-float`}>
+            {/* Decorative gradient blob */}
+            <div class={`pointer-events-none absolute -top-16 -right-16 h-48 w-48 rounded-full bg-gradient-to-br ${a.tint} blur-3xl opacity-60 transition-opacity duration-500 group-hover:opacity-100`}></div>
+            <div class="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" style="background: linear-gradient(135deg, rgba(79,70,229,0.04), transparent 50%);"></div>
+
+            <div class="relative">
+              <div class="flex items-start justify-between">
+                <span class={`grid h-12 w-12 place-items-center rounded-2xl bg-white ${a.iconColor} shadow-[0_2px_8px_rgba(11,20,55,0.08)] ring-1 ring-brand-navy/8`}>
+                  <a.icon size={20} strokeWidth={2.25} />
+                </span>
+                <span class="grid h-8 w-8 place-items-center rounded-full bg-brand-navy/[0.04] text-brand-navy/40 transition-all duration-300 group-hover:bg-brand-indigo group-hover:text-white group-hover:rotate-[-12deg]">
+                  <ArrowUpRight size={14} strokeWidth={2.5} />
+                </span>
+              </div>
+
+              <h3 class="mt-5 font-display text-xl font-extrabold text-brand-navy">{a.title}</h3>
+              <p class="mt-0.5 text-xs font-semibold uppercase tracking-wider text-brand-indigo/80">{a.subtitle}</p>
+
+              <p class="mt-3 text-sm leading-relaxed text-brand-navy/65">{a.description}</p>
+
+              <div class="mt-6 flex items-end justify-between border-t border-brand-navy/8 pt-5">
+                <div class="flex items-baseline gap-1">
+                  <span class="font-display text-2xl font-extrabold text-brand-navy">{a.price}</span>
+                  <span class="text-xs text-brand-navy/50">{a.unit}</span>
+                </div>
+                <button class="text-xs font-semibold text-brand-indigo hover:underline">
+                  Add to plan →
+                </button>
+              </div>
+            </div>
+          </article>
+        </Reveal>
+      ))}
+    </div>
+  </div>
+</section>

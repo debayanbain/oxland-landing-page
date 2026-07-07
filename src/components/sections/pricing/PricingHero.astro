@@ -1,0 +1,70 @@
+---
+import Reveal from "@/components/Reveal.tsx";
+import { ShieldCheck, Sparkles, Clock } from "lucide-react";
+
+const trustPills = [
+  { icon: ShieldCheck, label: "SOC 2-ready security" },
+  { icon: Clock, label: "14-day guided pilot" },
+  { icon: Sparkles, label: "No credit card required" },
+];
+---
+
+<section class="relative isolate overflow-hidden pt-36 pb-20 sm:pt-44 sm:pb-28">
+  {/* Ambient background — soft gradient orbs + subtle grid */}
+  <div class="pointer-events-none absolute inset-0 -z-10">
+    <div class="absolute inset-0 bg-grid-faint [background-size:40px_40px] opacity-50"></div>
+    <div
+      class="absolute -top-32 left-1/2 h-[480px] w-[680px] -translate-x-1/2 rounded-full opacity-60 blur-3xl"
+      style="background: radial-gradient(closest-side, rgba(79,70,229,0.32), rgba(124,58,237,0.18) 50%, transparent 75%);"
+    ></div>
+    <div
+      class="absolute -left-32 top-40 h-[360px] w-[420px] rounded-full opacity-50 blur-3xl"
+      style="background: radial-gradient(closest-side, rgba(47,91,255,0.32), transparent 70%);"
+    ></div>
+    <div
+      class="absolute -right-32 top-24 h-[420px] w-[480px] rounded-full opacity-50 blur-3xl"
+      style="background: radial-gradient(closest-side, rgba(167,139,250,0.32), transparent 70%);"
+    ></div>
+    <img src="/cloud1.png" alt="" aria-hidden="true" class="absolute -top-10 left-[8%] w-[280px] opacity-70 blur-[2px] select-none" />
+    <img src="/cloud2.png" alt="" aria-hidden="true" class="absolute top-24 right-[6%] w-[260px] opacity-60 blur-[1.5px] select-none" />
+  </div>
+
+  <div class="container relative">
+    <div class="mx-auto max-w-3xl text-center">
+      <Reveal client:visible variant="blur-up">
+        <div class="inline-flex items-center gap-2 rounded-full border border-brand-indigo/20 bg-brand-indigo/5 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-brand-indigo">
+          <span class="h-1.5 w-1.5 rounded-full bg-brand-indigo animate-pulse-soft"></span>
+          Pricing
+        </div>
+      </Reveal>
+
+      <Reveal client:visible variant="blur-up" delay={0.08}>
+        <h1 class="mt-6 font-display text-5xl font-extrabold leading-[1.05] tracking-tight text-brand-navy sm:text-6xl lg:text-[68px]">
+          Pricing built for the way{" "}
+          <span class="bg-gradient-to-r from-brand-blue via-brand-indigo to-brand-purple bg-clip-text text-transparent">
+            land teams actually work.
+          </span>
+        </h1>
+      </Reveal>
+
+      <Reveal client:visible variant="fade-up" delay={0.16}>
+        <p class="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-brand-navy/65 sm:text-lg">
+          From a single project to a multi-state acquisition rollout — pay only for the parcels, cases and surveyors you actually run. Every plan ships with GIS layers, litigation tracking and DSR-ready audit logs.
+        </p>
+      </Reveal>
+
+      <Reveal client:visible variant="fade-up" delay={0.24}>
+        <div class="mt-9 flex flex-wrap items-center justify-center gap-2.5">
+          {trustPills.map((p) => (
+            <div class="inline-flex items-center gap-2 rounded-full border border-brand-navy/10 bg-white/70 px-3.5 py-1.5 text-[12.5px] font-semibold text-brand-navy/75 backdrop-blur-sm shadow-[0_1px_0_rgba(255,255,255,0.7)_inset,0_2px_8px_-2px_rgba(11,20,55,0.08)]">
+              <span class="grid h-5 w-5 place-items-center rounded-full bg-brand-indigo/10 text-brand-indigo">
+                <p.icon size={11} strokeWidth={2.5} />
+              </span>
+              {p.label}
+            </div>
+          ))}
+        </div>
+      </Reveal>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,198 @@
+---
+import Reveal from "@/components/Reveal.tsx";
+import { Check, Minus, Map, Gavel, Layers3, Coins, FileSearch, Plane, BarChart3, Lock, LifeBuoy } from "lucide-react";
+
+type Cell = boolean | string;
+type Row = { label: string; starter: Cell; growth: Cell; enterprise: Cell };
+type Group = { title: string; icon: any; rows: Row[] };
+
+const groups: Group[] = [
+  {
+    title: "Parcel & Land Records",
+    icon: Map,
+    rows: [
+      { label: "Parcels under management", starter: "2,500", growth: "25,000", enterprise: "Unlimited" },
+      { label: "Active projects", starter: "1", growth: "Unlimited", enterprise: "Unlimited" },
+      { label: "User seats included", starter: "5", growth: "25", enterprise: "Unlimited" },
+      { label: "RoR / 7-12 / khasra ingestion", starter: true, growth: true, enterprise: true },
+      { label: "Bulk spreadsheet & API import", starter: true, growth: true, enterprise: true },
+      { label: "Ownership chain & mutation history", starter: false, growth: true, enterprise: true },
+    ],
+  },
+  {
+    title: "Litigation & Case Management",
+    icon: Gavel,
+    rows: [
+      { label: "Case tracker & hearing calendar", starter: "Basic", growth: "Advanced", enterprise: "Advanced" },
+      { label: "Counsel & opposition party CRM", starter: false, growth: true, enterprise: true },
+      { label: "Order copy OCR + auto-tagging", starter: false, growth: true, enterprise: true },
+      { label: "Custom litigation workflows", starter: false, growth: true, enterprise: true },
+      { label: "Court-level escalation playbooks", starter: false, growth: false, enterprise: true },
+    ],
+  },
+  {
+    title: "GIS, Cadastre & Surveying",
+    icon: Layers3,
+    rows: [
+      { label: "Core GIS viewer", starter: true, growth: true, enterprise: true },
+      { label: "Polygon snap to cadastre", starter: false, growth: true, enterprise: true },
+      { label: "DGPS / total-station upload", starter: false, growth: true, enterprise: true },
+      { label: "Custom layer onboarding (state-specific)", starter: false, growth: false, enterprise: true },
+      { label: "Offline survey app (Android)", starter: false, growth: true, enterprise: true },
+    ],
+  },
+  {
+    title: "R&R, Compensation & Approvals",
+    icon: Coins,
+    rows: [
+      { label: "Award computation engine", starter: false, growth: true, enterprise: true },
+      { label: "Compensation disbursement ledger", starter: false, growth: true, enterprise: true },
+      { label: "RFCTLARR / state-rule presets", starter: false, growth: true, enterprise: true },
+      { label: "Multi-level approval matrix", starter: "1 level", growth: "5 levels", enterprise: "Unlimited" },
+    ],
+  },
+  {
+    title: "Documents, OCR & Workflow",
+    icon: FileSearch,
+    rows: [
+      { label: "Document repository", starter: "20 GB", growth: "1 TB", enterprise: "Unlimited" },
+      { label: "OCR pages / month", starter: "5,000", growth: "1,00,000", enterprise: "Custom" },
+      { label: "Vernacular OCR (10 Indian languages)", starter: false, growth: true, enterprise: true },
+      { label: "E-sign & DSC workflows", starter: false, growth: true, enterprise: true },
+    ],
+  },
+  {
+    title: "Drone, IoT & Field Intelligence",
+    icon: Plane,
+    rows: [
+      { label: "Drone orthomosaic uploads", starter: false, growth: true, enterprise: true },
+      { label: "Stockpile volumetric monitoring", starter: false, growth: "Add-on", enterprise: true },
+      { label: "Wildlife & encroachment alerts", starter: false, growth: false, enterprise: true },
+      { label: "IoT sensor integrations", starter: false, growth: "5 devices", enterprise: "Unlimited" },
+    ],
+  },
+  {
+    title: "Reporting & Analytics",
+    icon: BarChart3,
+    rows: [
+      { label: "Live dashboards", starter: true, growth: true, enterprise: true },
+      { label: "DSR / weekly status auto-export", starter: false, growth: true, enterprise: true },
+      { label: "Custom report builder", starter: false, growth: true, enterprise: true },
+      { label: "Ministry / lender-grade exports", starter: false, growth: false, enterprise: true },
+    ],
+  },
+  {
+    title: "Security & Compliance",
+    icon: Lock,
+    rows: [
+      { label: "Role-based access control", starter: true, growth: true, enterprise: true },
+      { label: "SSO / SCIM provisioning", starter: false, growth: true, enterprise: true },
+      { label: "Data residency (India region)", starter: true, growth: true, enterprise: true },
+      { label: "On-prem / sovereign cloud", starter: false, growth: false, enterprise: true },
+      { label: "Custom DPA & MSA", starter: false, growth: false, enterprise: true },
+    ],
+  },
+  {
+    title: "Support & Onboarding",
+    icon: LifeBuoy,
+    rows: [
+      { label: "Onboarding", starter: "Self-serve", growth: "Guided 4-week", enterprise: "Custom programme" },
+      { label: "Support channels", starter: "Email", growth: "Email + chat", enterprise: "24×7 NOC" },
+      { label: "Response SLA", starter: "48h", growth: "8h", enterprise: "1h critical" },
+      { label: "Dedicated CSM", starter: false, growth: false, enterprise: true },
+    ],
+  },
+];
+
+const renderCell = (v: Cell) => {
+  if (v === true) return null;
+  if (v === false) return null;
+  return v;
+};
+---
+
+<section id="compare" class="relative py-16 sm:py-24">
+  <div class="container">
+    <Reveal client:visible>
+      <div class="mx-auto max-w-3xl text-center">
+        <div class="inline-flex items-center gap-2 rounded-full border border-brand-indigo/20 bg-brand-indigo/5 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-brand-indigo">
+          <span class="h-1.5 w-1.5 rounded-full bg-brand-indigo"></span>
+          Compare plans
+        </div>
+        <h2 class="mt-5 font-display text-4xl font-extrabold tracking-tight text-brand-navy sm:text-5xl">
+          Every capability,{" "}
+          <span class="bg-gradient-to-r from-brand-indigo to-brand-purple bg-clip-text text-transparent">side by side.</span>
+        </h2>
+        <p class="mt-4 text-base text-brand-navy/60">
+          A complete view of what you get at each tier — from parcel ingestion to ministry-grade exports.
+        </p>
+      </div>
+    </Reveal>
+
+    <Reveal client:visible delay={0.12}>
+      <div class="mt-12 overflow-hidden rounded-3xl border border-brand-navy/10 bg-white shadow-card">
+        {/* Sticky header */}
+        <div class="sticky top-4 z-20 grid grid-cols-[1.6fr_repeat(3,1fr)] items-start gap-4 rounded-t-3xl border-b border-brand-navy/10 bg-white/95 backdrop-blur-md px-6 pt-6 pb-5 sm:px-8">
+          <div class="pt-1 text-xs font-bold uppercase tracking-wider text-brand-navy/45">Feature</div>
+          <div class="text-center">
+            <div class="font-display text-base font-extrabold text-brand-navy leading-tight">Starter</div>
+            <div class="mt-1.5 text-[11px] leading-tight text-brand-navy/45">Single project</div>
+          </div>
+          <div class="text-center">
+            <div class="inline-flex items-center gap-1.5 font-display text-base font-extrabold text-brand-indigo leading-tight">
+              Growth
+              <span class="rounded-full bg-brand-indigo/10 px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider text-brand-indigo">Popular</span>
+            </div>
+            <div class="mt-1.5 text-[11px] leading-tight text-brand-navy/45">Multi-project</div>
+          </div>
+          <div class="text-center">
+            <div class="font-display text-base font-extrabold text-brand-navy leading-tight">Enterprise</div>
+            <div class="mt-1.5 text-[11px] leading-tight text-brand-navy/45">PSU & agency-scale</div>
+          </div>
+        </div>
+
+        {/* Groups */}
+        <div class="divide-y divide-brand-navy/8">
+          {groups.map((g) => (
+            <div>
+              <div class="grid grid-cols-[1.6fr_repeat(3,1fr)] items-center gap-4 bg-gradient-to-r from-brand-indigo/5 via-transparent to-transparent px-6 py-4 sm:px-8">
+                <div class="flex items-center gap-2.5">
+                  <span class="grid h-7 w-7 place-items-center rounded-lg bg-brand-indigo/10 text-brand-indigo">
+                    <g.icon size={14} strokeWidth={2.25} />
+                  </span>
+                  <span class="text-sm font-bold uppercase tracking-wider text-brand-navy">
+                    {g.title}
+                  </span>
+                </div>
+              </div>
+              <div class="divide-y divide-brand-navy/6">
+                {g.rows.map((r) => (
+                  <div class="grid grid-cols-[1.6fr_repeat(3,1fr)] items-center gap-4 px-6 py-3.5 transition-colors hover:bg-brand-indigo/[0.025] sm:px-8">
+                    <div class="text-sm text-brand-navy/80">{r.label}</div>
+                    {[r.starter, r.growth, r.enterprise].map((c, idx) => (
+                      <div class="flex items-center justify-center">
+                        {c === true ? (
+                          <span class={`flex h-6 w-6 items-center justify-center rounded-full ${idx === 1 ? "bg-brand-indigo text-white" : "bg-brand-indigo/10 text-brand-indigo"}`}>
+                            <Check size={12} strokeWidth={3} />
+                          </span>
+                        ) : c === false ? (
+                          <span class="flex h-6 w-6 items-center justify-center rounded-full bg-brand-navy/6 text-brand-navy/35">
+                            <Minus size={12} strokeWidth={3} />
+                          </span>
+                        ) : (
+                          <span class={`text-[13px] font-semibold ${idx === 1 ? "text-brand-indigo" : "text-brand-navy/80"}`}>
+                            {c}
+                          </span>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </Reveal>
+  </div>
+</section>

@@ -1,0 +1,15 @@
+# =========================================================
+# Oxland — robots.txt
+# =========================================================
+
+User-agent: *
+Allow: /
+
+# Block internal / preview / meta files (nothing sensitive today,
+# but good defence in depth for future additions)
+Disallow: /features-preview/
+Disallow: /*.json$
+Disallow: /_astro/
+
+# Full sitemap
+Sitemap: https://oxland.in/sitemap.xml

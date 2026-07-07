@@ -1,0 +1,103 @@
+---
+import Reveal from "@/components/Reveal.tsx";
+import CountUp from "@/components/CountUp.tsx";
+import { MessageCircle, Timer, CalendarCheck, Star } from "lucide-react";
+
+type Stat = {
+  icon: any;
+  to: number;
+  decimals?: number;
+  prefix?: string;
+  suffix?: string;
+  separator?: boolean;
+  label: string;
+  detail: string;
+};
+
+const stats: Stat[] = [
+  {
+    icon: Timer,
+    to: 2.4,
+    decimals: 1,
+    suffix: "h",
+    separator: false,
+    label: "average reply time",
+    detail: "For Growth & Enterprise. Starter replies within 8 business hours.",
+  },
+  {
+    icon: MessageCircle,
+    to: 12,
+    label: "specialists online",
+    detail: "Land-ops, product, GIS, litigation and legal — right now.",
+  },
+  {
+    icon: CalendarCheck,
+    to: 47,
+    label: "demos this week",
+    detail: "Slots booked with land teams across India · updated live.",
+  },
+  {
+    icon: Star,
+    to: 4.9,
+    decimals: 1,
+    separator: false,
+    suffix: "/5",
+    label: "customer satisfaction",
+    detail: "Post-onboarding NPS from 218 land-ops leaders. Verified.",
+  },
+];
+---
+
+<section class="relative py-10 sm:py-14">
+  <div class="container">
+    <Reveal client:visible>
+      <div class="relative overflow-hidden rounded-[32px] border border-brand-navy/8 bg-white/70 backdrop-blur-sm shadow-card">
+        <div
+          class="pointer-events-none absolute inset-0 opacity-50"
+          style="background: linear-gradient(120deg, rgba(47,91,255,0.04), rgba(124,58,237,0.06) 60%, transparent 100%);"
+        ></div>
+        <div
+          class="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full opacity-50 blur-3xl"
+          style="background: radial-gradient(closest-side, rgba(167,139,250,0.35), transparent 70%);"
+        ></div>
+        <div
+          class="pointer-events-none absolute -bottom-24 -left-24 h-72 w-72 rounded-full opacity-40 blur-3xl"
+          style="background: radial-gradient(closest-side, rgba(47,91,255,0.28), transparent 70%);"
+        ></div>
+
+        <div class="relative flex items-center justify-between border-b border-brand-navy/8 px-6 py-4 sm:px-8">
+          <div class="flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-brand-navy/50">
+            <span class="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse-soft"></span>
+            Live contact metrics · refreshed hourly
+          </div>
+          <div class="text-[10px] font-semibold text-brand-navy/40">
+            Updated {new Date().toLocaleDateString("en-IN", { day: "numeric", month: "short" })}
+          </div>
+        </div>
+
+        <div class="relative grid grid-cols-2 divide-x divide-brand-navy/8 lg:grid-cols-4">
+          {stats.map((s, i) => (
+            <div class={`group relative px-6 py-8 sm:px-8 sm:py-10 ${i >= 2 ? "border-t border-brand-navy/8 lg:border-t-0" : ""}`}>
+              <span class="grid h-10 w-10 place-items-center rounded-xl bg-brand-indigo/10 text-brand-indigo shadow-[0_2px_8px_rgba(79,70,229,0.12)]">
+                <s.icon size={18} strokeWidth={2.25} />
+              </span>
+              <div class="mt-4 flex items-baseline gap-1">
+                <CountUp
+                  client:visible
+                  to={s.to}
+                  decimals={s.decimals ?? 0}
+                  prefix={s.prefix ?? ""}
+                  suffix={s.suffix ?? ""}
+                  separator={s.separator ?? true}
+                  className="font-display text-4xl font-extrabold tracking-tight sm:text-5xl bg-gradient-to-r from-brand-indigo to-brand-purple bg-clip-text text-transparent tabular-nums"
+                />
+              </div>
+              <p class="mt-3 text-sm font-semibold text-brand-navy">{s.label}</p>
+              <p class="mt-1 text-xs leading-relaxed text-brand-navy/55">{s.detail}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </Reveal>
+  </div>
+</section>

@@ -1,0 +1,294 @@
+---
+import Section from "@/components/sections/core-features/Section.astro";
+import {
+  GISVisual,
+  RecordsVisual,
+  OwnershipVisual,
+  AcquisitionVisual,
+  LitigationVisual,
+  ValuationVisual,
+  EncroachmentVisual,
+  WorkflowVisual,
+  AlertsVisual,
+  IntegrationsVisual,
+  UploadVisual,
+  RRVisual,
+} from "@/components/sections/core-features/SectionVisuals.tsx";
+import {
+  Map, Satellite, Search, Layers3, Ruler, Compass, Download, MapPin,
+  FolderArchive, ScanText, History, Cloud, CalendarClock, Share2, ClipboardList,
+  User, Users, Repeat, Sparkles, BadgeCheck, UserCheck, Link2,
+  Workflow, UserSquare, Calculator, ClipboardCheck, CreditCard, Milestone, LayoutDashboard, BarChart3,
+  Gavel, CalendarDays, Activity, UserRoundCheck, Paperclip, ListOrdered, Timer, FileBarChart,
+  TrendingUp, Home, Building2, LineChart, Sliders,
+  Scan, Plane, AlertTriangle, Radar, FileWarning,
+  Settings2, FileCheck2, MessageSquare, Inbox, Bell, Rocket,
+  Mail, Server, Database, KeyRound, ShieldCheck, Cog,
+  Upload, FileSpreadsheet, FileType2, Shapes, AlertCircle,
+  UsersRound, HeartHandshake, HandCoins, ClipboardType,
+} from "lucide-react";
+
+const s1 = {
+  id: "gis", index: 1, accent: "indigo" as const,
+  eyebrow: "GIS Based Land Mapping",
+  heading: "Visualize every parcel with",
+  headingAccent: "interactive GIS.",
+  description: "Cadastre-first mapping that snaps polygons to district boundaries and surfaces every parcel, owner, and encumbrance in one click. Built for the way Indian revenue departments actually work.",
+  bullets: [
+    { icon: Map, text: "Interactive GIS maps with cadastral boundaries" },
+    { icon: Satellite, text: "Satellite, drone & survey layer integration" },
+    { icon: Search, text: "Smart plot search and filtering" },
+    { icon: Layers3, text: "Multi-layer map visualization" },
+    { icon: Ruler, text: "Area & distance measurement tools" },
+    { icon: Compass, text: "Plot status and ownership visualization" },
+    { icon: Download, text: "High-resolution map exports" },
+    { icon: MapPin, text: "Real-time location insights" },
+  ],
+};
+
+const s2 = {
+  id: "records", index: 2, accent: "blue" as const, bg: "bg-[#f7f8fd]/55",
+  eyebrow: "Digital Land Records",
+  heading: "One secure repository for",
+  headingAccent: "every land document.",
+  description: "RoRs, mutation registers, encumbrance certificates and consent letters — all in a single vault, versioned, OCR-indexed and searchable in ten Indian languages.",
+  bullets: [
+    { icon: FolderArchive, text: "Centralized digital document repository" },
+    { icon: ScanText, text: "OCR-based document indexing" },
+    { icon: Search, text: "Smart search and quick retrieval" },
+    { icon: History, text: "Version history tracking" },
+    { icon: Cloud, text: "Secure cloud storage" },
+    { icon: CalendarClock, text: "Document expiry reminders" },
+    { icon: Share2, text: "Instant document sharing" },
+    { icon: ClipboardList, text: "Complete audit trail" },
+  ],
+};
+
+const s3 = {
+  id: "ownership", index: 3, accent: "purple" as const,
+  eyebrow: "Ownership Management",
+  heading: "Maintain the",
+  headingAccent: "full ownership history.",
+  description: "Every heir, every purchase, every partition. Oxland reconstructs the ownership chain so legal, revenue and audit teams see the same truth at the same time.",
+  bullets: [
+    { icon: User, text: "Owner profile management" },
+    { icon: Users, text: "Joint ownership support" },
+    { icon: Repeat, text: "Ownership transfer history" },
+    { icon: Sparkles, text: "Family lineage tracking" },
+    { icon: BadgeCheck, text: "Legal heir records" },
+    { icon: UserCheck, text: "KYC information management" },
+    { icon: Link2, text: "Linked land parcels" },
+    { icon: History, text: "Transparent ownership timeline" },
+  ],
+};
+
+const s4 = {
+  id: "acquisition", index: 4, accent: "indigo" as const, bg: "bg-[#f7f8fd]/55",
+  eyebrow: "Land Acquisition Management",
+  heading: "Digitize the entire",
+  headingAccent: "acquisition lifecycle.",
+  description: "Identification, negotiation, consent capture, award computation, disbursement — one pipeline, one audit trail, one number to trust when the ministry asks.",
+  bullets: [
+    { icon: Workflow, text: "End-to-end acquisition workflow" },
+    { icon: UserSquare, text: "Landowner information management" },
+    { icon: Calculator, text: "Compensation calculation" },
+    { icon: ClipboardCheck, text: "Approval workflow tracking" },
+    { icon: CreditCard, text: "Payment monitoring" },
+    { icon: Milestone, text: "Project milestone tracking" },
+    { icon: LayoutDashboard, text: "Acquisition status dashboard" },
+    { icon: BarChart3, text: "Progress reporting" },
+  ],
+};
+
+const s5 = {
+  id: "litigation", index: 5, accent: "purple" as const,
+  eyebrow: "Litigation Management",
+  heading: "Stay ahead of",
+  headingAccent: "every legal case.",
+  description: "Cases, hearings, cause lists, orders — indexed by parcel and by counsel, with reminders that fire before deadlines slip. Litigation stops being a folder of PDFs.",
+  bullets: [
+    { icon: Gavel, text: "Court case management" },
+    { icon: CalendarDays, text: "Hearing date reminders" },
+    { icon: Activity, text: "Case status tracking" },
+    { icon: UserRoundCheck, text: "Advocate assignment" },
+    { icon: Paperclip, text: "Document attachment" },
+    { icon: ListOrdered, text: "Cause list monitoring" },
+    { icon: Timer, text: "Legal timeline visualization" },
+    { icon: FileBarChart, text: "Litigation reports" },
+  ],
+};
+
+const s6 = {
+  id: "valuation", index: 6, accent: "blue" as const, bg: "bg-[#f7f8fd]/55",
+  eyebrow: "Land Rate & Valuation",
+  heading: "Make smarter decisions with",
+  headingAccent: "accurate valuation.",
+  description: "Circle rates, guideline values, market comps and historical price trends — all against your parcel geometry. So compensation offers land right the first time.",
+  bullets: [
+    { icon: TrendingUp, text: "Market rate management" },
+    { icon: Home, text: "Circle / guideline value records" },
+    { icon: Building2, text: "Plot-wise valuation" },
+    { icon: Calculator, text: "Compensation estimation" },
+    { icon: LineChart, text: "Historical price comparison" },
+    { icon: FileBarChart, text: "Valuation reports" },
+    { icon: Sliders, text: "Custom valuation parameters" },
+    { icon: BarChart3, text: "Decision support analytics" },
+  ],
+};
+
+const s7 = {
+  id: "encroachment", index: 7, accent: "indigo" as const,
+  eyebrow: "Encroachment Detection",
+  heading: "Detect unauthorized",
+  headingAccent: "land changes instantly.",
+  description: "AI compares today's imagery with your baseline and surfaces boundary breaches within minutes — before they become disputes, protests or news headlines.",
+  bullets: [
+    { icon: Scan, text: "AI-powered change detection" },
+    { icon: Satellite, text: "Satellite image comparison" },
+    { icon: Plane, text: "Drone imagery analysis" },
+    { icon: AlertTriangle, text: "Boundary violation alerts" },
+    { icon: Radar, text: "Encroachment monitoring" },
+    { icon: History, text: "Historical change timeline" },
+    { icon: Map, text: "GIS-based visualization" },
+    { icon: FileWarning, text: "Automated reports" },
+  ],
+};
+
+const s8 = {
+  id: "workflow", index: 8, accent: "purple" as const, bg: "bg-[#f7f8fd]/55",
+  eyebrow: "Document Workflow & Approvals",
+  heading: "Automate every",
+  headingAccent: "approval process.",
+  description: "Configurable multi-level workflows for consent letters, award orders and payment sign-offs — with digital verification, comments and full history behind every signature.",
+  bullets: [
+    { icon: Workflow, text: "Multi-level approval workflow" },
+    { icon: Settings2, text: "Configurable approval stages" },
+    { icon: FileCheck2, text: "Digital verification" },
+    { icon: MessageSquare, text: "Review comments" },
+    { icon: Inbox, text: "Pending approval dashboard" },
+    { icon: Bell, text: "Approval notifications" },
+    { icon: History, text: "Complete workflow history" },
+    { icon: Rocket, text: "Faster processing" },
+  ],
+};
+
+const s9 = {
+  id: "alerts", index: 9, accent: "blue" as const,
+  eyebrow: "Alerts & Notifications",
+  heading: "Never miss a",
+  headingAccent: "critical update.",
+  description: "Smart alerts fired by the platform itself — hearing tomorrow, document expiring, encroachment detected, approval waiting. Delivered where your team already lives: email, SMS, in-app.",
+  bullets: [
+    { icon: CalendarClock, text: "Hearing reminders" },
+    { icon: FileWarning, text: "Document expiry alerts" },
+    { icon: ClipboardCheck, text: "Approval notifications" },
+    { icon: Milestone, text: "Acquisition milestone alerts" },
+    { icon: Repeat, text: "Ownership change notifications" },
+    { icon: History, text: "Land record updates" },
+    { icon: Mail, text: "Email & SMS notifications" },
+    { icon: Activity, text: "Real-time activity alerts" },
+  ],
+};
+
+const s10 = {
+  id: "integrations", index: 10, accent: "indigo" as const, bg: "bg-[#f7f8fd]/55",
+  eyebrow: "Easy Integrations",
+  heading: "Connect Oxland with",
+  headingAccent: "your existing stack.",
+  description: "REST APIs and battle-tested connectors for SAP, Oracle, Tally, Zoho, Microsoft Dynamics, NIC GIS and state land-record portals. Data flows both ways.",
+  bullets: [
+    { icon: Cog, text: "REST API integration" },
+    { icon: Server, text: "ERP connectivity" },
+    { icon: Database, text: "SAP integration" },
+    { icon: Map, text: "GIS server integration" },
+    { icon: Plane, text: "Drone data integration" },
+    { icon: Building2, text: "Government land record systems" },
+    { icon: KeyRound, text: "Third-party authentication" },
+    { icon: ShieldCheck, text: "Secure data exchange" },
+  ],
+};
+
+const s11 = {
+  id: "upload", index: 11, accent: "purple" as const,
+  eyebrow: "Simple Data Upload",
+  heading: "Import existing data",
+  headingAccent: "in minutes.",
+  description: "Drag in messy Excel, Shapefile, KML or CSV — Oxland cleans, dedupes, validates and maps to parcels. Migration from legacy systems stops being a six-month project.",
+  bullets: [
+    { icon: FileSpreadsheet, text: "Bulk Excel import" },
+    { icon: FileType2, text: "CSV upload support" },
+    { icon: Shapes, text: "GIS Shapefile import" },
+    { icon: Map, text: "KML & GeoJSON support" },
+    { icon: Upload, text: "Bulk document upload" },
+    { icon: BadgeCheck, text: "Automated data validation" },
+    { icon: AlertCircle, text: "Error reporting" },
+    { icon: Rocket, text: "Quick migration tools" },
+  ],
+};
+
+const s12 = {
+  id: "rr", index: 12, accent: "blue" as const, bg: "bg-[#f7f8fd]/55",
+  eyebrow: "R&R Management",
+  heading: "Manage rehabilitation &",
+  headingAccent: "resettlement with confidence.",
+  description: "Family-wise tracking from displacement notice to livelihood restoration. Every beneficiary, every disbursement, every housing allotment — visible to legal, ministry and audit.",
+  bullets: [
+    { icon: UsersRound, text: "Beneficiary management" },
+    { icon: HeartHandshake, text: "Family-wise R&R tracking" },
+    { icon: HandCoins, text: "Compensation monitoring" },
+    { icon: Home, text: "Resettlement progress tracking" },
+    { icon: Sparkles, text: "Livelihood restoration records" },
+    { icon: CreditCard, text: "Benefit distribution management" },
+    { icon: ClipboardType, text: "Compliance reporting" },
+    { icon: LayoutDashboard, text: "Complete R&R dashboard" },
+  ],
+};
+---
+
+<Section {...s1}>
+  <GISVisual client:visible />
+</Section>
+
+<Section {...s2} reversed>
+  <RecordsVisual client:visible />
+</Section>
+
+<Section {...s3}>
+  <OwnershipVisual client:visible />
+</Section>
+
+<Section {...s4} reversed>
+  <AcquisitionVisual client:visible />
+</Section>
+
+<Section {...s5}>
+  <LitigationVisual client:visible />
+</Section>
+
+<Section {...s6} reversed>
+  <ValuationVisual client:visible />
+</Section>
+
+<Section {...s7}>
+  <EncroachmentVisual client:visible />
+</Section>
+
+<Section {...s8} reversed>
+  <WorkflowVisual client:visible />
+</Section>
+
+<Section {...s9}>
+  <AlertsVisual client:visible />
+</Section>
+
+<Section {...s10} reversed>
+  <IntegrationsVisual client:visible />
+</Section>
+
+<Section {...s11}>
+  <UploadVisual client:visible />
+</Section>
+
+<Section {...s12} reversed>
+  <RRVisual client:visible />
+</Section>

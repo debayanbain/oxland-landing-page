@@ -3,6 +3,14 @@ dist/
 .astro/
 *.log
 .DS_Store
+
+# Secrets — never commit real keys/tokens (.env.example is the template)
+.env
+.env.*
+!.env.example
+
+# Sentry CLI config
+.sentryclirc
 graphify-out
 .agents
 .codegraph

@@ -42,7 +42,7 @@ const CARDS: CardTypes[] = [
     angle: 315,
     floatDelay: -4.5,
     type: "image",
-    src: 'tally.png',
+    src: 'tally.webp',
   },
   {
     name: "Zoho Books",
@@ -58,7 +58,7 @@ const CARDS: CardTypes[] = [
     angle: 45,
     floatDelay: -3.5,
     type: "image",
-    src: '/googlemaps.png'
+    src: '/googlemaps.webp'
   }
 ];
 

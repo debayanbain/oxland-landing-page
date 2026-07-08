@@ -49,9 +49,13 @@ export default function ContactHero() {
           }}
         />
         <img
-          src="/cloud1.png"
+          src="/cloud1.webp"
           alt=""
           aria-hidden
+          width="1920"
+          height="1080"
+          loading="lazy"
+          decoding="async"
           className="absolute -top-4 left-[5%] w-[280px] opacity-65 blur-[2px] select-none"
         />
         <img

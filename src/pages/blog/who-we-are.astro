@@ -11,7 +11,7 @@ const post = {
   subtitle: "Land acquisition in India is stuck between a spreadsheet, a court order and a scanned PDF. Here's why we built Oxland — and what it means for the people who actually run these projects.",
   date: "12 Mar 2026",
   readTime: "6 min read",
-  image: "/features-background.png",
+  image: "/features-background.webp",
 };
 
 const author = {
@@ -130,6 +130,8 @@ const bullets = [
             <img
               src={post.image}
               alt={post.title}
+              loading="eager"
+              decoding="async"
               class="h-full w-full object-cover"
               draggable="false"
             />
@@ -257,7 +259,7 @@ const bullets = [
 
           {/* ------- SIDEBAR ------- */}
           <div class="md:sticky md:top-24 md:self-start">
-            <BlogSidebar client:load author={author} />
+            <BlogSidebar client:visible author={author} />
           </div>
 
         </div>

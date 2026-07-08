@@ -35,9 +35,13 @@ export default function FeaturesHero() {
           }}
         />
         <img
-          src="/cloud1.png"
+          src="/cloud1.webp"
           alt=""
           aria-hidden
+          width="1920"
+          height="1080"
+          loading="lazy"
+          decoding="async"
           className="absolute -top-4 left-[5%] w-[280px] opacity-70 blur-[2px] select-none"
         />
         <img
@@ -226,8 +230,12 @@ export default function FeaturesHero() {
                   className="relative h-full w-full"
                 >
                   <img
-                    src="/features.png"
+                    src="/features.webp"
                     alt="Oxland land parcel intelligence"
+                    width="1536"
+                    height="1024"
+                    loading="lazy"
+                    decoding="async"
                     className="absolute inset-0 h-full w-full object-contain select-none"
                     draggable={false}
                   />

@@ -7,12 +7,50 @@ import FeatureComparison from "@/components/sections/pricing/FeatureComparison.a
 import AddOnsGrid from "@/components/sections/pricing/AddOnsGrid.astro";
 import ROICalculator from "@/components/sections/pricing/ROICalculator.tsx";
 import PricingTestimonial from "@/components/sections/pricing/PricingTestimonial.astro";
-import PricingFaq from "@/components/sections/pricing/PricingFaq.tsx";
+import PricingFaq, { FAQS } from "@/components/sections/pricing/PricingFaq.tsx";
 import PricingCta from "@/components/sections/pricing/PricingCta.astro";
+
+const productJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name: "Oxland",
+  description:
+    "The land acquisition, litigation and GIS operating system for Indian enterprise and PSU teams.",
+  offers: [
+    {
+      "@type": "Offer",
+      name: "Starter",
+      priceCurrency: "INR",
+      price: "24999",
+      url: "https://oxland.in/pricing",
+    },
+    {
+      "@type": "Offer",
+      name: "Growth",
+      priceCurrency: "INR",
+      price: "64999",
+      url: "https://oxland.in/pricing",
+    },
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: FAQS.map((faq) => ({
+    "@type": "Question",
+    name: faq.q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.a,
+    },
+  })),
+};
 ---
 <Layout
   title="Pricing — Oxland | Plans for land acquisition, GIS & litigation teams"
   description="Transparent INR pricing for Oxland — the land acquisition, litigation and GIS operating system. Starter, Growth and Enterprise plans, modular add-ons and an ROI calculator built for Indian land operations."
+  jsonLd={[productJsonLd, faqJsonLd]}
 >
   <main class="relative">
     <PricingHero />

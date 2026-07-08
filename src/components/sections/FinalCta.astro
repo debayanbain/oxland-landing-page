@@ -8,7 +8,7 @@ import { Layers, MapPin, BarChart3, ShieldCheck, ArrowRight } from "lucide-react
   <div class="container">
     <Reveal client:visible variant="scale">
       <!-- Card acts as the mask via overflow-hidden -->
-      <div class="relative overflow-hidden rounded-[36px] bg-[#EEF2FF] bg-[url('/4.png')] bg-cover bg-center shadow-float">
+      <div class="relative overflow-hidden rounded-[36px] bg-[#EEF2FF] bg-[url('/4.webp')] bg-cover bg-center shadow-float">
 
         <div class="grid items-stretch lg:grid-cols-12">
 
@@ -73,8 +73,12 @@ import { Layers, MapPin, BarChart3, ShieldCheck, ArrowRight } from "lucide-react
           {/* ── Right Column (Phone image — clipped by card overflow-hidden) ── */}
           <div class="lg:col-span-5 relative hidden lg:flex items-end justify-center overflow-hidden">
             <img
-              src="/oxland.png"
+              src="/oxland.webp"
               alt="Oxland mobile app"
+              width="1024"
+              height="1536"
+              loading="lazy"
+              decoding="async"
               class="w-full max-w-[520px] object-contain object-bottom select-none translate-y-8"
               draggable="false"
             />

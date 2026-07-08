@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import {
   motion,
   useScroll,
@@ -60,7 +60,7 @@ function Cloud({
   variant?: 0 | 1 | 2 | 3;
   tint?: string;
 }) {
-  const src = (variant === 0 || variant === 2) ? "/cloud1.png" : "/cloud2.png";
+  const src = (variant === 0 || variant === 2) ? "/cloud1.webp" : "/cloud2.png";
 
   return (
     <div
@@ -569,6 +569,14 @@ const TRUST = [
 export default function Hero() {
   const ref = useRef<HTMLDivElement | null>(null);
   const reduce = useReducedMotion();
+  // useReducedMotion() returns null on the server and the real value on the
+  // client, so branching the *rendered markup* on it directly causes a
+  // hydration mismatch under prefers-reduced-motion. Gate structural branches
+  // on `rm`, which matches the server (false) until after mount, then applies
+  // the reduced-motion layout in a normal client re-render.
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  const rm = mounted && reduce;
 
   // Track scroll from when hero enters viewport to when it has scrolled fully out
   const { scrollYProgress } = useScroll({
@@ -604,8 +612,8 @@ export default function Hero() {
         <motion.div
           className="absolute inset-x-0 bottom-0 h-[78%]"
           style={{
-            scale: reduce ? 1.08 : landScale,
-            opacity: reduce ? 0.7 : landOpacity,
+            scale: rm ? 1.08 : landScale,
+            opacity: rm ? 0.7 : landOpacity,
             transformOrigin: "center bottom",
             WebkitMaskImage:
               "linear-gradient(to bottom, transparent 0%, transparent 12%, rgba(0,0,0,0.08) 28%, rgba(0,0,0,0.5) 55%, white 90%)",
@@ -614,9 +622,13 @@ export default function Hero() {
           }}
         >
           <img
-            src="/hero.jpg"
+            src="/hero.webp"
             alt=""
             aria-hidden
+            width="1500"
+            height="998"
+            loading="eager"
+            decoding="async"
             className="h-full w-full object-cover"
           />
           {/* tint to match brand */}
@@ -628,7 +640,7 @@ export default function Hero() {
       </div>
 
       {/* ---------- CLOUDS (scroll-driven) ---------- */}
-      {!reduce && (
+      {!rm && (
         <div className="pointer-events-none absolute inset-0 -z-[5] overflow-hidden">
           {/* far layer — slow, deep */}
           <ScrollCloud
@@ -739,7 +751,7 @@ export default function Hero() {
           />
         </div>
       )}
-      {reduce && (
+      {rm && (
         <div className="pointer-events-none absolute inset-0 -z-[5] overflow-hidden">
           <div className="absolute left-[-6%] top-[8%]"><Cloud width={520} blur={6} opacity={0.7} variant={0} /></div>
           <div className="absolute right-[-8%] top-[4%]"><Cloud width={560} blur={6} opacity={0.75} variant={1} /></div>
@@ -752,7 +764,7 @@ export default function Hero() {
       <div className="container relative">
         <motion.div
           className="mx-auto max-w-3xl text-center"
-          style={reduce ? undefined : { y: textY, opacity: textOpacity }}
+          style={rm ? undefined : { y: textY, opacity: textOpacity }}
         >
           <motion.div
             initial={{ opacity: 0, y: 14 }}
@@ -844,7 +856,7 @@ export default function Hero() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4, duration: 1, ease: [0.22, 1, 0.36, 1] }}
           style={
-            reduce
+            rm
               ? undefined
               : {
                   y: dashY,
@@ -857,8 +869,12 @@ export default function Hero() {
         >
           {/* <DashboardMock /> */}
           <img
-            src="/Dashboard-1.png"
+            src="/Dashboard-1.webp"
             alt="Oxland dashboard"
+            width="1728"
+            height="910"
+            loading="eager"
+            decoding="async"
             className="mx-auto w-full max-w-[1080px] rounded-[18px] border border-slate-200/60 shadow-[0_40px_120px_-30px_rgba(47,71,160,0.35),0_18px_50px_-20px_rgba(124,58,237,0.2)]"
           />
         </motion.div>

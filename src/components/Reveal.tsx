@@ -47,11 +47,16 @@ export default function Reveal({
   const states = variantStates(variant, y);
   return (
     <motion.div
-      initial={reduce ? "show" : "hidden"}
+      // `initial` must not depend on useReducedMotion(): that hook returns null
+      // on the server and a real value on the client, so gating `initial` on it
+      // produces a hydration mismatch. Always start "hidden"; reduced-motion is
+      // honoured by collapsing the transition to an instant reveal instead.
+      data-reveal
+      initial="hidden"
       whileInView="show"
       viewport={{ once, margin: "-80px" }}
       variants={states}
-      transition={{ duration, delay, ease: EASE }}
+      transition={reduce ? { duration: 0 } : { duration, delay, ease: EASE }}
       className={className}
     >
       {children}
@@ -79,13 +84,14 @@ export function RevealGroup({
   const reduce = useReducedMotion();
   return (
     <motion.div
-      initial={reduce ? "show" : "hidden"}
+      data-reveal
+      initial="hidden"
       whileInView="show"
       viewport={{ once, margin: "-80px" }}
       variants={{
         hidden: {},
         show: {
-          transition: { staggerChildren: reduce ? 0 : stagger, delayChildren: delay },
+          transition: { staggerChildren: reduce ? 0 : stagger, delayChildren: reduce ? 0 : delay },
         },
       }}
       className={className}
@@ -111,6 +117,7 @@ export function RevealItem({
   const states = variantStates(variant, y);
   return (
     <motion.div
+      data-reveal
       variants={states}
       transition={{ duration, ease: EASE }}
       className={className}

@@ -1,0 +1,24 @@
+---
+// PostHog product analytics — client-side only.
+// This is a processed (bundled) <script>, so Astro replaces import.meta.env.*
+// and tree-includes posthog-js. It runs on every page it's mounted on.
+---
+<script>
+  import posthog from "posthog-js";
+
+  const key = import.meta.env.PUBLIC_POSTHOG_KEY;
+  const host = import.meta.env.PUBLIC_POSTHOG_HOST ?? "https://us.i.posthog.com";
+
+  // Guard so builds/dev without keys don't throw.
+  if (key) {
+    posthog.init(key, {
+      api_host: host,
+      capture_pageview: true,
+      capture_pageleave: true,
+      autocapture: true,
+      // Only create person profiles once a user is identified — cheaper and
+      // more privacy-friendly for anonymous landing-page traffic.
+      person_profiles: "identified_only",
+    });
+  }
+</script>

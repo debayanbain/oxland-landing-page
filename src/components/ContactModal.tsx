@@ -226,7 +226,7 @@ export default function ContactModal() {
                 <div
                   className="pointer-events-none absolute inset-0 opacity-[0.18]"
                   style={{
-                    backgroundImage: "url(/dashboard.png)",
+                    backgroundImage: "url(/dashboard.webp)",
                     backgroundSize: "150%",
                     backgroundPosition: "right -20% bottom -10%",
                     backgroundRepeat: "no-repeat",
@@ -280,9 +280,13 @@ export default function ContactModal() {
                 </div>
                 {/* Layer 5 — atmospheric cloud (lifted from hero) */}
                 <img
-                  src="/cloud1.png"
+                  src="/cloud1.webp"
                   alt=""
                   aria-hidden
+                  width="1920"
+                  height="1080"
+                  loading="lazy"
+                  decoding="async"
                   className="pointer-events-none absolute -top-14 -right-10 w-[280px] select-none opacity-[0.14] blur-[2px] mix-blend-screen"
                 />
                 {/* Layer 6 — fine noise / shimmer hint via animated gradient line */}

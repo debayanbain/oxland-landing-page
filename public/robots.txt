@@ -12,4 +12,4 @@ Disallow: /*.json$
 Disallow: /_astro/
 
 # Full sitemap
-Sitemap: https://oxland.in/sitemap.xml
+Sitemap: https://oxland.in/sitemap-index.xml

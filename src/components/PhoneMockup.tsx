@@ -11,8 +11,12 @@ export default function PhoneMockup() {
       style={{ marginTop: "-80px", marginBottom: "-100px", marginRight: "-80px" }}
     >
       <img
-        src="/oxland.png"
+        src="/oxland.webp"
         alt="Oxland mobile app — Land Management Simplified"
+        width="1024"
+        height="1536"
+        loading="lazy"
+        decoding="async"
         className="w-[460px] sm:w-[540px] lg:w-[640px] xl:w-[700px] object-contain select-none"
         draggable={false}
       />

@@ -3,7 +3,7 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Plus, MessageCircleQuestion } from "lucide-react";
 
-const FAQS = [
+export const FAQS = [
   {
     q: "Do we need to migrate our existing GIS data to use Oxland?",
     a: "No. Oxland ingests Shapefile, GeoPackage, KML/KMZ and most state-portal exports. We can mirror your current GIS layer structure or rebuild it cleanly — your choice. Most teams do a hybrid: keep their legacy ESRI/QGIS layers as-is, and let Oxland become the parcel-level workspace on top.",

@@ -14,8 +14,32 @@ import Integrations from "@/components/sections/Integrations.astro";
 import Industries from "@/components/sections/Industries.astro";
 import FaqSection from "@/components/sections/FaqSection.astro";
 import FinalCta from "@/components/sections/FinalCta.astro";
+import { BASE_FAQS } from "@/data/faqData";
+
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Oxland",
+  url: "https://oxland.in",
+  logo: "https://oxland.in/oxland.png",
+  description:
+    "Oxland is the operating system for modern land acquisition, GIS, litigation and R&R teams in India.",
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: BASE_FAQS.map((faq) => ({
+    "@type": "Question",
+    name: faq.q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.a,
+    },
+  })),
+};
 ---
-<Layout>
+<Layout jsonLd={[organizationJsonLd, faqJsonLd]}>
   <main>
     <Hero client:load />
     <Trust />

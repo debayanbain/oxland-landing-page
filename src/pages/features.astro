@@ -3,12 +3,42 @@ import Layout from "@/layouts/Layout.astro";
 import HeroInteractive from "@/components/sections/core-features/HeroInteractive.tsx";
 import MetricsBand from "@/components/sections/features/MetricsBand.astro";
 import FeaturesTestimonial from "@/components/sections/features/FeaturesTestimonial.astro";
-import FeaturesFaq from "@/components/sections/features/FeaturesFaq.tsx";
+import FeaturesFaq, { FAQS } from "@/components/sections/features/FeaturesFaq.tsx";
 import FeaturesCta from "@/components/sections/features/FeaturesCta.tsx";
+
+const softwareJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "Oxland",
+  applicationCategory: "BusinessApplication",
+  operatingSystem: "Web",
+  description:
+    "12 modules for land acquisition, GIS mapping, digital records, ownership, litigation, valuation, encroachment detection, workflows, alerts, integrations, data upload and R&R.",
+  offers: {
+    "@type": "Offer",
+    priceCurrency: "INR",
+    price: "24999",
+    url: "https://oxland.in/pricing",
+  },
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: FAQS.map((faq) => ({
+    "@type": "Question",
+    name: faq.q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.a,
+    },
+  })),
+};
 ---
 <Layout
   title="Features — Oxland | 12 modules for land, litigation, GIS & R&R teams"
   description="Everything you need to run a modern land operation — 12 modules covering GIS mapping, digital records, ownership, acquisition, litigation, valuation, encroachment detection, workflows, alerts, integrations, data upload and R&R."
+  jsonLd={[softwareJsonLd, faqJsonLd]}
 >
   <main class="relative">
     <HeroInteractive client:load />

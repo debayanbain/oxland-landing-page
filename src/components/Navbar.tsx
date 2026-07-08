@@ -29,6 +29,9 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [hovered, setHovered] = useState<string | null>(null);
+  // Read the current path after mount only — reading it during render would
+  // diverge from the server (which has no `window`) and break hydration.
+  const [pathname, setPathname] = useState<string | null>(null);
   const reduce = useReducedMotion();
 
   useEffect(() => {
@@ -37,6 +40,18 @@ export default function Navbar() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => setPathname(window.location.pathname), []);
+
+  // Trailing-slash-tolerant match; a sub-path (e.g. /blog/who-we-are) keeps its
+  // top-level nav item (Blog) highlighted.
+  const isActive = (href: string) => {
+    if (pathname == null) return false;
+    const norm = (s: string) => (s !== "/" && s.endsWith("/") ? s.slice(0, -1) : s);
+    const p = norm(pathname);
+    const h = norm(href);
+    return h === "/" ? p === "/" : p === h || p.startsWith(h + "/");
+  };
 
   useEffect(() => {
     document.documentElement.style.overflow = open ? "hidden" : "";
@@ -84,16 +99,30 @@ export default function Navbar() {
             >
               {NAV.map((item) => {
                 const isHovered = hovered === item.label;
+                const active = isActive(item.href);
                 return (
                   <li key={item.label} className="relative">
                     <a
                       href={item.href}
+                      aria-current={active ? "page" : undefined}
                       onMouseEnter={() => setHovered(item.label)}
                       onFocus={() => setHovered(item.label)}
-                      className="relative z-10 inline-block rounded-full px-3.5 py-1.5 text-[13.5px] font-medium text-brand-navy/75 transition-colors hover:text-brand-navy"
+                      className={cn(
+                        "relative z-10 inline-block rounded-full px-3.5 py-1.5 text-[13.5px] transition-colors",
+                        active
+                          ? "font-semibold text-brand-navy"
+                          : "font-medium text-brand-navy/75 hover:text-brand-navy"
+                      )}
                     >
                       {item.label}
                     </a>
+                    {/* Persistent active-page pill (distinct from the animated hover pill) */}
+                    {active && !isHovered && (
+                      <span
+                        aria-hidden
+                        className="absolute inset-0 -z-0 rounded-full bg-white/70 shadow-[0_1px_0_rgba(255,255,255,0.7)_inset,0_4px_14px_-6px_rgba(11,20,55,0.18)]"
+                      />
+                    )}
                     <AnimatePresence>
                       {isHovered && !reduce && (
                         <motion.span
@@ -206,8 +235,14 @@ export default function Navbar() {
                   >
                     <a
                       href={item.href}
+                      aria-current={isActive(item.href) ? "page" : undefined}
                       onClick={() => setOpen(false)}
-                      className="flex items-center justify-between rounded-2xl px-4 py-3.5 text-base font-semibold text-brand-navy/85 transition-colors hover:bg-secondary"
+                      className={cn(
+                        "flex items-center justify-between rounded-2xl px-4 py-3.5 text-base font-semibold transition-colors",
+                        isActive(item.href)
+                          ? "bg-secondary text-brand-navy"
+                          : "text-brand-navy/85 hover:bg-secondary"
+                      )}
                     >
                       <span>{item.label}</span>
                       <ArrowRight

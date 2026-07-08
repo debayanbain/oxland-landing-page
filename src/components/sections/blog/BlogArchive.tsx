@@ -29,7 +29,7 @@ const posts: Post[] = [
     authorInitials: "AD",
     date: "12 Mar 2026",
     readTime: "6 min read",
-    image: "/features-background.png",
+    image: "/features-background.webp",
   },
   {
     slug: "#",
@@ -41,7 +41,7 @@ const posts: Post[] = [
     authorInitials: "PR",
     date: "05 Mar 2026",
     readTime: "8 min read",
-    image: "/features-background.png",
+    image: "/features-background.webp",
   },
   {
     slug: "#",
@@ -53,7 +53,7 @@ const posts: Post[] = [
     authorInitials: "SV",
     date: "28 Feb 2026",
     readTime: "7 min read",
-    image: "/features-background.png",
+    image: "/features-background.webp",
   },
   {
     slug: "#",
@@ -65,7 +65,7 @@ const posts: Post[] = [
     authorInitials: "NM",
     date: "20 Feb 2026",
     readTime: "9 min read",
-    image: "/features-background.png",
+    image: "/features-background.webp",
   },
   {
     slug: "#",
@@ -77,7 +77,7 @@ const posts: Post[] = [
     authorInitials: "AK",
     date: "12 Feb 2026",
     readTime: "5 min read",
-    image: "/features-background.png",
+    image: "/features-background.webp",
   },
   {
     slug: "#",
@@ -89,7 +89,7 @@ const posts: Post[] = [
     authorInitials: "RK",
     date: "04 Feb 2026",
     readTime: "10 min read",
-    image: "/features-background.png",
+    image: "/features-background.webp",
   },
   {
     slug: "#",
@@ -101,7 +101,7 @@ const posts: Post[] = [
     authorInitials: "MI",
     date: "26 Jan 2026",
     readTime: "11 min read",
-    image: "/features-background.png",
+    image: "/features-background.webp",
   },
 ];
 
@@ -189,6 +189,8 @@ export default function BlogArchive() {
                   <img
                     src={featured.image}
                     alt={featured.title}
+                    loading="lazy"
+                    decoding="async"
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     draggable={false}
                   />
@@ -280,6 +282,8 @@ export default function BlogArchive() {
                       <img
                         src={post.image}
                         alt={post.title}
+                        loading="lazy"
+                        decoding="async"
                         className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                         draggable={false}
                       />

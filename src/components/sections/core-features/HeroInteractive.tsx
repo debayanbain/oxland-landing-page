@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, lazy, Suspense } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import {
   MapPin, FileText, UserCog, Handshake, Gavel, Home, Plane, FileCheck2,
@@ -18,11 +18,18 @@ import {
   Upload, FileSpreadsheet, FileType2, Shapes, AlertCircle,
   UsersRound, HeartHandshake, HandCoins, ClipboardType,
 } from "lucide-react";
-import {
-  GISVisual, RecordsVisual, OwnershipVisual, AcquisitionVisual, LitigationVisual,
-  ValuationVisual, EncroachmentVisual, WorkflowVisual, AlertsVisual,
-  IntegrationsVisual, UploadVisual, RRVisual,
-} from "@/components/sections/core-features/SectionVisuals";
+const GISVisual = lazy(() => import("@/components/sections/core-features/visuals/GISVisual").then((m) => ({ default: m.GISVisual })));
+const RecordsVisual = lazy(() => import("@/components/sections/core-features/visuals/RecordsVisual").then((m) => ({ default: m.RecordsVisual })));
+const OwnershipVisual = lazy(() => import("@/components/sections/core-features/visuals/OwnershipVisual").then((m) => ({ default: m.OwnershipVisual })));
+const AcquisitionVisual = lazy(() => import("@/components/sections/core-features/visuals/AcquisitionVisual").then((m) => ({ default: m.AcquisitionVisual })));
+const LitigationVisual = lazy(() => import("@/components/sections/core-features/visuals/LitigationVisual").then((m) => ({ default: m.LitigationVisual })));
+const ValuationVisual = lazy(() => import("@/components/sections/core-features/visuals/ValuationVisual").then((m) => ({ default: m.ValuationVisual })));
+const EncroachmentVisual = lazy(() => import("@/components/sections/core-features/visuals/EncroachmentVisual").then((m) => ({ default: m.EncroachmentVisual })));
+const WorkflowVisual = lazy(() => import("@/components/sections/core-features/visuals/WorkflowVisual").then((m) => ({ default: m.WorkflowVisual })));
+const AlertsVisual = lazy(() => import("@/components/sections/core-features/visuals/AlertsVisual").then((m) => ({ default: m.AlertsVisual })));
+const IntegrationsVisual = lazy(() => import("@/components/sections/core-features/visuals/IntegrationsVisual").then((m) => ({ default: m.IntegrationsVisual })));
+const UploadVisual = lazy(() => import("@/components/sections/core-features/visuals/UploadVisual").then((m) => ({ default: m.UploadVisual })));
+const RRVisual = lazy(() => import("@/components/sections/core-features/visuals/RRVisual").then((m) => ({ default: m.RRVisual })));
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -300,6 +307,12 @@ export default function HeroInteractive() {
   const [active, setActive] = useState<string>("gis");
   const [autoPlay, setAutoPlay] = useState(true);
   const reduce = useReducedMotion();
+  // useReducedMotion() differs between server (null) and client, so gating
+  // rendered markup on it directly causes a hydration mismatch. Use `rm` for
+  // markup branches: it matches the server until after mount.
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  const rm = mounted && reduce;
   const navScrollRef = useRef<HTMLDivElement>(null);
   const activeCat = CATEGORIES.find((c) => c.id === active)!;
   const activePalette = PALETTES[activeCat.palette];
@@ -381,7 +394,7 @@ export default function HeroInteractive() {
           {/* Background image */}
           <div
             className="absolute inset-0 bg-cover bg-top bg-no-repeat"
-            style={{ backgroundImage: "url(/features-background.png)" }}
+            style={{ backgroundImage: "url(/features-background.webp)" }}
           />
           {/* Softening veil so black headline stays readable, mountain still visible */}
           <div className="absolute inset-0 bg-gradient-to-b from-white/25 via-white/10 to-white/40" />
@@ -440,8 +453,12 @@ export default function HeroInteractive() {
                 className="mt-7 relative w-full max-w-[500px] overflow-hidden rounded-2xl border border-brand-navy/10 bg-white shadow-float"
               >
                 <img
-                  src="/Dashboard 1.jpg"
+                  src="/Dashboard 1.webp"
                   alt="Oxland dashboard"
+                  width="1977"
+                  height="1256"
+                  loading="eager"
+                  decoding="async"
                   className="block h-auto w-full select-none"
                   draggable={false}
                 />
@@ -557,7 +574,7 @@ export default function HeroInteractive() {
                       {c.title}
                     </span>
                     {/* Auto-cycle progress pill (only on active + autoplay) */}
-                    {isActive && autoPlay && !reduce && (
+                    {isActive && autoPlay && !rm && (
                       <motion.span
                         aria-hidden
                         key={c.id}
@@ -573,7 +590,7 @@ export default function HeroInteractive() {
               })}
             </div>
           </div>
-          {autoPlay && !reduce && (
+          {autoPlay && !rm && (
             <p className="mt-3 text-center text-[11px] font-semibold text-brand-navy/40">
               Auto-cycling every 3s · <button type="button" onClick={() => setAutoPlay(false)} className="underline decoration-dotted underline-offset-2 hover:text-brand-navy/70">pause</button>
             </p>
@@ -659,7 +676,9 @@ export default function HeroInteractive() {
 
               {/* VISUAL */}
               <div>
-                <Visual />
+                <Suspense fallback={<div className="h-[420px] animate-pulse rounded-3xl border border-brand-navy/10 bg-brand-navy/[0.03]" />}>
+                  <Visual />
+                </Suspense>
               </div>
             </motion.div>
           </AnimatePresence>

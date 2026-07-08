@@ -3,7 +3,7 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Plus, MessageCircleQuestion } from "lucide-react";
 
-const FAQS = [
+export const FAQS = [
   {
     q: "Are these prices inclusive of GST?",
     a: "No — list prices are exclusive of GST. 18% GST is added at invoicing as per Indian tax law. PSU and central-ministry customers can opt for a GST-segmented invoice; e-invoice and IRN are generated automatically.",

@@ -5,7 +5,7 @@ export interface FaqItem {
 }
 
 // 50 base questions spanning various categories
-const BASE_FAQS: FaqItem[] = [
+export const BASE_FAQS: FaqItem[] = [
   {
     category: "General",
     q: "How quickly can we get started?",

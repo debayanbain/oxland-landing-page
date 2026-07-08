@@ -36,6 +36,10 @@ const jsonLdEntries = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
 
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="mask-icon" href="/favicon.svg" color="#000000" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+
     <!-- Safety net: if JS is disabled/blocked, framer-motion never runs, so every
          <Reveal> would stay at its initial opacity:0 and the page would look blank.
          Force reveal wrappers visible when there is no JS. -->

@@ -29,7 +29,7 @@ const posts: Post[] = [
     authorInitials: "AD",
     date: "10 Mar 2026",
     readTime: "6 min read",
-    image: "/blog/Land of Opportunities.png",
+    image: "/blog/Land-of-Opportunities.png",
   },
   {
     slug: "land-acquisition-india-complex",
@@ -41,7 +41,7 @@ const posts: Post[] = [
     authorInitials: "AD",
     date: "05 Mar 2026",
     readTime: "5 min read",
-    image: "/blog/Land Acquisition in India.png",
+    image: "/blog/Land-Acquisition-in-India.png",
   },
   {
     slug: "one-land-dispute",
@@ -53,7 +53,7 @@ const posts: Post[] = [
     authorInitials: "AD",
     date: "28 Feb 2026",
     readTime: "7 min read",
-    image: "/blog/One Land Dispute.png",
+    image: "/blog/One-Land-Dispute.png",
   },
   {
     slug: "land-acquisition-row",
@@ -65,7 +65,7 @@ const posts: Post[] = [
     authorInitials: "AD",
     date: "20 Feb 2026",
     readTime: "6 min read",
-    image: "/blog/Land Acquisition & ROW.webp",
+    image: "/blog/Land-Acquisition-%26-ROW.png",
   },
   {
     slug: "who-we-are",

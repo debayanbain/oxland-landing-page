@@ -2,7 +2,6 @@
 import Layout from "@/layouts/Layout.astro";
 import HeroInteractive from "@/components/sections/core-features/HeroInteractive.tsx";
 import MetricsBand from "@/components/sections/features/MetricsBand.astro";
-import FeaturesTestimonial from "@/components/sections/features/FeaturesTestimonial.astro";
 import FeaturesFaq, { FAQS } from "@/components/sections/features/FeaturesFaq.tsx";
 import FeaturesCta from "@/components/sections/features/FeaturesCta.tsx";
 
@@ -43,7 +42,6 @@ const faqJsonLd = {
   <main class="relative">
     <HeroInteractive client:load />
     <MetricsBand />
-    <FeaturesTestimonial />
     <FeaturesFaq client:visible />
     <FeaturesCta client:visible />
   </main>

@@ -1,0 +1,274 @@
+---
+import BlogArticleLayout from "@/layouts/BlogArticleLayout.astro";
+import { CheckCircle2, ArrowRight, Quote, ShieldCheck, MapPinned, Layers3, FileText, Gavel, ScanEye, Users2, HeartHandshake, Trees } from "lucide-react";
+
+const post = {
+  slug: "land-acquisition-row",
+  category: "Land Management",
+  categoryPalette: "bg-brand-indigo/10 text-brand-indigo",
+  title: "Land Acquisition & ROW for Linear Projects: Start Right with OxLand",
+  subtitle: "Roads, highways, railways, pipelines and transmission corridors all begin with one thing — Right of Way. Here are the nine pillars of getting it right, and why continuous monitoring is the real game-changer.",
+  date: "20 Feb 2026",
+  isoDate: "2026-02-20",
+  readTime: "6 min read",
+  image: "/blog/Land Acquisition & ROW.webp",
+};
+
+const author = {
+  name: "Akash Devnath",
+  role: "Co-founder · Oxland",
+  initials: "AD",
+  bio: "Building the workspace Indian land teams deserve. Ex-infra land acquisition lead, DGCA-licensed drone pilot, occasional GIS nerd.",
+  socials: {
+    linkedin: "https://linkedin.com",
+    instagram: "https://instagram.com",
+    facebook: "https://facebook.com",
+  },
+};
+
+const earlyRisks = [
+  "Legal disputes",
+  "Delays in compensation",
+  "Resistance from local communities",
+  "Project timeline overruns",
+];
+
+const pillars = [
+  {
+    icon: ShieldCheck,
+    title: "Proper Land Due Diligence",
+    focus: ["Ownership details", "Title clarity", "Encumbrances", "Historical transactions"],
+    outcome: "OxLand brings multiple data sources together to ensure reliable land acquisition.",
+  },
+  {
+    icon: MapPinned,
+    title: "Smart Plot Navigation",
+    focus: ["Outdated maps", "Boundary mismatches", "Field-level confusion"],
+    outcome: "GIS and drone mapping enable accurate plot identification even where legacy records fail.",
+  },
+  {
+    icon: Trees,
+    title: "Understanding Land Condition",
+    focus: ["Terrain", "Land use", "Accessibility", "Environmental sensitivity"],
+    outcome: "OxLand helps evaluate land suitability before acquisition — not after.",
+  },
+  {
+    icon: FileText,
+    title: "Seamless Access to Land Records",
+    focus: ["Aggregating RoR (Record of Rights)", "Linking cadastral maps", "Digitizing land information"],
+    outcome: "All data is unified into one platform, searchable by parcel, owner or khasra.",
+  },
+  {
+    icon: Gavel,
+    title: "Identifying Land Disputes",
+    focus: ["Ownership conflicts", "Boundary disputes", "Community issues"],
+    outcome: "Avoid high-risk parcels proactively instead of discovering issues mid-execution.",
+  },
+  {
+    icon: ScanEye,
+    title: "Tracking Court Cases",
+    focus: ["Map land parcels with litigation", "Track case status", "Make informed decisions"],
+    outcome: "Litigation moves from a folder of PDFs to a first-class object linked to every affected parcel.",
+  },
+  {
+    icon: Users2,
+    title: "Managing Project Affected Families (PAF)",
+    focus: ["Smooth compensation processes", "Reduced resistance", "Better stakeholder management"],
+    outcome: "R&R tracked family by family — housing, livelihood, compensation, and follow-through.",
+  },
+  {
+    icon: HeartHandshake,
+    title: "Social Impact Assessment (SIA)",
+    focus: ["Data collection", "Impact mapping", "Reporting"],
+    outcome: "Structured SIA workflows built directly into the platform, ready for ministry audit.",
+  },
+  {
+    icon: Layers3,
+    title: "Environmental Impact Assessment (EIA)",
+    focus: ["Environmental layers", "Risk indicators", "Compliance tracking"],
+    outcome: "EIA compliance without spreadsheets — everything anchored to the parcel geometry.",
+  },
+];
+
+const monitoringBenefits = [
+  "Track acquisition progress",
+  "Identify bottlenecks early",
+  "Optimize resource deployment",
+  "Prevent cost escalations",
+];
+
+const outcomeStats = [
+  "Projects move faster",
+  "Costs are controlled",
+  "Risks are minimized",
+];
+
+const related = [
+  {
+    href: "/blog/one-land-dispute",
+    title: "One Land Dispute Can Halt Years of Industrial Growth",
+    category: "Land Management",
+    excerpt: "Why disputes never appear overnight — and how proactive Land Management prevents crises.",
+    image: "/blog/One Land Dispute.png",
+    readTime: "7 min read",
+  },
+  {
+    href: "/blog/land-acquisition-india-complex",
+    title: "Why Land Acquisition in India is Complex — And How OxLand Simplifies It",
+    category: "Land Acquisition",
+    excerpt: "From fragmented records to state-by-state complexity — and how a unified platform fixes it.",
+    image: "/blog/Land Acquisition in India.png",
+    readTime: "5 min read",
+  },
+  {
+    href: "/blog/industries-land-of-opportunities",
+    title: "Industries Want a \"Land of Opportunities,\" But Often Forget to Manage the Land Bank Properly",
+    category: "Land Management",
+    excerpt: "Investment summits are booming — but the land banks powering them are still on spreadsheets.",
+    image: "/blog/Land of Opportunities.png",
+    readTime: "6 min read",
+  },
+];
+---
+<BlogArticleLayout {post} {author} {related}>
+
+  <p class="lead dropcap">
+    Infrastructure projects like roads, highways, railways, pipelines, and transmission corridors all begin with one critical foundation — <strong>Land Acquisition and Right of Way (ROW)</strong>. But in reality, this is also the stage where most challenges begin.
+  </p>
+
+  <p>
+    Delays, disputes, and unexpected cost escalations often trace back to gaps in early-stage planning. At the same time, land and area change detection through drones is becoming increasingly important — and in many cases, a necessity. Ground realities can change rapidly due to encroachments, land-use changes, or boundary alterations, and without timely visibility, these can turn into major risks.
+  </p>
+
+  <p>
+    Now imagine if you could identify risks early, track progress in real time, and make informed decisions from day one. That's exactly what <a href="/features">OxLand — a GeoAI-enabled Land Management System</a> by Oxbow Intellect is built for.
+  </p>
+
+  <h2>Why early-stage planning matters in land acquisition</h2>
+  <p>
+    Starting land acquisition without structured data and proper monitoring is like moving forward without clear visibility. Linear projects span across large geographies — covering multiple villages, stakeholders, and regulatory layers. Each parcel comes with its own complexity.
+  </p>
+  <p>Even a small oversight at this stage can lead to:</p>
+
+  <ul class="mt-6 space-y-2.5">
+    {earlyRisks.map((r) => (
+      <li class="flex items-start gap-3 text-[15px] leading-relaxed text-brand-navy/80">
+        <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-warning" />
+        {r}
+      </li>
+    ))}
+  </ul>
+
+  <p>
+    The smarter approach is simple: bring clarity, structure, and continuous visibility into the process from the very beginning.
+  </p>
+
+  <h2>Key pillars of successful Land Acquisition & ROW</h2>
+  <p>
+    A robust ROW acquisition programme is really nine disciplines running in parallel. Here's how OxLand handles each:
+  </p>
+
+  <div class="mt-8 space-y-4">
+    {pillars.map((p, i) => (
+      <div class="rounded-2xl border border-brand-navy/10 bg-white p-6 shadow-card">
+        <div class="flex items-start gap-4">
+          <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-brand-indigo/10 text-brand-indigo">
+            <p.icon size={19} strokeWidth={2.25} />
+          </span>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-2.5">
+              <span class="font-display text-xs font-bold text-brand-indigo">{String(i + 1).padStart(2, "0")}</span>
+              <h3 style="margin-top:0;">{p.title}</h3>
+            </div>
+            <p style="margin-top:0.5rem;font-size:13px;color:rgb(11 20 55 / 0.5);font-weight:600;text-transform:uppercase;letter-spacing:0.05em;">
+              Key focus areas
+            </p>
+            <ul class="mt-2 grid grid-cols-1 gap-1.5 sm:grid-cols-2">
+              {p.focus.map((f) => (
+                <li class="flex items-start gap-2 text-[13.5px] leading-relaxed text-brand-navy/75">
+                  <span class="mt-1 grid h-3.5 w-3.5 shrink-0 place-items-center rounded-full bg-brand-indigo/10 text-brand-indigo">
+                    <CheckCircle2 size={9} strokeWidth={3} />
+                  </span>
+                  {f}
+                </li>
+              ))}
+            </ul>
+            <p style="margin-top:0.75rem;font-size:13.5px;color:rgb(11 20 55 / 0.7);border-top:1px solid rgb(11 20 55 / 0.06);padding-top:0.75rem;">
+              <strong>Outcome:</strong> {p.outcome}
+            </p>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  {/* Pull quote */}
+  <div class="relative my-12 rounded-3xl border border-brand-indigo/15 bg-gradient-to-br from-brand-indigo/5 via-white to-brand-purple/5 p-8">
+    <Quote size={26} strokeWidth={2.5} class="text-brand-indigo/40" />
+    <p class="mt-3 font-display text-xl font-bold leading-snug text-brand-navy sm:text-2xl">
+      Land acquisition doesn't stop at planning —{" "}
+      <span class="bg-gradient-to-r from-brand-indigo to-brand-purple bg-clip-text text-transparent">
+        it evolves continuously.
+      </span>
+    </p>
+  </div>
+
+  <h2>Continuous monitoring: the real game-changer</h2>
+  <p>
+    Ground truth changes. New encroachments appear. Boundary lines shift. A parcel that looked clear at diligence can become disputed by the time the disbursement is due. With real-time monitoring, teams can:
+  </p>
+
+  <ul class="mt-6 grid grid-cols-1 gap-x-6 gap-y-2.5 sm:grid-cols-2">
+    {monitoringBenefits.map((b) => (
+      <li class="flex items-start gap-2.5 text-[15px] leading-relaxed text-brand-navy/80">
+        <span class="mt-1 grid h-4 w-4 shrink-0 place-items-center rounded-full bg-brand-indigo/10 text-brand-indigo">
+          <CheckCircle2 size={10} strokeWidth={2.75} />
+        </span>
+        {b}
+      </li>
+    ))}
+  </ul>
+
+  <p>OxLand provides a complete view of the acquisition lifecycle — not just a checkpoint at kickoff, but a live picture through every phase of the corridor.</p>
+
+  <h2>Save millions. Accelerate development. Reduce risk.</h2>
+  <p>The compounding impact of a well-run ROW programme:</p>
+
+  <ul class="mt-6 space-y-2.5">
+    {outcomeStats.map((s) => (
+      <li class="flex items-start gap-3 text-[15px] leading-relaxed text-brand-navy/80">
+        <span class="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-brand-indigo" />
+        <strong style="color:#0b1437;">{s}</strong>
+      </li>
+    ))}
+  </ul>
+
+  <p>
+    For a 200-km corridor, the difference between a well-run ROW programme and a poorly-run one can be measured in <em>quarters of financing cost</em> — not months.
+  </p>
+
+  <h2>Try OxLand today</h2>
+  <p>
+    Start smart. Stay ahead. Deliver faster. Try OxLand today and redefine how land acquisition is done — not as a spreadsheet exercise, but as a live, GeoAI-driven operating system for the entire corridor.
+  </p>
+
+  {/* Inline CTA */}
+  <div class="mt-10 rounded-3xl border border-brand-indigo/20 bg-gradient-to-br from-brand-indigo/[0.04] via-white to-brand-purple/[0.04] p-6 sm:p-8">
+    <p style="margin-top:0;font-size:15px;color:#0b1437;font-weight:600;">
+      Planning a linear project right now?
+    </p>
+    <p style="margin-top:0.5rem;font-size:14px;">
+      Send us the corridor alignment — we'll run a demo on your actual GIS layer and show you what OxLand surfaces before you break ground.
+    </p>
+    <div class="mt-5 flex flex-wrap items-center gap-3">
+      <a href="/contact" class="inline-flex items-center gap-2 rounded-full bg-brand-gradient px-5 py-2.5 text-sm font-semibold text-white shadow-soft transition-all hover:shadow-float" style="text-decoration:none;color:white;">
+        Book a corridor walkthrough
+        <ArrowRight size={14} strokeWidth={2.5} />
+      </a>
+      <a href="/features" style="font-weight:600;color:#4f46e5;" class="text-sm">
+        Explore the OxLand platform →
+      </a>
+    </div>
+  </div>
+
+</BlogArticleLayout>

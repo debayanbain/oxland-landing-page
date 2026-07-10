@@ -1,64 +1,55 @@
 ---
 import Reveal, { RevealGroup, RevealItem } from "@/components/Reveal.tsx";
 import Icon from "@/components/Icon.astro";
+import {
+  MapPin,
+  FileText,
+  UserCog,
+  Handshake,
+  Gavel,
+  Home,
+  Plane,
+  FileCheck2,
+  Bell,
+  Puzzle,
+  CloudUpload,
+  Users2,
+  ArrowUpRight,
+} from "lucide-react";
 
-const features = [
-  {
-    icon: "map-pinned",
-    title: "GIS Based Land Mapping",
-    desc: "Visualize, track and manage land parcels with interactive GIS maps and layers.",
-    tint: "#16A34A",
-    bg: "#E8F6EC",
-  },
-  {
-    icon: "file-text",
-    title: "Digital Land Records",
-    desc: "Store, organize and manage all land related documents in a secure digital repository.",
-    tint: "#2563EB",
-    bg: "#E8F0FE",
-  },
-  {
-    icon: "user-check",
-    title: "Ownership Management",
-    desc: "Track ownership details, history, and transfers with complete transparency.",
-    tint: "#7C3AED",
-    bg: "#F2ECFE",
-  },
-  {
-    icon: "clipboard",
-    title: "Land Acquisition Management",
-    desc: "Streamline acquisition process, approvals, and compensation management efficiently.",
-    tint: "#0D9488",
-    bg: "#E0F5F2",
-  },
-  {
-    icon: "land-plot",
-    title: "Survey & Demarcation Management",
-    desc: "Manage surveys, demarcation data, and boundary details accurately.",
-    tint: "#E11D48",
-    bg: "#FDECEF",
-  },
-  {
-    icon: "file-pen",
-    title: "Document Workflow & Approvals",
-    desc: "Automate document verification, approvals and workflow processes seamlessly.",
-    tint: "#DB2777",
-    bg: "#FCE9F4",
-  },
-  {
-    icon: "bell",
-    title: "Alerts & Notifications",
-    desc: "Get real-time alerts for important updates, tasks, deadlines and approvals.",
-    tint: "#059669",
-    bg: "#E7F6F0",
-  },
-  {
-    icon: "lock",
-    title: "Role Based Access Control",
-    desc: "Secure your data with role-based access and permission management.",
-    tint: "#8B5CF6",
-    bg: "#F2ECFE",
-  },
+// The full 12-feature widget — mirrors the interactive hero on /features.
+// Each card is a deep-link: clicking sends you to /features#<id>, which the
+// features page picks up on mount and scrolls the corresponding pillar into view.
+type Palette = "green" | "violet" | "purple" | "teal" | "rose" | "orange" | "blue" | "amber" | "sky" | "pink";
+
+const PALETTES: Record<Palette, { chipBg: string; chipText: string; bar: string; ring: string }> = {
+  green:  { chipBg: "bg-emerald-50", chipText: "text-emerald-600", bar: "bg-emerald-500", ring: "hover:ring-emerald-400/25" },
+  violet: { chipBg: "bg-violet-50",  chipText: "text-violet-600",  bar: "bg-violet-500",  ring: "hover:ring-violet-400/25"  },
+  purple: { chipBg: "bg-purple-50",  chipText: "text-purple-600",  bar: "bg-purple-500",  ring: "hover:ring-purple-400/25"  },
+  teal:   { chipBg: "bg-teal-50",    chipText: "text-teal-600",    bar: "bg-teal-500",    ring: "hover:ring-teal-400/25"    },
+  rose:   { chipBg: "bg-rose-50",    chipText: "text-rose-600",    bar: "bg-rose-500",    ring: "hover:ring-rose-400/25"    },
+  orange: { chipBg: "bg-orange-50",  chipText: "text-orange-500",  bar: "bg-orange-500",  ring: "hover:ring-orange-400/25"  },
+  blue:   { chipBg: "bg-blue-50",    chipText: "text-blue-600",    bar: "bg-blue-500",    ring: "hover:ring-blue-400/25"    },
+  amber:  { chipBg: "bg-amber-50",   chipText: "text-amber-600",   bar: "bg-amber-500",   ring: "hover:ring-amber-400/25"   },
+  sky:    { chipBg: "bg-sky-50",     chipText: "text-sky-600",     bar: "bg-sky-500",     ring: "hover:ring-sky-400/25"     },
+  pink:   { chipBg: "bg-pink-50",    chipText: "text-pink-600",    bar: "bg-pink-500",    ring: "hover:ring-pink-400/25"    },
+};
+
+type Category = { id: string; index: number; icon: any; title: string; short: string; palette: Palette };
+
+const CATEGORIES: Category[] = [
+  { id: "gis",          index: 1,  icon: MapPin,      title: "GIS Based Land Mapping",       short: "Visualize every parcel with interactive cadastre maps.",           palette: "green"  },
+  { id: "records",      index: 2,  icon: FileText,    title: "Digital Land Records",         short: "One secure, OCR-indexed vault for every land document.",           palette: "violet" },
+  { id: "ownership",    index: 3,  icon: UserCog,     title: "Ownership Management",         short: "Track ownership, transfers and full family lineage history.",       palette: "purple" },
+  { id: "acquisition",  index: 4,  icon: Handshake,   title: "Land Acquisition Management",  short: "Streamline the entire acquisition, approval and payout pipeline.", palette: "teal"   },
+  { id: "litigation",   index: 5,  icon: Gavel,       title: "Litigation Management",        short: "Manage court cases, hearings and orders with smart reminders.",     palette: "rose"   },
+  { id: "valuation",    index: 6,  icon: Home,        title: "Land Rate & Valuation",        short: "Accurate circle rates and valuation reports for smart decisions.", palette: "green"  },
+  { id: "encroachment", index: 7,  icon: Plane,       title: "Encroachment Detection",       short: "AI-powered change detection on satellite and drone imagery.",       palette: "orange" },
+  { id: "workflow",     index: 8,  icon: FileCheck2,  title: "Document Workflow & Approvals",short: "Automate document verification and approvals across teams.",        palette: "blue"   },
+  { id: "alerts",       index: 9,  icon: Bell,        title: "Alerts & Notifications",       short: "Real-time alerts for tasks, hearings, deadlines and approvals.",    palette: "amber"  },
+  { id: "integrations", index: 10, icon: Puzzle,      title: "Easy Integrations",            short: "Connect Oxland with SAP, Oracle, GIS and gov portals.",             palette: "violet" },
+  { id: "upload",       index: 11, icon: CloudUpload, title: "Simple Data Upload",           short: "Bulk upload Excel, CSV and Shapefile with secure validation.",      palette: "sky"    },
+  { id: "rr",           index: 12, icon: Users2,      title: "R&R Management",               short: "Track rehabilitation and resettlement family by family.",           palette: "pink"   },
 ];
 
 const sponsorLogos = [
@@ -67,6 +58,9 @@ const sponsorLogos = [
   { src: "/sponsors-logos/3.png", alt: "Partner 3" },
   { src: "/sponsors-logos/4.png", alt: "Partner 4" },
   { src: "/sponsors-logos/5.png", alt: "Partner 5" },
+  { src: "/sponsors-logos/AIC.png", alt: "AIC" },
+  { src: "/sponsors-logos/DOSC.png", alt: "DOSC" },
+  { src: "/sponsors-logos/orsac.png", alt: "ORSAC" },
 ];
 
 const sponsorLogoTrack = [...sponsorLogos, ...sponsorLogos, ...sponsorLogos, ...sponsorLogos];
@@ -127,55 +121,60 @@ const sponsorLogoTrack = [...sponsorLogos, ...sponsorLogos, ...sponsorLogos, ...
     <div
       class="mt-14 grid items-stretch gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12"
     >
-      {/* feature cards */}
+      {/* feature cards — 12 modules, deep-link into /features#<id> */}
       <RevealGroup
         client:visible
-        stagger={0.07}
-        className="grid content-start gap-4 sm:grid-cols-2 xl:grid-cols-4"
+        stagger={0.045}
+        className="grid content-start gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
       >
         {
-          features.map((f) => (
-            <RevealItem variant="blur-up" y={22}>
-              <div
-                class="group feature-card flex h-full flex-col rounded-2xl border border-[#EDE9DF] bg-white p-5 shadow-card
-                will-change-transform
-                hover:-translate-y-2
-                hover:shadow-float
-                hover:border-white/60"
-              >
-                <span
-                  class="icon-container grid h-11 w-11 place-items-center rounded-xl
-                  group-hover:scale-110"
-                  style={{ background: f.bg, color: f.tint }}
+          CATEGORIES.map((c) => {
+            const p = PALETTES[c.palette];
+            const Icon = c.icon;
+            return (
+              <RevealItem variant="blur-up" y={18}>
+                <a
+                  href={`/features#${c.id}`}
+                  class={`feature-card group relative flex h-full flex-col overflow-hidden rounded-2xl border border-brand-navy/10 bg-white p-4 shadow-card ring-2 ring-transparent will-change-transform hover:-translate-y-1 hover:shadow-float ${p.ring}`}
+                  aria-label={`Explore ${c.title}`}
                 >
-                  <Icon name={f.icon} size={20} />
-                </span>
-                <h3 class="mt-4 font-display text-[15px] font-bold leading-snug text-brand-navy">
-                  {f.title}
-                </h3>
-                <span
-                  class="indicator-line mt-2 h-[3px] w-7 rounded-full
-                  group-hover:w-12"
-                  style={{ background: f.tint }}
-                  aria-hidden="true"
-                />
-                <p class="mb-4 mt-2.5 text-xs leading-relaxed text-brand-navy/55">
-                  {f.desc}
-                </p>
-                <span
-                  class="arrow-btn mt-auto grid h-8 w-8 shrink-0 place-items-center self-end rounded-full
-                  border border-success/40 text-success bg-transparent
-                  group-hover:scale-110
-                  group-hover:bg-success
-                  group-hover:text-white
-                  group-hover:border-success"
-                  aria-hidden="true"
-                >
-                  <Icon name="arrow" size={14} />
-                </span>
-              </div>
-            </RevealItem>
-          ))
+                  {/* Number badge */}
+                  <div class="absolute right-2.5 top-2 font-display text-[10px] font-bold text-brand-navy/30">
+                    {String(c.index).padStart(2, "0")}
+                  </div>
+
+                  {/* Icon chip */}
+                  <span class={`icon-container grid h-10 w-10 place-items-center rounded-xl ${p.chipBg} ${p.chipText} group-hover:scale-105`}>
+                    <Icon size={19} strokeWidth={2.5} />
+                  </span>
+
+                  {/* Title */}
+                  <h3 class="mt-3 font-display text-[13px] font-extrabold leading-tight text-brand-navy">
+                    {c.title}
+                  </h3>
+
+                  {/* Colored accent bar */}
+                  <span
+                    class={`indicator-line mt-1.5 h-[3px] w-7 rounded-full ${p.bar} group-hover:w-11`}
+                    aria-hidden="true"
+                  />
+
+                  {/* Description */}
+                  <p class="mt-2.5 text-[11px] leading-snug text-brand-navy/55">
+                    {c.short}
+                  </p>
+
+                  {/* Corner arrow — reveals on hover */}
+                  <span
+                    class={`arrow-btn absolute bottom-3 right-3 grid h-7 w-7 place-items-center rounded-full ${p.chipBg} ${p.chipText} opacity-0 group-hover:opacity-100`}
+                    aria-hidden="true"
+                  >
+                    <ArrowUpRight size={12} strokeWidth={2.75} />
+                  </span>
+                </a>
+              </RevealItem>
+            );
+          })
         }
       </RevealGroup>
 
@@ -381,7 +380,7 @@ const sponsorLogoTrack = [...sponsorLogos, ...sponsorLogos, ...sponsorLogos, ...
           </svg>
         </div>
 
-        {/* Total Land Parcels stat card */}
+        {/* Total Managed acreage stat card */}
         <div
           id="stat-card"
           class="mt-8 rounded-3xl border border-[#EDE9DF] bg-white p-6 shadow-card sm:p-7"
@@ -389,13 +388,18 @@ const sponsorLogoTrack = [...sponsorLogos, ...sponsorLogos, ...sponsorLogos, ...
           <div class="flex items-center gap-5 sm:gap-7">
             <div class="shrink-0">
               <div class="text-sm font-semibold text-brand-navy/70">
-                Total Land Parcels
+                Total Managed
               </div>
-              <div
-                id="parcels-count"
-                class="mt-1 font-display text-4xl font-extrabold tracking-tight text-brand-navy"
-              >
-                12,568
+              <div class="mt-1 flex items-baseline gap-1.5">
+                <span
+                  id="parcels-count"
+                  class="font-display text-4xl font-extrabold tracking-tight text-brand-navy tabular-nums"
+                >
+                  87,000
+                </span>
+                <span class="font-display text-xl font-bold text-brand-navy/60">
+                  + acres
+                </span>
               </div>
               <div
                 class="mt-2 flex items-center gap-1.5 text-sm font-bold text-success"
@@ -523,6 +527,7 @@ const sponsorLogoTrack = [...sponsorLogos, ...sponsorLogos, ...sponsorLogos, ...
   .arrow-btn {
     transition:
       transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.25s cubic-bezier(0.22, 1, 0.36, 1),
       background-color 0.3s cubic-bezier(0.22, 1, 0.36, 1),
       color 0.3s cubic-bezier(0.22, 1, 0.36, 1),
       border-color 0.3s cubic-bezier(0.22, 1, 0.36, 1);
@@ -728,8 +733,8 @@ const sponsorLogoTrack = [...sponsorLogos, ...sponsorLogos, ...sponsorLogos, ...
         fired = true;
         io.disconnect();
 
-        // 1. Count-up: 0 → 12,568 over 1.8 s with ease-out cubic
-        const TARGET = 12568,
+        // 1. Count-up: 0 → 87,000 over 1.8 s with ease-out cubic
+        const TARGET = 87000,
           DUR = 1800;
         const t0 = performance.now();
         function easeOut(t: number) {

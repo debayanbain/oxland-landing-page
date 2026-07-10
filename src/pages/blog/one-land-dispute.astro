@@ -1,0 +1,309 @@
+---
+import BlogArticleLayout from "@/layouts/BlogArticleLayout.astro";
+import { CheckCircle2, ArrowRight, Quote, AlertTriangle } from "lucide-react";
+
+const post = {
+  slug: "one-land-dispute",
+  category: "Land Management",
+  categoryPalette: "bg-brand-indigo/10 text-brand-indigo",
+  title: "One Land Dispute Can Halt Years of Industrial Growth",
+  subtitle: "A missing document, an outdated survey map, an encroachment — a single unresolved land issue can freeze projects worth crores. Why proactive, GIS-enabled Land Management is now a business necessity.",
+  date: "28 Feb 2026",
+  isoDate: "2026-02-28",
+  readTime: "7 min read",
+  image: "/blog/One Land Dispute.png",
+};
+
+const author = {
+  name: "Akash Devnath",
+  role: "Co-founder · Oxland",
+  initials: "AD",
+  bio: "Building the workspace Indian land teams deserve. Ex-infra land acquisition lead, DGCA-licensed drone pilot, occasional GIS nerd.",
+  socials: {
+    linkedin: "https://linkedin.com",
+    instagram: "https://instagram.com",
+    facebook: "https://facebook.com",
+  },
+};
+
+const complexityStack = [
+  "Land acquisition records",
+  "Ownership verification",
+  "Boundary demarcation",
+  "Survey and cadastral maps",
+  "Compensation and rehabilitation records",
+  "Government approvals",
+  "Legal documentation",
+  "GIS and geospatial data",
+];
+
+const commonChallenges = [
+  {
+    title: "Unclear Ownership Records",
+    body: "Legacy land records are often incomplete, inconsistent, or difficult to verify — especially across old industrial and acquired land parcels.",
+  },
+  {
+    title: "Boundary & Encroachment Issues",
+    body: "Without GIS-enabled monitoring, industries struggle to identify encroachments and overlapping boundaries in time.",
+  },
+  {
+    title: "Scattered Land Documents",
+    body: "Land information stored across departments, consultants, and physical archives creates delays in retrieval and decision-making.",
+  },
+  {
+    title: "Delays in Land Acquisition",
+    body: "Manual workflows slow down acquisition tracking, compensation processing, approvals, and compliance activities.",
+  },
+  {
+    title: "Lack of Centralized Land Intelligence",
+    body: "Most industries still lack a unified Land Management System that provides real-time visibility into all land assets and their legal status.",
+  },
+];
+
+const businessRisks = [
+  "Project execution timelines",
+  "Industrial expansion",
+  "Compliance readiness",
+  "Operational continuity",
+  "Financial planning",
+  "Legal risk management",
+];
+
+const modernRequirements = [
+  "Centralized Land Management",
+  "GIS-based land visualization",
+  "Real-time monitoring",
+  "Secure digital records",
+  "Drone-based surveys",
+  "Faster access to land intelligence",
+  "Automated workflows",
+  "Better transparency and compliance",
+];
+
+const oxlandCapabilities = [
+  "Digitize and centralize land records",
+  "Visualize land parcels through GIS mapping",
+  "Integrate drone and DGPS survey data",
+  "Monitor boundaries and encroachments",
+  "Track land acquisition progress",
+  "Improve compliance and transparency",
+  "Enable faster and smarter decision-making",
+];
+
+const proactiveBenefits = [
+  "Reduce legal and operational risks",
+  "Protect investments",
+  "Accelerate project execution",
+  "Improve efficiency",
+  "Strengthen stakeholder confidence",
+  "Support future expansion",
+];
+
+const related = [
+  {
+    href: "/blog/industries-land-of-opportunities",
+    title: "Industries Want a \"Land of Opportunities,\" But Often Forget to Manage the Land Bank Properly",
+    category: "Land Management",
+    excerpt: "Investment summits are booming — but the land banks powering them are still on spreadsheets.",
+    image: "/blog/Land of Opportunities.png",
+    readTime: "6 min read",
+  },
+  {
+    href: "/blog/land-acquisition-row",
+    title: "Land Acquisition & ROW for Linear Projects: Start Right with OxLand",
+    category: "Land Management",
+    excerpt: "The nine pillars of a successful ROW acquisition — and the monitoring that saves millions.",
+    image: "/blog/Land Acquisition & ROW.webp",
+    readTime: "6 min read",
+  },
+  {
+    href: "/blog/land-acquisition-india-complex",
+    title: "Why Land Acquisition in India is Complex — And How OxLand Simplifies It",
+    category: "Land Acquisition",
+    excerpt: "From fragmented records to state-by-state complexity — and how a unified platform fixes it.",
+    image: "/blog/Land Acquisition in India.png",
+    readTime: "5 min read",
+  },
+];
+---
+<BlogArticleLayout {post} {author} {related}>
+
+  {/* Alarm sub-title */}
+  <div class="mt-2 inline-flex items-center gap-2 rounded-full border border-warning/25 bg-warning/8 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-warning">
+    <AlertTriangle size={12} strokeWidth={2.5} />
+    Are you an industry owner?
+  </div>
+
+  <p class="lead dropcap mt-5">
+    Ignoring land disputes today can become your biggest headache tomorrow. In today's industrial ecosystem, effective Land Management is no longer optional — it has become a critical business necessity.
+  </p>
+
+  <p>
+    For industries such as mining, steel, power, infrastructure, manufacturing, logistics, and renewable energy, land is the foundation of every operation. Yet many organizations still rely on fragmented files, spreadsheets, physical records, and disconnected systems for managing land-related information.
+  </p>
+
+  <p>
+    What appears manageable today can quickly evolve into a major operational and legal crisis tomorrow. A missing ownership document, an outdated survey map, an encroachment issue, or a boundary mismatch can suddenly delay projects, block expansion plans, trigger compliance issues, and create financial liabilities worth crores. And in many cases, <strong>one unresolved land dispute becomes enough to halt years of industrial growth.</strong>
+  </p>
+
+  <h2>Why Land Management is becoming increasingly complex</h2>
+  <p>
+    As industrial projects grow larger and spread across multiple locations, the complexity of Land Management also increases. Industries today have to hold all of the following together at once:
+  </p>
+
+  <ul class="mt-6 grid grid-cols-1 gap-x-6 gap-y-2.5 sm:grid-cols-2">
+    {complexityStack.map((c) => (
+      <li class="flex items-start gap-2.5 text-[15px] leading-relaxed text-brand-navy/80">
+        <span class="mt-1 grid h-4 w-4 shrink-0 place-items-center rounded-full bg-brand-indigo/10 text-brand-indigo">
+          <CheckCircle2 size={10} strokeWidth={2.75} />
+        </span>
+        {c}
+      </li>
+    ))}
+  </ul>
+
+  <p>Managing all these components manually creates serious risks.</p>
+
+  <h2>Common Land Management challenges faced by industries</h2>
+  <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
+    {commonChallenges.map((c, i) => (
+      <div class="rounded-2xl border border-brand-navy/10 bg-white p-5 shadow-card">
+        <div class="flex items-start gap-3">
+          <span class="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-brand-indigo text-white font-display text-xs font-extrabold">
+            {String(i + 1).padStart(2, "0")}
+          </span>
+          <div>
+            <h3 style="margin-top:0;">{c.title}</h3>
+            <p style="margin-top:0.5rem;font-size:14px;line-height:1.6;">{c.body}</p>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <h2>Poor Land Management is a major business risk</h2>
+  <p>Many organizations still treat Land Management as an administrative activity. In reality, poor Land Management directly affects:</p>
+
+  <ul class="mt-6 grid grid-cols-1 gap-x-6 gap-y-2.5 sm:grid-cols-2">
+    {businessRisks.map((r) => (
+      <li class="flex items-start gap-2.5 text-[15px] leading-relaxed text-brand-navy/80">
+        <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-warning" />
+        {r}
+      </li>
+    ))}
+  </ul>
+
+  <p>
+    A single land-related issue can delay projects worth crores and create long-term operational bottlenecks. The reality is simple:
+  </p>
+
+  {/* Pull quote */}
+  <div class="relative my-10 rounded-3xl border border-brand-indigo/15 bg-gradient-to-br from-brand-indigo/5 via-white to-brand-purple/5 p-8">
+    <Quote size={26} strokeWidth={2.5} class="text-brand-indigo/40" />
+    <p class="mt-3 font-display text-xl font-bold leading-snug text-brand-navy sm:text-2xl">
+      Without smart Land Management,{" "}
+      <span class="bg-gradient-to-r from-brand-indigo to-brand-purple bg-clip-text text-transparent">
+        industrial growth remains vulnerable.
+      </span>
+    </p>
+  </div>
+
+  <h2>Traditional Land Management no longer works</h2>
+  <p>
+    Modern industries are rapidly adopting digital technologies across manufacturing, logistics, analytics, and operations. However, Land Management in many organizations still remains outdated. Today's industrial ecosystem requires:
+  </p>
+
+  <ul class="mt-6 grid grid-cols-1 gap-x-6 gap-y-2.5 sm:grid-cols-2">
+    {modernRequirements.map((r) => (
+      <li class="flex items-start gap-2.5 text-[15px] leading-relaxed text-brand-navy/80">
+        <span class="mt-1 grid h-4 w-4 shrink-0 place-items-center rounded-full bg-brand-indigo/10 text-brand-indigo">
+          <CheckCircle2 size={10} strokeWidth={2.75} />
+        </span>
+        {r}
+      </li>
+    ))}
+  </ul>
+
+  <p>This shift toward digital Land Management is no longer optional — it is becoming essential.</p>
+
+  <h2>Land Management challenges vs. smart digital approach</h2>
+  <p>
+    The gap between how most industries handle land today and what a modern, GIS-enabled system enables is stark. Here's the side-by-side:
+  </p>
+
+  {/* Inline image */}
+  <figure class="mt-8 overflow-hidden rounded-3xl border border-brand-navy/10 shadow-card">
+    <img
+      src="/blog/Land Management Challenges.png"
+      alt="Traditional Land Management challenges vs. OxLand's smart digital approach"
+      class="w-full h-auto"
+      loading="lazy"
+      decoding="async"
+    />
+  </figure>
+  <p class="mt-3 text-[12px] text-brand-navy/50 italic">
+    Traditional Land Management challenges compared with OxLand's smart digital approach.
+  </p>
+
+  <h2>How OxLand supports modern Land Management</h2>
+  <p>
+    As industries move toward intelligent land governance, <a href="/features">OxLand</a> is helping organizations strengthen and modernize their entire Land Management ecosystem. With advanced GIS and geospatial capabilities, OxLand enables industries to:
+  </p>
+
+  <ul class="mt-6 grid grid-cols-1 gap-x-6 gap-y-2.5 sm:grid-cols-2">
+    {oxlandCapabilities.map((c) => (
+      <li class="flex items-start gap-2.5 text-[15px] leading-relaxed text-brand-navy/80">
+        <span class="mt-1 grid h-4 w-4 shrink-0 place-items-center rounded-full bg-brand-indigo/10 text-brand-indigo">
+          <CheckCircle2 size={10} strokeWidth={2.75} />
+        </span>
+        {c}
+      </li>
+    ))}
+  </ul>
+
+  <p>Instead of reactive dispute handling, OxLand promotes proactive and data-driven Land Management.</p>
+
+  <h2>Why proactive Land Management matters</h2>
+  <p>
+    The cost of resolving land disputes is always higher than the cost of preventing them. A proactive Land Management strategy helps industries:
+  </p>
+
+  <ul class="mt-6 grid grid-cols-1 gap-x-6 gap-y-2.5 sm:grid-cols-2">
+    {proactiveBenefits.map((b) => (
+      <li class="flex items-start gap-2.5 text-[15px] leading-relaxed text-brand-navy/80">
+        <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-indigo" />
+        {b}
+      </li>
+    ))}
+  </ul>
+
+  <p>
+    Industries can no longer afford uncertainty around land assets. The future belongs to organizations that treat Land Management as a strategic priority rather than an administrative process.
+  </p>
+
+  <h2>Conclusion</h2>
+  <p>
+    One land dispute can halt years of industrial growth. And in most cases, disputes do not arise overnight — they develop gradually due to fragmented records, poor visibility, outdated workflows, and weak Land Management practices.
+  </p>
+  <p>
+    Industries that continue relying on manual systems and disconnected land information will face increasing operational and legal risks in the future. The smarter approach is to adopt centralized, GIS-enabled, and technology-driven Land Management systems <em>before</em> challenges become crises.
+  </p>
+  <p>
+    That is exactly where OxLand helps industries create long-term value — through smarter, secure, and future-ready Land Management.
+  </p>
+
+  {/* Inline CTA */}
+  <div class="mt-10 rounded-3xl border border-brand-indigo/20 bg-gradient-to-br from-brand-indigo/[0.04] via-white to-brand-purple/[0.04] p-6 sm:p-8">
+    <p style="margin-top:0;font-size:15px;color:#0b1437;font-weight:600;">
+      Sitting on a land bank you're worried about?
+    </p>
+    <p style="margin-top:0.5rem;font-size:14px;">
+      We'll audit your current land dataset in a 45-minute session — free — and show you exactly where OxLand would surface risks, gaps, and encroachments.
+    </p>
+    <a href="/contact" class="mt-5 inline-flex items-center gap-2 rounded-full bg-brand-gradient px-5 py-2.5 text-sm font-semibold text-white shadow-soft transition-all hover:shadow-float" style="text-decoration:none;color:white;">
+      Book a land-bank audit
+      <ArrowRight size={14} strokeWidth={2.5} />
+    </a>
+  </div>
+
+</BlogArticleLayout>

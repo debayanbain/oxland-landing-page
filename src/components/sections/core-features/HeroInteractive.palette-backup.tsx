@@ -301,7 +301,7 @@ const DETAILS: Record<string, Detail> = {
 /* --------------------------------------------------
    Main component — hero + interactive detail below
    -------------------------------------------------- */
-const AUTO_CYCLE_MS = 5000;
+const AUTO_CYCLE_MS = 3000;
 
 export default function HeroInteractive() {
   const [active, setActive] = useState<string>("gis");
@@ -592,7 +592,7 @@ export default function HeroInteractive() {
           </div>
           {autoPlay && !rm && (
             <p className="mt-3 text-center text-[11px] font-semibold text-brand-navy/40">
-              Auto-cycling every 5s · <button type="button" onClick={() => setAutoPlay(false)} className="underline decoration-dotted underline-offset-2 hover:text-brand-navy/70">pause</button>
+              Auto-cycling every 3s · <button type="button" onClick={() => setAutoPlay(false)} className="underline decoration-dotted underline-offset-2 hover:text-brand-navy/70">pause</button>
             </p>
           )}
         </div>
@@ -601,11 +601,20 @@ export default function HeroInteractive() {
       {/* Spacer below the sticky pill */}
       <div className="pb-4 sm:pb-6" aria-hidden="true" />
 
-      {/* --------------------- DETAIL — one at a time ---------------------
-           Brand-consistent gradient across all 12 sections (per admin feedback).
-           Palette per category remains on the top cards + sticky jump nav. */}
+      {/* --------------------- DETAIL — one at a time --------------------- */}
       <section id="feature-detail" className="relative py-12 sm:py-20">
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-brand-indigo/[0.04] to-transparent" />
+        <div className={`pointer-events-none absolute inset-x-0 top-0 h-40 bg-gradient-to-b ${
+          activeCat.palette === "green" ? "from-emerald-50/40" :
+          activeCat.palette === "violet" ? "from-violet-50/40" :
+          activeCat.palette === "purple" ? "from-purple-50/40" :
+          activeCat.palette === "teal" ? "from-teal-50/40" :
+          activeCat.palette === "rose" ? "from-rose-50/40" :
+          activeCat.palette === "orange" ? "from-orange-50/40" :
+          activeCat.palette === "blue" ? "from-blue-50/40" :
+          activeCat.palette === "amber" ? "from-amber-50/40" :
+          activeCat.palette === "sky" ? "from-sky-50/40" :
+          "from-pink-50/40"
+        } to-transparent transition-colors duration-500`} />
 
         <div className="container relative">
           <AnimatePresence mode="wait">
@@ -619,15 +628,15 @@ export default function HeroInteractive() {
             >
               {/* COPY */}
               <div>
-                <div className="inline-flex items-center gap-2 rounded-full border border-brand-indigo/20 bg-brand-indigo/5 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-brand-indigo">
+                <div className={`inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-widest ${activePalette.chipText} ${activePalette.chipBg} border-current/25`}>
                   <span className="font-extrabold">{String(activeCat.index).padStart(2, "0")}</span>
-                  <span className="h-1 w-6 rounded-full bg-brand-indigo/40" />
+                  <span className={`h-1 w-6 rounded-full ${activePalette.bar}`} />
                   {detail.eyebrow}
                 </div>
 
                 <h2 className="mt-5 font-display text-4xl font-extrabold leading-tight tracking-tight text-brand-navy sm:text-5xl">
                   {detail.heading}{" "}
-                  <span className="bg-gradient-to-r from-brand-blue via-brand-indigo to-brand-purple bg-clip-text text-transparent">
+                  <span className={`bg-gradient-to-r ${activePalette.grad} bg-clip-text text-transparent`}>
                     {detail.headingAccent}
                   </span>
                 </h2>
@@ -641,7 +650,7 @@ export default function HeroInteractive() {
                     const Icon = b.icon;
                     return (
                       <li key={b.text} className="flex items-center gap-3.5 text-[15px] font-medium text-brand-navy/85">
-                        <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-brand-indigo/10 text-brand-indigo shadow-[0_1px_0_rgba(255,255,255,0.6)_inset,0_2px_8px_-2px_rgba(11,20,55,0.08)] ring-1 ring-brand-indigo/25">
+                        <span className={`grid h-11 w-11 shrink-0 place-items-center rounded-xl ${activePalette.chipBg} ${activePalette.chipText} shadow-[0_1px_0_rgba(255,255,255,0.6)_inset,0_2px_8px_-2px_rgba(11,20,55,0.08)] ring-1 ${activePalette.ringSoft}`}>
                           <Icon size={20} strokeWidth={2.5} />
                         </span>
                         <span className="leading-snug">{b.text}</span>
@@ -653,7 +662,7 @@ export default function HeroInteractive() {
                 <div className="mt-9 flex items-center gap-3">
                   <a
                     href="#"
-                    className="group inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold text-white shadow-soft transition-all hover:shadow-float bg-brand-gradient"
+                    className={`group inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold text-white shadow-soft transition-all hover:shadow-float bg-gradient-to-r ${activePalette.grad}`}
                   >
                     Explore more
                     <ArrowRight

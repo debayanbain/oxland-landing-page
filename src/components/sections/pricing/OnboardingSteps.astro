@@ -1,0 +1,265 @@
+---
+import Reveal from "@/components/Reveal.tsx";
+import {
+  ClipboardCheck,
+  Settings2,
+  Upload,
+  Layers3,
+  Users2,
+  Rocket,
+  LifeBuoy,
+  MessageSquare,
+  ArrowRight,
+  ChevronRight,
+} from "lucide-react";
+
+const steps = [
+  { title: "Check your needs",     hint: "Scoping call",       icon: ClipboardCheck, palette: "text-emerald-600 bg-emerald-50",       glow: "rgba(16,185,129,0.35)"  },
+  { title: "Set up the platform",  hint: "Tenant + roles",     icon: Settings2,      palette: "text-brand-indigo bg-brand-indigo/10", glow: "rgba(79,70,229,0.35)"   },
+  { title: "Move your data",       hint: "Records + GIS",      icon: Upload,         palette: "text-brand-blue bg-brand-blue/10",     glow: "rgba(47,91,255,0.35)"   },
+  { title: "Add your map layers",  hint: "Cadastre onboarding",icon: Layers3,        palette: "text-teal-600 bg-teal-50",             glow: "rgba(20,184,166,0.35)"  },
+  { title: "Train your team",      hint: "Guided workshops",   icon: Users2,         palette: "text-rose-600 bg-rose-50",             glow: "rgba(244,63,94,0.35)"   },
+  { title: "Go live",              hint: "Cutover + verify",   icon: Rocket,         palette: "text-orange-500 bg-orange-50",         glow: "rgba(249,115,22,0.35)"  },
+  { title: "Stay supported",       hint: "24×7 NOC + CSM",     icon: LifeBuoy,       palette: "text-brand-purple bg-brand-purple/10", glow: "rgba(124,58,237,0.35)"  },
+];
+---
+
+<section id="onboarding" class="relative py-16 sm:py-24">
+  <div class="container">
+    <Reveal client:visible variant="scale">
+      <div class="relative overflow-hidden rounded-[36px] border border-brand-navy/10 bg-gradient-to-br from-[#f7f8ff] via-white to-[#f4e8ff] p-8 shadow-card sm:p-12 lg:p-16">
+        {/* Ambient blobs */}
+        <div class="pointer-events-none absolute -top-32 -right-20 h-72 w-72 rounded-full opacity-55 blur-3xl" style="background: radial-gradient(closest-side, rgba(124,58,237,0.28), transparent 70%);"></div>
+        <div class="pointer-events-none absolute -bottom-32 -left-20 h-72 w-72 rounded-full opacity-50 blur-3xl" style="background: radial-gradient(closest-side, rgba(47,91,255,0.24), transparent 70%);"></div>
+        <div class="pointer-events-none absolute inset-0 opacity-[0.04]" style="background-image: radial-gradient(circle, #6366f1 1px, transparent 1px); background-size: 22px 22px;"></div>
+
+        <div class="relative">
+          {/* -------- Header -------- */}
+          <div class="max-w-2xl">
+            <div class="inline-flex items-center gap-2 rounded-full border border-brand-indigo/20 bg-white/70 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-brand-indigo backdrop-blur-sm">
+              <span class="h-1.5 w-1.5 rounded-full bg-brand-indigo animate-pulse-soft"></span>
+              Onboarding · 7-step programme
+            </div>
+            <h2 class="mt-4 font-display text-3xl font-extrabold leading-tight tracking-tight text-brand-navy sm:text-4xl">
+              Setting up{" "}
+              <span class="bg-gradient-to-r from-brand-indigo to-brand-purple bg-clip-text text-transparent">
+                your account.
+              </span>
+            </h2>
+            <p class="mt-3 max-w-xl text-sm leading-relaxed text-brand-navy/65 sm:text-base">
+              Every Enterprise plan comes with full setup help. Our team walks you through every step — from records migration to going live.
+            </p>
+          </div>
+
+          {/* -------- Steps + animated workflow track -------- */}
+          <div class="relative mt-16">
+
+            {/* Steps row — no card backgrounds, icons float on the section's soft gradient */}
+            <div class="onboard-flow relative grid grid-cols-2 gap-x-3 gap-y-10 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 lg:gap-4">
+              {steps.map((s, i) => (
+                <Reveal client:visible variant="fade-up" delay={i * 0.08}>
+                  <div
+                    class="group step-node relative flex flex-col items-center text-center"
+                    style={`--glow: ${s.glow}; --i: ${i};`}
+                  >
+                    {/* Connector to the next step — desktop only, draws in on scroll */}
+                    {i < steps.length - 1 && (
+                      <span class="onboard-connector" aria-hidden="true">
+                        <span class="onboard-connector-line"></span>
+                        <span class="onboard-connector-chevron">
+                          <ChevronRight size={14} strokeWidth={3} />
+                        </span>
+                      </span>
+                    )}
+
+                    <div class="relative z-10">
+                      {/* Hover halo — expands and glows in the step's own palette */}
+                      <span
+                        aria-hidden="true"
+                        class="pointer-events-none absolute inset-[-14px] rounded-full opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100"
+                        style="background: radial-gradient(closest-side, var(--glow), transparent 70%);"
+                      ></span>
+
+                      {/* Icon chip */}
+                      <span class={`relative grid h-16 w-16 place-items-center rounded-2xl ${s.palette} shadow-[0_4px_14px_-4px_rgba(11,20,55,0.14)] ring-4 ring-white/90 transition-all duration-500 group-hover:-translate-y-1 group-hover:scale-110 group-hover:shadow-float`}>
+                        <s.icon size={24} strokeWidth={2.25} />
+                      </span>
+
+                      {/* Number badge — floating on the corner */}
+                      <span class="absolute -right-2 -top-2 grid h-7 w-7 place-items-center rounded-full bg-white text-[11px] font-extrabold text-brand-navy shadow-soft ring-2 ring-brand-indigo/20 transition-transform duration-500 group-hover:scale-110">
+                        {i + 1}
+                      </span>
+                    </div>
+
+                    {/* Text */}
+                    <div class="mt-5">
+                      <div class="text-[10px] font-bold uppercase tracking-widest text-brand-navy/40">
+                        Step {String(i + 1).padStart(2, "0")}
+                      </div>
+                      <h3 class="mt-1 font-display text-[13px] font-extrabold leading-tight text-brand-navy sm:text-sm">
+                        {s.title}
+                      </h3>
+                      <p class="mt-1 text-[10.5px] leading-snug text-brand-navy/50">
+                        {s.hint}
+                      </p>
+                    </div>
+
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+
+          {/* -------- Bottom row: helper + tailored setup CTA -------- */}
+          <div class="mt-16 h-px bg-gradient-to-r from-transparent via-brand-navy/12 to-transparent"></div>
+
+          <div class="mt-8 grid gap-6 lg:grid-cols-[1.3fr_1fr] lg:items-center">
+            <p class="text-sm leading-relaxed text-brand-navy/70 sm:text-base">
+              Our setup team works with you at each step so you can move from old records, spreadsheets and legacy GIS installs to OxLand — without losing a single parcel or a single day of momentum.
+            </p>
+
+            <div class="group/cta relative overflow-hidden rounded-2xl border border-brand-indigo/20 bg-white/80 p-5 shadow-soft backdrop-blur-sm transition-all hover:shadow-float">
+              <div
+                class="pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full opacity-0 blur-2xl transition-opacity duration-500 group-hover/cta:opacity-100"
+                style="background: radial-gradient(closest-side, rgba(124,58,237,0.35), transparent 70%);"
+              ></div>
+              <div class="relative flex items-start gap-3">
+                <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-brand-indigo/10 text-brand-indigo transition-transform group-hover/cta:scale-110">
+                  <MessageSquare size={18} strokeWidth={2.25} />
+                </span>
+                <div class="flex-1">
+                  <p class="text-[13px] font-bold text-brand-navy">
+                    Need a setup made just for you?
+                  </p>
+                  <p class="mt-1 text-[12px] leading-relaxed text-brand-navy/60">
+                    We can build a plan that fits your rules and tools.
+                  </p>
+                  <a
+                    href="/contact"
+                    class="mt-3 inline-flex items-center gap-1.5 text-[13px] font-bold bg-gradient-to-r from-brand-indigo to-brand-purple bg-clip-text text-transparent hover:underline"
+                  >
+                    Talk to our team
+                    <ArrowRight size={12} strokeWidth={2.75} class="text-brand-indigo transition-transform group-hover/cta:translate-x-0.5" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Reveal>
+  </div>
+</section>
+
+<style>
+  /* ---- Step connector (desktop only, 7-across row) ----
+     Lives inside each step node, spanning from this icon's centre to the
+     next icon's centre. The icon chips (z-10) cover the ends, so only the
+     clean gap segment shows, with a chevron centred in the gap. */
+  .onboard-connector {
+    display: none;
+  }
+  @media (min-width: 1024px) {
+    .onboard-connector {
+      display: block;
+      position: absolute;
+      top: 2rem;                       /* icon is 4rem tall → centre at 2rem */
+      left: calc(50% + 2rem);          /* start at this icon's RIGHT edge */
+      width: calc(100% - 3rem);        /* span the gap only: (100% + 1rem gap) − 4rem (two half-icons) */
+      height: 2px;
+      transform: translateY(-50%);
+      z-index: 0;
+    }
+  }
+
+  .onboard-connector-line {
+    position: absolute;
+    inset: 0;
+    border-radius: 999px;
+    background: linear-gradient(
+      90deg,
+      rgba(79, 70, 229, 0.45),
+      rgba(124, 58, 237, 0.5)
+    );
+    transform: scaleX(1);
+    transform-origin: left center;
+  }
+
+  .onboard-connector-chevron {
+    position: absolute;
+    left: 50%;                    /* gap centre = midpoint between two icons */
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: grid;
+    place-items: center;
+    height: 22px;
+    width: 22px;
+    border-radius: 999px;
+    background: #fff;
+    color: #7c3aed;
+    box-shadow: 0 2px 8px -2px rgba(11, 20, 55, 0.18);
+    border: 1px solid rgba(124, 58, 237, 0.15);
+  }
+
+  /* ---- Progressive-enhancement draw-in ----
+     Without JS the connectors are simply visible. When JS is present we
+     add .js-anim (hides them), then .is-visible on scroll (draws them). */
+  .onboard-flow.js-anim .onboard-connector-line {
+    transform: scaleX(0);
+    transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: calc(var(--i, 0) * 0.14s + 0.2s);
+  }
+  .onboard-flow.js-anim .onboard-connector-chevron {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+    transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition-delay: calc(var(--i, 0) * 0.14s + 0.55s);
+  }
+  .onboard-flow.js-anim.is-visible .onboard-connector-line {
+    transform: scaleX(1);
+  }
+  .onboard-flow.js-anim.is-visible .onboard-connector-chevron {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .onboard-flow.js-anim .onboard-connector-line {
+      transform: scaleX(1);
+      transition: none;
+    }
+    .onboard-flow.js-anim .onboard-connector-chevron {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  (() => {
+    const flow = document.querySelector(".onboard-flow");
+    if (!flow) return;
+    // Progressive enhancement: only arm the draw-in when JS runs.
+    flow.classList.add("js-anim");
+    const reveal = () => flow.classList.add("is-visible");
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      reveal();
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            reveal();
+            io.disconnect();
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+    io.observe(flow);
+  })();
+</script>
+

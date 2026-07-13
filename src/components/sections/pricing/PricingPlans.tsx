@@ -1,96 +1,67 @@
 "use client";
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Check, ArrowUpRight, Sparkles, Shield, Building2, Minus } from "lucide-react";
+import { motion } from "framer-motion";
+import { Check, ArrowUpRight, Sparkles, Building2, MessageSquare } from "lucide-react";
 
-type Plan = {
-  name: string;
-  tagline: string;
-  icon: React.ReactNode;
-  monthlyPrice: number | "Custom";
-  yearlyPrice: number | "Custom";
-  unit: string;
-  description: string;
-  cta: string;
-  features: { label: string; included: boolean }[];
-  popular: boolean;
+const EASE = [0.22, 1, 0.36, 1] as const;
+
+const freeEvaluation = {
+  eyebrow: "Free Evaluation Workspace",
+  title: "Try OxLand at no cost",
+  subtitle: "See OxLand before you spend a rupee.",
+  description:
+    "Good for teams who want to check digital land records, GIS maps and land work — before they buy.",
+  features: [
+    "14 days of free access",
+    "Up to 100 acres per project",
+    "Up to 100 MB of storage",
+    "One evaluation project",
+    "Land register and plot view",
+    "GIS map viewer",
+    "Document storage",
+    "Basic dashboard and reports",
+    "Role-based user access",
+    "Email support",
+  ],
+  footnote: "No credit card needed.",
+  ctaLabel: "Start Free Evaluation",
+  ctaReason: "evaluation",
 };
 
-const PLANS: Plan[] = [
-  {
-    name: "Starter",
-    tagline: "For a single project team",
-    icon: <Sparkles size={22} className="text-brand-indigo" strokeWidth={2} />,
-    monthlyPrice: 24999,
-    yearlyPrice: 19999,
-    unit: "/month",
-    description:
-      "Everything a 5–10 person team needs to run their first acquisition project end to end.",
-    cta: "Start free pilot",
-    features: [
-      { label: "Up to 2,500 parcels", included: true },
-      { label: "1 active project", included: true },
-      { label: "5 user seats", included: true },
-      { label: "GIS + cadastre import", included: true },
-      { label: "Basic litigation tracker", included: true },
-      { label: "Document repository (20 GB)", included: true },
-      { label: "Email support", included: true },
-      { label: "Audit-grade exports", included: false },
-    ],
-    popular: false,
-  },
-  {
-    name: "Growth",
-    tagline: "Most chosen by infra & real-estate teams",
-    icon: <Shield size={22} className="text-brand-indigo" strokeWidth={2} />,
-    monthlyPrice: 64999,
-    yearlyPrice: 51999,
-    unit: "/month",
-    description:
-      "Multi-project orchestration with full litigation, R&R, OCR and drone modules unlocked.",
-    cta: "Get a guided demo",
-    features: [
-      { label: "Up to 25,000 parcels", included: true },
-      { label: "Unlimited projects", included: true },
-      { label: "25 user seats", included: true },
-      { label: "Full GIS layer engine", included: true },
-      { label: "Litigation + DSR workflows", included: true },
-      { label: "OCR (100K pages / month)", included: true },
-      { label: "R&R + compensation ledger", included: true },
-      { label: "Drone + IoT integrations", included: true },
-    ],
-    popular: true,
-  },
-  {
-    name: "Enterprise",
-    tagline: "For PSUs, state nodal agencies & 1000+ parcel rollouts",
-    icon: <Building2 size={22} className="text-brand-indigo" strokeWidth={2} />,
-    monthlyPrice: "Custom",
-    yearlyPrice: "Custom",
-    unit: "",
-    description:
-      "On-prem or sovereign cloud, custom integrations, dedicated CSM and 24×7 NOC support.",
-    cta: "Talk to sales",
-    features: [
-      { label: "Unlimited parcels & projects", included: true },
-      { label: "Unlimited seats + SSO/SCIM", included: true },
-      { label: "On-prem / sovereign cloud", included: true },
-      { label: "Custom GIS layer onboarding", included: true },
-      { label: "Dedicated CSM + NOC", included: true },
-      { label: "Custom SLAs & DPAs", included: true },
-      { label: "White-label & API access", included: true },
-      { label: "Compliance audit support", included: true },
-    ],
-    popular: false,
-  },
-];
+const enterprise = {
+  eyebrow: "For big land banks and public agencies",
+  title: "OxLand Enterprise",
+  subtitle: "Built for large, multi-site land work.",
+  description:
+    "We set up each Enterprise plan to fit your team, your rules and how much land you manage.",
+  features: [
+    "Unlimited projects",
+    "Unlimited land parcels",
+    "Unlimited document storage",
+    "Land acquisition workflow",
+    "Case and dispute tracking",
+    "GIS and map data",
+    "Drone and survey data",
+    "Smart document scanning",
+    "API and system links",
+    "Cloud or on-site setup",
+    "A dedicated success manager",
+    "Data move and staff training",
+  ],
+  footnote:
+    "Price depends on project size, setup type and the tools you need.",
+  ctaLabel: "Book Enterprise Demo",
+  ctaReason: "enterprise",
+};
 
-const fmtINR = (n: number) =>
-  new Intl.NumberFormat("en-IN", { maximumFractionDigits: 0 }).format(n);
+const openContact = (reason: string) => {
+  if (typeof window !== "undefined") {
+    window.dispatchEvent(
+      new CustomEvent("oxland:open-contact", { detail: { reason } })
+    );
+  }
+};
 
 export default function PricingPlans() {
-  const [yearly, setYearly] = useState(true);
-
   return (
     <>
       <style>{`
@@ -101,243 +72,230 @@ export default function PricingPlans() {
           @keyframes svgTravelGlow { to { stroke-dashoffset: 0; } }
         }
       `}</style>
+
       <section id="plans" className="relative py-12 sm:py-16">
         <div className="container">
-          {/* Toggle */}
-          <div className="flex flex-col items-center">
-            <div className="relative inline-flex items-center rounded-full bg-[#f0f2fb] p-1 shadow-inner">
-              <button
-                onClick={() => setYearly(false)}
-                className={`relative z-10 rounded-full px-6 py-2 text-sm font-semibold transition-colors duration-200 ${
-                  !yearly ? "text-white" : "text-brand-navy/60 hover:text-brand-navy"
-                }`}
+          <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 lg:grid-cols-2">
+            {/* -------------------- FREE EVALUATION -------------------- */}
+            <motion.div
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.6, ease: EASE }}
+              className="relative"
+            >
+              {/* Draw-on-mount gradient border */}
+              <svg
+                aria-hidden
+                className="pointer-events-none absolute inset-0 h-full w-full"
+                style={{ overflow: "visible" }}
               >
-                {!yearly && (
-                  <motion.span
-                    layoutId="pricing-toggle-pill"
-                    transition={{ type: "spring", stiffness: 400, damping: 34 }}
-                    className="absolute inset-0 -z-10 rounded-full bg-brand-gradient shadow-soft"
-                    aria-hidden
-                  />
-                )}
-                Monthly
-              </button>
-              <button
-                onClick={() => setYearly(true)}
-                className={`relative z-10 inline-flex items-center gap-2 rounded-full px-6 py-2 text-sm font-semibold transition-colors duration-200 ${
-                  yearly ? "text-white" : "text-brand-navy/60 hover:text-brand-navy"
-                }`}
-              >
-                {yearly && (
-                  <motion.span
-                    layoutId="pricing-toggle-pill"
-                    transition={{ type: "spring", stiffness: 400, damping: 34 }}
-                    className="absolute inset-0 -z-10 rounded-full bg-brand-gradient shadow-soft"
-                    aria-hidden
-                  />
-                )}
-                Yearly
-                <span
-                  className={`rounded-full px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wider transition-colors ${
-                    yearly ? "bg-white/20 text-white" : "bg-brand-indigo/10 text-brand-indigo"
-                  }`}
-                >
-                  Save 20%
+                <defs>
+                  <linearGradient id="free-border" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#2F5BFF" />
+                    <stop offset="50%" stopColor="#6366f1" />
+                    <stop offset="100%" stopColor="#a855f7" />
+                  </linearGradient>
+                </defs>
+                <rect
+                  x="0"
+                  y="0"
+                  width="100%"
+                  height="100%"
+                  rx="24"
+                  fill="none"
+                  stroke="url(#free-border)"
+                  strokeWidth="1.5"
+                  style={{
+                    strokeDasharray: 2400,
+                    strokeDashoffset: 2400,
+                    animation: "svgDrawBorder 2.2s cubic-bezier(0.4,0,0.2,1) forwards",
+                  }}
+                />
+              </svg>
+
+              <div className="relative flex h-full flex-col overflow-hidden rounded-3xl border border-brand-navy/10 bg-white p-8 shadow-card sm:p-10">
+                {/* Eyebrow */}
+                <span className="inline-flex w-fit items-center gap-2 rounded-full bg-brand-indigo/10 px-3 py-1 text-[11px] font-bold uppercase tracking-widest text-brand-indigo">
+                  <span className="grid h-4 w-4 place-items-center rounded-full bg-brand-indigo text-white">
+                    <Sparkles size={9} strokeWidth={2.75} />
+                  </span>
+                  {freeEvaluation.eyebrow}
                 </span>
-              </button>
-            </div>
-            <p className="mt-3 text-xs text-brand-navy/55">
-              All prices in INR. GST applicable as per Indian tax law.
-            </p>
-          </div>
 
-          {/* Cards */}
-          <div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-3 max-w-7xl mx-auto">
-            {PLANS.map((plan, i) => {
-              const price = yearly ? plan.yearlyPrice : plan.monthlyPrice;
-              const isCustom = price === "Custom";
-              return (
-                <div key={plan.name} className={`relative ${plan.popular ? "lg:-mt-4" : ""}`}>
-                  <svg
-                    aria-hidden="true"
-                    className="pointer-events-none absolute inset-0 h-full w-full"
-                    style={{ overflow: "visible" }}
-                    xmlns="http://www.w3.org/2000/svg"
+                <h3 className="mt-5 font-display text-3xl font-extrabold tracking-tight text-brand-navy sm:text-4xl">
+                  {freeEvaluation.title}
+                </h3>
+                <p className="mt-2 font-display text-base font-semibold bg-gradient-to-r from-brand-indigo to-brand-purple bg-clip-text text-transparent">
+                  {freeEvaluation.subtitle}
+                </p>
+                <p className="mt-3 text-[15px] leading-relaxed text-brand-navy/65">
+                  {freeEvaluation.description}
+                </p>
+
+                {/* Features */}
+                <ul className="mt-7 grid grid-cols-1 gap-x-6 gap-y-3 sm:grid-cols-2">
+                  {freeEvaluation.features.map((f) => (
+                    <li key={f} className="flex items-start gap-2.5 text-[13.5px] text-brand-navy/85">
+                      <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-brand-indigo/10 text-brand-indigo">
+                        <Check size={11} strokeWidth={3} />
+                      </span>
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="mt-auto pt-8">
+                  <p className="text-xs font-semibold text-brand-indigo">
+                    {freeEvaluation.footnote}
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => openContact(freeEvaluation.ctaReason)}
+                    className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-brand-navy px-6 py-3.5 text-sm font-semibold text-white shadow-soft transition-all hover:bg-brand-navy/90 hover:shadow-float"
                   >
-                    <defs>
-                      <linearGradient id={`plan-grad-${i}`} x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#2F5BFF" />
-                        <stop offset="50%" stopColor="#6366f1" />
-                        <stop offset="100%" stopColor="#a855f7" />
-                      </linearGradient>
-                    </defs>
-                    <rect
-                      x="0"
-                      y="0"
-                      width="100%"
-                      height="100%"
-                      rx="24"
-                      fill="none"
-                      stroke={`url(#plan-grad-${i})`}
-                      strokeWidth={plan.popular ? "2.25" : "1.5"}
-                      style={{
-                        strokeDasharray: 2400,
-                        strokeDashoffset: 2400,
-                        animation: `svgDrawBorder 2.2s cubic-bezier(0.4,0,0.2,1) ${i * 0.22}s forwards`,
-                      }}
-                    />
-                    {plan.popular && (
-                      <rect
-                        x="0"
-                        y="0"
-                        width="100%"
-                        height="100%"
-                        rx="24"
-                        fill="none"
-                        stroke="#a78bfa"
-                        strokeWidth="5"
-                        strokeLinecap="round"
-                        style={{
-                          strokeDasharray: "90 2310",
-                          strokeDashoffset: 0,
-                          animation: "svgTravelGlow 3.4s linear infinite",
-                          filter: "blur(5px)",
-                          opacity: 0.85,
-                        }}
-                      />
-                    )}
-                  </svg>
+                    {freeEvaluation.ctaLabel}
+                    <ArrowUpRight size={14} strokeWidth={2.5} />
+                  </button>
+                </div>
+              </div>
+            </motion.div>
 
-                  <div
-                    className={`relative overflow-hidden rounded-3xl p-8 transition-all duration-300 h-full flex flex-col ${
-                      plan.popular
-                        ? "border-2 border-brand-indigo/40 bg-white shadow-float"
-                        : "border border-brand-navy/10 bg-white shadow-card"
-                    }`}
-                  >
-                    {plan.popular && (
-                      <>
-                        <div className="absolute right-0 top-0 overflow-hidden w-28 h-28">
-                          <div className="absolute top-[22px] right-[-32px] w-[130px] rotate-45 bg-gradient-to-r from-brand-indigo to-brand-purple py-1.5 text-center text-[10px] font-extrabold uppercase tracking-widest text-white shadow-sm">
-                            Most popular
-                          </div>
-                        </div>
-                        <div
-                          className="pointer-events-none absolute inset-0 opacity-[0.05]"
-                          style={{
-                            backgroundImage:
-                              "radial-gradient(circle, #6366f1 1px, transparent 1px)",
-                            backgroundSize: "18px 18px",
-                          }}
-                        />
-                      </>
-                    )}
+            {/* -------------------- ENTERPRISE (dark card) -------------------- */}
+            <motion.div
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.6, ease: EASE, delay: 0.08 }}
+              className="relative"
+            >
+              {/* Draw-on-mount gradient border + traveling glow */}
+              <svg
+                aria-hidden
+                className="pointer-events-none absolute inset-0 h-full w-full"
+                style={{ overflow: "visible" }}
+              >
+                <defs>
+                  <linearGradient id="ent-border" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#2F5BFF" />
+                    <stop offset="50%" stopColor="#6366f1" />
+                    <stop offset="100%" stopColor="#a855f7" />
+                  </linearGradient>
+                </defs>
+                <rect
+                  x="0"
+                  y="0"
+                  width="100%"
+                  height="100%"
+                  rx="24"
+                  fill="none"
+                  stroke="url(#ent-border)"
+                  strokeWidth="2.25"
+                  style={{
+                    strokeDasharray: 2400,
+                    strokeDashoffset: 2400,
+                    animation: "svgDrawBorder 2.2s cubic-bezier(0.4,0,0.2,1) 0.22s forwards",
+                  }}
+                />
+                <rect
+                  x="0"
+                  y="0"
+                  width="100%"
+                  height="100%"
+                  rx="24"
+                  fill="none"
+                  stroke="#a78bfa"
+                  strokeWidth="5"
+                  strokeLinecap="round"
+                  style={{
+                    strokeDasharray: "90 2310",
+                    strokeDashoffset: 0,
+                    animation: "svgTravelGlow 3.4s linear infinite",
+                    filter: "blur(5px)",
+                    opacity: 0.85,
+                  }}
+                />
+              </svg>
 
-                    {/* Icon + name */}
-                    <div className="flex items-center gap-3">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-indigo/8 shadow-[0_2px_8px_rgba(79,70,229,0.12)]">
-                        {plan.icon}
-                      </div>
-                      <div>
-                        <h3 className="font-display text-2xl font-extrabold text-brand-navy leading-tight">
-                          {plan.name}
-                        </h3>
-                        <div className="mt-1 h-0.5 w-10 rounded-full bg-gradient-to-r from-brand-indigo to-brand-purple" />
-                      </div>
+              <div className="relative flex h-full flex-col overflow-hidden rounded-3xl border-2 border-transparent bg-brand-navy p-8 shadow-float sm:p-10">
+                {/* Ambient */}
+                <div
+                  className="pointer-events-none absolute -top-24 -left-16 h-64 w-64 rounded-full blur-3xl opacity-55"
+                  style={{
+                    background:
+                      "radial-gradient(closest-side, rgba(79,70,229,0.55), transparent 70%)",
+                  }}
+                />
+                <div
+                  className="pointer-events-none absolute -bottom-24 -right-16 h-72 w-72 rounded-full blur-3xl opacity-50"
+                  style={{
+                    background:
+                      "radial-gradient(closest-side, rgba(124,58,237,0.55), transparent 70%)",
+                  }}
+                />
+                <div
+                  className="pointer-events-none absolute inset-0 opacity-[0.05]"
+                  style={{
+                    backgroundImage:
+                      "radial-gradient(circle, #a78bfa 1px, transparent 1px)",
+                    backgroundSize: "18px 18px",
+                  }}
+                />
+
+                <div className="relative flex h-full flex-col">
+                  {/* Eyebrow */}
+                  <span className="inline-flex w-fit items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-[11px] font-bold uppercase tracking-widest text-white/90 ring-1 ring-white/20 backdrop-blur-md">
+                    <span className="grid h-4 w-4 place-items-center rounded-full bg-brand-lavender text-brand-navy">
+                      <Building2 size={9} strokeWidth={2.75} />
+                    </span>
+                    {enterprise.eyebrow}
+                  </span>
+
+                  <h3 className="mt-5 font-display text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+                    {enterprise.title}
+                  </h3>
+                  <p className="mt-2 font-display text-base font-semibold bg-gradient-to-r from-brand-lavender via-white to-brand-lavender bg-clip-text text-transparent">
+                    {enterprise.subtitle}
+                  </p>
+                  <p className="mt-3 text-[15px] leading-relaxed text-white/70">
+                    {enterprise.description}
+                  </p>
+
+                  {/* Features */}
+                  <ul className="mt-7 grid grid-cols-1 gap-x-6 gap-y-3 sm:grid-cols-2">
+                    {enterprise.features.map((f) => (
+                      <li key={f} className="flex items-start gap-2.5 text-[13.5px] text-white/85">
+                        <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-brand-lavender text-brand-navy">
+                          <Check size={11} strokeWidth={3} />
+                        </span>
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="mt-auto pt-8">
+                    <div className="mb-4 inline-flex items-center gap-2 rounded-2xl border border-white/15 bg-white/[0.06] px-3 py-2 text-xs text-white/75 backdrop-blur-md">
+                      <MessageSquare size={12} strokeWidth={2.5} className="text-brand-lavender" />
+                      <span className="leading-snug">{enterprise.footnote}</span>
                     </div>
-
-                    <p className="mt-3 text-xs font-semibold uppercase tracking-wider text-brand-indigo/80">
-                      {plan.tagline}
-                    </p>
-
-                    {/* Price */}
-                    <div className="mt-6 min-h-[72px]">
-                      <AnimatePresence mode="wait">
-                        <motion.div
-                          key={`${plan.name}-${yearly}`}
-                          initial={{ opacity: 0, y: 8 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: -8 }}
-                          transition={{ duration: 0.25 }}
-                          className="flex items-baseline gap-1"
-                        >
-                          {isCustom ? (
-                            <span className="font-display text-5xl font-extrabold tracking-tight text-brand-navy">
-                              Let's talk
-                            </span>
-                          ) : (
-                            <>
-                              <span className="text-2xl font-semibold text-brand-navy/55">₹</span>
-                              <span className="font-display text-5xl font-extrabold tracking-tight text-brand-navy">
-                                {fmtINR(price as number)}
-                              </span>
-                              <span className="ml-1 text-sm text-brand-navy/50">{plan.unit}</span>
-                            </>
-                          )}
-                        </motion.div>
-                      </AnimatePresence>
-                      {!isCustom && yearly && (
-                        <p className="mt-1 text-xs font-semibold text-brand-indigo">
-                          billed annually · 20% off
-                        </p>
-                      )}
-                      {!isCustom && !yearly && (
-                        <p className="mt-1 text-xs text-brand-navy/50">billed monthly</p>
-                      )}
-                    </div>
-
-                    {/* Description */}
-                    <p className="mt-2 text-sm leading-relaxed text-brand-navy/65">
-                      {plan.description}
-                    </p>
-
-                    {/* CTA */}
                     <button
-                      className={`mt-7 inline-flex items-center justify-center gap-1.5 rounded-full px-5 py-3 text-sm font-semibold transition-all duration-200 ${
-                        plan.popular
-                          ? "bg-gradient-to-r from-brand-indigo to-brand-purple text-white shadow-soft hover:shadow-float"
-                          : "border border-brand-indigo/30 text-brand-indigo hover:bg-brand-indigo/5"
-                      }`}
+                      type="button"
+                      onClick={() => openContact(enterprise.ctaReason)}
+                      className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-white px-6 py-3.5 text-sm font-semibold text-brand-navy shadow-soft transition-all hover:bg-white/90 hover:shadow-float"
                     >
-                      {plan.cta}
+                      {enterprise.ctaLabel}
                       <ArrowUpRight size={14} strokeWidth={2.5} />
                     </button>
-
-                    <div className="my-7 h-px bg-brand-navy/6" />
-
-                    {/* Features */}
-                    <ul className="space-y-3 flex-1">
-                      {plan.features.map((f) => (
-                        <li
-                          key={f.label}
-                          className={`flex items-start gap-2.5 text-sm ${
-                            f.included ? "text-brand-navy/80" : "text-brand-navy/35 line-through"
-                          }`}
-                        >
-                          <span
-                            className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full mt-0.5 ${
-                              f.included
-                                ? plan.popular
-                                  ? "bg-brand-indigo text-white"
-                                  : "bg-brand-indigo/10 text-brand-indigo"
-                                : "bg-brand-navy/8 text-brand-navy/40"
-                            }`}
-                          >
-                            {f.included ? (
-                              <Check size={11} strokeWidth={3} />
-                            ) : (
-                              <Minus size={11} strokeWidth={3} />
-                            )}
-                          </span>
-                          <span>{f.label}</span>
-                        </li>
-                      ))}
-                    </ul>
                   </div>
                 </div>
-              );
-            })}
+              </div>
+            </motion.div>
           </div>
+
+          {/* Trust footnote */}
+          <p className="mt-10 text-center text-xs font-semibold uppercase tracking-widest text-brand-navy/45">
+            Trusted by teams who manage large land operations
+          </p>
         </div>
       </section>
     </>

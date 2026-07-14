@@ -36,13 +36,13 @@ const logoTrack = [...logos, ...logos, ...logos];
           style="--marquee-duration: 38s;"
         >
           {logoTrack.map((logo, i) => (
-            <div class={`flex h-14 w-[130px] shrink-0 items-center justify-center sm:h-16 sm:w-[150px] ${logo.scale ?? ""}`} aria-hidden={i >= logos.length ? "true" : undefined}>
+            <div class={`flex h-20 w-[200px] shrink-0 items-center justify-center sm:h-24 sm:w-[230px] ${logo.scale ?? ""}`} aria-hidden={i >= logos.length ? "true" : undefined}>
               <img
                 src={logo.src}
                 alt={i < logos.length ? logo.alt : ""}
                 loading="lazy"
                 decoding="async"
-                class="h-12 w-auto max-w-full select-none object-contain opacity-90 transition-all duration-300 hover:opacity-100 hover:scale-105 sm:h-14"
+                class="h-16 w-auto max-w-full select-none object-contain opacity-90 transition-all duration-300 hover:opacity-100 hover:scale-105 sm:h-20"
                 style="filter: url(#remove-white);"
               />
             </div>

@@ -1,24 +1,25 @@
 ---
 import Reveal from "@/components/Reveal.tsx";
 import CountUp from "@/components/CountUp.tsx";
-import { Cpu, Layers3, Gauge, ServerCog } from "lucide-react";
+import { Rocket, FileText, Orbit, BrainCircuit } from "lucide-react";
 
 type Metric = {
   icon: any;
-  to: number;
+  to?: number;
   decimals?: number;
   prefix?: string;
   suffix?: string;
   separator?: boolean;
+  staticText?: string;
   label: string;
   detail: string;
 };
 
 const metrics: Metric[] = [
-  { icon: Cpu, to: 99.97, decimals: 2, suffix: "%", separator: false, label: "Platform uptime", detail: "Rolling 12-month SLA across all India-region tenants." },
-  { icon: Layers3, to: 142, suffix: "+", label: "GIS layers shipped", detail: "Cadastre, RoR, encumbrance, land-use, NHAI, forest, more." },
-  { icon: Gauge, to: 4.2, decimals: 1, suffix: "s", separator: false, label: "Median page load", detail: "On 4G across tier-2 districts — engineered for the field." },
-  { icon: ServerCog, to: 24, suffix: "×7", label: "NOC monitoring", detail: "Real humans + automated remediation, never just dashboards." },
+  { icon: Rocket, to: 70, suffix: "%+", separator: false, label: "Faster Land Acquisition", detail: "Accelerate acquisition through GIS-driven workflows." },
+  { icon: FileText, to: 90, suffix: "%+", separator: false, label: "Reduced Manual Documentation", detail: "Digitize records and automate document management." },
+  { icon: Orbit, to: 360, suffix: "°", separator: false, label: "Land Lifecycle Management", detail: "One platform for acquisition, records, litigation and R&R." },
+  { icon: BrainCircuit, staticText: "GeoAI", label: "Decision Intelligence", detail: "Transform land and spatial data into actionable insights." },
 ];
 ---
 
@@ -37,15 +38,21 @@ const metrics: Metric[] = [
                 <m.icon size={16} strokeWidth={2.25} />
               </span>
               <div class="mt-5 flex items-baseline gap-1">
-                <CountUp
-                  client:visible
-                  to={m.to}
-                  decimals={m.decimals ?? 0}
-                  prefix={m.prefix ?? ""}
-                  suffix={m.suffix ?? ""}
-                  separator={m.separator ?? true}
-                  className="font-display text-4xl font-extrabold tracking-tight bg-gradient-to-r from-white via-brand-lavender to-white bg-clip-text text-transparent tabular-nums sm:text-5xl"
-                />
+                {m.staticText ? (
+                  <span class="font-display text-4xl font-extrabold tracking-tight bg-gradient-to-r from-white via-brand-lavender to-white bg-clip-text text-transparent sm:text-5xl">
+                    {m.staticText}
+                  </span>
+                ) : (
+                  <CountUp
+                    client:visible
+                    to={m.to ?? 0}
+                    decimals={m.decimals ?? 0}
+                    prefix={m.prefix ?? ""}
+                    suffix={m.suffix ?? ""}
+                    separator={m.separator ?? true}
+                    className="font-display text-4xl font-extrabold tracking-tight bg-gradient-to-r from-white via-brand-lavender to-white bg-clip-text text-transparent tabular-nums sm:text-5xl"
+                  />
+                )}
               </div>
               <p class="mt-3 text-sm font-semibold text-white">{m.label}</p>
               <p class="mt-1 text-xs leading-relaxed text-white/55">{m.detail}</p>

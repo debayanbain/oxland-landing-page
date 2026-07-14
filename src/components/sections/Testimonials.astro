@@ -2,11 +2,10 @@
 import Reveal from "@/components/Reveal.tsx";
 
 interface Testimonial {
-  rating: number;
-  quote: string;
-  name: string;
+  company: string;
   role: string;
   initials: string;
+  quote: string;
   from: string;
   to: string;
 }
@@ -14,65 +13,120 @@ interface Testimonial {
 const STAR_PATH =
   "M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z";
 
-const featured: Testimonial = {
-  rating: 4,
-  quote: "This CRM transformed the way our team manages customers and opportunities. Within only three months of consistent use, we achieved a remarkable 35% increase in sales, driven by smarter workflows, better communication, and improved tracking.",
-  name: "Alex Jordan",
-  role: "Content Strategist",
-  initials: "AJ",
-  from: "#a78bfa",
-  to: "#7c3aed",
-};
-
-const col1Bottom: Testimonial = {
-  rating: 4,
-  quote: "Within just 60 seconds, our complete CRM system was set up and ready for immediate use.",
-  name: "Alex Jafer",
-  role: "Systems Administrator",
-  initials: "AJ",
-  from: "#6366f1",
-  to: "#4338ca",
-};
-
-const col2: Testimonial[] = [
+// Index 0 is rendered as the featured (gradient) card.
+const testimonials: Testimonial[] = [
   {
-    rating: 4,
-    quote: "Our team finally stopped juggling countless spreadsheets and switched to a cleaner, more efficient workflow solution.",
-    name: "Daniel Cooper",
-    role: "Project Coordinator",
-    initials: "DC",
+    company: "Tata Steel",
+    role: "Head – IT Services",
+    initials: "TS",
+    quote:
+      "The GIS capabilities in OxLand are exceptionally well designed. The platform brings together mapping, land records, and operational workflows into a single intuitive system that significantly improves decision-making.",
+    from: "#6366f1",
+    to: "#4338ca",
+  },
+  {
+    company: "BALCO",
+    role: "Dy. HOD – Legal",
+    initials: "BA",
+    quote:
+      "OxLand has transformed the way we manage our land bank. Having all land records, legal documents, ownership details, and litigation information in one platform has greatly improved efficiency.",
     from: "#38bdf8",
     to: "#0284c7",
   },
   {
-    rating: 4,
-    quote: "In just one day, our whole team was seamlessly collaborating and managing projects through a single dashboard.",
-    name: "Liam Parker",
-    role: "Productivity Lead",
-    initials: "LP",
+    company: "Vedanta Ltd.",
+    role: "Land Head",
+    initials: "VL",
+    quote:
+      "OxLand has simplified our land management operations by providing complete visibility into land records, acquisition progress, and documentation. It has become an integral part of our workflow.",
+    from: "#34d399",
+    to: "#059669",
+  },
+  {
+    company: "Vedanta Aluminium Metal Ltd.",
+    role: "CDO – Mines",
+    initials: "VA",
+    quote:
+      "Managing mining land assets has become significantly easier with OxLand. The GIS-based platform enables better planning, monitoring, and faster access to critical land information.",
     from: "#fbbf24",
     to: "#d97706",
   },
   {
-    rating: 4,
-    quote: "Our customer response time has improved by 40%, allowing us to provide faster and more efficient support for every client.",
-    name: "Ethan Ross",
-    role: "Operations Manager",
-    initials: "ER",
-    from: "#34d399",
-    to: "#059669",
+    company: "ESL Steel Limited",
+    role: "Land Head",
+    initials: "ES",
+    quote:
+      "OxLand provides a centralized platform for managing land assets efficiently. The digital workflows and GIS capabilities have improved coordination across our teams.",
+    from: "#a78bfa",
+    to: "#7c3aed",
+  },
+  {
+    company: "Aditya Birla Renewables",
+    role: "Head – IT",
+    initials: "AB",
+    quote:
+      "OxLand offers a modern and scalable platform for enterprise land management. The solution is intuitive, highly configurable, and aligns well with large-scale renewable energy projects.",
+    from: "#f472b6",
+    to: "#db2777",
+  },
+  {
+    company: "Eastern Coalfields Ltd. (ECL)",
+    role: "HOD – Survey",
+    initials: "EC",
+    quote:
+      "The GIS visualization and survey data integration available in OxLand have made monitoring land boundaries and survey information much more efficient and accurate.",
+    from: "#2dd4bf",
+    to: "#0d9488",
+  },
+  {
+    company: "Waaree Energies",
+    role: "CIO",
+    initials: "WE",
+    quote:
+      "OxLand brings together technology, GIS, and workflow automation into a single enterprise platform. It provides the visibility and control required for managing land acquisition at scale.",
+    from: "#818cf8",
+    to: "#4f46e5",
+  },
+  {
+    company: "JSW Cement",
+    role: "Digital Head",
+    initials: "JC",
+    quote:
+      "OxLand is a comprehensive digital platform that modernizes land management through automation, centralized records, and intelligent GIS-based insights.",
+    from: "#fb923c",
+    to: "#ea580c",
+  },
+  {
+    company: "IIT Ropar (iHub AWaDH)",
+    role: "CEO",
+    initials: "IR",
+    quote:
+      "OxLand demonstrates how advanced GIS and AI technologies can solve complex land management challenges. The platform reflects strong technical innovation with practical industry applications.",
+    from: "#c084fc",
+    to: "#9333ea",
+  },
+  {
+    company: "IIT Tirupati (IITTNIF)",
+    role: "Project Director",
+    initials: "IT",
+    quote:
+      "OxLand effectively combines research-driven innovation with real-world usability. The platform has significant potential for digital land governance and large-scale land management initiatives.",
+    from: "#60a5fa",
+    to: "#2563eb",
+  },
+  {
+    company: "SAIL",
+    role: "DGM – Land & Estate",
+    initials: "SA",
+    quote:
+      "OxLand streamlines land record management, document digitization, and GIS visualization through a single integrated platform, making day-to-day land administration far more efficient.",
+    from: "#4ade80",
+    to: "#16a34a",
   },
 ];
 
-const col3Top: Testimonial = {
-  rating: 4,
-  quote: "We moved away from messy manual processes and embraced a smoother workflow that keeps our whole team aligned and efficient.",
-  name: "Alison Thomas",
-  role: "Team Operations Lead",
-  initials: "AT",
-  from: "#f472b6",
-  to: "#db2777",
-};
+const featured = testimonials[0];
+const rest = testimonials.slice(1);
 ---
 
 <section id="testimonials" class="relative py-16 sm:py-20">
@@ -91,169 +145,83 @@ const col3Top: Testimonial = {
           Testimonials
         </div>
         <h2 class="font-display text-4xl font-extrabold tracking-tight text-brand-navy sm:text-5xl">
-          Loved by teams, trusted by businesses
+          Trusted by India's largest land teams
         </h2>
         <p class="mt-4 text-base text-brand-navy/60">
-          See how Oxland CRM is helping teams work smarter,<br class="hidden sm:block" />
-          serve better, and grow faster.
+          From steel and mining to renewables and public infrastructure —<br class="hidden sm:block" />
+          see why enterprises run their land operations on Oxland.
         </p>
       </div>
     </Reveal>
 
-    <!-- 3-column masonry grid -->
-    <div class="mt-12 grid grid-cols-1 gap-4 md:grid-cols-3">
+    <!-- Masonry grid — featured gradient card + 11 quote cards -->
+    <div class="mt-12 gap-4 [column-fill:balance] sm:columns-2 lg:columns-3">
 
-      <!-- ── Col 1: featured tall + short bottom ── -->
-      <div class="flex flex-col gap-4">
+      <!-- Featured card -->
+      <Reveal client:visible delay={0.05} className="mb-4 break-inside-avoid">
+        <div class="relative flex flex-col overflow-hidden rounded-3xl bg-gradient-to-br from-brand-indigo to-brand-purple p-7 text-white">
+          <div
+            class="pointer-events-none absolute inset-0 opacity-[0.07]"
+            style="background-image:radial-gradient(circle,#fff 1px,transparent 1px);background-size:18px 18px;"
+          />
+          <span class="pointer-events-none absolute right-5 top-3 select-none font-serif text-7xl font-bold leading-none text-white/20">"</span>
 
-        <!-- Featured card -->
-        <Reveal client:visible delay={0.05}>
-          <div class="relative flex flex-1 flex-col overflow-hidden rounded-3xl bg-gradient-to-br from-brand-indigo to-brand-purple p-7 text-white">
-            <!-- dot grid -->
+          <div class="flex gap-0.5">
+            {[1,2,3,4,5].map(() => (
+              <svg viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4 text-amber-300">
+                <path d={STAR_PATH}/>
+              </svg>
+            ))}
+          </div>
+
+          <p class="relative mt-5 text-base font-medium leading-relaxed text-white/90">
+            "{featured.quote}"
+          </p>
+
+          <div class="mt-8 flex items-center gap-3">
             <div
-              class="pointer-events-none absolute inset-0 opacity-[0.07]"
-              style="background-image:radial-gradient(circle,#fff 1px,transparent 1px);background-size:18px 18px;"
-            />
-            <!-- decorative quote -->
-            <span class="pointer-events-none absolute right-5 top-3 select-none font-serif text-7xl font-bold leading-none text-white/20">"</span>
-
-            <div class="flex gap-0.5">
-              {[1,2,3,4,5].map(s => (
-                <svg viewBox="0 0 20 20" fill="currentColor" class={`h-4 w-4 ${s <= featured.rating ? "text-amber-300" : "text-white/25"}`}>
-                  <path d={STAR_PATH}/>
-                </svg>
-              ))}
+              class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-sm font-bold text-white ring-2 ring-white/30"
+              style={`background:linear-gradient(135deg,${featured.from},${featured.to})`}
+            >
+              {featured.initials}
             </div>
-
-            <p class="relative mt-5 flex-1 text-base font-medium leading-relaxed text-white/90">
-              "{featured.quote}"
-            </p>
-
-            <div class="mt-8 flex items-center gap-3">
-              <div
-                class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-sm font-bold text-white ring-2 ring-white/30"
-                style={`background:linear-gradient(135deg,${featured.from},${featured.to})`}
-              >
-                {featured.initials}
-              </div>
-              <div>
-                <p class="text-sm font-bold text-white">{featured.name}</p>
-                <p class="text-xs text-white/60">{featured.role}</p>
-              </div>
+            <div>
+              <p class="text-sm font-bold text-white">{featured.company}</p>
+              <p class="text-xs text-white/60">{featured.role}</p>
             </div>
           </div>
-        </Reveal>
+        </div>
+      </Reveal>
 
-        <!-- Short bottom card -->
-        <Reveal client:visible delay={0.2}>
+      <!-- Remaining testimonials -->
+      {rest.map((t, i) => (
+        <Reveal client:visible delay={0.06 + (i % 3) * 0.05} className="mb-4 break-inside-avoid">
           <div class="relative overflow-hidden rounded-2xl border border-brand-navy/10 bg-white p-6 shadow-card">
             <span class="pointer-events-none absolute right-4 top-2 select-none font-serif text-6xl font-bold leading-none text-brand-navy/[0.06]">"</span>
             <div class="flex gap-0.5">
-              {[1,2,3,4,5].map(s => (
-                <svg viewBox="0 0 20 20" fill="currentColor" class={`h-3.5 w-3.5 ${s <= col1Bottom.rating ? "text-amber-400" : "text-brand-navy/15"}`}>
+              {[1,2,3,4,5].map(() => (
+                <svg viewBox="0 0 20 20" fill="currentColor" class="h-3.5 w-3.5 text-amber-400">
                   <path d={STAR_PATH}/>
                 </svg>
               ))}
             </div>
-            <p class="mt-3 text-sm leading-relaxed text-brand-navy/70">"{col1Bottom.quote}"</p>
+            <p class="mt-3 text-sm leading-relaxed text-brand-navy/70">"{t.quote}"</p>
             <div class="mt-5 flex items-center gap-2.5">
               <div
                 class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white"
-                style={`background:linear-gradient(135deg,${col1Bottom.from},${col1Bottom.to})`}
+                style={`background:linear-gradient(135deg,${t.from},${t.to})`}
               >
-                {col1Bottom.initials}
+                {t.initials}
               </div>
               <div>
-                <p class="text-sm font-semibold text-brand-navy">{col1Bottom.name}</p>
-                <p class="text-xs text-brand-navy/50">{col1Bottom.role}</p>
+                <p class="text-sm font-semibold text-brand-navy">{t.company}</p>
+                <p class="text-xs text-brand-navy/50">{t.role}</p>
               </div>
             </div>
           </div>
         </Reveal>
-      </div>
+      ))}
 
-      <!-- ── Col 2: 3 stacked cards ── -->
-      <div class="flex flex-col gap-4">
-        {col2.map((t, i) => (
-          <Reveal client:visible delay={0.08 + i * 0.07}>
-            <div class="relative overflow-hidden rounded-2xl border border-brand-navy/10 bg-white p-6 shadow-card">
-              <span class="pointer-events-none absolute right-4 top-2 select-none font-serif text-6xl font-bold leading-none text-brand-navy/[0.06]">"</span>
-              <div class="flex gap-0.5">
-                {[1,2,3,4,5].map(s => (
-                  <svg viewBox="0 0 20 20" fill="currentColor" class={`h-3.5 w-3.5 ${s <= t.rating ? "text-amber-400" : "text-brand-navy/15"}`}>
-                    <path d={STAR_PATH}/>
-                  </svg>
-                ))}
-              </div>
-              <p class="mt-3 text-sm leading-relaxed text-brand-navy/70">"{t.quote}"</p>
-              <div class="mt-5 flex items-center gap-2.5">
-                <div
-                  class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white"
-                  style={`background:linear-gradient(135deg,${t.from},${t.to})`}
-                >
-                  {t.initials}
-                </div>
-                <div>
-                  <p class="text-sm font-semibold text-brand-navy">{t.name}</p>
-                  <p class="text-xs text-brand-navy/50">{t.role}</p>
-                </div>
-              </div>
-            </div>
-          </Reveal>
-        ))}
-      </div>
-
-      <!-- ── Col 3: top card + highlight card ── -->
-      <div class="flex flex-col gap-4">
-
-        <!-- Top regular card -->
-        <Reveal client:visible delay={0.12}>
-          <div class="relative overflow-hidden rounded-2xl border border-brand-navy/10 bg-white p-6 shadow-card">
-            <span class="pointer-events-none absolute right-4 top-2 select-none font-serif text-6xl font-bold leading-none text-brand-navy/[0.06]">"</span>
-            <div class="flex gap-0.5">
-              {[1,2,3,4,5].map(s => (
-                <svg viewBox="0 0 20 20" fill="currentColor" class={`h-3.5 w-3.5 ${s <= col3Top.rating ? "text-amber-400" : "text-brand-navy/15"}`}>
-                  <path d={STAR_PATH}/>
-                </svg>
-              ))}
-            </div>
-            <p class="mt-3 text-sm leading-relaxed text-brand-navy/70">"{col3Top.quote}"</p>
-            <div class="mt-5 flex items-center gap-2.5">
-              <div
-                class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white"
-                style={`background:linear-gradient(135deg,${col3Top.from},${col3Top.to})`}
-              >
-                {col3Top.initials}
-              </div>
-              <div>
-                <p class="text-sm font-semibold text-brand-navy">{col3Top.name}</p>
-                <p class="text-xs text-brand-navy/50">{col3Top.role}</p>
-              </div>
-            </div>
-          </div>
-        </Reveal>
-
-        <!-- Highlight / about card -->
-        <Reveal client:visible delay={0.22}>
-          <div class="relative flex flex-1 flex-col overflow-hidden rounded-2xl border border-brand-indigo/25 bg-gradient-to-br from-brand-indigo/[0.04] to-brand-purple/[0.04] p-6">
-            <span class="pointer-events-none absolute right-4 top-2 select-none font-serif text-6xl font-bold leading-none text-brand-indigo/15">"</span>
-            <div class="flex gap-0.5">
-              {[1,2,3,4,5].map(s => (
-                <svg viewBox="0 0 20 20" fill="currentColor" class={`h-3.5 w-3.5 ${s <= 4 ? "text-amber-400" : "text-brand-navy/15"}`}>
-                  <path d={STAR_PATH}/>
-                </svg>
-              ))}
-            </div>
-            <p class="mt-4 flex-1 text-sm font-medium leading-relaxed text-black">
-              Oxland CRM is a modern CRM platform designed to be simple, intelligent, and enjoyable
-              to use. It streamlines daily tasks, organizes customer interactions, and helps teams
-              work more efficiently while making the entire experience smoother and more engaging
-              for everyone.
-            </p>
-          </div>
-        </Reveal>
-
-      </div>
     </div>
   </div>
 </section>

@@ -1,46 +1,55 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import Reveal from "@/components/Reveal.tsx";
-import { ArrowRight, Compass, Layers3, ShieldCheck, HeartHandshake, Sparkles, Building2 } from "lucide-react";
+import { ArrowRight, Compass, Zap, Layers3, Smartphone, Sparkles, Building2, Telescope } from "lucide-react";
 
 const values = [
   {
     icon: Compass,
-    title: "Truth beats theatre",
-    description: "One parcel record is the source of truth. No parallel spreadsheets, no side-of-desk trackers.",
+    title: "One Source of Truth",
+    description: "Every parcel. One trusted, verified digital record — not five conflicting copies.",
     palette: "text-emerald-600 bg-emerald-50",
   },
   {
-    icon: Layers3,
-    title: "Depth over demos",
-    description: "Cadastre, litigation and field-ops realism first. Pretty UI second. We ship things that hold up in a court, not a pitch.",
+    icon: Zap,
+    title: "Intelligence Over Manual Work",
+    description: "Automate workflows and accelerate decisions instead of chasing scattered documents.",
     palette: "text-brand-indigo bg-brand-indigo/10",
   },
   {
-    icon: ShieldCheck,
-    title: "Compliance is a feature",
-    description: "DPDP, SOC 2, ISO 27001, MeitY, GeM — every guardrail our customers need, on day one.",
+    icon: Layers3,
+    title: "Built for Complexity",
+    description: "Designed for enterprise land operations across mining, energy, infra and industry.",
     palette: "text-brand-purple bg-brand-purple/10",
   },
   {
-    icon: HeartHandshake,
-    title: "Field teams are the customer",
-    description: "The surveyor in Sehore, the counsel in Nagpur, the AGM in Bhopal. Products built for them tend to work.",
+    icon: Smartphone,
+    title: "Technology That Works in the Field",
+    description: "Simple, connected experiences for every stakeholder — office to on-ground.",
     palette: "text-rose-600 bg-rose-50",
   },
 ];
 
-const stats = [
-  { value: "1.2M+", label: "parcels under management" },
-  { value: "14", label: "PSUs · 32 developers" },
-  { value: "18", label: "states + 4 UTs" },
-  { value: "62%", label: "faster cycles" },
+const heroMetrics = [
+  { value: "1M+", label: "Land Parcels Digitally Managed" },
+  { value: "Enterprise", label: "Ready" },
+  { value: "GeoAI", label: "Powered" },
+  { value: "Purpose-Built", label: "For Complex Land Governance" },
+];
+
+const impactLogos = [
+  { src: "/company-logo/vedanta.svg", alt: "Vedanta" },
+  { src: "/company-logo/TATA.png", alt: "Tata Steel" },
+  { src: "/company-logo/BALCO.jpg", alt: "BALCO" },
+  { src: "/company-logo/ECL.jpg", alt: "ESL Steel" },
+  { src: "/company-logo/waaree.png", alt: "Waaree", scale: "scale-[1.9]" },
+  { src: "/company-logo/SAIL.png", alt: "SAIL" },
 ];
 ---
 
 <Layout
-  title="About Us — Oxland | The team building India's land-ops OS"
-  description="About Oxland — the team building the operating system for modern land acquisition, GIS, litigation and R&R teams in India. Our story, values and stats."
+  title="About Us — Oxland | Building the digital backbone for land operations"
+  description="Every major infrastructure project begins with land. Oxland brings acquisition, records, GIS, litigation and rehabilitation together on one intelligent, GeoAI-powered platform."
 >
   <main class="relative">
 
@@ -67,27 +76,27 @@ const stats = [
 
           <Reveal client:visible variant="blur-up" delay={0.08}>
             <h1 class="mt-6 font-display text-5xl font-extrabold leading-[1.05] tracking-tight text-brand-navy sm:text-6xl">
-              We build the workspace{" "}
+              Building the digital backbone for{" "}
               <span class="bg-gradient-to-r from-brand-blue via-brand-indigo to-brand-purple bg-clip-text text-transparent">
-                Indian land teams deserve.
+                land operations.
               </span>
             </h1>
           </Reveal>
 
           <Reveal client:visible variant="fade-up" delay={0.16}>
             <p class="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-brand-navy/65 sm:text-lg">
-              A small team from Bengaluru, Mumbai and Delhi obsessed with one problem: helping the people who actually acquire, manage and defend land in India do it with less friction, more truth and a real audit trail.
+              Every major infrastructure project begins with land. Yet land acquisition, records, GIS, litigation and rehabilitation are still managed across disconnected systems. OxLand brings them together on one intelligent platform — helping enterprises, infrastructure developers and government organizations manage land with greater transparency, speed and confidence.
             </p>
           </Reveal>
         </div>
 
-        {/* Stats strip */}
+        {/* Metrics strip */}
         <Reveal client:visible variant="fade-up" delay={0.28}>
           <div class="mx-auto mt-14 max-w-4xl overflow-hidden rounded-3xl border border-brand-navy/10 bg-white/80 backdrop-blur-md shadow-card">
             <div class="grid grid-cols-2 divide-x divide-brand-navy/8 lg:grid-cols-4">
-              {stats.map((s, i) => (
+              {heroMetrics.map((s, i) => (
                 <div class={`px-5 py-6 text-center ${i >= 2 ? "border-t border-brand-navy/8 lg:border-t-0" : ""}`}>
-                  <div class="font-display text-3xl font-extrabold tracking-tight bg-gradient-to-r from-brand-indigo to-brand-purple bg-clip-text text-transparent tabular-nums sm:text-4xl">
+                  <div class="font-display text-2xl font-extrabold tracking-tight bg-gradient-to-r from-brand-indigo to-brand-purple bg-clip-text text-transparent sm:text-3xl">
                     {s.value}
                   </div>
                   <div class="mt-1 text-xs font-semibold text-brand-navy/60">{s.label}</div>
@@ -107,12 +116,12 @@ const stats = [
             <div>
               <div class="inline-flex items-center gap-2 rounded-full border border-brand-purple/20 bg-brand-purple/5 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-brand-purple">
                 <Sparkles size={11} strokeWidth={2.5} />
-                Why we built Oxland
+                Why we built OxLand
               </div>
               <h2 class="mt-4 font-display text-3xl font-extrabold leading-tight tracking-tight text-brand-navy sm:text-4xl">
-                Because a spreadsheet can't{" "}
+                Better land decisions begin with{" "}
                 <span class="bg-gradient-to-r from-brand-indigo to-brand-purple bg-clip-text text-transparent">
-                  hold up a corridor.
+                  better information.
                 </span>
               </h2>
             </div>
@@ -121,13 +130,13 @@ const stats = [
           <Reveal client:visible variant="slide-left" delay={0.08}>
             <div class="space-y-4 text-[15px] leading-relaxed text-brand-navy/70">
               <p>
-                Every serious land project in India runs on the same broken stack: four spreadsheets, a legacy GIS install, two case-tracking tools, a WhatsApp group and a folder of scanned PDFs. Timelines slip. Audits are painful. Truth lives in five places.
+                Every major infrastructure project begins with land. Yet land teams still manage acquisition, GIS, records and compliance across disconnected systems, scattered documents and manual workflows.
               </p>
               <p>
-                We started Oxland in 2024 because our own teams had felt it — running acquisitions where the map, the ownership chain and the litigation case were three different objects that had to be reconciled by hand. That reconciliation is the invisible tax on every project.
+                The result is slower decisions, limited visibility and unnecessary operational complexity.
               </p>
               <p class="text-brand-navy/85 font-medium">
-                Oxland removes it. One parcel record, every workflow attached, every action versioned. That's the whole thesis.
+                We built OxLand to bring every land workflow into one intelligent platform — connecting GIS, land records, ownership, acquisition, litigation, rehabilitation and field operations through a single source of truth.
               </p>
             </div>
           </Reveal>
@@ -135,7 +144,7 @@ const stats = [
       </div>
     </section>
 
-    {/* -------------------- VALUES -------------------- */}
+    {/* -------------------- WHAT WE BELIEVE -------------------- */}
     <section class="relative bg-[#f7f8fd]/50 py-14 sm:py-20">
       <div class="container">
         <Reveal client:visible>
@@ -173,7 +182,93 @@ const stats = [
       </div>
     </section>
 
-    {/* -------------------- CLOSING CTA -------------------- */}
+    {/* -------------------- OUR IMPACT -------------------- */}
+    <section class="relative py-14 sm:py-20">
+      <div class="container">
+        <div class="grid items-center gap-10 lg:grid-cols-[1fr_1.05fr] lg:gap-16">
+          <Reveal client:visible variant="slide-right">
+            <div>
+              <div class="inline-flex items-center gap-2 rounded-full border border-brand-indigo/20 bg-brand-indigo/5 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-brand-indigo">
+                <Layers3 size={11} strokeWidth={2.5} />
+                Our impact
+              </div>
+              <h2 class="mt-4 font-display text-3xl font-extrabold leading-tight tracking-tight text-brand-navy sm:text-4xl">
+                Trusted across{" "}
+                <span class="bg-gradient-to-r from-brand-indigo to-brand-purple bg-clip-text text-transparent">
+                  complex land portfolios.
+                </span>
+              </h2>
+              <p class="mt-4 text-[15px] leading-relaxed text-brand-navy/70">
+                OxLand supports organizations managing complex land portfolios across mining, manufacturing, renewable energy, infrastructure and industrial development. From parcel mapping and acquisition to litigation management and rehabilitation workflows, our platform helps organizations improve transparency, accelerate decision-making and reduce operational complexity.
+              </p>
+            </div>
+          </Reveal>
+
+          {/* Logo strip card */}
+          <Reveal client:visible variant="slide-left" delay={0.1}>
+            <div class="relative overflow-hidden rounded-3xl border border-brand-navy/10 bg-white p-8 shadow-card">
+              <div class="pointer-events-none absolute -top-20 -right-20 h-48 w-48 rounded-full opacity-50 blur-3xl" style="background: radial-gradient(closest-side, rgba(124,58,237,0.22), transparent 70%);"></div>
+              <div class="relative">
+                <p class="text-center text-[11px] font-bold uppercase tracking-widest text-brand-navy/45">
+                  Powering land teams at
+                </p>
+                <div class="mt-6 grid grid-cols-3 items-center gap-x-6 gap-y-8">
+                  {impactLogos.map((logo) => (
+                    <div class={`flex items-center justify-center ${logo.scale ?? ""}`}>
+                      <img
+                        src={logo.src}
+                        alt={logo.alt}
+                        loading="lazy"
+                        decoding="async"
+                        class="h-9 w-auto max-w-[110px] object-contain opacity-90"
+                        style="filter: url(#about-remove-white);"
+                      />
+                    </div>
+                  ))}
+                </div>
+                <p class="mt-8 text-center text-xs text-brand-navy/50">
+                  Vedanta · Tata Steel · BALCO · ESL Steel · Waaree · ISKCON · Startup India · Startup Odisha
+                </p>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </div>
+
+      {/* white key-out filter for logos on solid backgrounds */}
+      <svg width="0" height="0" class="absolute pointer-events-none" aria-hidden="true">
+        <defs>
+          <filter id="about-remove-white" color-interpolation-filters="sRGB">
+            <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  -1 -1 -1 3 0" />
+          </filter>
+        </defs>
+      </svg>
+    </section>
+
+    {/* -------------------- OUR VISION -------------------- */}
+    <section class="relative bg-[#f7f8fd]/50 py-14 sm:py-20">
+      <div class="container">
+        <Reveal client:visible variant="scale">
+          <div class="mx-auto max-w-3xl text-center">
+            <div class="inline-flex items-center gap-2 rounded-full border border-brand-purple/20 bg-brand-purple/5 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-brand-purple">
+              <Telescope size={11} strokeWidth={2.5} />
+              Our vision
+            </div>
+            <h2 class="mt-5 font-display text-3xl font-extrabold leading-tight tracking-tight text-brand-navy sm:text-4xl lg:text-[42px]">
+              The future of infrastructure, industry and energy{" "}
+              <span class="bg-gradient-to-r from-brand-indigo to-brand-purple bg-clip-text text-transparent">
+                begins with land.
+              </span>
+            </h2>
+            <p class="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-brand-navy/65">
+              Our vision is to build the digital backbone for modern land operations — connecting people, geospatial intelligence and enterprise workflows through one secure platform. We're enabling organizations to make faster decisions, strengthen governance and manage land with confidence.
+            </p>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+
+    {/* -------------------- FINAL CTA -------------------- */}
     <section class="relative py-14 sm:py-20">
       <div class="container">
         <Reveal client:visible variant="scale">
@@ -184,28 +279,37 @@ const stats = [
               <div class="absolute inset-0 opacity-[0.06]" style="background-image: linear-gradient(to right, rgba(255,255,255,0.4) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.4) 1px, transparent 1px); background-size: 44px 44px;"></div>
             </div>
 
-            <div class="relative flex flex-col items-center justify-between gap-6 px-8 py-10 text-center sm:flex-row sm:text-left sm:px-12">
+            <div class="relative flex flex-col items-center gap-6 px-8 py-12 text-center sm:px-12 sm:py-16">
               <div>
                 <div class="text-[10px] font-bold uppercase tracking-widest text-brand-lavender">
-                  Work with us
+                  Get started
                 </div>
-                <h3 class="mt-2 font-display text-2xl font-extrabold text-white sm:text-3xl">
-                  Want to help build{" "}
+                <h3 class="mt-2 font-display text-3xl font-extrabold text-white sm:text-4xl">
+                  Ready to transform{" "}
                   <span class="bg-gradient-to-r from-brand-lavender via-white to-brand-lavender bg-clip-text text-transparent">
-                    India's land-ops OS?
+                    your land operations?
                   </span>
                 </h3>
-                <p class="mt-2 max-w-md text-sm text-white/70">
-                  We're hiring engineers, GIS specialists, land-ops leads and a founding designer. Reach out — every message goes to a human.
+                <p class="mx-auto mt-3 max-w-2xl text-sm text-white/70 sm:text-base">
+                  Whether you're managing hundreds of acres or enterprise-scale land portfolios, OxLand brings GIS, land records, acquisition, litigation, rehabilitation and compliance together on one intelligent platform.
                 </p>
               </div>
-              <a
-                href="/contact"
-                class="group inline-flex shrink-0 items-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-semibold text-brand-navy shadow-soft transition-all hover:bg-white/90"
-              >
-                Get in touch
-                <ArrowRight size={14} strokeWidth={2.5} class="transition-transform group-hover:translate-x-0.5" />
-              </a>
+              <div class="flex flex-wrap items-center justify-center gap-3">
+                <button
+                  type="button"
+                  data-open-contact="demo"
+                  class="group inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-semibold text-brand-navy shadow-soft transition-all hover:bg-white/90"
+                >
+                  Book a Demo
+                  <ArrowRight size={14} strokeWidth={2.5} class="transition-transform group-hover:translate-x-0.5" />
+                </button>
+                <a
+                  href="/contact"
+                  class="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-5 py-3 text-sm font-semibold text-white backdrop-blur-md transition-colors hover:bg-white/10"
+                >
+                  Talk to Our Team
+                </a>
+              </div>
             </div>
           </div>
         </Reveal>
@@ -214,3 +318,13 @@ const stats = [
 
   </main>
 </Layout>
+
+<script>
+  // "Book a Demo" opens the global contact modal
+  document.querySelectorAll("[data-open-contact]").forEach((el) => {
+    el.addEventListener("click", () => {
+      const reason = el.getAttribute("data-open-contact") || "demo";
+      window.dispatchEvent(new CustomEvent("oxland:open-contact", { detail: { reason } }));
+    });
+  });
+</script>

@@ -1,48 +1,50 @@
 ---
 import Reveal from "@/components/Reveal.tsx";
 import CountUp from "@/components/CountUp.tsx";
-import { MapPinned, Building2, Timer, ShieldCheck } from "lucide-react";
+import { Rocket, FileText, Orbit, BrainCircuit } from "lucide-react";
 
 type Stat = {
   icon: any;
-  to: number;
+  to?: number;
   decimals?: number;
   prefix?: string;
   suffix?: string;
   separator?: boolean;
+  staticText?: string;
   label: string;
   detail: string;
 };
 
 const stats: Stat[] = [
   {
-    icon: MapPinned,
-    to: 1.2,
-    decimals: 1,
-    suffix: "M+",
+    icon: Rocket,
+    to: 70,
+    suffix: "%+",
     separator: false,
-    label: "parcels under management",
-    detail: "Across acquisition, R&R and litigation pipelines.",
+    label: "Faster Land Acquisition",
+    detail: "Accelerate acquisition through GIS-driven workflows.",
   },
   {
-    icon: Building2,
-    to: 18,
-    label: "states + 4 UTs covered",
-    detail: "Pre-loaded cadastre, RoR and revenue layer support.",
+    icon: FileText,
+    to: 90,
+    suffix: "%+",
+    separator: false,
+    label: "Reduced Manual Documentation",
+    detail: "Digitize records and automate document management.",
   },
   {
-    icon: Timer,
-    to: 62,
-    suffix: "%",
-    label: "faster time-to-acquire",
-    detail: "Median reduction reported by infra & realty teams.",
+    icon: Orbit,
+    to: 360,
+    suffix: "°",
+    separator: false,
+    label: "Land Lifecycle Management",
+    detail: "One platform for acquisition, records, litigation and R&R.",
   },
   {
-    icon: ShieldCheck,
-    to: 100,
-    suffix: "%",
-    label: "audit-grade trail",
-    detail: "Every clause, payment and approval is versioned.",
+    icon: BrainCircuit,
+    staticText: "GeoAI",
+    label: "Decision Intelligence",
+    detail: "Transform land and spatial data into actionable insights.",
   },
 ];
 ---
@@ -67,15 +69,21 @@ const stats: Stat[] = [
                 <span class="grid h-10 w-10 place-items-center rounded-xl bg-brand-indigo/10 text-brand-indigo shadow-[0_2px_8px_rgba(79,70,229,0.12)]">
                   <s.icon size={18} strokeWidth={2.25} />
                 </span>
-                <CountUp
-                  client:visible
-                  to={s.to}
-                  decimals={s.decimals ?? 0}
-                  prefix={s.prefix ?? ""}
-                  suffix={s.suffix ?? ""}
-                  separator={s.separator ?? true}
-                  className="font-display text-4xl font-extrabold tracking-tight sm:text-5xl bg-gradient-to-r from-brand-indigo to-brand-purple bg-clip-text text-transparent tabular-nums"
-                />
+                {s.staticText ? (
+                  <span class="font-display text-4xl font-extrabold tracking-tight sm:text-5xl bg-gradient-to-r from-brand-indigo to-brand-purple bg-clip-text text-transparent">
+                    {s.staticText}
+                  </span>
+                ) : (
+                  <CountUp
+                    client:visible
+                    to={s.to ?? 0}
+                    decimals={s.decimals ?? 0}
+                    prefix={s.prefix ?? ""}
+                    suffix={s.suffix ?? ""}
+                    separator={s.separator ?? true}
+                    className="font-display text-4xl font-extrabold tracking-tight sm:text-5xl bg-gradient-to-r from-brand-indigo to-brand-purple bg-clip-text text-transparent tabular-nums"
+                  />
+                )}
               </div>
               <p class="mt-3 text-sm font-semibold text-brand-navy">{s.label}</p>
               <p class="mt-1 text-xs leading-relaxed text-brand-navy/55">{s.detail}</p>

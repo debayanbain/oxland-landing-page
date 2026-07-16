@@ -13,126 +13,31 @@ interface Testimonial {
 const STAR_PATH =
   "M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z";
 
-// Index 0 is rendered as the featured (gradient) card.
 const testimonials: Testimonial[] = [
-  {
-    company: "Tata Steel",
-    role: "Head – IT Services",
-    initials: "TS",
-    quote:
-      "The GIS capabilities in OxLand are exceptionally well designed. The platform brings together mapping, land records, and operational workflows into a single intuitive system that significantly improves decision-making.",
-    from: "#6366f1",
-    to: "#4338ca",
-  },
-  {
-    company: "BALCO",
-    role: "Dy. HOD – Legal",
-    initials: "BA",
-    quote:
-      "OxLand has transformed the way we manage our land bank. Having all land records, legal documents, ownership details, and litigation information in one platform has greatly improved efficiency.",
-    from: "#38bdf8",
-    to: "#0284c7",
-  },
-  {
-    company: "Vedanta Ltd.",
-    role: "Land Head",
-    initials: "VL",
-    quote:
-      "OxLand has simplified our land management operations by providing complete visibility into land records, acquisition progress, and documentation. It has become an integral part of our workflow.",
-    from: "#34d399",
-    to: "#059669",
-  },
-  {
-    company: "Vedanta Aluminium Metal Ltd.",
-    role: "CDO – Mines",
-    initials: "VA",
-    quote:
-      "Managing mining land assets has become significantly easier with OxLand. The GIS-based platform enables better planning, monitoring, and faster access to critical land information.",
-    from: "#fbbf24",
-    to: "#d97706",
-  },
-  {
-    company: "ESL Steel Limited",
-    role: "Land Head",
-    initials: "ES",
-    quote:
-      "OxLand provides a centralized platform for managing land assets efficiently. The digital workflows and GIS capabilities have improved coordination across our teams.",
-    from: "#a78bfa",
-    to: "#7c3aed",
-  },
-  {
-    company: "Aditya Birla Renewables",
-    role: "Head – IT",
-    initials: "AB",
-    quote:
-      "OxLand offers a modern and scalable platform for enterprise land management. The solution is intuitive, highly configurable, and aligns well with large-scale renewable energy projects.",
-    from: "#f472b6",
-    to: "#db2777",
-  },
-  {
-    company: "Eastern Coalfields Ltd. (ECL)",
-    role: "HOD – Survey",
-    initials: "EC",
-    quote:
-      "The GIS visualization and survey data integration available in OxLand have made monitoring land boundaries and survey information much more efficient and accurate.",
-    from: "#2dd4bf",
-    to: "#0d9488",
-  },
-  {
-    company: "Waaree Energies",
-    role: "CIO",
-    initials: "WE",
-    quote:
-      "OxLand brings together technology, GIS, and workflow automation into a single enterprise platform. It provides the visibility and control required for managing land acquisition at scale.",
-    from: "#818cf8",
-    to: "#4f46e5",
-  },
-  {
-    company: "JSW Cement",
-    role: "Digital Head",
-    initials: "JC",
-    quote:
-      "OxLand is a comprehensive digital platform that modernizes land management through automation, centralized records, and intelligent GIS-based insights.",
-    from: "#fb923c",
-    to: "#ea580c",
-  },
-  {
-    company: "IIT Ropar (iHub AWaDH)",
-    role: "CEO",
-    initials: "IR",
-    quote:
-      "OxLand demonstrates how advanced GIS and AI technologies can solve complex land management challenges. The platform reflects strong technical innovation with practical industry applications.",
-    from: "#c084fc",
-    to: "#9333ea",
-  },
-  {
-    company: "IIT Tirupati (IITTNIF)",
-    role: "Project Director",
-    initials: "IT",
-    quote:
-      "OxLand effectively combines research-driven innovation with real-world usability. The platform has significant potential for digital land governance and large-scale land management initiatives.",
-    from: "#60a5fa",
-    to: "#2563eb",
-  },
-  {
-    company: "SAIL",
-    role: "DGM – Land & Estate",
-    initials: "SA",
-    quote:
-      "OxLand streamlines land record management, document digitization, and GIS visualization through a single integrated platform, making day-to-day land administration far more efficient.",
-    from: "#4ade80",
-    to: "#16a34a",
-  },
+  { company: "Tata Steel", role: "Head – IT Services", initials: "TS", from: "#6366f1", to: "#4338ca", quote: "The GIS capabilities in OxLand are exceptionally well designed. The platform brings together mapping, land records, and operational workflows into a single intuitive system that significantly improves decision-making." },
+  { company: "BALCO", role: "Dy. HOD – Legal", initials: "BA", from: "#38bdf8", to: "#0284c7", quote: "OxLand has transformed the way we manage our land bank. Having all land records, legal documents, ownership details, and litigation information in one platform has greatly improved efficiency." },
+  { company: "Vedanta Ltd.", role: "Land Head", initials: "VL", from: "#34d399", to: "#059669", quote: "OxLand has simplified our land management operations by providing complete visibility into land records, acquisition progress, and documentation. It has become an integral part of our workflow." },
+  { company: "Vedanta Aluminium Metal Ltd.", role: "CDO – Mines", initials: "VA", from: "#fbbf24", to: "#d97706", quote: "Managing mining land assets has become significantly easier with OxLand. The GIS-based platform enables better planning, monitoring, and faster access to critical land information." },
+  { company: "ESL Steel Limited", role: "Land Head", initials: "ES", from: "#a78bfa", to: "#7c3aed", quote: "OxLand provides a centralized platform for managing land assets efficiently. The digital workflows and GIS capabilities have improved coordination across our teams." },
+  { company: "Aditya Birla Renewables", role: "Head – IT", initials: "AB", from: "#f472b6", to: "#db2777", quote: "OxLand offers a modern and scalable platform for enterprise land management. The solution is intuitive, highly configurable, and aligns well with large-scale renewable energy projects." },
+  { company: "Eastern Coalfields Ltd. (ECL)", role: "HOD – Survey", initials: "EC", from: "#2dd4bf", to: "#0d9488", quote: "The GIS visualization and survey data integration available in OxLand have made monitoring land boundaries and survey information much more efficient and accurate." },
+  { company: "Waaree Energies", role: "CIO", initials: "WE", from: "#818cf8", to: "#4f46e5", quote: "OxLand brings together technology, GIS, and workflow automation into a single enterprise platform. It provides the visibility and control required for managing land acquisition at scale." },
+  { company: "JSW Cement", role: "Digital Head", initials: "JC", from: "#fb923c", to: "#ea580c", quote: "OxLand is a comprehensive digital platform that modernizes land management through automation, centralized records, and intelligent GIS-based insights." },
+  { company: "IIT Ropar (iHub AWaDH)", role: "CEO", initials: "IR", from: "#c084fc", to: "#9333ea", quote: "OxLand demonstrates how advanced GIS and AI technologies can solve complex land management challenges. The platform reflects strong technical innovation with practical industry applications." },
+  { company: "IIT Tirupati (IITTNIF)", role: "Project Director", initials: "IT", from: "#60a5fa", to: "#2563eb", quote: "OxLand effectively combines research-driven innovation with real-world usability. The platform has significant potential for digital land governance and large-scale land management initiatives." },
+  { company: "SAIL", role: "DGM – Land & Estate", initials: "SA", from: "#4ade80", to: "#16a34a", quote: "OxLand streamlines land record management, document digitization, and GIS visualization through a single integrated platform, making day-to-day land administration far more efficient." },
 ];
 
-const featured = testimonials[0];
-const rest = testimonials.slice(1);
+// Split into two rows; each duplicated once for a seamless marquee loop.
+const rowA = testimonials.slice(0, 6);
+const rowB = testimonials.slice(6);
+const trackA = [...rowA, ...rowA];
+const trackB = [...rowB, ...rowB];
 ---
 
 <section id="testimonials" class="relative py-16 sm:py-20">
   <div class="container">
-
-    <!-- Header -->
+    {/* Header */}
     <Reveal client:visible>
       <div class="mx-auto max-w-2xl text-center">
         <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-brand-indigo/20 bg-brand-indigo/5 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-brand-indigo">
@@ -153,75 +58,68 @@ const rest = testimonials.slice(1);
         </p>
       </div>
     </Reveal>
-
-    <!-- Masonry grid — featured gradient card + 11 quote cards -->
-    <div class="mt-12 gap-4 [column-fill:balance] sm:columns-2 lg:columns-3">
-
-      <!-- Featured card -->
-      <Reveal client:visible delay={0.05} className="mb-4 break-inside-avoid">
-        <div class="relative flex flex-col overflow-hidden rounded-3xl bg-gradient-to-br from-brand-indigo to-brand-purple p-7 text-white">
-          <div
-            class="pointer-events-none absolute inset-0 opacity-[0.07]"
-            style="background-image:radial-gradient(circle,#fff 1px,transparent 1px);background-size:18px 18px;"
-          />
-          <span class="pointer-events-none absolute right-5 top-3 select-none font-serif text-7xl font-bold leading-none text-white/20">"</span>
-
-          <div class="flex gap-0.5">
-            {[1,2,3,4,5].map(() => (
-              <svg viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4 text-amber-300">
-                <path d={STAR_PATH}/>
-              </svg>
-            ))}
-          </div>
-
-          <p class="relative mt-5 text-base font-medium leading-relaxed text-white/90">
-            "{featured.quote}"
-          </p>
-
-          <div class="mt-8 flex items-center gap-3">
-            <div
-              class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-sm font-bold text-white ring-2 ring-white/30"
-              style={`background:linear-gradient(135deg,${featured.from},${featured.to})`}
-            >
-              {featured.initials}
-            </div>
-            <div>
-              <p class="text-sm font-bold text-white">{featured.company}</p>
-              <p class="text-xs text-white/60">{featured.role}</p>
-            </div>
-          </div>
-        </div>
-      </Reveal>
-
-      <!-- Remaining testimonials -->
-      {rest.map((t, i) => (
-        <Reveal client:visible delay={0.06 + (i % 3) * 0.05} className="mb-4 break-inside-avoid">
-          <div class="relative overflow-hidden rounded-2xl border border-brand-navy/10 bg-white p-6 shadow-card">
-            <span class="pointer-events-none absolute right-4 top-2 select-none font-serif text-6xl font-bold leading-none text-brand-navy/[0.06]">"</span>
-            <div class="flex gap-0.5">
-              {[1,2,3,4,5].map(() => (
-                <svg viewBox="0 0 20 20" fill="currentColor" class="h-3.5 w-3.5 text-amber-400">
-                  <path d={STAR_PATH}/>
-                </svg>
-              ))}
-            </div>
-            <p class="mt-3 text-sm leading-relaxed text-brand-navy/70">"{t.quote}"</p>
-            <div class="mt-5 flex items-center gap-2.5">
-              <div
-                class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white"
-                style={`background:linear-gradient(135deg,${t.from},${t.to})`}
-              >
-                {t.initials}
-              </div>
-              <div>
-                <p class="text-sm font-semibold text-brand-navy">{t.company}</p>
-                <p class="text-xs text-brand-navy/50">{t.role}</p>
-              </div>
-            </div>
-          </div>
-        </Reveal>
-      ))}
-
-    </div>
   </div>
+
+  {/* Dual-strip carousel — full-bleed, rows scroll opposite directions */}
+  <Reveal client:visible delay={0.1}>
+    <div class="mt-12 space-y-4">
+      {/* Row A — scrolls left */}
+      <div class="group/row relative overflow-hidden">
+        <div class="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-background to-transparent sm:w-32"></div>
+        <div class="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-background to-transparent sm:w-32"></div>
+        <div
+          class="flex w-max items-stretch gap-6 animate-marquee-x [animation-play-state:running] group-hover/row:[animation-play-state:paused]"
+          style="--marquee-duration: 68s;"
+        >
+          {trackA.map((t, i) => (
+            <article class="relative flex w-[340px] shrink-0 flex-col rounded-2xl border border-brand-navy/10 bg-white p-6 shadow-card sm:w-[380px]" aria-hidden={i >= rowA.length ? "true" : undefined}>
+              <span class="pointer-events-none absolute right-4 top-2 select-none font-serif text-5xl font-bold leading-none text-brand-navy/[0.06]">"</span>
+              <div class="flex gap-0.5">
+                {[1,2,3,4,5].map(() => (
+                  <svg viewBox="0 0 20 20" fill="currentColor" class="h-3.5 w-3.5 text-amber-400"><path d={STAR_PATH}/></svg>
+                ))}
+              </div>
+              <p class="mt-3 flex-1 text-sm leading-relaxed text-brand-navy/70 line-clamp-5">"{t.quote}"</p>
+              <div class="mt-5 flex items-center gap-2.5">
+                <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white" style={`background:linear-gradient(135deg,${t.from},${t.to})`}>{t.initials}</div>
+                <div>
+                  <p class="text-sm font-semibold text-brand-navy">{t.company}</p>
+                  <p class="text-xs text-brand-navy/50">{t.role}</p>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      {/* Row B — scrolls right */}
+      <div class="group/row relative overflow-hidden">
+        <div class="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-background to-transparent sm:w-32"></div>
+        <div class="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-background to-transparent sm:w-32"></div>
+        <div
+          class="flex w-max items-stretch gap-6 animate-marquee-x-reverse [animation-play-state:running] group-hover/row:[animation-play-state:paused]"
+          style="--marquee-duration: 68s;"
+        >
+          {trackB.map((t, i) => (
+            <article class="relative flex w-[340px] shrink-0 flex-col rounded-2xl border border-brand-navy/10 bg-white p-6 shadow-card sm:w-[380px]" aria-hidden={i >= rowB.length ? "true" : undefined}>
+              <span class="pointer-events-none absolute right-4 top-2 select-none font-serif text-5xl font-bold leading-none text-brand-navy/[0.06]">"</span>
+              <div class="flex gap-0.5">
+                {[1,2,3,4,5].map(() => (
+                  <svg viewBox="0 0 20 20" fill="currentColor" class="h-3.5 w-3.5 text-amber-400"><path d={STAR_PATH}/></svg>
+                ))}
+              </div>
+              <p class="mt-3 flex-1 text-sm leading-relaxed text-brand-navy/70 line-clamp-5">"{t.quote}"</p>
+              <div class="mt-5 flex items-center gap-2.5">
+                <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white" style={`background:linear-gradient(135deg,${t.from},${t.to})`}>{t.initials}</div>
+                <div>
+                  <p class="text-sm font-semibold text-brand-navy">{t.company}</p>
+                  <p class="text-xs text-brand-navy/50">{t.role}</p>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </div>
+  </Reveal>
 </section>

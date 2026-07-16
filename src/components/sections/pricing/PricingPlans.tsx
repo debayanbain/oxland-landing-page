@@ -73,7 +73,7 @@ export default function PricingPlans() {
         }
       `}</style>
 
-      <section id="plans" className="relative py-12 sm:py-16">
+      <section id="plans" className="relative pt-4 pb-12 sm:pt-6 sm:pb-16">
         <div className="container">
           <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 lg:grid-cols-2">
             {/* -------------------- FREE EVALUATION -------------------- */}

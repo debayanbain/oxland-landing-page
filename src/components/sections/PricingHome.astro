@@ -1,0 +1,45 @@
+---
+import Reveal from "@/components/Reveal.tsx";
+import PricingPlans from "@/components/sections/pricing/PricingPlans.tsx";
+import { ArrowRight } from "lucide-react";
+---
+<section id="pricing" class="relative py-16 sm:py-20 scroll-mt-16">
+  <div class="container">
+    {/* Header */}
+    <Reveal client:visible>
+      <div class="mx-auto max-w-2xl text-center">
+        <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-brand-indigo/20 bg-brand-indigo/5 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-brand-indigo">
+          <span class="h-1.5 w-1.5 rounded-full bg-brand-indigo"></span>
+          Pricing
+        </div>
+        <h2 class="font-display text-4xl font-extrabold tracking-tight text-brand-navy sm:text-5xl">
+          Simple pricing,{" "}
+          <span class="bg-gradient-to-r from-brand-blue via-brand-indigo to-brand-purple bg-clip-text text-transparent">
+            built for land teams.
+          </span>
+        </h2>
+        <p class="mt-4 text-base text-brand-navy/60">
+          Start with a free evaluation, or scale to a fully-configured Enterprise deployment.
+        </p>
+      </div>
+    </Reveal>
+  </div>
+
+  {/* Reuse the exact 2-card pricing block from the pricing page */}
+  <PricingPlans client:visible />
+
+  {/* Link to full pricing page */}
+  <div class="container">
+    <Reveal client:visible delay={0.1}>
+      <div class="mt-4 flex justify-center">
+        <a
+          href="/pricing"
+          class="group inline-flex items-center gap-2 rounded-full border border-brand-navy/12 bg-white px-5 py-2.5 text-sm font-semibold text-brand-navy transition-all hover:border-brand-indigo/30 hover:shadow-soft"
+        >
+          See full pricing &amp; feature comparison
+          <ArrowRight size={14} strokeWidth={2.5} class="text-brand-indigo transition-transform group-hover:translate-x-0.5" />
+        </a>
+      </div>
+    </Reveal>
+  </div>
+</section>

@@ -5,36 +5,48 @@ import { Plus, MessageCircleQuestion } from "lucide-react";
 
 export const FAQS = [
   {
-    q: "Do we need to migrate our existing GIS data to use Oxland?",
-    a: "No. Oxland ingests Shapefile, GeoPackage, KML/KMZ and most state-portal exports. We can mirror your current GIS layer structure or rebuild it cleanly — your choice. Most teams do a hybrid: keep their legacy ESRI/QGIS layers as-is, and let Oxland become the parcel-level workspace on top.",
+    q: "What is OxLand and who is it built for?",
+    a: "OxLand is a Geo-AI powered Land Management Platform that helps organizations manage land acquisition, land records, GIS mapping, litigation, document management, land bank monitoring, Rehabilitation & Resettlement (R&R), and executive reporting from a single platform. It is designed for organizations that own, acquire, develop, or manage land assets across renewable energy, mining, manufacturing, infrastructure, industrial parks, logistics, ports, railways, government agencies, and other land-intensive industries.",
   },
   {
-    q: "How does the offline survey app work for areas with no signal?",
-    a: "The Android app caches the relevant project area, parcel attributes, photo upload queue and form templates on-device. Surveyors can capture, geo-tag, sketch and fill records without any signal — when they're back on Wi-Fi or 4G, everything syncs to the cloud parcel record automatically.",
+    q: "Can OxLand manage the complete land acquisition lifecycle?",
+    a: "Yes. OxLand provides configurable workflows to support every stage of the land acquisition process, including parcel identification, GIS mapping, ownership information management, survey activities, negotiations, document collection, approvals, compensation tracking, mutation monitoring, and post-acquisition record management. Organizations can configure the workflows to align with their internal processes and applicable regulations.",
   },
   {
-    q: "Can Oxland handle the litigation volume of a major infrastructure project?",
-    a: "Yes — our largest tenant tracks 4,200+ active cases across 11 states. The case engine indexes hearings, orders, counsel allocations and party-wise dossiers. OCR runs on every uploaded order and links it back to the parcel and the case automatically.",
+    q: "How does OxLand help organizations manage large land banks?",
+    a: "OxLand centralizes land information into a single digital platform, allowing teams to monitor parcel status, ownership, acquisition progress, litigation, document availability, and land utilization through GIS maps and real-time dashboards. This enables better visibility and informed decision-making across geographically distributed land assets.",
   },
   {
-    q: "How customisable are the workflows?",
-    a: "Approval matrices, stage transitions, document checklists, validation rules and notification rules are all configurable per project — no code, no developer involvement. For state-rule-specific computations (like RFCTLARR awards), we ship pre-built logic that you can tune.",
+    q: "Can OxLand integrate with our existing land records and GIS data?",
+    a: "Yes. OxLand supports importing cadastral maps, GIS layers, Shapefiles, GeoJSON, KML/KMZ, GeoPackages, Excel datasets, and digitized land records. Existing datasets can be integrated into the platform while preserving historical information, subject to data quality and compatibility.",
   },
   {
-    q: "What integrations are available out of the box?",
-    a: "SAP, Oracle ERP, Tally, Zoho, Microsoft Dynamics, DocuSign, Adobe Sign, NIC e-procurement and most state land-record portals where APIs are published. We also expose a documented REST API and webhooks for anything custom.",
+    q: "Does OxLand include a mobile application for field teams?",
+    a: "Yes. The OxLand Mobile App enables authorized field personnel to capture GPS coordinates, photographs, survey observations, owner interactions, and supporting documents directly from the field. Offline data capture is supported, with synchronization occurring when network connectivity becomes available.",
   },
   {
-    q: "How do you handle vernacular content — RoR in Hindi, court orders in Marathi?",
-    a: "OCR runs on 10 Indian languages today. Extracted text is tagged at field level (khasra, owner, area, dates) and indexed for search — so a query like 'show me all orders mentioning section 11A in district Pune' works regardless of source language.",
+    q: "How does Geo-AI support land monitoring?",
+    a: "OxLand combines GIS with Geo-AI capabilities to assist organizations in monitoring land assets. Depending on available imagery and project requirements, the platform can help identify land-use changes, potential encroachments, project progress, and other spatial insights that support operational planning and decision-making. Geo-AI outputs are intended to assist users and should be reviewed alongside applicable field verification and organizational processes where required.",
   },
   {
-    q: "What about data residency and compliance?",
-    a: "All customer data sits in India-region data centres (AWS Mumbai, Azure India, OCI Hyderabad) by default. Backups are encrypted at rest. We are ISO 27001 audited, MeitY empanelled, and DPDP Act 2023 compliant — DPA and MSA available under NDA.",
+    q: "Can OxLand help manage land-related litigation?",
+    a: "Yes. OxLand includes Litigation Management capabilities that help organizations organize and monitor land-related legal matters, including court cases, hearing schedules, legal notices, case documents, advocates, and associated land parcels. The platform provides centralized visibility and workflow support; however, legal decisions and case outcomes remain subject to judicial and regulatory processes.",
   },
   {
-    q: "Can we white-label Oxland for our PSU / nodal-agency rollout?",
-    a: "Yes — Enterprise customers can run Oxland under their own brand, with custom domain, logos, colour tokens and onboarding flow. Your end users will never see the word 'Oxland' unless you want them to.",
+    q: "Can OxLand generate reports and executive dashboards?",
+    a: "Yes. OxLand provides configurable dashboards and reports covering land acquisition progress, land bank status, litigation, compensation tracking, document management, survey activities, ownership records, and operational KPIs. Reports can be filtered, exported, and customized to support management reviews and project monitoring.",
+  },
+  {
+    q: "Can multiple departments collaborate on the same platform?",
+    a: "Yes. OxLand supports collaboration across Land, Legal, GIS, Survey, Projects, Finance, R&R, and Management teams through role-based access controls, configurable approval workflows, notifications, and complete audit trails. This helps improve coordination while maintaining controlled access to sensitive information.",
+  },
+  {
+    q: "How does OxLand help protect and secure land information?",
+    a: "OxLand incorporates enterprise security features including role-based access control, user authentication, audit logging, encrypted communication, and configurable permissions to help organizations safeguard their land-related information. Deployment options and security configurations can be aligned with an organization's IT and governance requirements.",
+  },
+  {
+    q: "Can OxLand be customized to our organization's land management process?",
+    a: "Yes. OxLand is designed to support configurable workflows, approval hierarchies, dashboards, reports, document templates, and business rules. This allows organizations to align the platform with their operational processes, governance policies, and project requirements without changing their core business practices.",
   },
 ];
 

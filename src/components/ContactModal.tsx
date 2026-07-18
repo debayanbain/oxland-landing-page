@@ -441,38 +441,35 @@ export default function ContactModal() {
                       </select>
                     </Field>
 
-                    <div className="grid gap-4 sm:grid-cols-2">
-                      <Field
-                        label="Parcels under management"
-                        icon={<MapPinned size={14} strokeWidth={2.25} />}
-                      >
-                        <input
-                          type="text"
-                          inputMode="numeric"
-                          value={form.parcels}
-                          onChange={(e) => update("parcels", e.target.value)}
-                          placeholder="e.g. 2,500"
-                          className={inputCls}
-                        />
-                      </Field>
-                      <Field
-                        label="Preferred date"
-                        icon={<Calendar size={14} strokeWidth={2.25} />}
-                      >
-                        <input
-                          type="date"
-                          value={form.preferredDate}
-                          onChange={(e) => update("preferredDate", e.target.value)}
-                          className={inputCls}
-                        />
-                      </Field>
-                    </div>
+                    <Field
+                      label="Parcels under management"
+                      icon={<MapPinned size={14} strokeWidth={2.25} />}
+                    >
+                      <input
+                        type="text"
+                        inputMode="numeric"
+                        value={form.parcels}
+                        onChange={(e) => update("parcels", e.target.value)}
+                        placeholder="e.g. 2,500"
+                        className={inputCls}
+                      />
+                    </Field>
 
-                    <div>
-                      <label className="text-xs font-bold uppercase tracking-wider text-brand-navy/55">
-                        Preferred time slot
-                      </label>
-                      <div className="mt-2 grid grid-cols-3 gap-2">
+                    {/* Preferred date + time slot — one grouped section */}
+                    <div className="rounded-2xl border border-brand-navy/10 bg-brand-navy/[0.02] p-4">
+                      <div className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-navy/55">
+                        <Calendar size={14} strokeWidth={2.25} className="text-brand-indigo" />
+                        Preferred date &amp; time
+                      </div>
+
+                      <input
+                        type="date"
+                        value={form.preferredDate}
+                        onChange={(e) => update("preferredDate", e.target.value)}
+                        className={`${inputCls} mt-3`}
+                      />
+
+                      <div className="mt-3 grid grid-cols-3 gap-2">
                         {TIME_SLOTS.map((slot) => {
                           const active = form.preferredSlot === slot.id;
                           return (

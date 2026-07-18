@@ -3,34 +3,26 @@ import { motion, useReducedMotion } from "framer-motion";
 import {
   ArrowRight,
   Sparkles,
-  TrendingUp,
   Bell,
   MapPinned,
-  Gavel,
-  Activity,
+  ScanEye,
+  CheckCircle2,
+  Layers3,
 } from "lucide-react";
-import CountUp from "@/components/CountUp.tsx";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-const tickerItems = [
-  { tone: "indigo", text: "Parcel KA-441 — owner meeting confirmed", time: "2m" },
-  { tone: "warning", text: "Litigation LC-089 — order uploaded", time: "1h" },
-  { tone: "success", text: "Survey complete · 28 parcels", time: "3h" },
+const alerts = [
+  { tone: "brand-purple", text: "Boundary updated", time: "2m ago" },
+  { tone: "brand-blue", text: "Drone survey complete", time: "18m ago" },
+  { tone: "success", text: "Mutation approved", time: "2h ago" },
 ];
 
-const toneDot: Record<string, string> = {
-  indigo: "bg-brand-indigo",
-  warning: "bg-warning",
+const dotTone: Record<string, string> = {
+  "brand-purple": "bg-brand-purple",
+  "brand-blue": "bg-brand-blue",
   success: "bg-success",
 };
-
-const bars = [
-  { label: "Identified", value: 92 },
-  { label: "Negotiation", value: 64 },
-  { label: "Award", value: 38 },
-  { label: "Closed", value: 22 },
-];
 
 export default function FeaturesCta() {
   const reduce = useReducedMotion();
@@ -43,24 +35,44 @@ export default function FeaturesCta() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.7, ease: EASE }}
-          className="relative overflow-hidden rounded-[40px] border border-brand-navy/10 shadow-float"
+          className="relative overflow-hidden rounded-[40px] border border-brand-navy/10 shadow-float lg:min-h-[600px]"
           style={{
             background:
-              "linear-gradient(135deg, #f7f8ff 0%, #eef0fc 60%, #f4e8ff 100%)",
+              "linear-gradient(135deg, #f7f8ff 0%, #eef0fc 55%, #f4e8ff 100%)",
           }}
         >
-          <div className="pointer-events-none absolute -top-32 -left-20 h-[420px] w-[420px] rounded-full blur-3xl opacity-60" style={{ background: "radial-gradient(closest-side, rgba(79,70,229,0.32), transparent 70%)" }} />
-          <div className="pointer-events-none absolute -bottom-32 -right-20 h-[420px] w-[420px] rounded-full blur-3xl opacity-60" style={{ background: "radial-gradient(closest-side, rgba(124,58,237,0.32), transparent 70%)" }} />
-          <div
-            className="pointer-events-none absolute inset-0 opacity-[0.05]"
-            style={{
-              backgroundImage:
-                "linear-gradient(rgba(79,70,229,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(79,70,229,0.4) 1px, transparent 1px)",
-              backgroundSize: "44px 44px",
-            }}
-          />
+          {/* ---- Full-bleed background photo (right side), faded into the card on the left ---- */}
+          <div className="pointer-events-none absolute inset-0 hidden lg:block">
+            <img
+              src="/Feature_bg.png"
+              alt="Aerial view of a solar-farm land parcel with an engineer reviewing it on Oxland"
+              className="absolute inset-y-0 right-0 h-full w-[74%] object-cover object-right"
+              loading="lazy"
+              decoding="async"
+              draggable={false}
+            />
+            {/* Left gradient — melts the photo edge into the card surface behind the copy */}
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(90deg, #f1f1fb 0%, #f1f1fb 46%, rgba(241,241,251,0.82) 58%, rgba(241,241,251,0.4) 68%, rgba(241,241,251,0) 80%)",
+              }}
+            />
+            {/* Gentle top + bottom polish so the photo edges never read as a hard rectangle */}
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(180deg, rgba(247,248,255,0.5) 0%, rgba(247,248,255,0) 16%, rgba(244,232,255,0) 82%, rgba(244,232,255,0.55) 100%)",
+              }}
+            />
+          </div>
 
-          <div className="relative grid items-center gap-12 px-8 py-16 lg:grid-cols-[1.15fr_1fr] lg:px-16 lg:py-20">
+          {/* Decorative orb + grid (kept subtle, behind content) */}
+          <div className="pointer-events-none absolute -top-32 -left-20 h-[420px] w-[420px] rounded-full blur-3xl opacity-50" style={{ background: "radial-gradient(closest-side, rgba(79,70,229,0.28), transparent 70%)" }} />
+
+          <div className="relative z-10 grid items-center gap-12 px-8 py-16 lg:grid-cols-[1fr_1.15fr] lg:gap-6 lg:px-16 lg:py-20">
             {/* Copy */}
             <div>
               <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-brand-indigo ring-1 ring-brand-indigo/20 backdrop-blur-md">
@@ -75,7 +87,7 @@ export default function FeaturesCta() {
                 </span>
               </h2>
 
-              <p className="mt-5 max-w-xl text-base leading-relaxed text-brand-navy/65 sm:text-lg">
+              <p className="mt-5 max-w-md text-base leading-relaxed text-brand-navy/65 sm:text-lg">
                 Bring a real parcel set, a real case file, a real corridor map — we'll load it into a sandbox and walk you through every pillar with your data. 45 minutes. No slides.
               </p>
 
@@ -107,242 +119,181 @@ export default function FeaturesCta() {
               </div>
             </div>
 
-            {/* Cinematic dashboard mock */}
-            <div className="relative">
-              {/* Perspective wrapper */}
-              <div
-                className="relative h-[440px] sm:h-[480px]"
-                style={{ perspective: "1400px" }}
+            {/* Spacer column — the floating cards live in the absolute layer below */}
+            <div className="hidden lg:block" aria-hidden="true" />
+          </div>
+
+          {/* ---- Floating SaaS cards, overlaid on the photo (desktop only) ---- */}
+          <div className="pointer-events-none absolute inset-0 z-20 hidden lg:block">
+            {/* Parcel Details — over the solar field, upper-left of the photo */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, ease: EASE, delay: 0.15 }}
+              className="absolute left-[54%] top-[9%] w-[200px]"
+            >
+              <motion.div
+                animate={reduce ? {} : { y: [0, -6, 0] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                className="rounded-2xl border border-brand-navy/10 bg-white p-4 shadow-float will-change-transform"
               >
-                {/* Floating sub-card — back left (Map) */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20, rotateY: -8 }}
-                  whileInView={{ opacity: 1, y: 0, rotateY: -8 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.7, ease: EASE, delay: 0.15 }}
-                  className="absolute left-0 top-2 w-[58%] origin-bottom-right rounded-2xl border border-brand-navy/10 bg-white p-4 shadow-card"
-                  style={{ transformStyle: "preserve-3d", transform: "rotateY(-8deg) translateZ(-30px)" }}
-                >
-                  <motion.div
-                    animate={reduce ? {} : { y: [0, -6, 0] }}
-                    transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                  >
-                    <div className="flex items-center justify-between text-[10px] font-bold uppercase tracking-wider text-brand-navy/55">
-                      <span className="flex items-center gap-1.5">
-                        <MapPinned size={11} className="text-brand-indigo" />
-                        GIS preview
-                      </span>
-                      <span className="text-brand-navy/35">23.2°N · 77.4°E</span>
+                <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-brand-navy/55">
+                  <MapPinned size={11} className="text-brand-indigo" />
+                  Parcel details
+                </div>
+                <div className="mt-2 flex items-center justify-between">
+                  <span className="font-display text-base font-extrabold text-brand-navy">Plot 224A</span>
+                  <span className="rounded-full bg-success/10 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider text-success">Verified</span>
+                </div>
+                <div className="mt-3 space-y-1.5 text-[11px]">
+                  {[
+                    ["Owner", "ABC Power Pvt. Ltd."],
+                    ["Area", "32.45 Acres"],
+                    ["RoR", "KA-12-224A-1987"],
+                  ].map(([k, v]) => (
+                    <div key={k} className="flex items-center justify-between">
+                      <span className="text-brand-navy/45">{k}</span>
+                      <span className="font-semibold text-brand-navy">{v}</span>
                     </div>
+                  ))}
+                  <div className="flex items-center justify-between pt-0.5">
+                    <span className="text-brand-navy/45">Status</span>
+                    <span className="rounded-full bg-brand-indigo/10 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider text-brand-indigo">Acquired</span>
+                  </div>
+                </div>
+              </motion.div>
+            </motion.div>
 
-                    {/* Mini map */}
-                    <div
-                      className="relative mt-3 h-32 overflow-hidden rounded-xl bg-gradient-to-br from-[#f5f7ff] to-[#eef0fc]"
-                      style={{
-                        backgroundImage:
-                          "linear-gradient(rgba(79,70,229,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(79,70,229,0.08) 1px, transparent 1px)",
-                        backgroundSize: "20px 20px",
-                      }}
-                    >
-                      <svg viewBox="0 0 200 130" className="absolute inset-0 h-full w-full">
-                        <defs>
-                          <linearGradient id="cta-parcel" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stopColor="#4F46E5" stopOpacity="0.35" />
-                            <stop offset="100%" stopColor="#7C3AED" stopOpacity="0.25" />
-                          </linearGradient>
-                        </defs>
-                        <polygon points="50,30 95,28 100,75 55,78" fill="url(#cta-parcel)" stroke="#4F46E5" strokeWidth="1.5" />
-                        <polygon points="100,28 145,32 142,76 100,75" fill="url(#cta-parcel)" stroke="#4F46E5" strokeWidth="1.5" />
-                        <polygon points="55,78 100,75 105,108 60,110" fill="rgba(167,139,250,0.25)" stroke="#7C3AED" strokeWidth="1.2" />
-                        <polygon points="100,75 142,76 148,108 105,108" fill="url(#cta-parcel)" stroke="#4F46E5" strokeWidth="1.5" />
-                        <circle cx="120" cy="92" r="3" fill="#4F46E5">
-                          <animate attributeName="r" values="3;5;3" dur="2s" repeatCount="indefinite" />
-                        </circle>
-                      </svg>
-                    </div>
-
-                    <div className="mt-3 flex items-center justify-between">
+            {/* Live Alerts — top-right */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, ease: EASE, delay: 0.28 }}
+              className="absolute right-[4%] top-[6%] w-[200px]"
+            >
+              <motion.div
+                animate={reduce ? {} : { y: [0, -8, 0] }}
+                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                className="rounded-2xl border border-brand-navy/10 bg-white p-4 shadow-float will-change-transform"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-brand-navy/55">
+                    <Bell size={11} className="text-brand-purple" />
+                    Live alerts
+                  </span>
+                  <span className="rounded-full bg-success/10 px-1.5 py-0.5 text-[9px] font-bold text-success">3 new</span>
+                </div>
+                <ul className="mt-3 space-y-2.5">
+                  {alerts.map((a) => (
+                    <li key={a.text} className="flex items-start gap-2">
+                      <span className={`mt-1 h-1.5 w-1.5 shrink-0 rounded-full ${dotTone[a.tone]} animate-pulse-soft`} />
                       <div>
-                        <div className="text-[10px] font-bold uppercase tracking-wider text-brand-navy/45">Parcels</div>
-                        <div className="font-display text-base font-extrabold text-brand-navy tabular-nums">
-                          <CountUp client:visible to={142} />
-                        </div>
+                        <div className="text-[11px] font-semibold leading-snug text-brand-navy">{a.text}</div>
+                        <div className="text-[10px] text-brand-navy/45">{a.time}</div>
                       </div>
-                      <div>
-                        <div className="text-[10px] font-bold uppercase tracking-wider text-brand-navy/45">Acquired</div>
-                        <div className="font-display text-base font-extrabold text-brand-indigo tabular-nums">68 ha</div>
-                      </div>
-                    </div>
-                  </motion.div>
-                </motion.div>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            </motion.div>
 
-                {/* Floating sub-card — back right (Alerts) */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20, rotateY: 8 }}
-                  whileInView={{ opacity: 1, y: 0, rotateY: 8 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.7, ease: EASE, delay: 0.25 }}
-                  className="absolute right-0 top-0 w-[54%] origin-bottom-left rounded-2xl border border-brand-navy/10 bg-white p-4 shadow-card"
-                  style={{ transformStyle: "preserve-3d", transform: "rotateY(8deg) translateZ(-30px)" }}
-                >
-                  <motion.div
-                    animate={reduce ? {} : { y: [0, -8, 0] }}
-                    transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
-                  >
-                    <div className="flex items-center justify-between text-[10px] font-bold uppercase tracking-wider text-brand-navy/55">
-                      <span className="flex items-center gap-1.5">
-                        <Bell size={11} className="text-brand-purple" />
-                        Live activity
-                      </span>
-                      <span className="rounded-full bg-success/10 px-1.5 py-0.5 text-[9px] font-bold text-success">3 new</span>
-                    </div>
-
-                    <ul className="mt-3 space-y-2.5">
-                      {tickerItems.map((t, i) => (
-                        <motion.li
-                          key={t.text}
-                          initial={{ opacity: 0, x: 6 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 0.5, ease: EASE, delay: 0.5 + i * 0.15 }}
-                          className="flex items-start gap-2"
-                        >
-                          <span className={`mt-1 h-1.5 w-1.5 shrink-0 rounded-full ${toneDot[t.tone]} animate-pulse-soft`} />
-                          <div className="flex-1">
-                            <div className="text-[11px] font-semibold leading-snug text-brand-navy">
-                              {t.text}
-                            </div>
-                            <div className="text-[10px] text-brand-navy/45">{t.time} ago</div>
-                          </div>
-                        </motion.li>
-                      ))}
-                    </ul>
-                  </motion.div>
-                </motion.div>
-
-                {/* Foreground dashboard card */}
-                <motion.div
-                  initial={{ opacity: 0, y: 28, scale: 0.96 }}
-                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, ease: EASE, delay: 0.1 }}
-                  className="absolute left-[14%] right-[14%] bottom-0 rounded-3xl border border-brand-navy/10 bg-white p-5 shadow-float"
-                >
-                  {/* Header */}
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider text-brand-navy/55">
-                        <span className="grid h-5 w-5 place-items-center rounded-md bg-brand-indigo/10 text-brand-indigo">
-                          <Activity size={11} strokeWidth={2.5} />
-                        </span>
-                        Acquisition pipeline
-                      </div>
-                      <div className="mt-1 font-display text-sm font-extrabold text-brand-navy">
-                        Bhopal-Sehore · Phase 2
-                      </div>
-                    </div>
-                    <span className="inline-flex items-center gap-1.5 rounded-full bg-success/10 px-2 py-1 text-[9px] font-bold uppercase tracking-wider text-success">
-                      <span className="h-1.5 w-1.5 rounded-full bg-success animate-pulse-soft" />
-                      Live
-                    </span>
+            {/* Acquisition progress ring — mid, left of centre */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.85 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: EASE, delay: 0.4 }}
+              className="absolute left-[53%] top-[47%]"
+            >
+              <motion.div
+                animate={reduce ? {} : { y: [0, -7, 0] }}
+                transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
+                className="rounded-2xl border border-brand-navy/10 bg-white p-4 shadow-float will-change-transform"
+              >
+                <div className="text-[10px] font-bold uppercase tracking-wider text-brand-navy/55">
+                  Acquisition
+                </div>
+                <div className="mt-2 flex items-center gap-3">
+                  <div className="relative grid h-14 w-14 place-items-center">
+                    <svg viewBox="0 0 40 40" className="h-14 w-14 -rotate-90">
+                      <circle cx="20" cy="20" r="16" fill="none" stroke="rgba(11,20,55,0.08)" strokeWidth="4" />
+                      <motion.circle
+                        cx="20" cy="20" r="16" fill="none" stroke="url(#cta-ring)" strokeWidth="4" strokeLinecap="round"
+                        strokeDasharray="100.5"
+                        initial={{ strokeDashoffset: 100.5 }}
+                        whileInView={{ strokeDashoffset: 100.5 * (1 - 0.78) }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1.2, ease: EASE, delay: 0.6 }}
+                      />
+                      <defs>
+                        <linearGradient id="cta-ring" x1="0%" y1="0%" x2="100%" y2="100%">
+                          <stop offset="0%" stopColor="#4F46E5" />
+                          <stop offset="100%" stopColor="#7C3AED" />
+                        </linearGradient>
+                      </defs>
+                    </svg>
+                    <span className="absolute font-display text-sm font-extrabold text-brand-navy">78%</span>
                   </div>
-
-                  {/* Mini bar chart */}
-                  <div className="mt-4 flex items-end justify-between gap-2 px-1">
-                    {bars.map((b, i) => (
-                      <div key={b.label} className="flex flex-1 flex-col items-center gap-1">
-                        <div className="relative flex h-20 w-full items-end overflow-hidden rounded-md bg-brand-navy/5">
-                          <motion.div
-                            initial={{ height: 0 }}
-                            whileInView={{ height: `${b.value}%` }}
-                            viewport={{ once: true, margin: "-15%" }}
-                            transition={{ duration: 1.1, ease: EASE, delay: 0.4 + i * 0.12 }}
-                            className="w-full rounded-md bg-gradient-to-t from-brand-indigo to-brand-purple shadow-[0_2px_8px_rgba(79,70,229,0.35)]"
-                          >
-                            <motion.span
-                              animate={{ x: ["-100%", "200%"] }}
-                              transition={{ duration: 2.4, repeat: Infinity, ease: "linear", delay: 0.4 + i * 0.12 + 1 }}
-                              className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-white/40 to-transparent"
-                            />
-                          </motion.div>
-                        </div>
-                        <div className="text-[9px] font-bold uppercase tracking-wider text-brand-navy/45">
-                          {b.label}
-                        </div>
-                      </div>
-                    ))}
+                  <div>
+                    <div className="font-display text-xs font-extrabold text-brand-navy">Completed</div>
+                    <div className="text-[10px] text-brand-navy/50">Phase 2 · 224A</div>
                   </div>
+                </div>
+              </motion.div>
+            </motion.div>
 
-                  {/* KPI row */}
-                  <div className="mt-4 grid grid-cols-3 gap-2 border-t border-brand-navy/8 pt-4">
-                    <div>
-                      <div className="text-[10px] font-bold uppercase tracking-wider text-brand-navy/45">Awards</div>
-                      <div className="font-display text-base font-extrabold text-brand-navy">
-                        ₹<CountUp client:visible to={24.6} decimals={1} separator={false} /> Cr
-                      </div>
-                    </div>
-                    <div>
-                      <div className="text-[10px] font-bold uppercase tracking-wider text-brand-navy/45">Families</div>
-                      <div className="font-display text-base font-extrabold text-brand-navy">
-                        <CountUp client:visible to={218} />
-                      </div>
-                    </div>
-                    <div>
-                      <div className="text-[10px] font-bold uppercase tracking-wider text-brand-navy/45">Cycle</div>
-                      <div className="font-display text-base font-extrabold text-brand-indigo">11.4mo</div>
-                    </div>
-                  </div>
-                </motion.div>
+            {/* AI Detection — right, above the person */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.85 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: EASE, delay: 0.52 }}
+              className="absolute right-[3%] top-[40%]"
+            >
+              <motion.div
+                animate={reduce ? {} : { y: [0, -6, 0] }}
+                transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut", delay: 1.1 }}
+                className="rounded-2xl border border-brand-navy/10 bg-white p-3.5 shadow-float will-change-transform"
+              >
+                <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-brand-navy/55">
+                  <ScanEye size={11} className="text-brand-indigo" />
+                  AI detection
+                </div>
+                <div className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-success/10 px-2 py-0.5 text-[10px] font-bold text-success">
+                  <CheckCircle2 size={11} strokeWidth={2.75} />
+                  No encroachment
+                </div>
+                <div className="mt-2 font-display text-lg font-extrabold text-brand-navy tabular-nums">
+                  98.6%
+                  <span className="ml-1 text-[10px] font-semibold text-brand-navy/50">confidence</span>
+                </div>
+              </motion.div>
+            </motion.div>
 
-                {/* Tiny floating chip — case */}
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.7 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, ease: EASE, delay: 0.7 }}
-                  className="absolute right-4 bottom-32"
-                >
-                  <motion.div
-                    animate={reduce ? {} : { y: [0, -6, 0] }}
-                    transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 1.2 }}
-                    className="flex items-center gap-2 rounded-2xl border border-brand-navy/10 bg-white px-3 py-2 shadow-card"
-                  >
-                    <span className="grid h-7 w-7 place-items-center rounded-lg bg-brand-purple/10 text-brand-purple">
-                      <Gavel size={12} strokeWidth={2.5} />
-                    </span>
-                    <div>
-                      <div className="text-[9px] font-bold uppercase tracking-wider text-brand-navy/45">Cases</div>
-                      <div className="font-display text-xs font-extrabold text-brand-navy">
-                        <CountUp client:visible to={86} /> active
-                      </div>
-                    </div>
-                  </motion.div>
-                </motion.div>
-
-                {/* Tiny floating chip — ROI */}
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.7 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, ease: EASE, delay: 0.85 }}
-                  className="absolute left-2 bottom-44"
-                >
-                  <motion.div
-                    animate={reduce ? {} : { y: [0, -8, 0] }}
-                    transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                    className="flex items-center gap-2 rounded-2xl border border-brand-indigo/25 bg-gradient-to-br from-brand-indigo to-brand-purple px-3 py-2 shadow-float text-white"
-                  >
-                    <TrendingUp size={14} strokeWidth={2.5} />
-                    <div>
-                      <div className="text-[9px] font-bold uppercase tracking-wider text-white/80">Faster</div>
-                      <div className="font-display text-xs font-extrabold">
-                        <CountUp client:visible to={62} suffix="%" /> cycles
-                      </div>
-                    </div>
-                  </motion.div>
-                </motion.div>
-              </div>
-            </div>
+            {/* Solar layout chip — lower centre, clear of the person */}
+            <motion.div
+              initial={{ opacity: 0, y: 14 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: EASE, delay: 0.64 }}
+              className="absolute left-[54%] bottom-[8%]"
+            >
+              <motion.div
+                animate={reduce ? {} : { y: [0, -5, 0] }}
+                transition={{ duration: 5.2, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
+                className="flex items-center gap-2.5 rounded-2xl border border-brand-navy/10 bg-white px-3.5 py-2.5 shadow-float will-change-transform"
+              >
+                <span className="grid h-8 w-8 place-items-center rounded-lg bg-brand-purple/10 text-brand-purple">
+                  <Layers3 size={15} strokeWidth={2.25} />
+                </span>
+                <div>
+                  <div className="text-[9px] font-bold uppercase tracking-wider text-brand-navy/45">Solar layout</div>
+                  <div className="font-display text-xs font-extrabold text-brand-navy">25 MWp · 4 blocks</div>
+                </div>
+              </motion.div>
+            </motion.div>
           </div>
         </motion.div>
       </div>

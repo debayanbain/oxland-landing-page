@@ -161,7 +161,7 @@ export default function BlogArchive() {
                 href={`/blog/${featured.slug}`}
                 className="group relative grid overflow-hidden rounded-[32px] border border-brand-navy/10 bg-white shadow-float lg:grid-cols-[1.1fr_1fr]"
               >
-                <div className="relative aspect-[16/10] overflow-hidden lg:aspect-auto">
+                <div className="relative aspect-[16/9] overflow-hidden">
                   <img
                     src={featured.image}
                     alt={featured.title}
@@ -254,7 +254,7 @@ export default function BlogArchive() {
                     transition={{ duration: 0.35, ease: EASE }}
                     className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-brand-navy/10 bg-white shadow-card transition-all hover:-translate-y-1 hover:shadow-float"
                   >
-                    <div className="relative aspect-[16/10] overflow-hidden">
+                    <div className="relative aspect-[16/9] overflow-hidden">
                       <img
                         src={post.image}
                         alt={post.title}

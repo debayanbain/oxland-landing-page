@@ -161,7 +161,7 @@ export default function BlogArchive() {
                 href={`/blog/${featured.slug}`}
                 className="group relative grid overflow-hidden rounded-[32px] border border-brand-navy/10 bg-white shadow-float lg:grid-cols-[1.1fr_1fr]"
               >
-                <div className="relative aspect-[16/9] overflow-hidden">
+                <div className="relative aspect-[16/9] overflow-hidden lg:self-start">
                   <img
                     src={featured.image}
                     alt={featured.title}
@@ -176,19 +176,19 @@ export default function BlogArchive() {
                     Featured
                   </div>
                 </div>
-                <div className="flex flex-col justify-center p-8 sm:p-10 lg:p-12">
+                <div className="flex flex-col justify-center p-8 sm:p-10 lg:p-10">
                   <span
                     className={`inline-flex w-fit items-center gap-1.5 rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider ${featured.categoryPalette}`}
                   >
                     {featured.category}
                   </span>
-                  <h2 className="mt-4 font-display text-2xl font-extrabold leading-tight text-brand-navy sm:text-3xl lg:text-[32px]">
+                  <h2 className="mt-3 font-display text-2xl font-extrabold leading-[1.15] text-brand-navy sm:text-[25px] lg:text-[26px]">
                     {featured.title}
                   </h2>
-                  <p className="mt-4 text-[15px] leading-relaxed text-brand-navy/65">
+                  <p className="mt-3 text-[14px] leading-relaxed text-brand-navy/65 line-clamp-2">
                     {featured.excerpt}
                   </p>
-                  <div className="mt-6 flex flex-wrap items-center gap-4 text-xs text-brand-navy/55">
+                  <div className="mt-5 flex flex-wrap items-center gap-4 text-xs text-brand-navy/55">
                     <div className="flex items-center gap-2">
                       <span className="grid h-7 w-7 place-items-center rounded-full bg-brand-indigo/10 font-display text-[10px] font-extrabold text-brand-indigo">
                         {featured.authorInitials}
@@ -198,7 +198,7 @@ export default function BlogArchive() {
                     <span className="flex items-center gap-1"><Calendar size={11} />{featured.date}</span>
                     <span className="flex items-center gap-1"><Clock size={11} />{featured.readTime}</span>
                   </div>
-                  <div className="mt-7 inline-flex items-center gap-1.5 text-sm font-bold bg-gradient-to-r from-brand-indigo to-brand-purple bg-clip-text text-transparent">
+                  <div className="mt-6 inline-flex items-center gap-1.5 text-sm font-bold bg-gradient-to-r from-brand-indigo to-brand-purple bg-clip-text text-transparent">
                     Read the story
                     <ArrowRight size={14} strokeWidth={2.5} className="text-brand-indigo transition-transform group-hover:translate-x-0.5" />
                   </div>
@@ -263,7 +263,8 @@ export default function BlogArchive() {
                         className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                         draggable={false}
                       />
-                      <div className={`absolute left-3 top-3 inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider shadow-soft ${post.categoryPalette}`}>
+                      <div className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-white/95 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-brand-indigo shadow-soft backdrop-blur-md">
+                        <span className="h-1.5 w-1.5 rounded-full bg-brand-indigo" />
                         {post.category}
                       </div>
                     </div>

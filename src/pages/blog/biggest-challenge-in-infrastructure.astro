@@ -1,0 +1,219 @@
+---
+import BlogArticleLayout from "@/layouts/BlogArticleLayout.astro";
+import {
+  ArrowRight,
+  Quote,
+  Building2,
+  Route,
+  IndianRupee,
+  TriangleAlert,
+  FileText,
+  Layers3,
+  MapPinned,
+  Scale,
+  Workflow,
+  Plane,
+  ClipboardCheck,
+  LayoutDashboard,
+} from "lucide-react";
+
+const post = {
+  slug: "biggest-challenge-in-infrastructure",
+  category: "Land Management",
+  categoryPalette: "bg-brand-indigo/10 text-brand-indigo",
+  title: "The Biggest Challenge in Infrastructure Isn't Construction. It's Land.",
+  subtitle:
+    "Engineering, financing and execution get the spotlight — but land acquisition and fragmented land information quietly drive most infrastructure delays in India. The real fix isn't acquiring land faster; it's managing land information better.",
+  date: "21 Jul 2026",
+  isoDate: "2026-07-21",
+  readTime: "4 min read",
+  image: "/blog/Biggest-Challenge-in-Infrastructure.webp",
+};
+
+const author = {
+  name: "Arghya Sharma",
+  role: "Co-founder · Oxland",
+  initials: "AS",
+  bio: "Building the workspace Indian land teams deserve. Ex-infra land acquisition lead, DGCA-licensed drone pilot, occasional GIS nerd.",
+  socials: {
+    linkedin: "https://www.linkedin.com/in/arghyasharma",
+    instagram: "https://instagram.com",
+    facebook: "https://facebook.com",
+  },
+};
+
+const stats = [
+  {
+    icon: Building2,
+    value: "600+",
+    label: "major infrastructure projects reported delayed",
+  },
+  {
+    icon: Route,
+    value: "480+",
+    label: "road & highway projects pending on land acquisition & statutory clearances",
+  },
+  {
+    icon: IndianRupee,
+    value: "₹1.7L Cr",
+    label: "invested in land acquisition for road & highway infrastructure",
+  },
+];
+
+const consequences = [
+  "Delayed project execution",
+  "Increased litigation risk",
+  "Higher acquisition and compliance costs",
+  "Slower decision-making",
+  "Limited visibility across teams",
+];
+
+const layers = [
+  { icon: FileText, label: "Land records", palette: "bg-brand-indigo/10 text-brand-indigo" },
+  { icon: Layers3, label: "GIS layers", palette: "bg-brand-purple/10 text-brand-purple" },
+  { icon: MapPinned, label: "Cadastral maps", palette: "bg-emerald-50 text-emerald-600" },
+  { icon: Scale, label: "Legal documentation", palette: "bg-rose-50 text-rose-600" },
+  { icon: Workflow, label: "Acquisition progress", palette: "bg-brand-blue/10 text-brand-blue" },
+  { icon: Plane, label: "Drone imagery", palette: "bg-amber-50 text-amber-600" },
+  { icon: ClipboardCheck, label: "Field verification", palette: "bg-brand-indigo/10 text-brand-indigo" },
+  { icon: LayoutDashboard, label: "Executive dashboards", palette: "bg-brand-purple/10 text-brand-purple" },
+];
+
+const related = [
+  {
+    href: "/blog/land-acquisition-india-complex",
+    title: "Why Land Acquisition in India is Complex — And How OxLand Simplifies It",
+    category: "Land Acquisition",
+    excerpt: "India's land data is scattered across formats, languages and authorities. Here's why that fragmentation costs months.",
+    image: "/blog/Land-Acquisition-in-India.png",
+    readTime: "5 min read",
+  },
+  {
+    href: "/blog/one-land-dispute",
+    title: "One Land Dispute Can Halt Years of Industrial Growth",
+    category: "Land Management",
+    excerpt: "Why disputes never appear overnight — and how proactive Land Management prevents crises.",
+    image: "/blog/One-Land-Dispute.png",
+    readTime: "7 min read",
+  },
+  {
+    href: "/blog/land-acquisition-row",
+    title: "Land Acquisition & ROW for Linear Projects: Start Right with OxLand",
+    category: "Land Management",
+    excerpt: "The nine pillars of a successful ROW acquisition — and the monitoring that saves millions.",
+    image: "/blog/Land-Acquisition-%26-ROW.png",
+    readTime: "6 min read",
+  },
+];
+---
+<BlogArticleLayout {post} {author} {related}>
+
+  <p class="lead dropcap">
+    Every major infrastructure project starts with a vision — a new highway, a renewable energy park, a manufacturing facility, a mine, or an industrial corridor. But long before construction begins, many projects run into the same wall: <strong>land acquisition</strong>.
+  </p>
+
+  <p>
+    While engineering, financing and execution usually get the spotlight, land acquisition — and the fragmented land information behind it — quietly remains one of the biggest reasons infrastructure projects slip in India. Publicly available government reports tell the story in numbers:
+  </p>
+
+  {/* Stat band */}
+  <div class="my-10 grid grid-cols-1 gap-4 sm:grid-cols-3">
+    {stats.map((s) => (
+      <div class="relative overflow-hidden rounded-2xl border border-brand-navy/10 bg-white p-6 shadow-card">
+        <span class="grid h-10 w-10 place-items-center rounded-xl bg-brand-indigo/10 text-brand-indigo">
+          <s.icon size={18} strokeWidth={2.25} />
+        </span>
+        <div class="mt-4 font-display text-3xl font-extrabold tracking-tight bg-gradient-to-r from-brand-indigo to-brand-purple bg-clip-text text-transparent">
+          {s.value}
+        </div>
+        <div class="mt-1.5 text-[13px] leading-relaxed text-brand-navy/60">{s.label}</div>
+      </div>
+    ))}
+  </div>
+
+  <p style="font-size:13px;color:rgb(11 20 55 / 0.45);margin-top:-0.25rem;">
+    Source: publicly available government reports on infrastructure project status.
+  </p>
+
+  <p>
+    These numbers point to something deeper than a paperwork backlog. The issue isn't simply acquiring land — <strong>it's managing land information efficiently</strong>.
+  </p>
+
+  <h2>The hidden challenge</h2>
+  <p>
+    In many organizations, land-related information is scattered across multiple departments and systems. Land records sit in one repository. GIS maps live in another. Legal documents, compensation records, litigation details and field survey reports exist in separate files, spreadsheets and PDFs.
+  </p>
+  <p>
+    As projects expand across thousands of acres and many stakeholders, getting a single, reliable view of land assets becomes increasingly difficult. The consequences are familiar:
+  </p>
+
+  <ul class="mt-6 space-y-2.5">
+    {consequences.map((c) => (
+      <li class="flex items-start gap-3 text-[15px] leading-relaxed text-brand-navy/80">
+        <span class="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-rose-50 text-rose-500">
+          <TriangleAlert size={11} strokeWidth={2.75} />
+        </span>
+        {c}
+      </li>
+    ))}
+  </ul>
+
+  <p>
+    When critical land information is disconnected, even routine decisions take longer than they should — and every quarter of delay is a quarter of loaded interest, escalation clauses and stalled downstream execution.
+  </p>
+
+  <h2>A smarter way forward</h2>
+  <p>
+    As infrastructure projects grow in scale and complexity, organizations need more than digitized records — they need <strong>connected land intelligence</strong>. That means bringing every land signal onto one platform, where each layer reinforces the others:
+  </p>
+
+  {/* Unified platform layers */}
+  <div class="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
+    {layers.map((l) => (
+      <div class="flex flex-col items-start gap-2.5 rounded-2xl border border-brand-navy/10 bg-white p-4 shadow-card">
+        <span class={`grid h-10 w-10 place-items-center rounded-xl ${l.palette}`}>
+          <l.icon size={18} strokeWidth={2.25} />
+        </span>
+        <span class="text-[13px] font-bold leading-tight text-brand-navy">{l.label}</span>
+      </div>
+    ))}
+  </div>
+
+  <p>
+    By integrating land records, GIS, cadastral maps, legal documentation, acquisition progress, drone imagery, field verification and executive dashboards into a single platform, project teams can make faster, better-informed decisions. It improves collaboration across departments and reduces risk throughout the entire land acquisition lifecycle.
+  </p>
+
+  <h2>Building the future of land management</h2>
+  <p>
+    At <strong>Oxbow Intellect</strong>, we believe infrastructure development should not be slowed by fragmented land information. That's why we built <a href="/features">OxLand</a> — a GeoAI-enabled Land Management Platform that brings land acquisition, land records, GIS, litigation, document management, drone intelligence and executive dashboards together in one integrated ecosystem.
+  </p>
+  <p>
+    The goal is simple: help enterprises manage land smarter, reduce risk, and accelerate infrastructure development.
+  </p>
+
+  {/* Pull quote */}
+  <div class="relative my-12 rounded-3xl border border-brand-indigo/15 bg-gradient-to-br from-brand-indigo/5 via-white to-brand-purple/5 p-8">
+    <Quote size={26} strokeWidth={2.5} class="text-brand-indigo/40" />
+    <p class="mt-3 font-display text-xl font-bold leading-snug text-brand-navy sm:text-2xl">
+      The future of infrastructure isn't just about building faster.{" "}
+      <span class="bg-gradient-to-r from-brand-indigo to-brand-purple bg-clip-text text-transparent">
+        It's about making better land decisions before the first brick is laid.
+      </span>
+    </p>
+  </div>
+
+  {/* Inline CTA */}
+  <div class="mt-10 rounded-3xl border border-brand-indigo/20 bg-gradient-to-br from-brand-indigo/[0.04] via-white to-brand-purple/[0.04] p-6 sm:p-8">
+    <p style="margin-top:0;font-size:15px;color:#0b1437;font-weight:600;">
+      What are the biggest land acquisition challenges your organization faces today?
+    </p>
+    <p style="margin-top:0.5rem;font-size:14px;">
+      We'd love to hear your perspective. Send us the project and we'll show you what OxLand surfaces about it in under 45 minutes — parcels, encumbrances, litigation risk, terrain, everything.
+    </p>
+    <a href="/contact" class="mt-5 inline-flex items-center gap-2 rounded-full bg-brand-gradient px-5 py-2.5 text-sm font-semibold text-white shadow-soft transition-all hover:shadow-float" style="text-decoration:none;color:white;">
+      Book a walkthrough on your project
+      <ArrowRight size={14} strokeWidth={2.5} />
+    </a>
+  </div>
+
+</BlogArticleLayout>

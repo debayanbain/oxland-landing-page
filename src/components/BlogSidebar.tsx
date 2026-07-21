@@ -147,7 +147,7 @@ export default function BlogSidebar({ author }: Props) {
           Product updates, hiring calls and the occasional deep-read from our team — 4,200+ Indian land-ops folk already follow along.
         </p>
         <a
-          href="https://www.linkedin.com/company/oxland"
+          href="https://www.linkedin.com/products/oxbow-intellect-oxland-land-litigation-management-system/"
           target="_blank"
           rel="noreferrer"
           className="mt-4 inline-flex w-full items-center justify-center gap-1.5 rounded-full border border-blue-500/30 bg-white px-4 py-2 text-xs font-bold text-blue-600 transition-colors hover:bg-blue-50"

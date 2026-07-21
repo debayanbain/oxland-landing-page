@@ -20,13 +20,26 @@ type Post = {
 
 const posts: Post[] = [
   {
+    slug: "biggest-challenge-in-infrastructure",
+    category: "Land Management",
+    categoryPalette: "bg-brand-indigo/10 text-brand-indigo",
+    title: "The Biggest Challenge in Infrastructure Isn't Construction. It's Land.",
+    excerpt:
+      "Engineering, financing and execution get the spotlight — but land acquisition and fragmented land information quietly drive most infrastructure delays in India. The real fix isn't acquiring land faster; it's managing land information better.",
+    author: "Arghya Sharma",
+    authorInitials: "AS",
+    date: "21 Jul 2026",
+    readTime: "4 min read",
+    image: "/blog/Biggest-Challenge-in-Infrastructure.webp",
+  },
+  {
     slug: "industries-land-of-opportunities",
     category: "Land Management",
     categoryPalette: "bg-brand-indigo/10 text-brand-indigo",
     title: "Industries Want a \"Land of Opportunities,\" But Often Forget to Manage the Land Bank Properly",
     excerpt: "Investment summits, industrial corridors and manufacturing hubs are booming — but many projects still stumble because their land bank is managed on spreadsheets and paper maps. Here's what needs to change.",
-    author: "Akash Devnath",
-    authorInitials: "AD",
+    author: "Arghya Sharma",
+    authorInitials: "AS",
     date: "10 Mar 2026",
     readTime: "6 min read",
     image: "/blog/Land-of-Opportunities.png",
@@ -37,8 +50,8 @@ const posts: Post[] = [
     categoryPalette: "bg-brand-purple/10 text-brand-purple",
     title: "Why Land Acquisition in India is Complex — And How OxLand Simplifies It",
     excerpt: "India's land data is scattered across formats, languages, and authorities. Here's why that fragmentation costs infrastructure projects months of delay — and how a unified platform fixes it.",
-    author: "Akash Devnath",
-    authorInitials: "AD",
+    author: "Arghya Sharma",
+    authorInitials: "AS",
     date: "05 Mar 2026",
     readTime: "5 min read",
     image: "/blog/Land-Acquisition-in-India.png",
@@ -49,8 +62,8 @@ const posts: Post[] = [
     categoryPalette: "bg-brand-indigo/10 text-brand-indigo",
     title: "One Land Dispute Can Halt Years of Industrial Growth",
     excerpt: "A missing document, an outdated survey map, an encroachment — a single unresolved land issue can freeze projects worth crores. Why proactive, GIS-enabled Land Management is a business necessity.",
-    author: "Akash Devnath",
-    authorInitials: "AD",
+    author: "Arghya Sharma",
+    authorInitials: "AS",
     date: "28 Feb 2026",
     readTime: "7 min read",
     image: "/blog/One-Land-Dispute.png",
@@ -61,8 +74,8 @@ const posts: Post[] = [
     categoryPalette: "bg-brand-indigo/10 text-brand-indigo",
     title: "Land Acquisition & ROW for Linear Projects: Start Right with OxLand",
     excerpt: "Roads, highways, railways, pipelines and transmission corridors all begin with one thing — Right of Way. Here are the nine pillars of getting it right, and why continuous monitoring changes everything.",
-    author: "Akash Devnath",
-    authorInitials: "AD",
+    author: "Arghya Sharma",
+    authorInitials: "AS",
     date: "20 Feb 2026",
     readTime: "6 min read",
     image: "/blog/Land-Acquisition-%26-ROW.png",
@@ -73,8 +86,8 @@ const posts: Post[] = [
     categoryPalette: "bg-emerald-50 text-emerald-600",
     title: "Who We Are — And How We're Helping India's Land Ops Teams",
     excerpt: "Land acquisition in India is stuck between a spreadsheet, a court order and a scanned PDF. Here's why we built Oxland — and what it means for the people who actually run these projects.",
-    author: "Akash Devnath",
-    authorInitials: "AD",
+    author: "Arghya Sharma",
+    authorInitials: "AS",
     date: "12 Feb 2026",
     readTime: "6 min read",
     image: "/features-background.webp",
@@ -82,7 +95,7 @@ const posts: Post[] = [
 ];
 
 const CATEGORIES = ["All", "Land Management", "Land Acquisition", "Company"];
-const FEATURED_SLUG = "industries-land-of-opportunities";
+const FEATURED_SLUG = "biggest-challenge-in-infrastructure";
 
 export default function BlogArchive() {
   const [category, setCategory] = useState("All");

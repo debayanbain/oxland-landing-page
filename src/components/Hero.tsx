@@ -37,7 +37,7 @@ import {
   ChevronLeft,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import SplitText from "@/components/SplitText";
 import Magnetic from "@/components/Magnetic";
 
@@ -809,14 +809,25 @@ export default function Hero() {
             className="mt-8 flex flex-wrap items-center justify-center gap-3"
           >
             <Magnetic strength={0.2}>
-              <Button size="lg" className="rounded-full">
+              <Button
+                size="lg"
+                className="rounded-full"
+                onClick={() =>
+                  window.dispatchEvent(
+                    new CustomEvent("oxland:open-contact", { detail: { reason: "demo" } })
+                  )
+                }
+              >
                 Try Free Demo <ArrowRight size={18} />
               </Button>
             </Magnetic>
             <Magnetic strength={0.15}>
-              <Button variant="secondary" size="lg" className="rounded-full">
+              <a
+                href="https://app.oxland.in"
+                className={buttonVariants({ variant: "secondary", size: "lg", className: "rounded-full" })}
+              >
                 Explore Platform
-              </Button>
+              </a>
             </Magnetic>
           </motion.div>
 

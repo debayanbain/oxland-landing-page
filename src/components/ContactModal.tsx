@@ -423,37 +423,39 @@ export default function ContactModal() {
                       </Field>
                     </div>
 
-                    <Field label="What are you exploring Oxland for?">
-                      <select
-                        value={form.projectType}
-                        onChange={(e) => update("projectType", e.target.value)}
-                        className={`${inputCls} appearance-none bg-[length:14px] bg-no-repeat bg-[right_14px_center] pr-10`}
-                        style={{
-                          backgroundImage:
-                            "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%230B1437' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>\")",
-                        }}
-                      >
-                        {PROJECT_TYPES.map((p) => (
-                          <option key={p} value={p}>
-                            {p}
-                          </option>
-                        ))}
-                      </select>
-                    </Field>
+                    <div className="grid gap-4 sm:grid-cols-2 sm:items-end">
+                      <Field label="What are you exploring Oxland for?">
+                        <select
+                          value={form.projectType}
+                          onChange={(e) => update("projectType", e.target.value)}
+                          className={`${inputCls} appearance-none bg-[length:14px] bg-no-repeat bg-[right_14px_center] pr-10`}
+                          style={{
+                            backgroundImage:
+                              "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%230B1437' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>\")",
+                          }}
+                        >
+                          {PROJECT_TYPES.map((p) => (
+                            <option key={p} value={p}>
+                              {p}
+                            </option>
+                          ))}
+                        </select>
+                      </Field>
 
-                    <Field
-                      label="Parcels under management"
-                      icon={<MapPinned size={14} strokeWidth={2.25} />}
-                    >
-                      <input
-                        type="text"
-                        inputMode="numeric"
-                        value={form.parcels}
-                        onChange={(e) => update("parcels", e.target.value)}
-                        placeholder="e.g. 2,500"
-                        className={inputCls}
-                      />
-                    </Field>
+                      <Field
+                        label="Parcels under management"
+                        icon={<MapPinned size={14} strokeWidth={2.25} />}
+                      >
+                        <input
+                          type="text"
+                          inputMode="numeric"
+                          value={form.parcels}
+                          onChange={(e) => update("parcels", e.target.value)}
+                          placeholder="e.g. 2,500"
+                          className={inputCls}
+                        />
+                      </Field>
+                    </div>
 
                     {/* Preferred date + time slot — one grouped section */}
                     <div className="rounded-2xl border border-brand-navy/10 bg-brand-navy/[0.02] p-4">
@@ -522,7 +524,7 @@ export default function ContactModal() {
                       <button
                         type="submit"
                         disabled={submitting}
-                        className="group inline-flex items-center justify-center gap-2 rounded-full bg-brand-gradient px-6 py-3 text-sm font-semibold text-white shadow-soft transition-all hover:shadow-float disabled:opacity-70"
+                        className="group inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-brand-gradient px-6 py-3 text-sm font-semibold text-white shadow-soft transition-all hover:shadow-float disabled:opacity-70"
                       >
                         {submitting ? (
                           <>

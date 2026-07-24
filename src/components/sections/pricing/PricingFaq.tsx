@@ -5,36 +5,48 @@ import { Plus, MessageCircleQuestion } from "lucide-react";
 
 export const FAQS = [
   {
-    q: "Are these prices inclusive of GST?",
-    a: "No — list prices are exclusive of GST. 18% GST is added at invoicing as per Indian tax law. PSU and central-ministry customers can opt for a GST-segmented invoice; e-invoice and IRN are generated automatically.",
+    q: "Which OxLand plan is right for my organization?",
+    a: "OxLand Enterprise is built for organizations managing land acquisition, land records, GIS, litigation, and Geo-AI-powered land operations across multiple projects or locations. For organizations that want to evaluate the platform before deployment, the Free Evaluation Workspace provides access to its core capabilities.",
   },
   {
-    q: "Can Oxland be deployed on-prem or on a sovereign cloud?",
-    a: "Yes — Enterprise customers can run Oxland on their own VPC (AWS Mumbai, Azure India, OCI Hyderabad) or on a fully on-prem appliance for restricted environments. We also support NIC and CDAC cloud for ministry deployments.",
+    q: "Can I try OxLand before purchasing?",
+    a: "Yes. You can start with a Free Evaluation Workspace to explore key capabilities before choosing an Enterprise deployment.",
   },
   {
-    q: "Where is our data stored?",
-    a: "All customer data, including GIS layers, case documents and OCR output, is stored in India-region data centres by default. Backups are encrypted at rest (AES-256) and replicated to a secondary India-region zone.",
+    q: "Does OxLand include Geo-AI capabilities?",
+    a: "Yes. Enterprise customers can use Geo-AI powered capabilities such as land change detection, spatial analysis, intelligent land monitoring, and map-based insights, depending on the licensed modules and available project data.",
   },
   {
-    q: "Is there a minimum contract term?",
-    a: "Starter and Growth are month-to-month — you can cancel anytime. Yearly billing locks the rate for 12 months with the 20% discount. Enterprise contracts are usually 24–36 months with custom terms.",
+    q: "Can OxLand integrate with our existing systems?",
+    a: "Yes. OxLand supports API-based integration with enterprise applications, GIS platforms, document management systems, and other third-party software where integration is technically feasible.",
   },
   {
-    q: "Do you include training and onboarding?",
-    a: "Growth includes a 4-week guided onboarding with one of our land-ops specialists, two live workshops and a hand-off runbook. Enterprise gets a tailored programme: data migration, custom GIS layer onboarding, user training across multiple sites, and a dedicated CSM.",
+    q: "Can OxLand be deployed on-premises or in the cloud?",
+    a: "Yes. Enterprise deployments can be hosted on your own infrastructure or in the cloud, depending on your organization's IT and security requirements.",
   },
   {
-    q: "Can we integrate Oxland with our existing systems?",
-    a: "Yes. Growth ships with a documented REST API, webhooks and pre-built connectors for SAP, Oracle ERP, Tally, Zoho and Microsoft Dynamics. Enterprise customers get custom integration work bundled — including legacy GIS systems, court e-filing portals and state land record portals where APIs are available.",
+    q: "How is Enterprise pricing determined?",
+    a: "Enterprise pricing depends on factors such as project size, number of users, deployment model, required modules, implementation scope, and support requirements.",
   },
   {
-    q: "What happens to our data if we leave?",
-    a: "You own your data, always. On termination we provide a full export — parcels, cases, documents, GIS layers — in open formats (GeoPackage, PDF, JSON) within 30 days. After that, your tenant is purged and certified-destroyed; you'll receive a destruction certificate.",
+    q: "Is onboarding and training included?",
+    a: "Yes. Enterprise deployments include implementation guidance, onboarding, user training, and customer support as defined in your agreement.",
   },
   {
-    q: "How is security and compliance handled?",
-    a: "Oxland is ISO 27001 and SOC 2 Type II audited, MeitY empanelled and DPDP Act 2023 compliant. We carry a ₹10 crore cyber-liability cover, run quarterly third-party pen-tests, and our DPA + MSA are available for review under NDA.",
+    q: "How long does implementation take?",
+    a: "Implementation timelines vary based on project scope, data availability, required integrations, and deployment requirements. Our team will provide a project plan during onboarding.",
+  },
+  {
+    q: "Can we upgrade as our requirements grow?",
+    a: "Yes. Additional users, projects, storage, modules, and capabilities can be added as your organization's requirements evolve.",
+  },
+  {
+    q: "Who owns the data stored in OxLand?",
+    a: "Your organization retains ownership of its data. Data handling, export options, and retention policies are governed by the applicable agreement and deployment model.",
+  },
+  {
+    q: "Who is eligible for the Free Evaluation Workspace?",
+    a: "The Free Evaluation Workspace is available for qualified organizations involved in land acquisition & land management, infrastructure & project development, construction & engineering, mining & natural resources, renewable energy & utilities, government departments & public sector undertakings (PSUs), industrial & manufacturing organizations, and others managing significant land assets or land banks. To ensure the best onboarding experience, all Free Evaluation requests are reviewed and approved by the OxLand team based on the organization's business use case. Please note: Free Evaluation Workspaces are currently not available for individual use, academic demonstrations, general software evaluation, marketing agencies, or organizations without an active land management or land acquisition requirement.",
   },
 ];
 

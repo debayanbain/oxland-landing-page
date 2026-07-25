@@ -12,6 +12,12 @@ const logos = [
   { src: "/company-logo/GSL.png", alt: "GSL" },
   { src: "/company-logo/SAIL.png", alt: "SAIL" },
   { src: "/company-logo/TATA.png", alt: "Tata" },
+  { src: "/company-logo/01_Moglix.png", alt: "Moglix" },
+  { src: "/company-logo/02_Athena.png", alt: "Athena Power" },
+  { src: "/company-logo/04_JSW.png", alt: "JSW" },
+  // Solid-background logos: skip the white key-out filter (it would erase their fills).
+  { src: "/company-logo/03_Tata_Steel_Foundation.png", alt: "Tata Steel Foundation", noKey: true },
+  { src: "/company-logo/05_Aditya_Birla_Renewables.png", alt: "Aditya Birla Renewables", noKey: true },
 ];
 
 // duplicate a couple of times for a seamless marquee
@@ -43,7 +49,7 @@ const logoTrack = [...logos, ...logos, ...logos];
                 loading="lazy"
                 decoding="async"
                 class="h-16 w-auto max-w-full select-none object-contain opacity-90 transition-all duration-300 hover:opacity-100 hover:scale-105 sm:h-20"
-                style="filter: url(#remove-white);"
+                style={logo.noKey ? undefined : "filter: url(#remove-white);"}
               />
             </div>
           ))}

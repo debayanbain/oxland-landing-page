@@ -5,7 +5,7 @@ import PricingPlans from "@/components/sections/pricing/PricingPlans.tsx";
 import ValueStrip from "@/components/sections/pricing/ValueStrip.astro";
 import FeatureComparison from "@/components/sections/pricing/FeatureComparison.astro";
 import OnboardingSteps from "@/components/sections/pricing/OnboardingSteps.astro";
-import ROICalculator from "@/components/sections/pricing/ROICalculator.tsx";
+import ProjectImpactExplorer from "@/components/sections/pricing/ProjectImpactExplorer.tsx";
 import PricingFaq, { FAQS } from "@/components/sections/pricing/PricingFaq.tsx";
 import PricingCta from "@/components/sections/pricing/PricingCta.astro";
 
@@ -57,7 +57,7 @@ const faqJsonLd = {
     <ValueStrip />
     <FeatureComparison />
     <OnboardingSteps />
-    <ROICalculator client:visible />
+    <ProjectImpactExplorer client:visible />
     <PricingFaq client:visible />
     <PricingCta />
   </main>

@@ -41,10 +41,27 @@ const impactLogos = [
   { src: "/company-logo/vedanta.svg", alt: "Vedanta" },
   { src: "/company-logo/TATA.png", alt: "Tata Steel" },
   { src: "/company-logo/BALCO.jpg", alt: "BALCO" },
-  { src: "/company-logo/ECL.jpg", alt: "ESL Steel" },
+  { src: "/company-logo/ECL.jpg", alt: "Eastern Coalfields Limited" },
   { src: "/company-logo/waaree.png", alt: "Waaree", scale: "scale-[1.9]" },
   { src: "/company-logo/SAIL.png", alt: "SAIL" },
+  { src: "/company-logo/CAIRN.png", alt: "Cairn" },
+  { src: "/company-logo/COAL.png", alt: "Coal India" },
+  { src: "/company-logo/GSL.png", alt: "GSL" },
+  { src: "/company-logo/01_Moglix.png", alt: "Moglix" },
+  { src: "/company-logo/02_Athena.png", alt: "Athena Power" },
+  { src: "/company-logo/04_JSW.png", alt: "JSW" },
+  // Solid-background logos: skip the white key-out filter (it would erase their fills).
+  { src: "/company-logo/03_Tata_Steel_Foundation.png", alt: "Tata Steel Foundation", noKey: true },
+  { src: "/company-logo/05_Aditya_Birla_Renewables.png", alt: "Aditya Birla Renewables", noKey: true },
 ];
+
+// Two marquee rows scrolling in opposite directions, each with a DISTINCT set of
+// logos (even / odd split) so the same logo never appears in both rows at once.
+// Tripled for a seamless loop.
+const rowAList = impactLogos.filter((_, i) => i % 2 === 0);
+const rowBList = impactLogos.filter((_, i) => i % 2 === 1);
+const impactRowA = [...rowAList, ...rowAList, ...rowAList];
+const impactRowB = [...rowBList, ...rowBList, ...rowBList];
 ---
 
 <Layout
@@ -185,7 +202,7 @@ const impactLogos = [
     {/* -------------------- OUR IMPACT -------------------- */}
     <section class="relative py-14 sm:py-20">
       <div class="container">
-        <div class="grid items-center gap-10 lg:grid-cols-[1fr_1.05fr] lg:gap-16">
+        <div class="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-16">
           <Reveal client:visible variant="slide-right">
             <div>
               <div class="inline-flex items-center gap-2 rounded-full border border-brand-indigo/20 bg-brand-indigo/5 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-brand-indigo">
@@ -212,19 +229,52 @@ const impactLogos = [
                 <p class="text-center text-[11px] font-bold uppercase tracking-widest text-brand-navy/45">
                   Powering land teams at
                 </p>
-                <div class="mt-6 grid grid-cols-3 items-center gap-x-6 gap-y-8">
-                  {impactLogos.map((logo) => (
-                    <div class={`flex items-center justify-center ${logo.scale ?? ""}`}>
-                      <img
-                        src={logo.src}
-                        alt={logo.alt}
-                        loading="lazy"
-                        decoding="async"
-                        class="h-9 w-auto max-w-[110px] object-contain opacity-90"
-                        style="filter: url(#about-remove-white);"
-                      />
+                <div class="mt-7 space-y-3">
+                  {/* Row A — scrolls left */}
+                  <div class="group/row relative overflow-hidden">
+                    <div class="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-white to-transparent sm:w-16"></div>
+                    <div class="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-white to-transparent sm:w-16"></div>
+                    <div
+                      class="flex w-max items-center gap-6 animate-marquee-x [animation-play-state:running] group-hover/row:[animation-play-state:paused]"
+                      style="--marquee-duration: 34s;"
+                    >
+                      {impactRowA.map((logo, i) => (
+                        <div class={`flex h-16 w-[150px] shrink-0 items-center justify-center sm:h-20 sm:w-[170px] ${logo.scale ?? ""}`} aria-hidden={i >= rowAList.length ? "true" : undefined}>
+                          <img
+                            src={logo.src}
+                            alt={i < rowAList.length ? logo.alt : ""}
+                            loading="lazy"
+                            decoding="async"
+                            class="h-12 w-auto max-w-full select-none object-contain opacity-90 sm:h-14"
+                            style={logo.noKey ? undefined : "filter: url(#about-remove-white);"}
+                          />
+                        </div>
+                      ))}
                     </div>
-                  ))}
+                  </div>
+
+                  {/* Row B — scrolls right (opposite direction) */}
+                  <div class="group/row relative overflow-hidden">
+                    <div class="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-white to-transparent sm:w-16"></div>
+                    <div class="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-white to-transparent sm:w-16"></div>
+                    <div
+                      class="flex w-max items-center gap-6 animate-marquee-x-reverse [animation-play-state:running] group-hover/row:[animation-play-state:paused]"
+                      style="--marquee-duration: 34s;"
+                    >
+                      {impactRowB.map((logo, i) => (
+                        <div class={`flex h-16 w-[150px] shrink-0 items-center justify-center sm:h-20 sm:w-[170px] ${logo.scale ?? ""}`} aria-hidden={i >= rowBList.length ? "true" : undefined}>
+                          <img
+                            src={logo.src}
+                            alt={i < rowBList.length ? logo.alt : ""}
+                            loading="lazy"
+                            decoding="async"
+                            class="h-12 w-auto max-w-full select-none object-contain opacity-90 sm:h-14"
+                            style={logo.noKey ? undefined : "filter: url(#about-remove-white);"}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
                 <p class="mt-8 text-center text-xs text-brand-navy/50">
                   Vedanta · Tata Steel · BALCO · ESL Steel · Waaree · ISKCON · Startup India · Startup Odisha

@@ -20,6 +20,19 @@ type Post = {
 
 const posts: Post[] = [
   {
+    slug: "digital-land-bank-gw-projects",
+    category: "Land Management",
+    categoryPalette: "bg-brand-indigo/10 text-brand-indigo",
+    title: "A Digital Land Bank Built for GW Projects",
+    excerpt:
+      "Managing land for GW-scale renewable projects takes far more than a parcel list. Here's how OxLand unifies GeoAI, verified records, legal intelligence, valuation and acquisition workflows into one configurable enterprise land bank.",
+    author: "Saheli Bhadra",
+    authorInitials: "SB",
+    date: "27 Jul 2026",
+    readTime: "7 min read",
+    image: "/blog/A-Digital-Land-Bank-Built-for-GW-Projects.webp",
+  },
+  {
     slug: "biggest-challenge-in-infrastructure",
     category: "Land Management",
     categoryPalette: "bg-brand-indigo/10 text-brand-indigo",
@@ -95,7 +108,7 @@ const posts: Post[] = [
 ];
 
 const CATEGORIES = ["All", "Land Management", "Land Acquisition", "Company"];
-const FEATURED_SLUG = "biggest-challenge-in-infrastructure";
+const FEATURED_SLUG = "digital-land-bank-gw-projects";
 
 export default function BlogArchive() {
   const [category, setCategory] = useState("All");

@@ -1,0 +1,204 @@
+---
+import BlogArticleLayout from "@/layouts/BlogArticleLayout.astro";
+import {
+  Map,
+  ShieldCheck,
+  Target,
+  Wrench,
+  Leaf,
+  ArrowRight,
+  Quote,
+} from "lucide-react";
+
+const post = {
+  slug: "uavs-modern-mining",
+  category: "Land Management",
+  categoryPalette: "bg-brand-indigo/10 text-brand-indigo",
+  title: "The Role of UAVs in Modern Mining Operations",
+  subtitle:
+    "Open-cast mining moves earth by the hour — pits widen, benches rise, the ground never stops changing. Inspecting it by hand is slow and risky. Drones fly fast, see more and keep people out of harm's way across mapping, monitoring, blasting, inspection and compliance.",
+  date: "29 Jul 2026",
+  isoDate: "2026-07-29",
+  readTime: "6 min read",
+  image: "/blog/The%20Role%20of%20UAVs%20in%20Modern%20Mining%20Operations.jpg",
+};
+
+const author = {
+  name: "Smriti Ranjan Ghosh",
+  role: "Head of Land Operations · OxLand",
+  initials: "SG",
+  bio: "Leads land operations at OxLand — with years spent on the ground where surveys, mining leases and land records meet real project timelines.",
+  socials: {},
+};
+
+const sections = [
+  {
+    icon: Map,
+    chip: "bg-brand-indigo/10 text-brand-indigo",
+    dot: "bg-brand-indigo",
+    title: "Enhanced Site Surveying & Mapping",
+    intro:
+      "Every haul road, sump and dump starts with a map — and an old map means failed plans and lost money. Drone flights gather fresh imagery in minutes, so engineers react to today's terrain, not last month's. Photogrammetry and LiDAR turn overlapping photos into DEM, DTM and DSM models at near-centimetre detail, trimming survey waits from weeks to hours.",
+    items: [
+      "Topographic & contour mapping",
+      "DEM / DTM / DSM models",
+      "Near-centimetre accuracy",
+      "Surveys in hours, not weeks",
+      "Redesign ramps & drains on the fly",
+      "Less field labour",
+    ],
+  },
+  {
+    icon: ShieldCheck,
+    chip: "bg-brand-blue/10 text-brand-blue",
+    dot: "bg-brand-blue",
+    title: "Safety & Geotechnical Monitoring",
+    intro:
+      "Highwalls crack, slopes slip and blast zones must stay clear of people and machines. Drone-based surveillance lets geotechs scan faces, berms and haul roads from a safe distance. Flight-to-flight comparison highlights even tiny shifts — a bulging bench, a settling dump, an eroding drain — so crews can act long before a major slide.",
+    items: [
+      "Scan highwalls & slopes safely",
+      "Detect tension cracks & sinkholes",
+      "Flight-to-flight change detection",
+      "Spot bench bulge & dump settling",
+      "Early slope-failure warnings",
+      "Reroute traffic before risk",
+    ],
+  },
+  {
+    icon: Target,
+    chip: "bg-brand-purple/10 text-brand-purple",
+    dot: "bg-brand-purple",
+    title: "Optimized Blast Planning & Analysis",
+    intro:
+      "Blasting works only when drill holes match the real surface. A quick UAV survey before drilling captures true burdens and elevations, so planners place holes with confidence, limit flyrock and keep vibration legal. Right after the shot, drones measure fragment size, heave and throw — feeding a tuning loop that makes each blast safer, cleaner and cheaper.",
+    items: [
+      "Capture true burdens & elevations",
+      "Confident drill-hole placement",
+      "Limit flyrock & vibration",
+      "Post-blast fragmentation analysis",
+      "Measure heave & throw",
+      "Tune stemming, spacing & charge",
+    ],
+  },
+  {
+    icon: Wrench,
+    chip: "bg-emerald-50 text-emerald-600",
+    dot: "bg-emerald-500",
+    title: "Infrastructure & Asset Inspections",
+    intro:
+      "Conveyors, crushers, stackers, berms and long pipelines are hard and expensive to inspect by hand. Planned drone missions deliver crisp visuals and tagged defects without scaffolds, manlifts or shutdowns. Each flight's imagery builds a living record, so maintenance teams see exactly when rust started or a belt drifted — turning repairs proactive.",
+    items: [
+      "Inspect conveyors, crushers & pipelines",
+      "No scaffolds or shutdowns",
+      "Tagged defect logging",
+      "Living visual history",
+      "Proactive maintenance",
+      "Longer asset life",
+    ],
+  },
+  {
+    icon: Leaf,
+    chip: "bg-brand-indigo/10 text-brand-indigo",
+    dot: "bg-brand-indigo",
+    title: "Regulatory Compliance & Environmental Monitoring",
+    intro:
+      "Modern mines must prove they protect land and water. Regulators want evidence of rehabilitation progress, erosion control, dust suppression and vegetation regrowth. Drones capture consistent, georeferenced data that makes honest, transparent reporting easy — helping communities and investors trust that promises are real and on schedule.",
+    items: [
+      "Georeferenced evidence",
+      "Rehabilitation progress tracking",
+      "Erosion & dust monitoring",
+      "Vegetation regrowth checks",
+      "Transparent ESG reporting",
+      "Community & investor trust",
+    ],
+  },
+];
+
+const related = [
+  {
+    href: "/blog/geospatial-digital-twins",
+    title: "Transforming Industries with Geospatial Digital Twins",
+    category: "Land Management",
+    excerpt: "Live sensor data and 3D models turn excavation monitoring and logistics into one decision engine.",
+    image: "/blog/Transforming%20Industries%20with%20Geospatial%20Digital%20Twins.jpg",
+    readTime: "8 min read",
+  },
+  {
+    href: "/blog/gis-watershed-monitoring",
+    title: "GIS-Based Watershed Monitoring: A Game-Changer for Industries",
+    category: "Land Management",
+    excerpt: "Real-time GIS oversight for compliance, risk and resource use across industrial sites.",
+    image: "/blog/GIS-Based%20Watershed%20Monitoring.jpg",
+    readTime: "6 min read",
+  },
+  {
+    href: "/blog/land-acquisition-monitoring-system",
+    title: "Why Industries Need a Land Acquisition Monitoring System",
+    category: "Land Acquisition",
+    excerpt: "Buying land is only half the battle — keeping track of it is just as important.",
+    image: "/blog/Why%20Industries%20Need%20a%20Land%20Acquisition%20Monitoring%20System.png",
+    readTime: "5 min read",
+  },
+];
+---
+<BlogArticleLayout {post} {author} {related}>
+
+  <p class="lead dropcap">
+    Open-cast mining digs away soil and rock to reach ore close to the surface. The pits are wide, the benches are high, and the ground keeps changing as trucks and diggers move material every hour. Inspecting these areas manually is slow and risky. Drones fly fast, see more and help keep people out of harm's way — mapping the site, tracking ground movement, guiding blasts, inspecting assets and helping mines meet environmental rules.
+  </p>
+
+  {sections.map((s) => (
+    <div>
+      <div class="mt-14 flex items-center gap-3">
+        <span class={`grid h-11 w-11 shrink-0 place-items-center rounded-xl ${s.chip}`}>
+          <s.icon size={20} strokeWidth={2.25} />
+        </span>
+        <h2 style="margin-top:0;">{s.title}</h2>
+      </div>
+
+      <p>{s.intro}</p>
+
+      <div class="mt-5 grid grid-cols-2 gap-2 sm:grid-cols-3">
+        {s.items.map((it) => (
+          <div class="flex items-center gap-2 rounded-lg border border-brand-navy/10 bg-white px-3 py-2 text-[13px] font-medium text-brand-navy/80 shadow-[0_1px_0_rgba(255,255,255,0.6)_inset,0_6px_18px_-16px_rgba(11,20,55,0.3)]">
+            <span class={`h-1.5 w-1.5 shrink-0 rounded-full ${s.dot}`}></span>
+            <span>{it}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  ))}
+
+  {/* Pull quote */}
+  <div class="relative my-12 rounded-3xl border border-brand-indigo/15 bg-gradient-to-br from-brand-indigo/5 via-white to-brand-purple/5 p-8">
+    <Quote size={26} strokeWidth={2.5} class="text-brand-indigo/40" />
+    <p class="mt-3 font-display text-xl font-bold leading-snug text-brand-navy sm:text-2xl">
+      Drones now touch almost every step of open-cast mining —{" "}
+      <span class="bg-gradient-to-r from-brand-indigo to-brand-purple bg-clip-text text-transparent">
+        boosting efficiency, sharpening planning and reducing exposure to danger.
+      </span>
+    </p>
+  </div>
+
+  <div class="mt-12">
+    <h2>Conclusion</h2>
+    <p>
+      Drones now touch almost every step in open-cast mining. They boost efficiency, sharpen planning, reduce exposure to danger, support compliance and even lift sustainability efforts — far beyond simple stockpile counts. Paired with a platform that stores and analyses every flight, they turn raw imagery into decisions the whole mine can act on.
+    </p>
+  </div>
+
+  {/* Inline CTA */}
+  <div class="mt-10 rounded-3xl border border-brand-indigo/20 bg-gradient-to-br from-brand-indigo/[0.04] via-white to-brand-purple/[0.04] p-6 sm:p-8">
+    <p style="margin-top:0;font-size:15px;color:#0b1437;font-weight:600;">
+      Running drone surveys across your mine?
+    </p>
+    <p style="margin-top:0.5rem;font-size:14px;">
+      OxLand ingests UAV imagery, LiDAR and survey data into one land-and-asset platform — mapping, monitoring, volumes and compliance in a single place. Tell us about your site and we'll show you how.
+    </p>
+    <a href="/contact" class="mt-5 inline-flex items-center gap-2 rounded-full bg-brand-gradient px-5 py-2.5 text-sm font-semibold text-white shadow-soft transition-all hover:shadow-float" style="text-decoration:none;color:white;">
+      Book a walkthrough on your site
+      <ArrowRight size={14} strokeWidth={2.5} />
+    </a>
+  </div>
+
+</BlogArticleLayout>

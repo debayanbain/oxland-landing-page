@@ -1,0 +1,208 @@
+---
+import BlogArticleLayout from "@/layouts/BlogArticleLayout.astro";
+import {
+  TriangleAlert,
+  ScanEye,
+  Cpu,
+  LayoutDashboard,
+  Landmark,
+  ArrowRight,
+  Quote,
+} from "lucide-react";
+
+const post = {
+  slug: "land-acquisition-monitoring-system",
+  category: "Land Acquisition",
+  categoryPalette: "bg-brand-purple/10 text-brand-purple",
+  title: "Why Industries Need a Land Acquisition Monitoring System",
+  subtitle:
+    "Every factory, mine and warehouse starts with land — yet acquiring and managing it is often the hardest part of a project. A monitoring system isn't about fancy technology; it's about reducing uncertainty across ownership, approvals, disputes and compliance.",
+  date: "28 Jul 2026",
+  isoDate: "2026-07-28",
+  readTime: "5 min read",
+  image: "/blog/Why%20Industries%20Need%20a%20Land%20Acquisition%20Monitoring%20System.png",
+};
+
+const author = {
+  name: "Saheli Bhadra",
+  role: "GeoAI & Land Expert · OxLand",
+  initials: "SB",
+  bio: "Focused on GeoAI and land intelligence at OxLand — turning spatial data into decisions land teams can act on.",
+  socials: {},
+};
+
+const sections = [
+  {
+    icon: TriangleAlert,
+    chip: "bg-brand-purple/10 text-brand-purple",
+    dot: "bg-brand-purple",
+    title: "The Ground Reality",
+    intro:
+      "Take a typical case: an industrial project in eastern India plans to acquire 500 acres. The records sit in three different offices — one has maps, another has khata numbers, the third has updated transfers. By the time it's all stitched together, months are gone. Then word spreads, prices spike overnight, locals file objections, and a three-month process becomes a three-year headache. This is not rare. It is the norm.",
+    items: [
+      "Mismatched old records",
+      "Records split across offices",
+      "Ownership disputes",
+      "Snail-paced approvals",
+      "Middlemen price hikes",
+      "Recurring encroachments",
+    ],
+  },
+  {
+    icon: ScanEye,
+    chip: "bg-brand-indigo/10 text-brand-indigo",
+    dot: "bg-brand-indigo",
+    title: "Why Monitoring Is Key",
+    intro:
+      "Buying land is only half the battle — keeping track of it is just as important. Without monitoring, companies risk losing land to encroachment, getting stuck in unexpected disputes, overpaying, and missing compliance deadlines. A monitoring system gives one place to see everything: ownership history, approvals, maps, usage and payments — no running from office to office.",
+    items: [
+      "Prevent encroachment losses",
+      "Avoid unexpected disputes",
+      "Stop overpaying for land",
+      "Never miss compliance deadlines",
+      "One source for ownership & maps",
+      "Full payment history",
+    ],
+  },
+  {
+    icon: Cpu,
+    chip: "bg-brand-blue/10 text-brand-blue",
+    dot: "bg-brand-blue",
+    title: "How Technology Is Helping",
+    intro:
+      "Land was once managed with files, site visits and local knowledge. Today, industries have GIS maps that show boundaries clearly, drone surveys for accurate data, digital records that can't be lost or tampered with, and alerts and dashboards that keep the full picture in view. This isn't about replacing people — it's about making their job simpler and faster.",
+    items: [
+      "GIS boundary maps",
+      "Drone survey data",
+      "Tamper-proof digital records",
+      "Compliance & lease alerts",
+      "Decision-ready dashboards",
+      "One clear picture",
+    ],
+  },
+  {
+    icon: LayoutDashboard,
+    chip: "bg-emerald-50 text-emerald-600",
+    dot: "bg-emerald-500",
+    title: "OxLand — A Working Example",
+    intro:
+      "One system built for exactly this is OxLand, developed by Oxbow Intellect. Unlike scattered manual methods, OxLand puts everything on one platform — and for industries investing hundreds of crores, that can mean saving years of delay and huge amounts of money by taking the guesswork out of acquisition.",
+    items: [
+      "GIS-based parcel search",
+      "Digital ownership & approval store",
+      "Compliance deadline tracking",
+      "Encroachment monitoring",
+      "Unified land dashboard",
+      "Less guesswork, faster deals",
+    ],
+  },
+  {
+    icon: Landmark,
+    chip: "bg-brand-indigo/10 text-brand-indigo",
+    dot: "bg-brand-indigo",
+    title: "Why India Needs It More",
+    intro:
+      "India has countless examples of stalled power plants, steel projects and highways delayed or scrapped over land disputes — a significant share of pending court cases trace back to land. As new industrial corridors and smart cities rise, demand for land will only grow. A comprehensive system like OxLand fits the Digital India vision and builds community trust, because everything is recorded and transparent.",
+    items: [
+      "Stalled power, steel & highway projects",
+      "Land disputes clog courts",
+      "New corridors & smart cities",
+      "Aligned with Digital India",
+      "Transparent, recorded process",
+      "Stronger community trust",
+    ],
+  },
+];
+
+const related = [
+  {
+    href: "/blog/oxland-complete-land-management",
+    title: "OxLand — A Complete Land Management System for Industries",
+    category: "Land Management",
+    excerpt: "GIS mapping, drone surveys, AI analysis and digital records — the full land lifecycle in one dashboard.",
+    image: "/blog/OxLand%20%E2%80%93%20A%20Complete%20Land%20Management%20System%20for%20Industries.jpg",
+    readTime: "5 min read",
+  },
+  {
+    href: "/blog/land-acquisition-india-complex",
+    title: "Why Land Acquisition in India is Complex — And How OxLand Simplifies It",
+    category: "Land Acquisition",
+    excerpt: "India's land data is scattered across formats, languages and authorities. Here's why it costs months.",
+    image: "/blog/Land-Acquisition-in-India.png",
+    readTime: "5 min read",
+  },
+  {
+    href: "/blog/digital-land-bank-gw-projects",
+    title: "A Digital Land Bank Built for GW Projects",
+    category: "Land Management",
+    excerpt: "GeoAI, verified records, litigation, valuation and acquisition — one configurable land bank.",
+    image: "/blog/A-Digital-Land-Bank-Built-for-GW-Projects.webp",
+    readTime: "7 min read",
+  },
+];
+---
+<BlogArticleLayout {post} {author} {related}>
+
+  <p class="lead dropcap">
+    Land is the first requirement for any industry. A factory, a mine, a steel plant, even a simple warehouse — everything starts with land. The irony is that while it looks straightforward on paper, acquiring and managing land is often the hardest part of setting up a project.
+  </p>
+
+  <p>
+    Anyone who has tried it knows the pain: old records that don't match, families fighting over ownership, approvals moving at a snail's pace, and middlemen hiking prices the moment they hear an industry is interested. Even after you get the land, you're never fully at peace — encroachments, disputes and legal notices keep coming back. This is exactly why industries now look at land acquisition monitoring systems.
+  </p>
+
+  {sections.map((s) => (
+    <div>
+      <div class="mt-14 flex items-center gap-3">
+        <span class={`grid h-11 w-11 shrink-0 place-items-center rounded-xl ${s.chip}`}>
+          <s.icon size={20} strokeWidth={2.25} />
+        </span>
+        <h2 style="margin-top:0;">{s.title}</h2>
+      </div>
+
+      <p>{s.intro}</p>
+
+      <div class="mt-5 grid grid-cols-2 gap-2 sm:grid-cols-3">
+        {s.items.map((it) => (
+          <div class="flex items-center gap-2 rounded-lg border border-brand-navy/10 bg-white px-3 py-2 text-[13px] font-medium text-brand-navy/80 shadow-[0_1px_0_rgba(255,255,255,0.6)_inset,0_6px_18px_-16px_rgba(11,20,55,0.3)]">
+            <span class={`h-1.5 w-1.5 shrink-0 rounded-full ${s.dot}`}></span>
+            <span>{it}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  ))}
+
+  {/* Pull quote */}
+  <div class="relative my-12 rounded-3xl border border-brand-indigo/15 bg-gradient-to-br from-brand-indigo/5 via-white to-brand-purple/5 p-8">
+    <Quote size={26} strokeWidth={2.5} class="text-brand-indigo/40" />
+    <p class="mt-3 font-display text-xl font-bold leading-snug text-brand-navy sm:text-2xl">
+      For industries, land is not just dirt and boundaries —{" "}
+      <span class="bg-gradient-to-r from-brand-indigo to-brand-purple bg-clip-text text-transparent">
+        it is the foundation of growth. Every delay in land is a delay in growth.
+      </span>
+    </p>
+  </div>
+
+  <div class="mt-12">
+    <h2>Closing Thoughts</h2>
+    <p>
+      Without a clear way to acquire and monitor land, companies lose money, time and investor confidence. A land acquisition monitoring system brings order to a messy process — helping industries stay compliant, avoid disputes and plan with clarity. Tools like OxLand show the solution already exists. The only question is how quickly industries will adopt it.
+    </p>
+  </div>
+
+  {/* Inline CTA */}
+  <div class="mt-10 rounded-3xl border border-brand-indigo/20 bg-gradient-to-br from-brand-indigo/[0.04] via-white to-brand-purple/[0.04] p-6 sm:p-8">
+    <p style="margin-top:0;font-size:15px;color:#0b1437;font-weight:600;">
+      Acquiring or monitoring land for a project?
+    </p>
+    <p style="margin-top:0.5rem;font-size:14px;">
+      Tell us about your parcels and corridors — we'll show you how OxLand keeps ownership, approvals, maps, compliance and encroachment on one live dashboard, so nothing slips.
+    </p>
+    <a href="/contact" class="mt-5 inline-flex items-center gap-2 rounded-full bg-brand-gradient px-5 py-2.5 text-sm font-semibold text-white shadow-soft transition-all hover:shadow-float" style="text-decoration:none;color:white;">
+      Book a walkthrough
+      <ArrowRight size={14} strokeWidth={2.5} />
+    </a>
+  </div>
+
+</BlogArticleLayout>

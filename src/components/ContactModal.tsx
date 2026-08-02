@@ -60,6 +60,9 @@ type FormState = {
   message: string;
 };
 
+const CONTACT_EMAIL = "info@oxbowintellect.com";
+const CONTACT_ENDPOINT = "/contact-submit.php";
+
 const initialForm: FormState = {
   name: "",
   email: "",
@@ -76,8 +79,10 @@ export default function ContactModal() {
   const [open, setOpen] = useState(false);
   const [reason, setReason] = useState<string | undefined>(undefined);
   const [form, setForm] = useState<FormState>(initialForm);
+  const [company_website, setCompanyWebsite] = useState(""); // honeypot
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const firstFieldRef = useRef<HTMLInputElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
 
@@ -133,10 +138,28 @@ export default function ContactModal() {
     e.preventDefault();
     if (!form.name.trim() || !form.email.trim() || !form.phone.trim()) return;
     setSubmitting(true);
-    // Placeholder submit — wire to your backend / Formspree / Web3Forms later
-    await new Promise((r) => setTimeout(r, 900));
-    setSubmitting(false);
-    setSubmitted(true);
+    setError(null);
+
+    try {
+      const res = await fetch(CONTACT_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...form, company_website, reason: reason || "popup" }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.ok) {
+        throw new Error(data.error || "Something went wrong. Please try again.");
+      }
+      setSubmitting(false);
+      setSubmitted(true);
+    } catch (err) {
+      setSubmitting(false);
+      setError(
+        err instanceof Error
+          ? err.message
+          : `Could not send your message. Please email ${CONTACT_EMAIL} directly.`
+      );
+    }
   };
 
   const headerCopy = (() => {
@@ -331,7 +354,7 @@ export default function ContactModal() {
                       Need it sooner?
                     </p>
                     <p className="mt-1 text-sm font-semibold text-white">
-                      Call us · <span className="text-brand-lavender">+91 80 4000 8800</span>
+                      Call us · <span className="text-brand-lavender">+91 90646 96958</span>
                     </p>
                     <p className="mt-0.5 text-xs text-white/55">Mon – Sat · 9 AM to 7 PM IST</p>
                   </div>
@@ -516,6 +539,24 @@ export default function ContactModal() {
                         className={`${inputCls} resize-none`}
                       />
                     </Field>
+
+                    {/* Honeypot — hidden from real users, catches bots */}
+                    <input
+                      type="text"
+                      name="company_website"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={company_website}
+                      onChange={(e) => setCompanyWebsite(e.target.value)}
+                      className="absolute -left-[9999px] h-0 w-0 opacity-0"
+                      aria-hidden="true"
+                    />
+
+                    {error && (
+                      <p className="rounded-xl border border-rose-200 bg-rose-50 px-3 py-2 text-[12.5px] font-medium text-rose-600">
+                        {error}
+                      </p>
+                    )}
 
                     <div className="mt-2 flex flex-col-reverse items-stretch gap-3 sm:flex-row sm:items-center sm:justify-between">
                       <p className="text-[11px] leading-relaxed text-brand-navy/45">

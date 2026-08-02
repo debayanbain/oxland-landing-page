@@ -14,12 +14,14 @@ import {
   Sparkles,
   Handshake,
   LifeBuoy,
-  Newspaper,
   Briefcase,
   ArrowUpRight,
 } from "lucide-react";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
+
+const CONTACT_EMAIL = "info@oxbowintellect.com";
+const CONTACT_ENDPOINT = "/contact-submit.php";
 
 const PROJECT_TYPES = [
   "Land acquisition & parcel management",
@@ -72,7 +74,7 @@ const CHANNELS = [
     accent: "from-brand-blue to-brand-indigo",
     title: "Enterprise sales",
     description: "For infra, PSU, real estate and renewables teams evaluating Oxland at scale.",
-    action: "sales@oxland.in",
+    action: "info@oxbowintellect.com",
     meta: "Reply within 4 business hours",
   },
   {
@@ -83,7 +85,7 @@ const CHANNELS = [
     accent: "from-emerald-600 to-teal-600",
     title: "Product support",
     description: "Bugs, integrations, data issues — routed to on-call engineers within one hour.",
-    action: "support@oxland.in",
+    action: "info@oxbowintellect.com",
     meta: "24×7 NOC · Growth & Enterprise",
   },
   {
@@ -94,19 +96,8 @@ const CHANNELS = [
     accent: "from-teal-600 to-cyan-600",
     title: "Partnerships",
     description: "System integrators, GIS consultancies, drone operators and legal firms welcome.",
-    action: "partners@oxland.in",
+    action: "info@oxbowintellect.com",
     meta: "Referral & co-sell tiers",
-  },
-  {
-    id: "press",
-    icon: Newspaper,
-    palette: "bg-pink-50 text-pink-600",
-    ringPalette: "ring-pink-500/25",
-    accent: "from-pink-600 to-rose-600",
-    title: "Press & media",
-    description: "Story pitches, executive interviews, product screenshots and brand assets.",
-    action: "press@oxland.in",
-    meta: "Media kit on request",
   },
 ];
 
@@ -138,8 +129,10 @@ function Field({
 
 export default function ContactMain() {
   const [form, setForm] = useState<FormState>(initialForm);
+  const [company_website, setCompanyWebsite] = useState(""); // honeypot
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const successRef = useRef<HTMLDivElement>(null);
 
   const update = <K extends keyof FormState>(key: K, value: FormState[K]) =>
@@ -149,10 +142,29 @@ export default function ContactMain() {
     e.preventDefault();
     if (!form.name.trim() || !form.email.trim() || !form.phone.trim()) return;
     setSubmitting(true);
-    await new Promise((r) => setTimeout(r, 900));
-    setSubmitting(false);
-    setSubmitted(true);
-    setTimeout(() => successRef.current?.scrollIntoView({ behavior: "smooth", block: "center" }), 60);
+    setError(null);
+
+    try {
+      const res = await fetch(CONTACT_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...form, company_website, reason: "contact-page" }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.ok) {
+        throw new Error(data.error || "Something went wrong. Please try again.");
+      }
+      setSubmitting(false);
+      setSubmitted(true);
+      setTimeout(() => successRef.current?.scrollIntoView({ behavior: "smooth", block: "center" }), 60);
+    } catch (err) {
+      setSubmitting(false);
+      setError(
+        err instanceof Error
+          ? err.message
+          : `Could not send your message. Please email ${CONTACT_EMAIL} directly.`
+      );
+    }
   };
 
   return (
@@ -342,6 +354,24 @@ export default function ContactMain() {
                     />
                   </Field>
 
+                  {/* Honeypot — hidden from real users, catches bots */}
+                  <input
+                    type="text"
+                    name="company_website"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={company_website}
+                    onChange={(e) => setCompanyWebsite(e.target.value)}
+                    className="absolute -left-[9999px] h-0 w-0 opacity-0"
+                    aria-hidden="true"
+                  />
+
+                  {error && (
+                    <p className="rounded-xl border border-rose-200 bg-rose-50 px-3 py-2 text-[12.5px] font-medium text-rose-600">
+                      {error}
+                    </p>
+                  )}
+
                   <div className="mt-1 flex items-center justify-between">
                     <p className="text-[11px] text-brand-navy/45">
                       * Required fields
@@ -410,7 +440,7 @@ export default function ContactMain() {
                 </span>
               </h3>
               <p className="mt-2 text-sm text-brand-navy/60">
-                Four specialised inboxes — each with its own SLA and owner.
+                Three specialised inboxes — each with its own SLA and owner.
               </p>
             </div>
 

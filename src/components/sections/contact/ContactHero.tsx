@@ -140,11 +140,11 @@ export default function ContactHero() {
                 />
               </a>
               <a
-                href="tel:+918040008800"
+                href="tel:+919064696958"
                 className="inline-flex items-center gap-2 rounded-xl border border-brand-navy/12 bg-white/70 px-5 py-3 text-sm font-semibold text-brand-navy backdrop-blur-sm hover:bg-white"
               >
                 <Phone size={14} strokeWidth={2.5} className="text-brand-indigo" />
-                +91 80 4000 8800
+                +91 90646 96958
               </a>
             </motion.div>
           </div>
@@ -292,10 +292,10 @@ export default function ContactHero() {
                 </span>
                 <div>
                   <div className="text-[9px] font-bold uppercase tracking-wider text-brand-navy/50">
-                    Sales inbox
+                    Email us
                   </div>
                   <div className="font-display text-xs font-extrabold text-brand-navy">
-                    sales@oxland.in
+                    info@oxbowintellect.com
                   </div>
                 </div>
               </motion.div>

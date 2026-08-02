@@ -1,0 +1,228 @@
+---
+import BlogArticleLayout from "@/layouts/BlogArticleLayout.astro";
+import {
+  ClipboardCheck,
+  ShieldAlert,
+  Recycle,
+  Gauge,
+  MapPinned,
+  Users,
+  Network,
+  ArrowRight,
+  Quote,
+} from "lucide-react";
+
+const post = {
+  slug: "gis-watershed-monitoring",
+  category: "Land Management",
+  categoryPalette: "bg-brand-indigo/10 text-brand-indigo",
+  title: "GIS-Based Watershed Monitoring: A Game-Changer for Industries",
+  subtitle:
+    "Watershed conditions directly shape industrial operations — especially where water use, discharge and compliance are involved. GIS-based monitoring replaces fragmented, reactive methods with a comprehensive, real-time view of environmental exposure and operational risk.",
+  date: "30 Jul 2026",
+  isoDate: "2026-07-30",
+  readTime: "6 min read",
+  image: "/blog/GIS-Based%20Watershed%20Monitoring.jpg",
+};
+
+const author = {
+  name: "Soumi Das",
+  role: "GIS & Survey Lead · OxLand",
+  initials: "SD",
+  bio: "Leads GIS and survey workflows at OxLand — turning field data, imagery and spatial layers into monitoring that operations teams can rely on.",
+  socials: {},
+};
+
+const sections = [
+  {
+    icon: ClipboardCheck,
+    chip: "bg-brand-indigo/10 text-brand-indigo",
+    dot: "bg-brand-indigo",
+    title: "Enhanced Environmental Compliance & Reporting",
+    intro:
+      "Maintaining regulatory compliance is a critical requirement across industries. GIS streamlines how environmental data is collected, managed and reported — so compliance becomes less reactive and more integrated into daily operations.",
+    items: [
+      "Automated hydrological data logging",
+      "Datasets aligned to regulatory formats",
+      "Faster audits & inspections",
+      "Proactive compliance-risk detection",
+    ],
+  },
+  {
+    icon: ShieldAlert,
+    chip: "bg-brand-blue/10 text-brand-blue",
+    dot: "bg-brand-blue",
+    title: "Risk Mitigation & Disaster Preparedness",
+    intro:
+      "Industries face growing exposure to watershed risks such as flooding and sediment runoff. GIS supports early detection and scenario modelling, enabling better infrastructure planning and protecting critical assets from environmental disruption.",
+    items: [
+      "Flood & erosion-zone mapping",
+      "Seasonal variation modelling",
+      "Operational-impact scenarios",
+      "Environmental alerts in safety protocols",
+    ],
+  },
+  {
+    icon: Recycle,
+    chip: "bg-emerald-50 text-emerald-600",
+    dot: "bg-emerald-500",
+    title: "Resource Management & Sustainability Planning",
+    intro:
+      "Effective water planning depends on understanding dynamic watershed behaviour. GIS tools align industrial activity with real resource availability — feeding directly into long-term sustainability strategy and regulatory alignment.",
+    items: [
+      "Track water quality, quantity & flow",
+      "Optimise withdrawal on local data",
+      "Monitor discharge patterns",
+      "Support sustainability targets",
+    ],
+  },
+  {
+    icon: Gauge,
+    chip: "bg-brand-purple/10 text-brand-purple",
+    dot: "bg-brand-purple",
+    title: "Operational Efficiency & Cost Savings",
+    intro:
+      "GIS reduces the need for manual data collection and repeated field visits. By embedding spatial monitoring into routine operations, industries cut cost and speed up decision-making.",
+    items: [
+      "Continuous remote sensing",
+      "Real-time GIS dashboards",
+      "Fewer redundant site assessments",
+      "Lower labour overhead",
+    ],
+  },
+  {
+    icon: MapPinned,
+    chip: "bg-brand-indigo/10 text-brand-indigo",
+    dot: "bg-brand-indigo",
+    title: "Site Selection & Infrastructure Planning",
+    intro:
+      "Locational intelligence is critical when planning new facilities or expansions. GIS delivers detailed environmental input early in project design, improving long-term resilience and reducing downstream permitting challenges.",
+    items: [
+      "Evaluate watershed health & risk zones",
+      "Avoid high-impact areas",
+      "Sidestep regulatory complications",
+      "Plan for environmental compatibility",
+    ],
+  },
+  {
+    icon: Users,
+    chip: "bg-brand-blue/10 text-brand-blue",
+    dot: "bg-brand-blue",
+    title: "Stakeholder Communication & Transparency",
+    intro:
+      "Transparent reporting is vital for ESG performance and community relations. GIS makes technical data accessible and visual — building trust and reinforcing environmental accountability.",
+    items: [
+      "Intuitive map-based reporting",
+      "Support stakeholder reviews",
+      "Clear public disclosures",
+      "Messaging backed by spatial data",
+    ],
+  },
+  {
+    icon: Network,
+    chip: "bg-brand-purple/10 text-brand-purple",
+    dot: "bg-brand-purple",
+    title: "Integration with Industrial Systems",
+    intro:
+      "GIS can plug directly into industrial control, compliance and asset-management systems — creating a unified ecosystem where watershed data informs operations in real time and sharpens both responsiveness and strategy.",
+    items: [
+      "Connect to SCADA, ERP & monitoring",
+      "Automatic environmental-threshold alerts",
+      "Centralised water data across teams",
+      "Unified real-time ecosystem",
+    ],
+  },
+];
+
+const related = [
+  {
+    href: "/blog/geospatial-digital-twins",
+    title: "Transforming Industries with Geospatial Digital Twins",
+    category: "Land Management",
+    excerpt: "How live sensor data, location intelligence and prediction turn maps into decision engines.",
+    image: "/blog/Transforming%20Industries%20with%20Geospatial%20Digital%20Twins.jpg",
+    readTime: "8 min read",
+  },
+  {
+    href: "/blog/uavs-modern-mining",
+    title: "The Role of UAVs in Modern Mining Operations",
+    category: "Land Management",
+    excerpt: "Drones map sites, track ground movement, guide blasts and prove environmental compliance.",
+    image: "/blog/The%20Role%20of%20UAVs%20in%20Modern%20Mining%20Operations.jpg",
+    readTime: "6 min read",
+  },
+  {
+    href: "/blog/oxland-complete-land-management",
+    title: "OxLand — A Complete Land Management System for Industries",
+    category: "Land Management",
+    excerpt: "GIS mapping, drone surveys, AI analysis and digital records — the full land lifecycle in one dashboard.",
+    image: "/blog/OxLand%20%E2%80%93%20A%20Complete%20Land%20Management%20System%20for%20Industries.jpg",
+    readTime: "5 min read",
+  },
+];
+---
+<BlogArticleLayout {post} {author} {related}>
+
+  <p class="lead dropcap">
+    Watershed conditions directly impact industrial operations — particularly in sectors reliant on water usage, discharge or compliance. Traditional monitoring methods are often fragmented and reactive. GIS-based watershed monitoring offers a comprehensive, real-time view, redefining how industries manage environmental exposure and operational risk.
+  </p>
+
+  <p>
+    The application of GIS to watershed monitoring delivers direct, measurable advantages across multiple industrial functions. Below are the core areas where industries gain from leveraging GIS capabilities.
+  </p>
+
+  {sections.map((s) => (
+    <div>
+      <div class="mt-14 flex items-center gap-3">
+        <span class={`grid h-11 w-11 shrink-0 place-items-center rounded-xl ${s.chip}`}>
+          <s.icon size={20} strokeWidth={2.25} />
+        </span>
+        <h2 style="margin-top:0;">{s.title}</h2>
+      </div>
+
+      <p>{s.intro}</p>
+
+      <div class="mt-5 grid grid-cols-2 gap-2 sm:grid-cols-2">
+        {s.items.map((it) => (
+          <div class="flex items-center gap-2 rounded-lg border border-brand-navy/10 bg-white px-3 py-2 text-[13px] font-medium text-brand-navy/80 shadow-[0_1px_0_rgba(255,255,255,0.6)_inset,0_6px_18px_-16px_rgba(11,20,55,0.3)]">
+            <span class={`h-1.5 w-1.5 shrink-0 rounded-full ${s.dot}`}></span>
+            <span>{it}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  ))}
+
+  {/* Pull quote */}
+  <div class="relative my-12 rounded-3xl border border-brand-indigo/15 bg-gradient-to-br from-brand-indigo/5 via-white to-brand-purple/5 p-8">
+    <Quote size={26} strokeWidth={2.5} class="text-brand-indigo/40" />
+    <p class="mt-3 font-display text-xl font-bold leading-snug text-brand-navy sm:text-2xl">
+      From static reporting to dynamic oversight —{" "}
+      <span class="bg-gradient-to-r from-brand-indigo to-brand-purple bg-clip-text text-transparent">
+        GIS gives industries real control over compliance, risk and resource use.
+      </span>
+    </p>
+  </div>
+
+  <div class="mt-12">
+    <h2>Conclusion</h2>
+    <p>
+      GIS-based watershed monitoring elevates industrial environmental management from static reporting to dynamic oversight. With the right spatial tools, industries gain control over compliance, risk and resource use. For companies prioritising resilience and sustainability, integrating these tools is no longer optional — it is a competitive and operational imperative.
+    </p>
+  </div>
+
+  {/* Inline CTA */}
+  <div class="mt-10 rounded-3xl border border-brand-indigo/20 bg-gradient-to-br from-brand-indigo/[0.04] via-white to-brand-purple/[0.04] p-6 sm:p-8">
+    <p style="margin-top:0;font-size:15px;color:#0b1437;font-weight:600;">
+      Want watershed and land risk on one live map?
+    </p>
+    <p style="margin-top:0.5rem;font-size:14px;">
+      Tell us about your sites and water footprint — we'll show you how OxLand brings GIS layers, monitoring and compliance reporting together in a single, real-time view.
+    </p>
+    <a href="/contact" class="mt-5 inline-flex items-center gap-2 rounded-full bg-brand-gradient px-5 py-2.5 text-sm font-semibold text-white shadow-soft transition-all hover:shadow-float" style="text-decoration:none;color:white;">
+      Talk to our GIS team
+      <ArrowRight size={14} strokeWidth={2.5} />
+    </a>
+  </div>
+
+</BlogArticleLayout>

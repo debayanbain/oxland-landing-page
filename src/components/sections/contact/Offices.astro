@@ -4,34 +4,24 @@ import { MapPin, Phone, Mail, Clock, ArrowUpRight } from "lucide-react";
 
 const offices = [
   {
-    city: "Bengaluru",
-    tag: "HQ",
-    address: "42, Bellandur Tech Park, Outer Ring Road, Bengaluru 560103, Karnataka",
-    phone: "+91 80 4000 8800",
-    email: "hello@oxland.in",
+    city: "Kolkata",
+    tag: "Corporate",
+    address: "242, R.A.K Road, Kolkata, West Bengal 700055",
+    phone: "+91 90646 96958",
+    email: "info@oxbowintellect.com",
     hours: "Mon – Sat · 9 AM – 7 PM IST",
     palette: "indigo",
-    coords: "12.9°N · 77.6°E",
+    coords: "22.6°N · 88.4°E",
   },
   {
-    city: "Mumbai",
-    tag: "Enterprise",
-    address: "12F, Peninsula Business Park, Lower Parel West, Mumbai 400013, Maharashtra",
-    phone: "+91 22 4000 8800",
-    email: "mumbai@oxland.in",
-    hours: "Mon – Fri · 9 AM – 7 PM IST",
+    city: "Kalinganagar",
+    tag: "Operations",
+    address: "Near Duburi Chowk, Kalinganagar, Jajpur 755026",
+    phone: "+91 90646 96958",
+    email: "info@oxbowintellect.com",
+    hours: "Mon – Sat · 9 AM – 6 PM IST",
     palette: "purple",
-    coords: "19.0°N · 72.8°E",
-  },
-  {
-    city: "New Delhi",
-    tag: "Public sector",
-    address: "9th Floor, DLF Cyber Park, Sector 20, Gurugram 122001, Delhi NCR",
-    phone: "+91 11 4000 8800",
-    email: "delhi@oxland.in",
-    hours: "Mon – Fri · 10 AM – 7 PM IST",
-    palette: "blue",
-    coords: "28.6°N · 77.2°E",
+    coords: "20.9°N · 86.2°E",
   },
 ];
 
@@ -51,16 +41,16 @@ const paletteMap = {
           Offices
         </div>
         <h2 class="mt-5 font-display text-4xl font-extrabold tracking-tight text-brand-navy sm:text-5xl">
-          Three offices,{" "}
+          Two offices,{" "}
           <span class="bg-gradient-to-r from-brand-indigo to-brand-purple bg-clip-text text-transparent">one team.</span>
         </h2>
         <p class="mt-4 text-base text-brand-navy/60">
-          Product, sales and delivery teams sit across Bengaluru, Mumbai and Delhi — with field consultants across all major Indian states.
+          Our corporate and operations teams sit across Kolkata and Kalinganagar — with field consultants across all major Indian states.
         </p>
       </div>
     </Reveal>
 
-    <div class="mt-14 grid grid-cols-1 gap-5 lg:grid-cols-3">
+    <div class="mx-auto mt-14 grid max-w-3xl grid-cols-1 gap-5 sm:grid-cols-2">
       {offices.map((o, i) => {
         const p = paletteMap[o.palette as keyof typeof paletteMap];
         return (

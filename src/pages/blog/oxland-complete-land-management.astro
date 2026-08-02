@@ -1,0 +1,205 @@
+---
+import BlogArticleLayout from "@/layouts/BlogArticleLayout.astro";
+import {
+  LayoutDashboard,
+  Factory,
+  Layers,
+  TrendingUp,
+  Users,
+  ArrowRight,
+  Quote,
+} from "lucide-react";
+
+const post = {
+  slug: "oxland-complete-land-management",
+  category: "Land Management",
+  categoryPalette: "bg-brand-indigo/10 text-brand-indigo",
+  title: "OxLand — A Complete Land Management System for Industries",
+  subtitle:
+    "For any industry, land is one of the most valuable assets — yet it's often managed with scattered records, slow surveys and unclear ownership. OxLand brings the entire land lifecycle into one digital platform: faster, more transparent and far easier to handle.",
+  date: "01 Aug 2026",
+  isoDate: "2026-08-01",
+  readTime: "5 min read",
+  image: "/blog/OxLand%20%E2%80%93%20A%20Complete%20Land%20Management%20System%20for%20Industries.jpg",
+};
+
+const author = {
+  name: "Ankita Das",
+  role: "Land Management Specialist · OxLand",
+  initials: "AD",
+  bio: "Focused on land management and acquisition workflows at OxLand — helping industrial teams move from scattered files to a single, trustworthy land record.",
+  socials: {},
+};
+
+const sections = [
+  {
+    icon: LayoutDashboard,
+    chip: "bg-brand-indigo/10 text-brand-indigo",
+    dot: "bg-brand-indigo",
+    title: "What Is OxLand?",
+    intro:
+      "OxLand is a complete land management system built for industries, infrastructure projects and large-scale developments. It combines GIS mapping, drone surveys, AI analysis and digital record keeping in one place — replacing paper files and disconnected tools with a single dashboard for the entire land lifecycle, from identifying and acquiring land to monitoring, protecting and using it efficiently.",
+    items: [
+      "GIS mapping",
+      "Drone surveys",
+      "AI analysis",
+      "Digital record keeping",
+      "Single dashboard",
+      "Full land lifecycle",
+    ],
+  },
+  {
+    icon: Factory,
+    chip: "bg-brand-blue/10 text-brand-blue",
+    dot: "bg-brand-blue",
+    title: "Why Industries Need It",
+    intro:
+      "Large industrial projects often cover hundreds of acres or even thousands of hectares. Tracking boundaries, ownership, land use and compliance is a big job, and traditional methods are slow, depend on multiple teams and leave room for error. OxLand speeds up identification, supports acquisition automation and prevents disputes through verified boundaries.",
+    items: [
+      "Faster land identification",
+      "Fewer approval delays",
+      "Dispute prevention",
+      "Verified boundaries",
+      "Central digital archive",
+      "Encroachment monitoring",
+    ],
+  },
+  {
+    icon: Layers,
+    chip: "bg-brand-purple/10 text-brand-purple",
+    dot: "bg-brand-purple",
+    title: "Key Features",
+    intro:
+      "OxLand pulls the tools land teams normally juggle separately into one connected platform — mapping, surveying, records, documents, monitoring and planning, all working from the same source of truth.",
+    items: [
+      "Accurate GIS & satellite mapping",
+      "High-resolution drone surveys",
+      "Land record integration",
+      "Central document storage",
+      "Monitoring & alerts",
+      "Land-use planning tools",
+    ],
+  },
+  {
+    icon: TrendingUp,
+    chip: "bg-emerald-50 text-emerald-600",
+    dot: "bg-emerald-500",
+    title: "Benefits for Industries",
+    intro:
+      "The payoff is practical: projects start sooner, budgets hold, inspections are painless and decisions rest on reliable data — while land stays protected against loss or damage.",
+    items: [
+      "Save time on surveys & verification",
+      "Cut costs from disputes & rework",
+      "Stay inspection-ready & compliant",
+      "Better expansion decisions",
+      "Protect land assets",
+    ],
+  },
+  {
+    icon: Users,
+    chip: "bg-brand-indigo/10 text-brand-indigo",
+    dot: "bg-brand-indigo",
+    title: "Who Can Use OxLand",
+    intro:
+      "OxLand works across land-intensive sectors — wherever large land banks, lease boundaries, plots or acquisition corridors need to stay organized and defensible.",
+    items: [
+      "Steel & power plants",
+      "Mining companies",
+      "Industrial parks",
+      "Infrastructure developers",
+    ],
+  },
+];
+
+const related = [
+  {
+    href: "/blog/land-acquisition-monitoring-system",
+    title: "Why Industries Need a Land Acquisition Monitoring System",
+    category: "Land Acquisition",
+    excerpt: "Buying land is only half the battle — monitoring it is what protects the investment.",
+    image: "/blog/Why%20Industries%20Need%20a%20Land%20Acquisition%20Monitoring%20System.png",
+    readTime: "5 min read",
+  },
+  {
+    href: "/blog/digital-land-bank-gw-projects",
+    title: "A Digital Land Bank Built for GW Projects",
+    category: "Land Management",
+    excerpt: "GeoAI, verified records, litigation, valuation and acquisition — one configurable land bank.",
+    image: "/blog/A-Digital-Land-Bank-Built-for-GW-Projects.webp",
+    readTime: "7 min read",
+  },
+  {
+    href: "/blog/geospatial-digital-twins",
+    title: "Transforming Industries with Geospatial Digital Twins",
+    category: "Land Management",
+    excerpt: "How live data and 3D models turn land and asset management into a decision engine.",
+    image: "/blog/Transforming%20Industries%20with%20Geospatial%20Digital%20Twins.jpg",
+    readTime: "8 min read",
+  },
+];
+---
+<BlogArticleLayout {post} {author} {related}>
+
+  <p class="lead dropcap">
+    For any industry, land is one of the most valuable assets — the foundation for setting up plants, expanding operations and planning future growth. But managing land is rarely easy. In reality it involves scattered records, time-consuming surveys, unclear ownership and the constant risk of disputes or encroachment, all of which slow projects and increase costs.
+  </p>
+
+  <p>
+    <strong>OxLand</strong>, developed by Oxbow Intellect Pvt. Ltd., is designed to solve these challenges — bringing every aspect of land management into one digital platform that is faster, more transparent and much easier to handle.
+  </p>
+
+  {sections.map((s) => (
+    <div>
+      <div class="mt-14 flex items-center gap-3">
+        <span class={`grid h-11 w-11 shrink-0 place-items-center rounded-xl ${s.chip}`}>
+          <s.icon size={20} strokeWidth={2.25} />
+        </span>
+        <h2 style="margin-top:0;">{s.title}</h2>
+      </div>
+
+      <p>{s.intro}</p>
+
+      <div class="mt-5 grid grid-cols-2 gap-2 sm:grid-cols-3">
+        {s.items.map((it) => (
+          <div class="flex items-center gap-2 rounded-lg border border-brand-navy/10 bg-white px-3 py-2 text-[13px] font-medium text-brand-navy/80 shadow-[0_1px_0_rgba(255,255,255,0.6)_inset,0_6px_18px_-16px_rgba(11,20,55,0.3)]">
+            <span class={`h-1.5 w-1.5 shrink-0 rounded-full ${s.dot}`}></span>
+            <span>{it}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  ))}
+
+  {/* Pull quote */}
+  <div class="relative my-12 rounded-3xl border border-brand-indigo/15 bg-gradient-to-br from-brand-indigo/5 via-white to-brand-purple/5 p-8">
+    <Quote size={26} strokeWidth={2.5} class="text-brand-indigo/40" />
+    <p class="mt-3 font-display text-xl font-bold leading-snug text-brand-navy sm:text-2xl">
+      Land should be an asset you can trust and plan around —{" "}
+      <span class="bg-gradient-to-r from-brand-indigo to-brand-purple bg-clip-text text-transparent">
+        not a source of stress.
+      </span>
+    </p>
+  </div>
+
+  <div class="mt-12">
+    <h2>Making Land Management Simple</h2>
+    <p>
+      The goal of OxLand is not just to digitize records, but to make land management clear, quick and reliable. Whether it's identifying a new plot for a plant, checking ownership details, protecting land from encroachment or ensuring compliance, everything can be done from one place — no more running between offices, digging through old files or relying on outdated maps. With OxLand, industries can focus on growth while the platform takes care of the land side.
+    </p>
+  </div>
+
+  {/* Inline CTA */}
+  <div class="mt-10 rounded-3xl border border-brand-indigo/20 bg-gradient-to-br from-brand-indigo/[0.04] via-white to-brand-purple/[0.04] p-6 sm:p-8">
+    <p style="margin-top:0;font-size:15px;color:#0b1437;font-weight:600;">
+      Interested in knowing more?
+    </p>
+    <p style="margin-top:0.5rem;font-size:14px;">
+      Reach out and see how OxLand can make land management simpler for your industry — from identification and acquisition to monitoring and compliance, all in one platform.
+    </p>
+    <a href="/contact" class="mt-5 inline-flex items-center gap-2 rounded-full bg-brand-gradient px-5 py-2.5 text-sm font-semibold text-white shadow-soft transition-all hover:shadow-float" style="text-decoration:none;color:white;">
+      Talk to the OxLand team
+      <ArrowRight size={14} strokeWidth={2.5} />
+    </a>
+  </div>
+
+</BlogArticleLayout>

@@ -18,23 +18,23 @@ const FAQS = [
   },
   {
     q: "How do you handle RFP responses and tender enquiries?",
-    a: "Send tender documents and the RFP reference to tenders@oxland.in. Our proposal team responds with the compliance dossier, past-performance credentials, technical specs and pricing — typically within 24 hours. We are MeitY empanelled and GeM-ready.",
+    a: "Send tender documents and the RFP reference to info@oxbowintellect.com. Our proposal team responds with the compliance dossier, past-performance credentials, technical specs and pricing — typically within 24 hours. We are MeitY empanelled and GeM-ready.",
   },
   {
     q: "Can we meet in person at your office?",
-    a: "Absolutely. Our Bengaluru, Mumbai and Delhi offices welcome visits by appointment. Mention the office and preferred date in your message — we'll confirm and share meeting-room details, parking and any building access requirements.",
+    a: "Absolutely. Our Kolkata and Kalinganagar offices welcome visits by appointment. Mention the office and preferred date in your message — we'll confirm and share meeting-room details, parking and any building access requirements.",
   },
   {
     q: "I'm evaluating for a PSU / state nodal agency. Who do I contact?",
-    a: "Our public-sector team handles PSU, state nodal agency and central-ministry enquiries. Email tenders@oxland.in or select 'Public sector' in the form. The Delhi office is our dedicated hub for public-sector delivery.",
+    a: "Our public-sector team handles PSU, state nodal agency and central-ministry enquiries. Email info@oxbowintellect.com or select 'Public sector' in the form. Our Kolkata office is the corporate hub for public-sector delivery.",
   },
   {
     q: "What if I need product support, not sales?",
-    a: "If you're already a customer, email support@oxland.in or use the in-product chat — routed to on-call engineers. Growth and Enterprise tenants have a dedicated Slack channel with sub-hour response SLAs.",
+    a: "If you're already a customer, email info@oxbowintellect.com or use the in-product chat — routed to on-call engineers. Growth and Enterprise tenants have a dedicated Slack channel with sub-hour response SLAs.",
   },
   {
     q: "Do you have partners or resellers in my region?",
-    a: "We work with system integrators, GIS consultancies, drone operators, DGCA pilots and legal firms across India. Email partners@oxland.in for our partner tiers, margin structure and co-sell playbook.",
+    a: "We work with system integrators, GIS consultancies, drone operators, DGCA pilots and legal firms across India. Email info@oxbowintellect.com for our partner tiers, margin structure and co-sell playbook.",
   },
 ];
 
@@ -71,11 +71,11 @@ export default function ContactFaq() {
                 </div>
               </div>
               <a
-                href="tel:+918040008800"
+                href="tel:+919064696958"
                 className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand-gradient px-4 py-2.5 text-sm font-semibold text-white shadow-soft transition-all hover:shadow-float"
               >
                 <Phone size={13} strokeWidth={2.5} />
-                +91 80 4000 8800
+                +91 90646 96958
               </a>
             </div>
           </div>

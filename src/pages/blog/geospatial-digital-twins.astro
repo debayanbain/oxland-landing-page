@@ -1,0 +1,242 @@
+---
+import BlogArticleLayout from "@/layouts/BlogArticleLayout.astro";
+import {
+  Radar,
+  Truck,
+  MapPinned,
+  FileStack,
+  Boxes,
+  Sprout,
+  Pickaxe,
+  ArrowRight,
+  Quote,
+} from "lucide-react";
+
+const post = {
+  slug: "geospatial-digital-twins",
+  category: "Land Management",
+  categoryPalette: "bg-brand-indigo/10 text-brand-indigo",
+  title: "Transforming Industries with Geospatial Digital Twins",
+  subtitle:
+    "A geospatial digital twin is far more than a fancy 3D map. By fusing real-time sensor data, location intelligence and prediction, it becomes a live decision engine for mining, utilities, agriculture, manufacturing and public-sector planning.",
+  date: "31 Jul 2026",
+  isoDate: "2026-07-31",
+  readTime: "8 min read",
+  image: "/blog/Transforming%20Industries%20with%20Geospatial%20Digital%20Twins.jpg",
+};
+
+const author = {
+  name: "Arghya Sharma",
+  role: "Infrastructure & ROW Analyst · OxLand",
+  initials: "AS",
+  bio: "Works on linear-infrastructure and corridor projects at OxLand — connecting geospatial data to the decisions land and project teams make on the ground.",
+  socials: {},
+};
+
+const sections = [
+  {
+    icon: Radar,
+    chip: "bg-brand-indigo/10 text-brand-indigo",
+    dot: "bg-brand-indigo",
+    title: "Proactive Surveillance & Asset Monitoring",
+    intro:
+      "At the heart of every plant — a steel mill, a cement works, a coal mine — is the need to keep operations running safely and smoothly. Digital twins elevate surveillance from occasional drone flyovers to continuous oversight, so power and steel teams can watch furnace performance or powerline sag around the clock and cut unplanned downtime.",
+    items: [
+      "24/7 asset oversight",
+      "Drone-based surveillance",
+      "Furnace performance monitoring",
+      "Powerline sag detection",
+      "Fewer unplanned shutdowns",
+      "Continuous plant safety",
+    ],
+  },
+  {
+    icon: Truck,
+    chip: "bg-brand-blue/10 text-brand-blue",
+    dot: "bg-brand-blue",
+    title: "Intelligent Plant & Logistics Monitoring",
+    intro:
+      "Logistics often make or break operational efficiency. A geospatial digital twin turns mundane yard checks into laser-focused coordination — using location data from equipment to track productivity and material volumes from anywhere. When supplies run low, the twin can trigger the next shipment so the operation never stalls.",
+    items: [
+      "Equipment location tracking",
+      "Live material stock visibility",
+      "Vehicle & machine monitoring",
+      "Zone-level task alerts",
+      "Automated reordering",
+      "Real-time coordination",
+    ],
+  },
+  {
+    icon: MapPinned,
+    chip: "bg-brand-purple/10 text-brand-purple",
+    dot: "bg-brand-purple",
+    title: "Comprehensive Land & Asset Management",
+    intro:
+      "Digital twins unify cadastral data, parcel maps and historical land records into one interactive 3D interface. Surveyors capture exact boundaries inside the twin, government departments spot unlawful use or occupation, and a timestamped 3D view can prove exactly when a change happened — making disputes clearer and harder to game.",
+    items: [
+      "Cadastral data unification",
+      "Interactive 3D parcel maps",
+      "Boundary verification",
+      "Encroachment detection",
+      "Timestamped land history",
+      "Permit & protected zones",
+    ],
+  },
+  {
+    icon: FileStack,
+    chip: "bg-emerald-50 text-emerald-600",
+    dot: "bg-emerald-500",
+    title: "Digital Enablement & Data Digitization",
+    intro:
+      "Twins thrive on digitized documents — scanned deeds, environmental permits and technical manuals, all linked spatially to real-world locations. Legal teams retrieve any document tied to a property in seconds, soil reports become map overlays, and inspectors review every relevant record on the 3D map when they visit site.",
+    items: [
+      "Digitized deeds & permits",
+      "Spatially linked documents",
+      "Instant legal retrieval",
+      "Soil & certificate overlays",
+      "Field-ready inspection records",
+      "Environmental & disposal logs",
+    ],
+  },
+  {
+    icon: Boxes,
+    chip: "bg-brand-indigo/10 text-brand-indigo",
+    dot: "bg-brand-indigo",
+    title: "3D Geospatial Analysis & Parcel Mapping",
+    intro:
+      "By merging LiDAR-derived elevation models, multispectral UAV imagery and topographical surveys into one cohesive twin, teams unlock advanced analysis. Operators observe 3D water movement and plant health, water authorities simulate storage and predict flood flows, and developers model subsurface contamination to plan excavation more safely.",
+    items: [
+      "LiDAR elevation models",
+      "Multispectral UAV imagery",
+      "3D water-flow analysis",
+      "Moisture & vegetation health",
+      "Runoff & storage simulation",
+      "Subsurface contamination models",
+    ],
+  },
+  {
+    icon: Sprout,
+    chip: "bg-brand-blue/10 text-brand-blue",
+    dot: "bg-brand-blue",
+    title: "Crop Classification & Environmental Monitoring",
+    intro:
+      "Integrating spectral indices such as NDVI and NBR, a twin can tell corn from soy, pine from cedar, concrete from sand. Smart algorithms review seasonal drone imagery to catch plant stress or pests early, while forest departments use laser scanning to verify replanting and estimate timber volume for sustainable, correctly-priced harvests.",
+    items: [
+      "NDVI & NBR spectral indices",
+      "Crop-type classification",
+      "Early pest & stress alerts",
+      "Seasonal drone imagery",
+      "Replanting verification",
+      "Timber volume estimates",
+    ],
+  },
+  {
+    icon: Pickaxe,
+    chip: "bg-brand-purple/10 text-brand-purple",
+    dot: "bg-brand-purple",
+    title: "Excavation Monitoring & Logistic Automation",
+    intro:
+      "Fed by live LiDAR, haul-truck GPS and blast surveys, the twin keeps everyone informed. The elevation model updates as digging starts, specialists catch over- or under-excavation early, and trucks are steered away from congestion or unsafe slopes. When stockpiles drop below threshold, the system queues the next blast and organizes haulage to prevent delays.",
+    items: [
+      "Live elevation updates",
+      "Over/under-dig detection",
+      "Safer haul-truck routing",
+      "Volume-based progress tracking",
+      "Stockpile threshold alerts",
+      "Automated blast scheduling",
+    ],
+  },
+];
+
+const related = [
+  {
+    href: "/blog/uavs-modern-mining",
+    title: "The Role of UAVs in Modern Mining Operations",
+    category: "Land Management",
+    excerpt: "From site mapping to blast planning, drones now touch almost every step of open-cast mining.",
+    image: "/blog/The%20Role%20of%20UAVs%20in%20Modern%20Mining%20Operations.jpg",
+    readTime: "6 min read",
+  },
+  {
+    href: "/blog/gis-watershed-monitoring",
+    title: "GIS-Based Watershed Monitoring: A Game-Changer for Industries",
+    category: "Land Management",
+    excerpt: "How GIS turns fragmented, reactive watershed monitoring into real-time environmental oversight.",
+    image: "/blog/GIS-Based%20Watershed%20Monitoring.jpg",
+    readTime: "6 min read",
+  },
+  {
+    href: "/blog/digital-land-bank-gw-projects",
+    title: "A Digital Land Bank Built for GW Projects",
+    category: "Land Management",
+    excerpt: "How OxLand unifies GeoAI, verified records, legal intelligence, valuation and acquisition into one land bank.",
+    image: "/blog/A-Digital-Land-Bank-Built-for-GW-Projects.webp",
+    readTime: "7 min read",
+  },
+];
+---
+<BlogArticleLayout {post} {author} {related}>
+
+  <p class="lead dropcap">
+    Many people think geospatial digital twins are just fancy 3D maps — but they are much more than that. They combine real-time data, sensors and location intelligence to help industries see what is happening, plan better and decide faster. By reflecting real-world environments through current location data, predictions and sensor feeds, these systems let decision-makers understand, model and operate across mining, utilities, agriculture, manufacturing, city planning and the public sector.
+  </p>
+
+  <p>
+    A geospatial digital twin is far more than a static map — it is a dynamic decision-making engine. Here is how that engine is reshaping industry after industry, and what organizations should keep in mind as they adopt it.
+  </p>
+
+  {sections.map((s) => (
+    <div>
+      <div class="mt-14 flex items-center gap-3">
+        <span class={`grid h-11 w-11 shrink-0 place-items-center rounded-xl ${s.chip}`}>
+          <s.icon size={20} strokeWidth={2.25} />
+        </span>
+        <h2 style="margin-top:0;">{s.title}</h2>
+      </div>
+
+      <p>{s.intro}</p>
+
+      <div class="mt-5 grid grid-cols-2 gap-2 sm:grid-cols-3">
+        {s.items.map((it) => (
+          <div class="flex items-center gap-2 rounded-lg border border-brand-navy/10 bg-white px-3 py-2 text-[13px] font-medium text-brand-navy/80 shadow-[0_1px_0_rgba(255,255,255,0.6)_inset,0_6px_18px_-16px_rgba(11,20,55,0.3)]">
+            <span class={`h-1.5 w-1.5 shrink-0 rounded-full ${s.dot}`}></span>
+            <span>{it}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  ))}
+
+  {/* Pull quote */}
+  <div class="relative my-12 rounded-3xl border border-brand-indigo/15 bg-gradient-to-br from-brand-indigo/5 via-white to-brand-purple/5 p-8">
+    <Quote size={26} strokeWidth={2.5} class="text-brand-indigo/40" />
+    <p class="mt-3 font-display text-xl font-bold leading-snug text-brand-navy sm:text-2xl">
+      From mines to cities, farms to factories —{" "}
+      <span class="bg-gradient-to-r from-brand-indigo to-brand-purple bg-clip-text text-transparent">
+        the digital twin turns real-time reality into decisions you can act on today.
+      </span>
+    </p>
+  </div>
+
+  <div class="mt-12">
+    <h2>Conclusion</h2>
+    <p>
+      Geospatial digital twins are already here, and they are making a noticeable difference — making it easier to handle and control everything from mines to cities, farms to factories. Organizations that adopt them with clear aims, effective leadership and open standards will drive the next phase of digital transformation. For anyone responsible for land, infrastructure or critical services, it is time to start putting digital twins to work.
+    </p>
+  </div>
+
+  {/* Inline CTA */}
+  <div class="mt-10 rounded-3xl border border-brand-indigo/20 bg-gradient-to-br from-brand-indigo/[0.04] via-white to-brand-purple/[0.04] p-6 sm:p-8">
+    <p style="margin-top:0;font-size:15px;color:#0b1437;font-weight:600;">
+      Curious what a digital twin of your site would reveal?
+    </p>
+    <p style="margin-top:0.5rem;font-size:14px;">
+      Share your footprint and data sources — we'll show you how OxLand layers GeoAI, records, monitoring and 3D analysis into one live operating picture of your land and assets.
+    </p>
+    <a href="/contact" class="mt-5 inline-flex items-center gap-2 rounded-full bg-brand-gradient px-5 py-2.5 text-sm font-semibold text-white shadow-soft transition-all hover:shadow-float" style="text-decoration:none;color:white;">
+      Book a walkthrough on your project
+      <ArrowRight size={14} strokeWidth={2.5} />
+    </a>
+  </div>
+
+</BlogArticleLayout>

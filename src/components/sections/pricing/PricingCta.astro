@@ -43,7 +43,7 @@ import { ArrowRight, Calendar, Phone, MailOpen } from "lucide-react";
 
             <div class="mt-9 flex flex-wrap items-center gap-4">
               <Magnetic client:visible strength={0.18}>
-                <Button size="lg" className="h-12 rounded-xl bg-white px-7 text-brand-navy hover:bg-white/90 shadow-soft group">
+                <Button type="button" data-open-contact="sales" size="lg" className="h-12 rounded-xl bg-white px-7 text-brand-navy hover:bg-white/90 shadow-soft group">
                   Book a tailored walkthrough
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Button>
@@ -92,3 +92,13 @@ import { ArrowRight, Calendar, Phone, MailOpen } from "lucide-react";
     </Reveal>
   </div>
 </section>
+
+<script>
+  // "Book a tailored walkthrough" opens the global contact modal
+  document.querySelectorAll("[data-open-contact]").forEach((el) => {
+    el.addEventListener("click", () => {
+      const reason = el.getAttribute("data-open-contact") || "demo";
+      window.dispatchEvent(new CustomEvent("oxland:open-contact", { detail: { reason } }));
+    });
+  });
+</script>

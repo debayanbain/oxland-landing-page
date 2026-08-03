@@ -161,3 +161,64 @@
     mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
   }
 }
+
+/* ---- Pricing plan animated gradient border (used by PricingPlans.tsx) ----
+   Rotating a registered custom property makes the conic gradient's start angle
+   sweep smoothly and loop seamlessly (0deg === 360deg, symmetric stops → no
+   seam). A padding + mask trick paints the gradient as the border only, so it
+   hugs the rounded corners. Lives here (not an inline island <style>) so the
+   `<angle>` syntax isn't HTML-escaped during SSR. */
+@property --pa {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+@keyframes pricingTrail {
+  to { --pa: 360deg; }
+}
+.pricing-ring {
+  padding: 1.5px;
+  border-radius: inherit;
+  background: conic-gradient(
+    from var(--pa),
+    #2f5bff 0deg,
+    #6366f1 55deg,
+    #7c3aed 120deg,
+    #c4b5fd 175deg,
+    #7c3aed 230deg,
+    #6366f1 300deg,
+    #2f5bff 360deg
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  animation: pricingTrail 6s linear infinite;
+  will-change: --pa;
+}
+.pricing-ring.ent {
+  padding: 2px;
+  animation-duration: 7.5s;
+}
+.pricing-glow {
+  background: conic-gradient(
+    from var(--pa),
+    rgba(47, 91, 255, 0.35),
+    rgba(124, 58, 237, 0.35),
+    rgba(196, 181, 253, 0.45),
+    rgba(124, 58, 237, 0.35),
+    rgba(47, 91, 255, 0.35)
+  );
+  filter: blur(22px);
+  animation: pricingTrail 6s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .pricing-ring,
+  .pricing-glow {
+    animation: none;
+  }
+}

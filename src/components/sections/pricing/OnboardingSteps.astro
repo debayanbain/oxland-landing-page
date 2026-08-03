@@ -175,6 +175,7 @@ const steps = [
   .onboard-connector-line {
     position: absolute;
     inset: 0;
+    overflow: hidden;
     border-radius: 999px;
     background: linear-gradient(
       90deg,
@@ -183,6 +184,31 @@ const steps = [
     );
     transform: scaleX(1);
     transform-origin: left center;
+  }
+
+  /* Infinite flowing light trail travelling along each connector, staggered
+     step-to-step so the whole 1→7 chain reads as one continuous flow. */
+  .onboard-connector-line::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.95) 45%,
+      rgba(167, 139, 250, 0.95) 62%,
+      transparent 100%
+    );
+    background-size: 55% 100%;
+    background-repeat: no-repeat;
+    animation: onboardFlow 2.4s linear infinite;
+    animation-delay: calc(var(--i, 0) * 0.2s);
+  }
+
+  @keyframes onboardFlow {
+    from { background-position: -60% 0; }
+    to { background-position: 160% 0; }
   }
 
   .onboard-connector-chevron {
@@ -232,6 +258,9 @@ const steps = [
       opacity: 1;
       transform: translate(-50%, -50%);
       transition: none;
+    }
+    .onboard-connector-line::after {
+      display: none;
     }
   }
 </style>

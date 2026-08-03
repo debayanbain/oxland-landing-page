@@ -209,17 +209,25 @@ export default function ProjectImpactExplorer() {
                           {INR(v)}{s.unit ? ` ${s.unit}` : ""}
                         </span>
                       </div>
-                      <input
-                        type="range"
-                        min={s.min}
-                        max={s.max}
-                        step={s.step}
-                        value={v}
-                        onChange={(e) => setVals((p) => ({ ...p, [s.key]: Number(e.target.value) }))}
-                        aria-label={s.label}
-                        className="pie-slider w-full appearance-none bg-transparent"
-                        style={{ background: `linear-gradient(to right, #4F46E5 0%, #7C3AED ${pct}%, #E9EAF4 ${pct}%, #E9EAF4 100%)` }}
-                      />
+                      <div className="relative">
+                        <input
+                          type="range"
+                          min={s.min}
+                          max={s.max}
+                          step={s.step}
+                          value={v}
+                          onChange={(e) => setVals((p) => ({ ...p, [s.key]: Number(e.target.value) }))}
+                          aria-label={s.label}
+                          className="pie-slider block w-full appearance-none bg-transparent"
+                          style={{ background: `linear-gradient(to right, #4F46E5 0%, #7C3AED ${pct}%, #E9EAF4 ${pct}%, #E9EAF4 100%)` }}
+                        />
+                        {/* Flowing light trail along the filled portion (stops short of the thumb) */}
+                        <span
+                          aria-hidden
+                          className="pie-trail pointer-events-none absolute inset-y-0 left-0 overflow-hidden rounded-full"
+                          style={{ width: `max(0px, calc(${pct}% - 9px))` }}
+                        />
+                      </div>
                       <div className="mt-1 flex justify-between text-[10.5px] text-brand-navy/40 tabular-nums">
                         <span>{INR(s.min)}</span>
                         <span>{INR(s.max)}+</span>
@@ -361,8 +369,23 @@ export default function ProjectImpactExplorer() {
           box-shadow: 0 4px 12px rgba(79,70,229,0.35);
           cursor: grab;
         }
+        .pie-trail::after {
+          content: "";
+          position: absolute;
+          inset: 0;
+          border-radius: inherit;
+          background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.92) 50%, transparent 100%);
+          background-size: 45% 100%;
+          background-repeat: no-repeat;
+          animation: pieFlow 1.8s linear infinite;
+        }
+        @keyframes pieFlow {
+          from { background-position: -60% 0; }
+          to { background-position: 160% 0; }
+        }
         @media (prefers-reduced-motion: reduce) {
           .pie-slider::-webkit-slider-thumb { transition: none; }
+          .pie-trail::after { animation: none; display: none; }
         }
       `}</style>
     </section>

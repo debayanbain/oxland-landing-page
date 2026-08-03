@@ -63,17 +63,7 @@ const openContact = (reason: string) => {
 
 export default function PricingPlans() {
   return (
-    <>
-      <style>{`
-        @keyframes svgDrawBorder { to { stroke-dashoffset: 0; } }
-        @keyframes svgTravelGlow { to { stroke-dashoffset: -2400; } }
-        @media (prefers-reduced-motion: reduce) {
-          @keyframes svgDrawBorder { from { stroke-dashoffset: 0; } to { stroke-dashoffset: 0; } }
-          @keyframes svgTravelGlow { to { stroke-dashoffset: 0; } }
-        }
-      `}</style>
-
-      <section id="plans" className="relative pt-4 pb-12 sm:pt-6 sm:pb-16">
+    <section id="plans" className="relative pt-4 pb-12 sm:pt-6 sm:pb-16">
         <div className="container">
           <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 lg:grid-cols-2">
             {/* -------------------- FREE EVALUATION -------------------- */}
@@ -82,39 +72,16 @@ export default function PricingPlans() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6, ease: EASE }}
-              className="relative"
+              className="group relative h-full rounded-3xl shadow-card"
             >
-              {/* Draw-on-mount gradient border */}
-              <svg
+              {/* Ambient bloom */}
+              <div
                 aria-hidden
-                className="pointer-events-none absolute inset-0 h-full w-full"
-                style={{ overflow: "visible" }}
-              >
-                <defs>
-                  <linearGradient id="free-border" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#2F5BFF" />
-                    <stop offset="50%" stopColor="#6366f1" />
-                    <stop offset="100%" stopColor="#a855f7" />
-                  </linearGradient>
-                </defs>
-                <rect
-                  x="0"
-                  y="0"
-                  width="100%"
-                  height="100%"
-                  rx="24"
-                  fill="none"
-                  stroke="url(#free-border)"
-                  strokeWidth="1.5"
-                  style={{
-                    strokeDasharray: 2400,
-                    strokeDashoffset: 2400,
-                    animation: "svgDrawBorder 2.2s cubic-bezier(0.4,0,0.2,1) forwards",
-                  }}
-                />
-              </svg>
+                className="pricing-glow pointer-events-none absolute -inset-1 -z-10 rounded-[28px] opacity-40 transition-opacity duration-500 group-hover:opacity-70"
+              />
 
-              <div className="relative flex h-full flex-col overflow-hidden rounded-3xl border border-brand-navy/10 bg-white p-8 shadow-card sm:p-10">
+              {/* Card */}
+              <div className="relative flex h-full flex-col overflow-hidden rounded-3xl border border-brand-navy/[0.06] bg-white p-8 sm:p-10">
                 {/* Eyebrow */}
                 <span className="inline-flex w-fit items-center gap-2 rounded-full bg-brand-indigo/10 px-3 py-1 text-[11px] font-bold uppercase tracking-widest text-brand-indigo">
                   <span className="grid h-4 w-4 place-items-center rounded-full bg-brand-indigo text-white">
@@ -159,6 +126,9 @@ export default function PricingPlans() {
                   </button>
                 </div>
               </div>
+
+              {/* Animated gradient border (drawn on top of the card edge) */}
+              <span aria-hidden className="pricing-ring pointer-events-none absolute inset-0 rounded-3xl" />
             </motion.div>
 
             {/* -------------------- ENTERPRISE (dark card) -------------------- */}
@@ -167,57 +137,16 @@ export default function PricingPlans() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6, ease: EASE, delay: 0.08 }}
-              className="relative"
+              className="group relative h-full rounded-3xl shadow-float"
             >
-              {/* Draw-on-mount gradient border + traveling glow */}
-              <svg
+              {/* Ambient bloom */}
+              <div
                 aria-hidden
-                className="pointer-events-none absolute inset-0 h-full w-full"
-                style={{ overflow: "visible" }}
-              >
-                <defs>
-                  <linearGradient id="ent-border" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#2F5BFF" />
-                    <stop offset="50%" stopColor="#6366f1" />
-                    <stop offset="100%" stopColor="#a855f7" />
-                  </linearGradient>
-                </defs>
-                <rect
-                  x="0"
-                  y="0"
-                  width="100%"
-                  height="100%"
-                  rx="24"
-                  fill="none"
-                  stroke="url(#ent-border)"
-                  strokeWidth="2.25"
-                  style={{
-                    strokeDasharray: 2400,
-                    strokeDashoffset: 2400,
-                    animation: "svgDrawBorder 2.2s cubic-bezier(0.4,0,0.2,1) 0.22s forwards",
-                  }}
-                />
-                <rect
-                  x="0"
-                  y="0"
-                  width="100%"
-                  height="100%"
-                  rx="24"
-                  fill="none"
-                  stroke="#a78bfa"
-                  strokeWidth="5"
-                  strokeLinecap="round"
-                  style={{
-                    strokeDasharray: "90 2310",
-                    strokeDashoffset: 0,
-                    animation: "svgTravelGlow 3.4s linear infinite",
-                    filter: "blur(5px)",
-                    opacity: 0.85,
-                  }}
-                />
-              </svg>
+                className="pricing-glow pointer-events-none absolute -inset-1 -z-10 rounded-[28px] opacity-55 transition-opacity duration-500 group-hover:opacity-90"
+              />
 
-              <div className="relative flex h-full flex-col overflow-hidden rounded-3xl border-2 border-transparent bg-brand-navy p-8 shadow-float sm:p-10">
+              {/* Card */}
+              <div className="relative flex h-full flex-col overflow-hidden rounded-3xl bg-brand-navy p-8 sm:p-10">
                 {/* Ambient */}
                 <div
                   className="pointer-events-none absolute -top-24 -left-16 h-64 w-64 rounded-full blur-3xl opacity-55"
@@ -289,6 +218,9 @@ export default function PricingPlans() {
                   </div>
                 </div>
               </div>
+
+              {/* Animated gradient border (drawn on top of the card edge) */}
+              <span aria-hidden className="pricing-ring ent pointer-events-none absolute inset-0 rounded-3xl" />
             </motion.div>
           </div>
 
@@ -297,7 +229,6 @@ export default function PricingPlans() {
             Trusted by teams who manage large land operations
           </p>
         </div>
-      </section>
-    </>
+    </section>
   );
 }

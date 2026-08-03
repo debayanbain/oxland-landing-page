@@ -824,6 +824,8 @@ export default function Hero() {
             <Magnetic strength={0.15}>
               <a
                 href="https://app.oxland.in"
+                target="_blank"
+                rel="noopener noreferrer"
                 className={buttonVariants({ variant: "secondary", size: "lg", className: "rounded-full" })}
               >
                 Explore Platform

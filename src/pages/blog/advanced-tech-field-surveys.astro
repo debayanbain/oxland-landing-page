@@ -1,0 +1,221 @@
+---
+import BlogArticleLayout from "@/layouts/BlogArticleLayout.astro";
+import {
+  Plane,
+  Cpu,
+  Satellite,
+  Wifi,
+  Smartphone,
+  Lock,
+  ArrowRight,
+  Quote,
+} from "lucide-react";
+
+const post = {
+  slug: "advanced-tech-field-surveys",
+  category: "Land Management",
+  categoryPalette: "bg-brand-indigo/10 text-brand-indigo",
+  title: "How Advanced Technologies are Transforming Field Surveys",
+  subtitle:
+    "Traditional field surveys are slow, labour-intensive and error-prone. From drones and AI to GIS, IoT sensors, mobile apps and blockchain, modern technology is making data collection faster, more accurate and highly efficient.",
+  date: "03 Aug 2026",
+  isoDate: "2026-08-03",
+  readTime: "6 min read",
+  image: "/blog/How%20Advanced%20Technologies%20are%20Transforming%20Field%20Surveys.jpg",
+};
+
+const author = {
+  name: "Smriti Ranjan Ghosh",
+  role: "Technical Head & GeoAI · OxLand",
+  initials: "SG",
+  bio: "Leads engineering and GeoAI at OxLand, building the platform behind modern land operations.",
+  socials: {},
+};
+
+const sections = [
+  {
+    icon: Plane,
+    chip: "bg-brand-indigo/10 text-brand-indigo",
+    dot: "bg-brand-indigo",
+    title: "Drones and Aerial Imaging",
+    intro:
+      "Unmanned aerial vehicles have changed how field surveys are run. Fitted with high-resolution cameras, LiDAR and thermal sensors, drones cover vast areas in a fraction of the time — capturing precise maps and 3D terrain while keeping surveyors out of hazardous, hard-to-reach places.",
+    items: [
+      "Faster area coverage",
+      "High-precision mapping",
+      "3D terrain modeling",
+      "LiDAR & thermal sensors",
+      "Safer remote collection",
+      "Lower cost than manned flights",
+    ],
+  },
+  {
+    icon: Cpu,
+    chip: "bg-brand-purple/10 text-brand-purple",
+    dot: "bg-brand-purple",
+    title: "Artificial Intelligence & Machine Learning",
+    intro:
+      "AI and machine learning automate the heavy lifting of survey data. Models classify objects, spot patterns and interpret imagery with minimal human input, predict environmental or infrastructure changes from historical data, and cut human error — turning raw captures into reliable insight, fast.",
+    items: [
+      "Automated image interpretation",
+      "Pattern & object detection",
+      "Predictive analytics",
+      "Fewer human errors",
+      "Real-time processing",
+      "Faster decision-making",
+    ],
+  },
+  {
+    icon: Satellite,
+    chip: "bg-brand-blue/10 text-brand-blue",
+    dot: "bg-brand-blue",
+    title: "GIS & Remote Sensing",
+    intro:
+      "GIS and remote sensing give surveys true geospatial accuracy. Teams create, analyse and visualise spatial data, access it from anywhere via the cloud, and layer satellite, drone and sensor sources into one comprehensive view — ideal for tracking deforestation, water levels and urban expansion over time.",
+    items: [
+      "Real-time mapping",
+      "Cloud data access",
+      "Layered multi-source analysis",
+      "Satellite + drone fusion",
+      "Environmental monitoring",
+      "Anywhere collaboration",
+    ],
+  },
+  {
+    icon: Wifi,
+    chip: "bg-emerald-50 text-emerald-600",
+    dot: "bg-emerald-500",
+    title: "Internet of Things & Smart Sensors",
+    intro:
+      "IoT sensors bring continuous, real-time data to the field. They monitor soil conditions, air quality and structural integrity around the clock, remove manual recording, and stream data wirelessly to the cloud — where it combines with GIS and AI models for deeper insight and better decisions.",
+    items: [
+      "24/7 monitoring",
+      "Automated data capture",
+      "Wireless streaming",
+      "Soil, air & structural data",
+      "GIS + AI integration",
+      "Instant reporting",
+    ],
+  },
+  {
+    icon: Smartphone,
+    chip: "bg-amber-50 text-amber-600",
+    dot: "bg-amber-500",
+    title: "Mobile Data Collection Apps",
+    intro:
+      "Paper forms have given way to mobile apps built for the field. Surveyors input and edit data on phones or tablets, collect offline and sync later, enrich records with GPS coordinates, photos and audio, and share instantly with remote teams for collaboration and analysis.",
+    items: [
+      "Easy on-device entry",
+      "Offline collection & sync",
+      "Geotagged records",
+      "Photo & audio capture",
+      "Cloud sharing",
+      "Team collaboration",
+    ],
+  },
+  {
+    icon: Lock,
+    chip: "bg-teal-50 text-teal-600",
+    dot: "bg-teal-500",
+    title: "Blockchain for Data Security & Transparency",
+    intro:
+      "As data integrity becomes a priority, blockchain keeps survey records secure and tamper-proof. Once recorded, data cannot be altered; stakeholders can verify sources without the risk of manipulation; and smart contracts can automate agreements such as land surveys and environmental-compliance tracking.",
+    items: [
+      "Immutable data storage",
+      "Tamper-proof records",
+      "Transparent verification",
+      "Trusted data sources",
+      "Smart-contract automation",
+      "Compliance tracking",
+    ],
+  },
+];
+
+const related = [
+  {
+    href: "/blog/drones-industrial-plant-inspections",
+    title: "How Drones are Revolutionising Inspections and Monitoring in Industrial Plants",
+    category: "Land Management",
+    excerpt: "Zero-downtime, safer inspections across steel, power and mining — and it's only accelerating.",
+    image: "/blog/Drones%20are%20Revolutionising%20Inspections%20and%20Monitoring%20in%20Industrial%20Plants.jpg",
+    readTime: "6 min read",
+  },
+  {
+    href: "/blog/uavs-modern-mining",
+    title: "The Role of UAVs in Modern Mining Operations",
+    category: "Land Management",
+    excerpt: "Drones fly fast, see more and keep people safe across mapping, monitoring, blasting and compliance.",
+    image: "/blog/The%20Role%20of%20UAVs%20in%20Modern%20Mining%20Operations.jpg",
+    readTime: "6 min read",
+  },
+  {
+    href: "/blog/gis-watershed-monitoring",
+    title: "GIS-Based Watershed Monitoring: A Game-Changer for Industries",
+    category: "Land Management",
+    excerpt: "Real-time GIS oversight for compliance, risk and resource use across industrial sites.",
+    image: "/blog/GIS-Based%20Watershed%20Monitoring.jpg",
+    readTime: "6 min read",
+  },
+];
+---
+<BlogArticleLayout {post} {author} {related}>
+
+  <p class="lead dropcap">
+    Field surveys have long been a crucial tool for gathering data across environmental science, agriculture, urban planning and infrastructure development. Traditionally they relied on manual collection — time-consuming, labour-intensive and prone to errors. With the arrival of advanced technologies, field surveys are undergoing a significant transformation: <strong>faster, more accurate and highly efficient</strong>. From drones and AI-powered analytics to GIS mapping and IoT sensors, here's how modern technology is revolutionising the way we survey.
+  </p>
+
+  {sections.map((s) => (
+    <div>
+      <div class="mt-14 flex items-center gap-3">
+        <span class={`grid h-11 w-11 shrink-0 place-items-center rounded-xl ${s.chip}`}>
+          <s.icon size={20} strokeWidth={2.25} />
+        </span>
+        <h2 style="margin-top:0;">{s.title}</h2>
+      </div>
+
+      <p>{s.intro}</p>
+
+      <div class="mt-5 grid grid-cols-2 gap-2 sm:grid-cols-3">
+        {s.items.map((it) => (
+          <div class="flex items-center gap-2 rounded-lg border border-brand-navy/10 bg-white px-3 py-2 text-[13px] font-medium text-brand-navy/80 shadow-[0_1px_0_rgba(255,255,255,0.6)_inset,0_6px_18px_-16px_rgba(11,20,55,0.3)]">
+            <span class={`h-1.5 w-1.5 shrink-0 rounded-full ${s.dot}`}></span>
+            <span>{it}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  ))}
+
+  {/* Pull quote */}
+  <div class="relative my-12 rounded-3xl border border-brand-indigo/15 bg-gradient-to-br from-brand-indigo/5 via-white to-brand-purple/5 p-8">
+    <Quote size={26} strokeWidth={2.5} class="text-brand-indigo/40" />
+    <p class="mt-3 font-display text-xl font-bold leading-snug text-brand-navy sm:text-2xl">
+      From drones capturing aerial imagery to AI-driven analytics, GIS, IoT and blockchain —{" "}
+      <span class="bg-gradient-to-r from-brand-indigo to-brand-purple bg-clip-text text-transparent">
+        modern field surveys are faster, more accurate and far more reliable.
+      </span>
+    </p>
+  </div>
+
+  <div class="mt-12">
+    <h2>Conclusion</h2>
+    <p>
+      The integration of advanced technologies has revolutionised how organisations collect and analyse field data. As technology keeps evolving, surveys will only get more accurate, accessible and reliable. At <strong>Oxbow Intellect</strong>, we bring these capabilities together — AI-driven analytics, IoT-powered monitoring, drone and LiDAR mapping for high-precision terrain modeling, and cloud-based GIS for seamless data integration and visualisation — so field data becomes decisions you can trust.
+    </p>
+  </div>
+
+  {/* Inline CTA */}
+  <div class="mt-10 rounded-3xl border border-brand-indigo/20 bg-gradient-to-br from-brand-indigo/[0.04] via-white to-brand-purple/[0.04] p-6 sm:p-8">
+    <p style="margin-top:0;font-size:15px;color:#0b1437;font-weight:600;">
+      Modernising how your teams survey the field?
+    </p>
+    <p style="margin-top:0.5rem;font-size:14px;">
+      OxLand unifies drone and LiDAR mapping, AI analytics, IoT sensor feeds and cloud GIS into one platform — so every survey lands as clean, verifiable, decision-ready data. Tell us about your workflow and we'll show you how.
+    </p>
+    <a href="/contact" class="mt-5 inline-flex items-center gap-2 rounded-full bg-brand-gradient px-5 py-2.5 text-sm font-semibold text-white shadow-soft transition-all hover:shadow-float" style="text-decoration:none;color:white;">
+      Book a walkthrough on your workflow
+      <ArrowRight size={14} strokeWidth={2.5} />
+    </a>
+  </div>
+
+</BlogArticleLayout>

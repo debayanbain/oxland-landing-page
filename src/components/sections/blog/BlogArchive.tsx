@@ -20,6 +20,45 @@ type Post = {
 
 const posts: Post[] = [
   {
+    slug: "gis-drone-solar-lifecycle",
+    category: "Land Management",
+    categoryPalette: "bg-brand-indigo/10 text-brand-indigo",
+    title: "How GIS and Drone Technology Boost Profit Across the Solar Project Lifecycle",
+    excerpt:
+      "Solar projects keep getting bigger — and harder. GIS site analysis and drone surveys help teams pick better sites, design for maximum yield, cut construction cost and keep every panel producing across the whole lifecycle.",
+    author: "Arghya Sharma",
+    authorInitials: "AS",
+    date: "03 Aug 2026",
+    readTime: "7 min read",
+    image: "/blog/GIS%20and%20Drone%20Technology%20Boost%20Profit%20Across%20the%20Solar%20Project%20Lifecycle.jpg",
+  },
+  {
+    slug: "advanced-tech-field-surveys",
+    category: "Land Management",
+    categoryPalette: "bg-brand-indigo/10 text-brand-indigo",
+    title: "How Advanced Technologies are Transforming Field Surveys",
+    excerpt:
+      "Manual field surveys are slow, costly and error-prone. Drones, AI, GIS, IoT sensors, mobile apps and even blockchain are making data collection faster, more accurate and far more efficient.",
+    author: "Smriti Ranjan Ghosh",
+    authorInitials: "SG",
+    date: "03 Aug 2026",
+    readTime: "6 min read",
+    image: "/blog/How%20Advanced%20Technologies%20are%20Transforming%20Field%20Surveys.jpg",
+  },
+  {
+    slug: "drones-industrial-plant-inspections",
+    category: "Land Management",
+    categoryPalette: "bg-brand-indigo/10 text-brand-indigo",
+    title: "How Drones are Revolutionising Inspections and Monitoring in Industrial Plants",
+    excerpt:
+      "Traditional plant inspections mean shutdowns, scaffolding and people in harm's way. Industrial drones deliver zero-downtime, safer, earlier fault detection across steel, power and mining — and it's only accelerating.",
+    author: "Saheli Bhadra",
+    authorInitials: "SB",
+    date: "02 Aug 2026",
+    readTime: "6 min read",
+    image: "/blog/Drones%20are%20Revolutionising%20Inspections%20and%20Monitoring%20in%20Industrial%20Plants.jpg",
+  },
+  {
     slug: "digital-land-bank-gw-projects",
     category: "Land Management",
     categoryPalette: "bg-brand-indigo/10 text-brand-indigo",

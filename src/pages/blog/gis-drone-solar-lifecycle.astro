@@ -1,0 +1,223 @@
+---
+import BlogArticleLayout from "@/layouts/BlogArticleLayout.astro";
+import {
+  MapPinned,
+  Sun,
+  HardHat,
+  Wrench,
+  LayoutDashboard,
+  TrendingUp,
+  ArrowRight,
+  Quote,
+} from "lucide-react";
+
+const post = {
+  slug: "gis-drone-solar-lifecycle",
+  category: "Land Management",
+  categoryPalette: "bg-brand-indigo/10 text-brand-indigo",
+  title: "How GIS and Drone Technology Boost Profit Across the Solar Project Lifecycle",
+  subtitle:
+    "Solar projects keep getting bigger — and harder. GIS-optimised site analysis and drone technology help teams make smarter, faster decisions from the first site scan to long-term operations, keeping projects profitable at every stage.",
+  date: "03 Aug 2026",
+  isoDate: "2026-08-03",
+  readTime: "7 min read",
+  image: "/blog/GIS%20and%20Drone%20Technology%20Boost%20Profit%20Across%20the%20Solar%20Project%20Lifecycle.jpg",
+};
+
+const author = {
+  name: "Arghya Sharma",
+  role: "Business Head · OxLand",
+  initials: "AS",
+  bio: "Leads business and growth at OxLand, working closely with enterprise land, infrastructure and PSU teams across India.",
+  socials: {
+    linkedin: "https://www.linkedin.com/in/arghyasharma",
+  },
+};
+
+const sections = [
+  {
+    icon: MapPinned,
+    chip: "bg-brand-indigo/10 text-brand-indigo",
+    dot: "bg-brand-indigo",
+    title: "Finding the Best Sites Faster and More Accurately",
+    intro:
+      "Choosing land for a solar farm is no longer a guessing game. GIS mapping overlays sunlight availability, land cover, zoning rules and grid proximity in a single view, so unsuitable sites are filtered out early. Drone surveys go further, capturing detailed topography and contours before a rupee is spent on the ground.",
+    items: [
+      "Sunlight & irradiance layers",
+      "Land cover & zoning checks",
+      "Grid-proximity analysis",
+      "Early filtering of bad sites",
+      "Drone topographic surveys",
+      "Contour mapping",
+    ],
+  },
+  {
+    icon: Sun,
+    chip: "bg-brand-blue/10 text-brand-blue",
+    dot: "bg-brand-blue",
+    title: "Creating Precise Designs That Boost Energy Production",
+    intro:
+      "A strong design keeps a project profitable for decades. Drone aerial surveys deliver centimetre-level detail that powers digital terrain modeling and GIS visualisation, helping engineers lay panels to catch the most sun. Small changes in tilt or spacing — spotted in the data — can lift yields significantly, and detailed maps speed up permit approvals.",
+    items: [
+      "Centimetre-level aerial data",
+      "Digital terrain modeling",
+      "Optimised panel layout",
+      "Better tilt & spacing",
+      "Higher energy yield",
+      "Faster permit approvals",
+    ],
+  },
+  {
+    icon: HardHat,
+    chip: "bg-brand-purple/10 text-brand-purple",
+    dot: "bg-brand-purple",
+    title: "Reducing Construction Costs and Keeping Projects on Schedule",
+    intro:
+      "Large solar fields are hard to keep on schedule. Drone mapping and 3D terrain models replace slow monthly site checks with near real-time progress, so earthwork problems are caught and fixed early. GIS-based dashboards give every team the same picture — less confusion, better coordination and fewer costly surprises.",
+    items: [
+      "Near real-time progress",
+      "3D construction models",
+      "Early earthwork fixes",
+      "Shared GIS dashboards",
+      "Better coordination",
+      "Fewer costly surprises",
+    ],
+  },
+  {
+    icon: Wrench,
+    chip: "bg-emerald-50 text-emerald-600",
+    dot: "bg-emerald-500",
+    title: "Improving Maintenance Efficiency and Maximising Asset Performance",
+    intro:
+      "Once panels are live, keeping them producing is what really matters. Thermal-camera drones scan thousands of modules quickly, flagging hotspots, faults and dust. GIS-powered asset dashboards connect every panel, inverter and sensor, so crews know exactly where to go and what to fix — faster repairs and less lost production.",
+    items: [
+      "Thermal panel scanning",
+      "Hotspot & fault detection",
+      "Dust & soiling checks",
+      "Asset-linked GIS dashboards",
+      "Targeted maintenance",
+      "Less downtime",
+    ],
+  },
+  {
+    icon: LayoutDashboard,
+    chip: "bg-amber-50 text-amber-600",
+    dot: "bg-amber-500",
+    title: "Managing Multiple Solar Sites Effortlessly",
+    intro:
+      "Managing one site is hard; managing a hundred needs enterprise GIS. A centralised platform brings data from every project together, making performance and maintenance easy to track across the whole portfolio. Standardised, instant reports give auditors and investors the transparency they expect, and onboarding new sites is simple.",
+    items: [
+      "Centralised multi-site data",
+      "Portfolio-wide tracking",
+      "Standardised reporting",
+      "Investor-ready transparency",
+      "Easy site onboarding",
+      "One data system",
+    ],
+  },
+  {
+    icon: TrendingUp,
+    chip: "bg-teal-50 text-teal-600",
+    dot: "bg-teal-500",
+    title: "Building Long-Term Competitive Advantage",
+    intro:
+      "Leaders get ahead by spotting risk early and proving compliance. GIS environmental monitoring tracks wildlife, soil and water impacts — key for meeting investor and community expectations around sustainability. The real payoff is agility: acting fast, adapting to change and proving value at every stage of the project.",
+    items: [
+      "Early risk detection",
+      "Regulatory compliance",
+      "Environmental monitoring",
+      "Sustainability proof",
+      "Faster decisions",
+      "Portfolio agility",
+    ],
+  },
+];
+
+const related = [
+  {
+    href: "/blog/advanced-tech-field-surveys",
+    title: "How Advanced Technologies are Transforming Field Surveys",
+    category: "Land Management",
+    excerpt: "Drones, AI, GIS, IoT and mobile apps are making field data faster, more accurate and far more efficient.",
+    image: "/blog/How%20Advanced%20Technologies%20are%20Transforming%20Field%20Surveys.jpg",
+    readTime: "6 min read",
+  },
+  {
+    href: "/blog/uavs-modern-mining",
+    title: "The Role of UAVs in Modern Mining Operations",
+    category: "Land Management",
+    excerpt: "Drones fly fast, see more and keep people safe across mapping, monitoring, blasting and compliance.",
+    image: "/blog/The%20Role%20of%20UAVs%20in%20Modern%20Mining%20Operations.jpg",
+    readTime: "6 min read",
+  },
+  {
+    href: "/blog/geospatial-digital-twins",
+    title: "Transforming Industries with Geospatial Digital Twins",
+    category: "Land Management",
+    excerpt: "Live sensor data and 3D models turn monitoring and logistics into one decision engine.",
+    image: "/blog/Transforming%20Industries%20with%20Geospatial%20Digital%20Twins.jpg",
+    readTime: "8 min read",
+  },
+];
+---
+<BlogArticleLayout {post} {author} {related}>
+
+  <p class="lead dropcap">
+    Solar projects are getting bigger, and so are the challenges. Fast-changing markets, tougher competition and a constant need for efficiency push solar companies to rethink old workflows. That's where <strong>GIS-optimised solar site analysis</strong> and <strong>drone technology</strong> come in — helping companies make smarter, quicker decisions from the very start of a project all the way to its final stages. If you want to build and run a solar park profitably, these are the tools you cannot afford to overlook.
+  </p>
+
+  {sections.map((s) => (
+    <div>
+      <div class="mt-14 flex items-center gap-3">
+        <span class={`grid h-11 w-11 shrink-0 place-items-center rounded-xl ${s.chip}`}>
+          <s.icon size={20} strokeWidth={2.25} />
+        </span>
+        <h2 style="margin-top:0;">{s.title}</h2>
+      </div>
+
+      <p>{s.intro}</p>
+
+      <div class="mt-5 grid grid-cols-2 gap-2 sm:grid-cols-3">
+        {s.items.map((it) => (
+          <div class="flex items-center gap-2 rounded-lg border border-brand-navy/10 bg-white px-3 py-2 text-[13px] font-medium text-brand-navy/80 shadow-[0_1px_0_rgba(255,255,255,0.6)_inset,0_6px_18px_-16px_rgba(11,20,55,0.3)]">
+            <span class={`h-1.5 w-1.5 shrink-0 rounded-full ${s.dot}`}></span>
+            <span>{it}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  ))}
+
+  {/* Pull quote */}
+  <div class="relative my-12 rounded-3xl border border-brand-indigo/15 bg-gradient-to-br from-brand-indigo/5 via-white to-brand-purple/5 p-8">
+    <Quote size={26} strokeWidth={2.5} class="text-brand-indigo/40" />
+    <p class="mt-3 font-display text-xl font-bold leading-snug text-brand-navy sm:text-2xl">
+      From finding land to keeping panels humming,{" "}
+      <span class="bg-gradient-to-r from-brand-indigo to-brand-purple bg-clip-text text-transparent">
+        GIS and drone technology make solar projects more profitable, less risky and far easier to scale.
+      </span>
+    </p>
+  </div>
+
+  <div class="mt-12">
+    <h2>Conclusion</h2>
+    <p>
+      Leaders who invest in advanced GIS solutions and UAV technology today gain a clear edge. The tools are tried and tested, and the reward is tangible — from faster site selection to higher yields and smoother portfolio operations. For anyone serious about building a competitive solar business, digital innovation isn't just a good idea; it's the key to long-term success.
+    </p>
+  </div>
+
+  {/* Inline CTA */}
+  <div class="mt-10 rounded-3xl border border-brand-indigo/20 bg-gradient-to-br from-brand-indigo/[0.04] via-white to-brand-purple/[0.04] p-6 sm:p-8">
+    <p style="margin-top:0;font-size:15px;color:#0b1437;font-weight:600;">
+      Building or operating a solar portfolio?
+    </p>
+    <p style="margin-top:0.5rem;font-size:14px;">
+      OxLand brings GIS site intelligence, drone and UAV surveys, terrain models and asset dashboards into a single platform — site selection, design, construction tracking and O&M in one place. Tell us about your project and we'll show you how.
+    </p>
+    <a href="/contact" class="mt-5 inline-flex items-center gap-2 rounded-full bg-brand-gradient px-5 py-2.5 text-sm font-semibold text-white shadow-soft transition-all hover:shadow-float" style="text-decoration:none;color:white;">
+      Book a walkthrough on your project
+      <ArrowRight size={14} strokeWidth={2.5} />
+    </a>
+  </div>
+
+</BlogArticleLayout>

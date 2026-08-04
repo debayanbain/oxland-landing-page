@@ -1,0 +1,204 @@
+---
+import BlogArticleLayout from "@/layouts/BlogArticleLayout.astro";
+import {
+  TriangleAlert,
+  Factory,
+  Zap,
+  Mountain,
+  Rocket,
+  ArrowRight,
+  Quote,
+} from "lucide-react";
+
+const post = {
+  slug: "drones-industrial-plant-inspections",
+  category: "Land Management",
+  categoryPalette: "bg-brand-indigo/10 text-brand-indigo",
+  title: "How Drones are Revolutionising Inspections and Monitoring in Industrial Plants",
+  subtitle:
+    "Traditional plant inspections mean shutdowns, scaffolding and people in harm's way. Industrial drones deliver zero-downtime, safer, earlier fault detection across steel, power and mining — and adoption is only accelerating.",
+  date: "02 Aug 2026",
+  isoDate: "2026-08-02",
+  readTime: "6 min read",
+  image: "/blog/Drones%20are%20Revolutionising%20Inspections%20and%20Monitoring%20in%20Industrial%20Plants.jpg",
+};
+
+const author = {
+  name: "Saheli Bhadra",
+  role: "GeoAI & Land Expert · OxLand",
+  initials: "SB",
+  bio: "Focused on GeoAI and land intelligence at OxLand — turning spatial data into decisions land teams can act on.",
+  socials: {},
+};
+
+const sections = [
+  {
+    icon: TriangleAlert,
+    chip: "bg-rose-50 text-rose-600",
+    dot: "bg-rose-500",
+    title: "Why Traditional Inspection Falls Short",
+    intro:
+      "The industrial sector faces challenges that make manual inspection increasingly impractical. Workers climb into confined spaces, scale tall structures and enter areas of extreme temperature — every single day. Add the cost of plant downtime, scaffolding and lost production, and the case for a safer, faster alternative writes itself.",
+    items: [
+      "Confined-space risk",
+      "Work-at-height hazards",
+      "Extreme-temperature exposure",
+      "Costly production shutdowns",
+      "Scaffolding & access costs",
+      "Slow, manual coverage",
+    ],
+  },
+  {
+    icon: Factory,
+    chip: "bg-brand-indigo/10 text-brand-indigo",
+    dot: "bg-brand-indigo",
+    title: "Steel & Metals Production",
+    intro:
+      "Steel plants are among the harshest inspection environments imaginable — high heat, caustic chemicals and massive equipment. Heat-resistant drones inspect while production continues, capturing visual records of refractory conditions and spotting cracks and hot spots before they escalate — turning maintenance proactive.",
+    items: [
+      "Zero-downtime inspections",
+      "Refractory condition records",
+      "Early crack & hot-spot detection",
+      "No confined-space entry",
+      "Trend analysis",
+      "Safer crews",
+    ],
+  },
+  {
+    icon: Zap,
+    chip: "bg-amber-50 text-amber-600",
+    dot: "bg-amber-500",
+    title: "Power Generation",
+    intro:
+      "Power facilities span huge geographic areas and fine components alike. Drones inspect miles of transmission line a day — versus a couple with ground crews — run precise infrared scans to catch faults early, speed up disaster response, and check solar arrays and cooling towers without scaffolding.",
+    items: [
+      "Miles of transmission daily",
+      "Infrared fault detection",
+      "Rapid disaster assessment",
+      "Solar array optimisation",
+      "Cooling-tower integrity",
+      "Lower inspection cost",
+    ],
+  },
+  {
+    icon: Mountain,
+    chip: "bg-emerald-50 text-emerald-600",
+    dot: "bg-emerald-500",
+    title: "Mining Operations",
+    intro:
+      "Mines cover vast, ever-changing ground. Drone photogrammetry delivers around 98% accurate stockpile volumes, detects slope movement before it becomes a hazard, sharpens blast planning and automates environmental compliance — all while keeping crews at a safe distance.",
+    items: [
+      "~98% stockpile accuracy",
+      "Slope & ground-movement alerts",
+      "Better blast planning",
+      "Dust & reclamation tracking",
+      "Equipment inspection",
+      "Safer surveying",
+    ],
+  },
+  {
+    icon: Rocket,
+    chip: "bg-brand-purple/10 text-brand-purple",
+    dot: "bg-brand-purple",
+    title: "Future Outlook & Emerging Technologies",
+    intro:
+      "The sector is evolving fast. Autonomous drones will run daily inspections with minimal oversight, AI will flag defects earlier than human analysts can, swarms will inspect whole facilities at once, docked systems will monitor remote sites continuously, and drone data will feed live digital twins for virtual inspection and maintenance.",
+    items: [
+      "Autonomous inspection",
+      "AI defect analysis",
+      "Drone-swarm operations",
+      "Docked continuous monitoring",
+      "Digital-twin integration",
+      "Minimal human oversight",
+    ],
+  },
+];
+
+const related = [
+  {
+    href: "/blog/gis-drone-solar-lifecycle",
+    title: "How GIS and Drone Technology Boost Profit Across the Solar Project Lifecycle",
+    category: "Land Management",
+    excerpt: "GIS site analysis and drones drive profit from site selection to long-term solar operations.",
+    image: "/blog/GIS%20and%20Drone%20Technology%20Boost%20Profit%20Across%20the%20Solar%20Project%20Lifecycle.jpg",
+    readTime: "7 min read",
+  },
+  {
+    href: "/blog/uavs-modern-mining",
+    title: "The Role of UAVs in Modern Mining Operations",
+    category: "Land Management",
+    excerpt: "Drones fly fast, see more and keep people safe across mapping, monitoring, blasting and compliance.",
+    image: "/blog/The%20Role%20of%20UAVs%20in%20Modern%20Mining%20Operations.jpg",
+    readTime: "6 min read",
+  },
+  {
+    href: "/blog/geospatial-digital-twins",
+    title: "Transforming Industries with Geospatial Digital Twins",
+    category: "Land Management",
+    excerpt: "Live sensor data and 3D models turn monitoring and logistics into one decision engine.",
+    image: "/blog/Transforming%20Industries%20with%20Geospatial%20Digital%20Twins.jpg",
+    readTime: "8 min read",
+  },
+];
+---
+<BlogArticleLayout {post} {author} {related}>
+
+  <p class="lead dropcap">
+    In the challenging world of heavy industry, plant managers and safety officers have long struggled with the dangerous, time-consuming process of infrastructure inspection. Traditional methods often require production shutdowns, expensive scaffolding and placing workers in harm's way. The global <strong>industrial drone inspection</strong> market is rapidly changing that landscape — so what's driving this remarkable shift in how we approach industrial safety and efficiency?
+  </p>
+
+  {sections.map((s) => (
+    <div>
+      <div class="mt-14 flex items-center gap-3">
+        <span class={`grid h-11 w-11 shrink-0 place-items-center rounded-xl ${s.chip}`}>
+          <s.icon size={20} strokeWidth={2.25} />
+        </span>
+        <h2 style="margin-top:0;">{s.title}</h2>
+      </div>
+
+      <p>{s.intro}</p>
+
+      <div class="mt-5 grid grid-cols-2 gap-2 sm:grid-cols-3">
+        {s.items.map((it) => (
+          <div class="flex items-center gap-2 rounded-lg border border-brand-navy/10 bg-white px-3 py-2 text-[13px] font-medium text-brand-navy/80 shadow-[0_1px_0_rgba(255,255,255,0.6)_inset,0_6px_18px_-16px_rgba(11,20,55,0.3)]">
+            <span class={`h-1.5 w-1.5 shrink-0 rounded-full ${s.dot}`}></span>
+            <span>{it}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  ))}
+
+  {/* Pull quote */}
+  <div class="relative my-12 rounded-3xl border border-brand-indigo/15 bg-gradient-to-br from-brand-indigo/5 via-white to-brand-purple/5 p-8">
+    <Quote size={26} strokeWidth={2.5} class="text-brand-indigo/40" />
+    <p class="mt-3 font-display text-xl font-bold leading-snug text-brand-navy sm:text-2xl">
+      Industrial drones are no longer experimental —{" "}
+      <span class="bg-gradient-to-r from-brand-indigo to-brand-purple bg-clip-text text-transparent">
+        they're a proven, mainstream inspection tool delivering clear safety and cost gains.
+      </span>
+    </p>
+  </div>
+
+  <div class="mt-12">
+    <h2>Conclusion</h2>
+    <p>
+      Start by targeting the highest-risk tasks — confined spaces and work at height — and the impact shows immediately. With adoption accelerating across steel, power and mining, the question is no longer <em>if</em> but <em>how soon</em> you'll start seeing results.
+    </p>
+  </div>
+
+  {/* Inline CTA */}
+  <div class="mt-10 rounded-3xl border border-brand-indigo/20 bg-gradient-to-br from-brand-indigo/[0.04] via-white to-brand-purple/[0.04] p-6 sm:p-8">
+    <p style="margin-top:0;font-size:15px;color:#0b1437;font-weight:600;">
+      Inspecting plants, power lines or pits by hand?
+    </p>
+    <p style="margin-top:0.5rem;font-size:14px;">
+      OxLand turns drone imagery, thermal scans and LiDAR into one monitoring platform — defects tagged, trends tracked and compliance documented across every asset. Tell us about your site and we'll show you how.
+    </p>
+    <a href="/contact" class="mt-5 inline-flex items-center gap-2 rounded-full bg-brand-gradient px-5 py-2.5 text-sm font-semibold text-white shadow-soft transition-all hover:shadow-float" style="text-decoration:none;color:white;">
+      Book a walkthrough on your site
+      <ArrowRight size={14} strokeWidth={2.5} />
+    </a>
+  </div>
+
+</BlogArticleLayout>

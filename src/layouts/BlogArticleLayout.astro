@@ -2,7 +2,8 @@
 import Layout from "@/layouts/Layout.astro";
 import Reveal from "@/components/Reveal.tsx";
 import BlogSidebar from "@/components/BlogSidebar.tsx";
-import { ArrowLeft, ArrowRight, Clock, Calendar, Share2, Bookmark } from "lucide-react";
+import ShareMenu from "@/components/ShareMenu.tsx";
+import { ArrowLeft, ArrowRight, Clock, Calendar, Bookmark } from "lucide-react";
 
 interface Author {
   name: string;
@@ -45,6 +46,8 @@ interface Props {
 }
 
 const { post, author, related = [] } = Astro.props;
+
+const shareUrl = `https://oxland.in/blog/${post.slug}`;
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -114,33 +117,35 @@ const jsonLd = {
             </p>
           </Reveal>
 
-          <Reveal client:visible variant="fade-up" delay={0.28}>
-            <div class="mt-6 flex flex-wrap items-center gap-4 text-xs text-brand-navy/55">
-              <div class="flex items-center gap-2">
-                <span class="grid h-8 w-8 place-items-center rounded-full bg-gradient-to-br from-brand-indigo to-brand-purple font-display text-[10px] font-extrabold text-white shadow-soft">
-                  {author.initials}
-                </span>
-                <span class="font-semibold text-brand-navy">{author.name}</span>
-              </div>
-              <span class="h-4 w-px bg-brand-navy/15"></span>
-              <span class="flex items-center gap-1.5">
-                <Calendar size={12} strokeWidth={2.5} />
-                {post.date}
+          <div class="mt-6 flex flex-wrap items-center gap-4 text-xs text-brand-navy/55">
+            <div class="flex items-center gap-2">
+              <span class="grid h-8 w-8 place-items-center rounded-full bg-gradient-to-br from-brand-indigo to-brand-purple font-display text-[10px] font-extrabold text-white shadow-soft">
+                {author.initials}
               </span>
-              <span class="flex items-center gap-1.5">
-                <Clock size={12} strokeWidth={2.5} />
-                {post.readTime}
-              </span>
-              <span class="ml-auto flex items-center gap-1.5">
-                <button type="button" class="grid h-8 w-8 place-items-center rounded-full border border-brand-navy/10 text-brand-navy/60 hover:bg-brand-navy/[0.04]" aria-label="Share">
-                  <Share2 size={13} strokeWidth={2.5} />
-                </button>
-                <button type="button" class="grid h-8 w-8 place-items-center rounded-full border border-brand-navy/10 text-brand-navy/60 hover:bg-brand-navy/[0.04]" aria-label="Save">
-                  <Bookmark size={13} strokeWidth={2.5} />
-                </button>
-              </span>
+              <span class="font-semibold text-brand-navy">{author.name}</span>
             </div>
-          </Reveal>
+            <span class="h-4 w-px bg-brand-navy/15"></span>
+            <span class="flex items-center gap-1.5">
+              <Calendar size={12} strokeWidth={2.5} />
+              {post.date}
+            </span>
+            <span class="flex items-center gap-1.5">
+              <Clock size={12} strokeWidth={2.5} />
+              {post.readTime}
+            </span>
+            <span class="ml-auto flex items-center gap-1.5">
+              <ShareMenu
+                client:load
+                url={shareUrl}
+                title={post.title}
+                position="bottom"
+                className="grid h-8 w-8 place-items-center rounded-full border border-brand-navy/10 text-brand-navy/60 transition-colors hover:bg-brand-navy/[0.04]"
+              />
+              <button type="button" class="grid h-8 w-8 place-items-center rounded-full border border-brand-navy/10 text-brand-navy/60 hover:bg-brand-navy/[0.04]" aria-label="Save">
+                <Bookmark size={13} strokeWidth={2.5} />
+              </button>
+            </span>
+          </div>
         </div>
       </div>
     </section>
@@ -185,9 +190,13 @@ const jsonLd = {
               </div>
               <div class="flex items-center gap-2">
                 <span class="text-[11px] font-semibold text-brand-navy/55">Share this piece</span>
-                <button type="button" class="grid h-8 w-8 place-items-center rounded-full border border-brand-navy/10 bg-white text-brand-navy/60 hover:bg-brand-navy/[0.04]" aria-label="Share">
-                  <Share2 size={13} strokeWidth={2.5} />
-                </button>
+                <ShareMenu
+                  client:load
+                  url={shareUrl}
+                  title={post.title}
+                  position="top"
+                  className="grid h-8 w-8 place-items-center rounded-full border border-brand-navy/10 bg-white text-brand-navy/60 transition-colors hover:bg-brand-navy/[0.04]"
+                />
               </div>
             </div>
           </article>

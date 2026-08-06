@@ -15,13 +15,8 @@ import { Layers, MapPin, BarChart3, ShieldCheck, ArrowRight } from "lucide-react
           {/* ── Left Column (Content) ── */}
           <div class="lg:col-span-7 flex flex-col items-center sm:items-start text-center sm:text-left px-6 py-12 sm:px-12 sm:py-16 lg:px-16 lg:py-20">
 
-            {/* CTA Badge */}
-            <span class="inline-flex items-center rounded-full bg-brand-indigo px-3 py-1 text-xs font-semibold tracking-wider text-white uppercase shadow-sm">
-              CTA
-            </span>
-
             {/* Heading */}
-            <h2 class="mt-5 font-display text-4xl font-extrabold leading-tight tracking-tight text-brand-navy sm:text-5xl lg:text-6xl">
+            <h2 class="font-display text-4xl font-extrabold leading-tight tracking-tight text-brand-navy sm:text-5xl lg:text-6xl">
               Manage land. <br />
               Make <span class="bg-gradient-to-r from-brand-indigo to-brand-purple bg-clip-text text-transparent">better decisions, faster.</span>
             </h2>
@@ -62,7 +57,7 @@ import { Layers, MapPin, BarChart3, ShieldCheck, ArrowRight } from "lucide-react
             {/* CTA Button */}
             <div class="mt-10">
               <Magnetic client:visible strength={0.15}>
-                <Button size="lg" className="h-12 rounded-xl bg-brand-gradient px-8 text-white shadow-soft hover:shadow-soft/80 group">
+                <Button size="lg" data-open-contact="demo" className="h-12 rounded-xl bg-brand-gradient px-8 text-white shadow-soft hover:shadow-soft/80 group">
                   Get Started
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Button>
@@ -89,3 +84,13 @@ import { Layers, MapPin, BarChart3, ShieldCheck, ArrowRight } from "lucide-react
     </Reveal>
   </div>
 </section>
+
+<script>
+  // "Get Started" opens the global contact modal
+  document.querySelectorAll("[data-open-contact]").forEach((el) => {
+    el.addEventListener("click", () => {
+      const reason = el.getAttribute("data-open-contact") || "demo";
+      window.dispatchEvent(new CustomEvent("oxland:open-contact", { detail: { reason } }));
+    });
+  });
+</script>

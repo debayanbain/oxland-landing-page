@@ -185,30 +185,6 @@ const posts: Post[] = [
     readTime: "7 min read",
     image: "/blog/One-Land-Dispute.png",
   },
-  {
-    slug: "land-acquisition-row",
-    category: "Land Management",
-    categoryPalette: "bg-brand-indigo/10 text-brand-indigo",
-    title: "Land Acquisition & ROW for Linear Projects: Start Right with OxLand",
-    excerpt: "Roads, highways, railways, pipelines and transmission corridors all begin with one thing — Right of Way. Here are the nine pillars of getting it right, and why continuous monitoring changes everything.",
-    author: "Arghya Sharma",
-    authorInitials: "AS",
-    date: "20 Feb 2026",
-    readTime: "6 min read",
-    image: "/blog/Land-Acquisition-%26-ROW.png",
-  },
-  {
-    slug: "who-we-are",
-    category: "Company",
-    categoryPalette: "bg-emerald-50 text-emerald-600",
-    title: "Who We Are — And How We're Helping India's Land Ops Teams",
-    excerpt: "Land acquisition in India is stuck between a spreadsheet, a court order and a scanned PDF. Here's why we built Oxland — and what it means for the people who actually run these projects.",
-    author: "Smriti Ranjan Ghosh",
-    authorInitials: "SG",
-    date: "12 Feb 2026",
-    readTime: "6 min read",
-    image: "/features-background.webp",
-  },
 ];
 
 const CATEGORIES = ["All", "Land Management", "Land Acquisition", "Company"];

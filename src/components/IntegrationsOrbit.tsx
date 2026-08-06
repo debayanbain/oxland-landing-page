@@ -152,7 +152,9 @@ export default function IntegrationsOrbit() {
           <div className="mt-8">
             <Magnetic strength={0.15}>
               <a
-                href="#"
+                href="https://app.oxland.in"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2.5 rounded-full bg-brand-gradient px-8 py-3.5 text-[15px] font-bold text-white shadow-[0_10px_25px_rgba(79,70,229,0.3)] hover:shadow-[0_16px_32px_rgba(79,70,229,0.4)] transition-all duration-300 hover:-translate-y-0.5 group"
               >
                 Explore Integrations

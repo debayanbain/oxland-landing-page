@@ -64,14 +64,14 @@ const SOCIALS = [
           </span>
         </a>
 
-        {OFFICES.map((o) => (
+        {OFFICES.map((o, i) => (
           <div class="flex items-start gap-3">
-            <span class="mt-0.5 grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-brand-navy/[0.05] text-brand-navy/55">
+            <span class="mt-0.5 grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-brand-indigo/10 text-brand-indigo">
               <MapPin size={16} strokeWidth={2.25} />
             </span>
             <span>
               <span class="block text-[11px] font-bold uppercase tracking-wider text-brand-navy/45">{o.tag} · {o.city}</span>
-              <span class="block text-[13px] leading-snug text-brand-navy/60">{o.line}</span>
+              <span class="block text-[13px] leading-snug text-brand-navy/70">{o.line}</span>
             </span>
           </div>
         ))}

@@ -143,19 +143,16 @@ export default function Navbar() {
           </LayoutGroup>
 
           <div className="hidden items-center gap-1.5 lg:flex">
-            <button
-              type="button"
-              onClick={() =>
-                window.dispatchEvent(
-                  new CustomEvent("oxland:open-contact", { detail: { reason: "demo" } })
-                )
-              }
+            <a
+              href="https://app.oxland.in/register"
+              target="_blank"
+              rel="noopener noreferrer"
               className="rounded-full px-3.5 py-1.5 text-[13.5px] font-medium text-brand-navy/75 transition-colors hover:text-brand-navy"
             >
               Book Now
-            </button>
+            </a>
             <a
-              href="https://app.oxland.in"
+              href="https://app.oxland.in/login"
               target="_blank"
               rel="noopener noreferrer"
               className={cn(buttonVariants({ size: "sm" }), "group")}

@@ -93,7 +93,7 @@ const CHANNELS = [
     icon: Handshake,
     palette: "bg-teal-50 text-teal-600",
     ringPalette: "ring-teal-500/25",
-    accent: "from-teal-600 to-cyan-600",
+    accent: "from-teal-700 to-emerald-700",
     title: "Partnerships",
     description: "System integrators, GIS consultancies, drone operators and legal firms welcome.",
     action: "info@oxbowintellect.com",

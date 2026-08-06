@@ -59,3 +59,4 @@ jobs:
             sudo systemctl reload nginx
             # Keep only the last 5 releases to save disk space
             cd /var/www/oxland-landing-page/releases && ls -t | tail -n +6 | xargs -r rm -rf
+            

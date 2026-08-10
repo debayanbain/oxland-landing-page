@@ -4,10 +4,20 @@ on:
   push:
     branches:
       - main
+  # Redeploy the current main on demand — no empty commit required.
+  workflow_dispatch:
+
+# A newer push supersedes an in-flight deploy, so releases can never land
+# out of order on the server.
+concurrency:
+  group: deploy-main
+  cancel-in-progress: true
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    # A hung ssh/scp step fails in 15 minutes instead of dragging on for ~50.
+    timeout-minutes: 15
 
     steps:
       - name: Check out code
@@ -34,8 +44,11 @@ jobs:
           SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
 
-      - name: Add release folder name
-        run: echo "RELEASE_NAME=$(date +%Y%m%d%H%M%S)" >> $GITHUB_ENV
+      # IST timestamp + short SHA, e.g. 20260807-033142-9a61de4. The runner
+      # clock is UTC, so a bare `date` produced folder names that read 5h30m
+      # behind local time and looked like the deploy had never happened.
+      - name: Compute release name
+        run: echo "RELEASE_NAME=$(TZ=Asia/Kolkata date +%Y%m%d-%H%M%S)-${GITHUB_SHA::7}" >> $GITHUB_ENV
 
       - name: Copy build to VPS
         uses: appleboy/scp-action@v0.1.7
@@ -46,6 +59,8 @@ jobs:
           port: ${{ secrets.VPS_PORT }}
           source: "dist/*"
           target: "/var/www/oxland-landing-page/releases/${{ env.RELEASE_NAME }}"
+          timeout: 60s
+          command_timeout: 10m
 
       - name: Switch symlink and reload Nginx
         uses: appleboy/ssh-action@v1.0.3
@@ -55,8 +70,36 @@ jobs:
           key: ${{ secrets.VPS_SSH_KEY }}
           port: ${{ secrets.VPS_PORT }}
           script: |
-            ln -sfn /var/www/oxland-landing-page/releases/${{ env.RELEASE_NAME }} /var/www/oxland-landing-page/current
+            # No `pipefail`: the remote login shell may be dash, and the
+            # cleanup pipeline below legitimately has grep exit 1 (nothing to
+            # prune) — that must not abort an already-successful deploy.
+            set -eu
+            BASE=/var/www/oxland-landing-page
+            REL="$BASE/releases/${{ env.RELEASE_NAME }}"
+
+            # Never point `current` at an incomplete or empty copy.
+            test -f "$REL/dist/index.html" || { echo "::error::$REL/dist/index.html missing — aborting, current untouched"; exit 1; }
+
+            # Marker lives outside dist/, so nginx (root = current/dist) never serves it.
+            printf 'sha=%s\nrun=%s\n' "${{ github.sha }}" "${{ github.run_number }}" > "$REL/RELEASE.txt"
+
+            ln -sfn "$REL" "$BASE/current"
             sudo systemctl reload nginx
-            # Keep only the last 5 releases to save disk space
-            cd /var/www/oxland-landing-page/releases && ls -t | tail -n +6 | xargs -r rm -rf
-            
+
+            # Keep the live release plus 4 others. Excluding the live target by
+            # name means a touched mtime can never prune what `current` uses.
+            LIVE="$(basename "$(readlink -f "$BASE/current")")"
+            cd "$BASE/releases"
+            ls -1t | grep -vFx "$LIVE" | tail -n +5 | xargs -r rm -rf
+
+      - name: Verify deploy is live
+        run: |
+          for i in 1 2 3 4 5; do
+            # -L: follow www/trailing-slash redirects so a 301 is not a false red.
+            code=$(curl -fsSL -o /dev/null -w '%{http_code}' https://oxland.in/ || true)
+            echo "attempt $i -> $code"
+            [ "$code" = "200" ] && exit 0
+            sleep 5
+          done
+          echo "::error::site did not return 200 after deploy"
+          exit 1

@@ -1,84 +1,120 @@
 ---
 import Reveal from "@/components/Reveal.tsx";
 import Magnetic from "@/components/Magnetic.tsx";
-import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles, Play, Newspaper } from "lucide-react";
+import { ArrowRight, Sparkles, Play, MapPin, Users, Cloud, ShieldCheck } from "lucide-react";
+
+// Placeholder partner logos — pulled from /company-logo for now.
+// Final logo set will be provided later.
+const logos = [
+  { src: "/company-logo/vedanta.svg", alt: "Vedanta" },
+  { src: "/company-logo/TATA.png", alt: "Tata Steel" },
+  { src: "/company-logo/SAIL.png", alt: "SAIL" },
+  { src: "/company-logo/waaree.png", alt: "Waaree", scale: "scale-[1.7]" },
+];
+
+const stats = [
+  { icon: MapPin, value: "40,000+", label: "Acres Managed", desc: "Land portfolios digitized and managed across India.", big: true },
+  { icon: Users, value: "10+", label: "Enterprise Clients", desc: "Trusted by leading organizations across key industries.", big: true },
+  { icon: Cloud, value: "Cloud & On-Prem", label: "Deployment", desc: "Flexible deployment options to fit your IT environment." },
+  { icon: ShieldCheck, value: "Secure by Design", label: "Enterprise Ready", desc: "Built with best practices for security, scalability & reliability." },
+];
 ---
 
-<section class="relative py-16 sm:py-24">
+<section class="relative py-14 sm:py-20">
   <div class="container">
     <Reveal client:visible variant="scale">
-      <div class="relative overflow-hidden rounded-[40px] bg-brand-navy">
+      <div class="relative overflow-hidden rounded-[36px] bg-brand-navy p-7 sm:p-10 lg:p-12">
         {/* Ambient */}
         <div class="pointer-events-none absolute inset-0">
-          <div
-            class="absolute -top-32 -left-20 h-[420px] w-[420px] rounded-full blur-3xl opacity-55"
-            style="background: radial-gradient(closest-side, rgba(79,70,229,0.55), transparent 70%);"
-          ></div>
-          <div
-            class="absolute -bottom-40 -right-20 h-[480px] w-[480px] rounded-full blur-3xl opacity-50"
-            style="background: radial-gradient(closest-side, rgba(124,58,237,0.55), transparent 70%);"
-          ></div>
-          <div
-            class="absolute inset-0 opacity-[0.06]"
-            style="background-image: linear-gradient(to right, rgba(255,255,255,0.4) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.4) 1px, transparent 1px); background-size: 48px 48px;"
-          ></div>
+          <div class="absolute -top-32 -left-20 h-[420px] w-[420px] rounded-full blur-3xl opacity-50" style="background: radial-gradient(closest-side, rgba(79,70,229,0.5), transparent 70%);"></div>
+          <div class="absolute -bottom-40 -right-20 h-[480px] w-[480px] rounded-full blur-3xl opacity-45" style="background: radial-gradient(closest-side, rgba(124,58,237,0.5), transparent 70%);"></div>
+          <div class="absolute inset-0 opacity-[0.05]" style="background-image: linear-gradient(to right, rgba(255,255,255,0.4) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.4) 1px, transparent 1px); background-size: 46px 46px;"></div>
         </div>
 
-        <div class="relative grid items-center gap-10 px-8 py-16 lg:grid-cols-[1.4fr_1fr] lg:px-16 lg:py-20">
+        <div class="relative grid items-center gap-8 lg:grid-cols-[1fr_1.05fr] lg:gap-12">
+          {/* -------- LEFT -------- */}
           <div>
-            <span class="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-md px-3 py-1 text-xs font-semibold uppercase tracking-widest text-white/90 ring-1 ring-white/20">
-              <Sparkles size={11} />
-              Not ready to talk yet?
+            <span class="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-white/90 ring-1 ring-white/20 backdrop-blur-md">
+              <Sparkles size={12} strokeWidth={2.5} class="text-brand-lavender" />
+              Trusted by industry leaders
             </span>
 
-            <h2 class="mt-6 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
-              Explore the product{" "}
+            <h2 class="mt-5 font-display text-4xl font-extrabold leading-[1.02] tracking-tight text-white sm:text-5xl">
+              Explore OxLand<br />
               <span class="bg-gradient-to-r from-brand-lavender via-white to-brand-lavender bg-clip-text text-transparent">on your own terms.</span>
             </h2>
 
-            <p class="mt-6 max-w-xl text-base leading-relaxed text-white/70 sm:text-lg">
-              Take a tour of the full platform, browse the features page, or download the product one-pager — no meetings, no forms.
+            <p class="mt-5 max-w-lg text-[15px] leading-relaxed text-white/65">
+              Take a guided tour of the full platform and explore key features — no meetings, no forms.
             </p>
 
-            <div class="mt-9 flex flex-wrap items-center gap-4">
+            <div class="mt-7">
               <Magnetic client:visible strength={0.15}>
-                <a href="/features" class="group inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-semibold text-brand-navy shadow-soft transition-all hover:bg-white/90">
-                  <Play class="h-4 w-4 text-brand-indigo" />
+                <a href="/features" class="group inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3.5 text-sm font-semibold text-brand-navy shadow-soft transition-all hover:bg-white/90">
+                  <Play class="h-4 w-4 fill-brand-indigo text-brand-indigo" />
                   Take the product tour
                   <ArrowRight class="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                 </a>
               </Magnetic>
-              <a
-                href="#"
-                class="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-5 py-3 text-sm font-semibold text-white backdrop-blur-md transition-colors hover:bg-white/10"
-              >
-                <Newspaper class="h-4 w-4" />
-                Download the one-pager (PDF)
-              </a>
+            </div>
+
+            {/* Trusted-by logos */}
+            <div class="mt-8">
+              <div class="flex items-center gap-3">
+                <span class="text-[11px] font-bold uppercase tracking-widest text-white/45">Trusted by leading organizations</span>
+                <span class="h-px flex-1 bg-gradient-to-r from-white/15 to-transparent"></span>
+              </div>
+
+              <div class="mt-4 flex flex-wrap items-center gap-2">
+                {logos.map((logo) => (
+                  <div class="grid h-12 w-[92px] place-items-center rounded-xl border border-white/10 bg-white/[0.04]">
+                    <img
+                      src={logo.src}
+                      alt={logo.alt}
+                      loading="lazy"
+                      decoding="async"
+                      class={`h-5 w-auto max-w-[64px] object-contain opacity-80 ${logo.scale ?? ""}`}
+                      style="filter: url(#cta-remove-white) brightness(0) invert(1);"
+                    />
+                  </div>
+                ))}
+                <div class="grid h-12 w-[92px] place-items-center rounded-xl border border-dashed border-white/15 bg-white/[0.02] px-2 text-center">
+                  <span class="text-[11px] font-semibold leading-tight text-white/55">&amp; more<br />partners</span>
+                </div>
+              </div>
+
+              <p class="mt-4 text-[12.5px] text-white/45">
+                10+ enterprise customers across mining, solar, power, infrastructure &amp; real estate.
+              </p>
             </div>
           </div>
 
-          {/* Right — floating stat cards */}
-          <div class="relative grid gap-3">
-            <div class="rounded-2xl border border-white/15 bg-white/[0.06] p-4 backdrop-blur-md">
-              <div class="text-[10px] font-bold uppercase tracking-wider text-white/60">Global reach</div>
-              <div class="mt-1 font-display text-2xl font-extrabold text-white">14 PSUs · 32 developers</div>
-              <div class="mt-0.5 text-[11px] text-white/55">Across 18 Indian states + 4 UTs</div>
-            </div>
-            <div class="rounded-2xl border border-white/15 bg-white/[0.06] p-4 backdrop-blur-md">
-              <div class="text-[10px] font-bold uppercase tracking-wider text-white/60">Compliance</div>
-              <div class="mt-1 font-display text-lg font-extrabold text-white">SOC 2 · ISO 27001 · DPDP</div>
-              <div class="mt-0.5 text-[11px] text-white/55">MeitY empanelled · GeM & CPP-ready</div>
-            </div>
-            <div class="rounded-2xl border border-white/15 bg-white/[0.06] p-4 backdrop-blur-md">
-              <div class="text-[10px] font-bold uppercase tracking-wider text-white/60">Data residency</div>
-              <div class="mt-1 font-display text-lg font-extrabold text-white">India-region · on-prem ready</div>
-              <div class="mt-0.5 text-[11px] text-white/55">NIC / CDAC cloud supported</div>
-            </div>
+          {/* -------- RIGHT — 2×2 stat cards -------- */}
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {stats.map((s) => (
+              <div class="rounded-2xl border border-white/10 bg-white/[0.04] p-5 backdrop-blur-sm transition-colors hover:bg-white/[0.06]">
+                <span class="grid h-11 w-11 place-items-center rounded-xl bg-brand-indigo/25 text-brand-lavender ring-1 ring-white/10">
+                  <s.icon size={18} strokeWidth={2.25} />
+                </span>
+                <div class={`mt-4 font-display font-extrabold leading-tight tracking-tight bg-gradient-to-r from-white to-brand-lavender bg-clip-text text-transparent ${s.big ? "text-[26px]" : "text-lg"}`}>
+                  {s.value}
+                </div>
+                <div class="mt-1 text-[13px] font-bold text-white">{s.label}</div>
+                <div class="mt-2 text-[12.5px] leading-relaxed text-white/55">{s.desc}</div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
     </Reveal>
   </div>
+
+  {/* white key-out filter for logos */}
+  <svg width="0" height="0" class="absolute pointer-events-none" aria-hidden="true">
+    <defs>
+      <filter id="cta-remove-white" color-interpolation-filters="sRGB">
+        <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  -1 -1 -1 3 0" />
+      </filter>
+    </defs>
+  </svg>
 </section>

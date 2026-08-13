@@ -176,18 +176,25 @@
 @keyframes pricingTrail {
   to { --pa: 360deg; }
 }
-.pricing-ring {
+/* Border trail — a thin, bright comet SEGMENT sweeps the card's border via a
+   rotating conic gradient masked to a ~1.5px ring. The base of the ring is
+   transparent, so only the short moving segment lights up (a light travelling
+   around the border). The card keeps its own faint static edge underneath. */
+.pricing-beam {
+  position: absolute;
+  inset: 0;
   padding: 1.5px;
   border-radius: inherit;
+  pointer-events: none;
   background: conic-gradient(
     from var(--pa),
-    #2f5bff 0deg,
-    #6366f1 55deg,
-    #7c3aed 120deg,
-    #c4b5fd 175deg,
-    #7c3aed 230deg,
-    #6366f1 300deg,
-    #2f5bff 360deg
+    transparent 0deg,
+    transparent 286deg,
+    rgba(124, 58, 237, 0.1) 300deg,
+    rgba(124, 58, 237, 0.55) 332deg,
+    rgba(196, 181, 253, 0.95) 350deg,
+    #7c3aed 358deg,
+    transparent 360deg
   );
   -webkit-mask:
     linear-gradient(#000 0 0) content-box,
@@ -200,25 +207,35 @@
   animation: pricingTrail 6s linear infinite;
   will-change: --pa;
 }
-.pricing-ring.ent {
+.pricing-beam.ent {
   padding: 2px;
   animation-duration: 7.5s;
+  background: conic-gradient(
+    from var(--pa),
+    transparent 0deg,
+    transparent 286deg,
+    rgba(167, 139, 250, 0.18) 300deg,
+    rgba(167, 139, 250, 0.6) 332deg,
+    #ffffff 352deg,
+    #a78bfa 358deg,
+    transparent 360deg
+  );
 }
 .pricing-glow {
   background: conic-gradient(
     from var(--pa),
-    rgba(47, 91, 255, 0.35),
-    rgba(124, 58, 237, 0.35),
-    rgba(196, 181, 253, 0.45),
-    rgba(124, 58, 237, 0.35),
-    rgba(47, 91, 255, 0.35)
+    rgba(47, 91, 255, 0.4),
+    rgba(124, 58, 237, 0.4),
+    rgba(196, 181, 253, 0.5),
+    rgba(124, 58, 237, 0.4),
+    rgba(47, 91, 255, 0.4)
   );
   filter: blur(22px);
   animation: pricingTrail 6s linear infinite;
 }
 @media (prefers-reduced-motion: reduce) {
-  .pricing-ring,
-  .pricing-glow {
+  .pricing-glow,
+  .pricing-beam {
     animation: none;
   }
 }

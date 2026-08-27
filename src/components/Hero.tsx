@@ -815,7 +815,7 @@ export default function Hero() {
                 rel="noopener noreferrer"
                 className={buttonVariants({ variant: "primary", size: "lg", className: "rounded-full" })}
               >
-                Try Free Demo <ArrowRight size={18} />
+                Free Trial <ArrowRight size={18} />
               </a>
             </Magnetic>
             <Magnetic strength={0.15}>

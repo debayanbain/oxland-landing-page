@@ -189,14 +189,15 @@ export default function PricingPlans() {
                     14 days of full access. No credit card required.
                   </span>
                 </div>
-                <button
-                  type="button"
-                  onClick={() => openContact("evaluation")}
+                <a
+                  href="https://app.oxland.in/register"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="group/btn mt-4 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-brand-gradient px-6 py-3.5 text-sm font-semibold text-white shadow-soft transition-all hover:shadow-float"
                 >
                   Start 14-Day Free Evaluation
                   <ArrowRight size={15} strokeWidth={2.5} className="transition-transform group-hover/btn:translate-x-0.5" />
-                </button>
+                </a>
               </div>
             </div>
 
@@ -211,11 +212,6 @@ export default function PricingPlans() {
             transition={{ duration: 0.6, ease: EASE, delay: 0.08 }}
             className="group relative h-full rounded-3xl shadow-float"
           >
-            <div
-              aria-hidden
-              className="pricing-glow pointer-events-none absolute -inset-1 -z-10 rounded-[28px] opacity-35 blur-[26px] transition-opacity duration-500 group-hover:opacity-60"
-            />
-
             <div className="relative flex h-full flex-col overflow-hidden rounded-3xl bg-brand-navy p-8 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.08)] sm:p-10">
               {/* Ambient */}
               <div
@@ -272,7 +268,6 @@ export default function PricingPlans() {
               </div>
             </div>
 
-            <span aria-hidden className="pricing-beam ent absolute inset-0 rounded-3xl" />
           </motion.div>
         </div>
 

@@ -54,15 +54,16 @@ const SOCIALS = [
           </span>
         </a>
 
-        <a href="mailto:info@oxbowintellect.com" class="group flex items-center gap-3">
+        <div class="flex items-center gap-3">
           <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-brand-indigo/10 text-brand-indigo">
             <Mail size={16} strokeWidth={2.25} />
           </span>
           <span class="min-w-0">
             <span class="block text-[11px] font-bold uppercase tracking-wider text-brand-navy/45">Email us</span>
-            <span class="block truncate text-sm font-semibold text-brand-navy transition-colors group-hover:text-brand-indigo">info@oxbowintellect.com</span>
+            <a href="mailto:info@oxbowintellect.com" class="block truncate text-sm font-semibold text-brand-navy transition-colors hover:text-brand-indigo">info@oxbowintellect.com</a>
+            <a href="mailto:info@oxland.in" class="block truncate text-sm font-semibold text-brand-navy transition-colors hover:text-brand-indigo">info@oxland.in</a>
           </span>
-        </a>
+        </div>
 
         {OFFICES.map((o, i) => (
           <div class="flex items-start gap-3">

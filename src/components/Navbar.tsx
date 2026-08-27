@@ -143,16 +143,19 @@ export default function Navbar() {
           </LayoutGroup>
 
           <div className="hidden items-center gap-1.5 lg:flex">
-            <a
-              href="https://app.oxland.in/register"
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              type="button"
+              onClick={() =>
+                window.dispatchEvent(
+                  new CustomEvent("oxland:open-contact", { detail: { reason: "demo" } })
+                )
+              }
               className="rounded-full px-3.5 py-1.5 text-[13.5px] font-medium text-brand-navy/75 transition-colors hover:text-brand-navy"
             >
               Book Now
-            </a>
+            </button>
             <a
-              href="https://app.oxland.in/login"
+              href="https://app.oxland.in/register"
               target="_blank"
               rel="noopener noreferrer"
               className={cn(buttonVariants({ size: "sm" }), "group")}
@@ -274,7 +277,7 @@ export default function Navbar() {
                     Book Now
                   </Button>
                   <a
-                    href="https://app.oxland.in"
+                    href="https://app.oxland.in/register"
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => setOpen(false)}

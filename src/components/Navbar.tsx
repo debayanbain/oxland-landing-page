@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence, useReducedMotion, LayoutGroup } from "framer-motion";
-import { Menu, X, ArrowRight } from "lucide-react";
+import { Menu, X, ArrowRight, Play } from "lucide-react";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -152,19 +152,18 @@ export default function Navbar() {
               }
               className="rounded-full px-3.5 py-1.5 text-[13.5px] font-medium text-brand-navy/75 transition-colors hover:text-brand-navy"
             >
-              Book Now
+              Get a Free Demo
             </button>
             <a
-              href="https://app.oxland.in/register"
+              href="https://youtu.be/NddqGC3FFts"
               target="_blank"
               rel="noopener noreferrer"
               className={cn(buttonVariants({ size: "sm" }), "group")}
             >
-              Sign in
-              <ArrowRight
-                size={14}
-                className="ml-0.5 transition-transform duration-300 group-hover:translate-x-0.5"
-              />
+              <span className="grid h-[18px] w-[18px] shrink-0 place-items-center rounded-full bg-white/20 ring-1 ring-white/25 transition-transform duration-300 group-hover:scale-110">
+                <Play size={9} className="translate-x-[0.5px] fill-current" />
+              </span>
+              Watch Video
             </a>
           </div>
 
@@ -274,16 +273,19 @@ export default function Navbar() {
                       );
                     }}
                   >
-                    Book Now
+                    Get a Free Demo
                   </Button>
                   <a
-                    href="https://app.oxland.in/register"
+                    href="https://youtu.be/NddqGC3FFts"
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => setOpen(false)}
-                    className={cn(buttonVariants({ size: "sm" }), "flex-1")}
+                    className={cn(buttonVariants({ size: "sm" }), "flex-1 gap-1.5")}
                   >
-                    Sign in
+                    <span className="grid h-[18px] w-[18px] shrink-0 place-items-center rounded-full bg-white/20 ring-1 ring-white/25">
+                      <Play size={9} className="translate-x-[0.5px] fill-current" />
+                    </span>
+                    Watch Video
                   </a>
                 </motion.li>
               </motion.ul>

@@ -820,12 +820,12 @@ export default function Hero() {
             </Magnetic>
             <Magnetic strength={0.15}>
               <a
-                href="https://app.oxland.in"
+                href="https://app.oxland.in/register"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={buttonVariants({ variant: "secondary", size: "lg", className: "rounded-full" })}
               >
-                Explore Platform
+                Sign in
               </a>
             </Magnetic>
           </motion.div>

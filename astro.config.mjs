@@ -2,7 +2,7 @@ import { defineConfig } from "astro/config";
 import { loadEnv } from "vite";
 import react from "@astrojs/react";
 import tailwind from "@astrojs/tailwind";
-import sitemap from "@astrojs/sitemap";
+import imageSitemap from "./scripts/image-sitemap.mjs";
 import sentry from "@sentry/astro";
 
 // astro.config runs in Node; loadEnv pulls .env values into this scope (Astro
@@ -27,9 +27,7 @@ export default defineConfig({
     }),
     react(),
     tailwind({ applyBaseStyles: false }),
-    sitemap({
-      filter: (page) => !page.includes("/features-preview"),
-    }),
+    imageSitemap(),
   ],
   vite: {
     server: {

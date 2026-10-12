@@ -54,6 +54,45 @@ Fonts: **Sora** (display) + **Manrope** (body) via Google Fonts.
 - **Add a shadcn component** → `npx shadcn@latest add <name>` (config is in `components.json`).
 - **Real screenshots** → swap the mock markup in `Hero.tsx` / `FeatureShowcase.astro` for `<img>` of your actual dashboard.
 
+## Sitemaps
+
+`npm run build` generates `dist/sitemap-index.xml` and `dist/sitemap-0.xml`.
+Submit `https://oxland.in/sitemap-index.xml` in Google Search Console after
+deploying the contents of `dist/`. The existing `public/robots.txt` points to it.
+
+`scripts/image-sitemap.mjs` extends Astro's sitemap integration with per-page
+image entries. It reads built HTML and follows local component imports to
+include images in interactive states, lazy components, and CSS backgrounds.
+URLs match each page's canonical link; preview, error, and `noindex` pages are
+excluded. Image URLs are deduplicated per page and checked against the build
+output. Missing local images are omitted with a build warning. New routes and
+referenced images are picked up on the next build. No artificial modification
+dates are added. Sitemaps help discovery; Google decides crawling and indexing.
+
+Run the focused sitemap checks with `node --test scripts/image-sitemap.test.mjs`.
+
+## Demo popup and contact delivery
+
+The existing demo popup opens automatically after 10 seconds from the first
+arrival in a browser session. Session cookies share the countdown and shown
+marker across tabs and page navigation; Web Locks coordinate simultaneous
+timers. Manual opening and successful contact submissions also mark it shown.
+Automatic opening waits for a visible tab and is suppressed on contact,
+preview, and error pages, or when the visitor starts filling a form. Browsers
+that restore sessions may retain the marker after restarting. Manual demo
+buttons continue to work regardless of the marker.
+
+Both forms post to `/contact-submit.php`, which sends to
+`info@oxbowintellect.com` and `manual.control7688@gmail.com`. It uses UTF-8 MIME
+headers and a base64 body with CRLF line endings. Deploy `dist/` to a host that
+executes PHP and permits email sending with `no-reply@oxbowintellect.com`.
+Inbox delivery still requires a real hosted submission test.
+
+Run `node --test scripts/auto-demo.test.mjs` for session/timing checks. With PHP
+installed, run `php -n scripts/contact-mail.test.php success` and
+`php -n scripts/contact-mail.test.php failure` to check both email-handler paths.
+These tests intercept email sending and never deliver messages.
+
 ## Notes
 
 - Respects `prefers-reduced-motion` (animations collapse for those users).

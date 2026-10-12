@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { browserAutoDemo } from "@/lib/autoDemo";
 import {
   X,
   ArrowRight,
@@ -86,20 +87,30 @@ export default function ContactModal() {
   const firstFieldRef = useRef<HTMLInputElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
 
-  // Listen for global open events
+  // Automatic invitation and manual CTA buttons share the same session marker.
   useEffect(() => {
+    const autoDemo = browserAutoDemo(() => {
+      setReason("automatic-demo");
+      setOpen(true);
+    });
+    const openContact = (r?: string) => {
+      autoDemo.markShown();
+      setReason(r);
+      setError(null);
+      setOpen(true);
+    };
     const handler = (e: Event) => {
       const detail = (e as CustomEvent).detail;
-      setReason(detail?.reason);
-      setOpen(true);
+      openContact(detail?.reason);
     };
+    const onSubmitted = () => autoDemo.markShown();
     window.addEventListener("oxland:open-contact", handler);
-    window.openOxlandContact = (r?: string) => {
-      setReason(r);
-      setOpen(true);
-    };
+    window.addEventListener("oxland:contact-submitted", onSubmitted);
+    window.openOxlandContact = openContact;
     return () => {
+      autoDemo.dispose();
       window.removeEventListener("oxland:open-contact", handler);
+      window.removeEventListener("oxland:contact-submitted", onSubmitted);
       delete window.openOxlandContact;
     };
   }, []);

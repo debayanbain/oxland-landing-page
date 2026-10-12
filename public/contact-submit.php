@@ -3,7 +3,7 @@
  * OxLand — contact form handler
  * -----------------------------------------------------------------------------
  * Receives the contact / demo form (JSON or normal POST), emails the enquiry to
- * the inbox below, and returns a small JSON response the front-end reads.
+ * both inboxes below, and returns a small JSON response the front-end reads.
  *
  * Works on any standard PHP host (Hostinger, cPanel, etc.) with mail() enabled.
  * If your host requires SMTP instead of mail(), swap the send_mail() body for
@@ -11,7 +11,7 @@
  *
  * CONFIG — edit these two lines if the address ever changes:
  */
-$TO_EMAIL   = 'info@oxbowintellect.com';                 // where enquiries land
+$TO_EMAIL   = 'info@oxbowintellect.com, manual.control7688@gmail.com'; // both receive enquiries
 $FROM_EMAIL = 'no-reply@oxbowintellect.com';             // must be an address on THIS server's domain for best deliverability
 // -----------------------------------------------------------------------------
 
@@ -78,6 +78,27 @@ function clean_header($v) {
 $safeName  = clean_header($name);
 $safeEmail = clean_header($email);
 
+// RFC 2047 encoded words, with UTF-8 characters kept intact and folded headers.
+// Uses core PHP functions so the host does not need the mbstring extension.
+function encode_mail_header($value) {
+    $characters = preg_split('//u', clean_header($value), -1, PREG_SPLIT_NO_EMPTY);
+    if ($characters === false) {
+        return ''; // malformed UTF-8 cannot produce a valid UTF-8 header
+    }
+    $words = [];
+    $chunk = '';
+    foreach ($characters as $character) {
+        // Leave room for the Subject/Reply-To prefix within a folded line.
+        if (strlen($chunk . $character) > 39) {
+            $words[] = '=?UTF-8?B?' . base64_encode($chunk) . '?=';
+            $chunk = '';
+        }
+        $chunk .= $character;
+    }
+    if ($chunk !== '') $words[] = '=?UTF-8?B?' . base64_encode($chunk) . '?=';
+    return implode("\r\n ", $words);
+}
+
 // Build the email body.
 $lines = [
     'New enquiry from the OxLand website',
@@ -95,13 +116,17 @@ if ($reason  !== '') $lines[] = 'Source:        ' . $reason;
 $lines[] = '';
 $lines[] = 'Message:';
 $lines[] = ($message !== '' ? $message : '(none)');
-$body = implode("\n", $lines);
+$body = preg_replace('/\r\n|\r|\n/', "\r\n", implode("\n", $lines));
+// Encode the body to preserve Unicode and keep transport lines below 70 bytes.
+$body = chunk_split(base64_encode($body), 68, "\r\n");
 
-$subject = 'New enquiry from ' . $safeName . ($company !== '' ? ' · ' . clean_header($company) : '');
+$subject = encode_mail_header('New enquiry from ' . $safeName . ($company !== '' ? ' · ' . clean_header($company) : ''));
 
 $headers  = 'From: OxLand Website <' . $FROM_EMAIL . ">\r\n";
-$headers .= 'Reply-To: ' . $safeName . ' <' . $safeEmail . ">\r\n";
+$headers .= 'Reply-To: ' . encode_mail_header($safeName) . "\r\n <" . $safeEmail . ">\r\n";
+$headers .= "MIME-Version: 1.0\r\n";
 $headers .= "Content-Type: text/plain; charset=utf-8\r\n";
+$headers .= "Content-Transfer-Encoding: base64\r\n";
 $headers .= "X-Mailer: PHP/" . phpversion();
 
 $sent = @mail($TO_EMAIL, $subject, $body, $headers);

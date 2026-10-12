@@ -156,6 +156,7 @@ export default function ContactMain() {
       }
       setSubmitting(false);
       setSubmitted(true);
+      window.dispatchEvent(new CustomEvent("oxland:contact-submitted"));
       setTimeout(() => successRef.current?.scrollIntoView({ behavior: "smooth", block: "center" }), 60);
     } catch (err) {
       setSubmitting(false);

@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useRef, lazy, Suspense } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import {
   MapPin, FileText, UserCog, Handshake, Gavel, Home, Plane, FileCheck2,
@@ -18,18 +18,6 @@ import {
   Upload, FileSpreadsheet, FileType2, Shapes, AlertCircle,
   UsersRound, HeartHandshake, HandCoins, ClipboardType,
 } from "lucide-react";
-const GISVisual = lazy(() => import("@/components/sections/core-features/visuals/GISVisual").then((m) => ({ default: m.GISVisual })));
-const RecordsVisual = lazy(() => import("@/components/sections/core-features/visuals/RecordsVisual").then((m) => ({ default: m.RecordsVisual })));
-const OwnershipVisual = lazy(() => import("@/components/sections/core-features/visuals/OwnershipVisual").then((m) => ({ default: m.OwnershipVisual })));
-const AcquisitionVisual = lazy(() => import("@/components/sections/core-features/visuals/AcquisitionVisual").then((m) => ({ default: m.AcquisitionVisual })));
-const LitigationVisual = lazy(() => import("@/components/sections/core-features/visuals/LitigationVisual").then((m) => ({ default: m.LitigationVisual })));
-const ValuationVisual = lazy(() => import("@/components/sections/core-features/visuals/ValuationVisual").then((m) => ({ default: m.ValuationVisual })));
-const EncroachmentVisual = lazy(() => import("@/components/sections/core-features/visuals/EncroachmentVisual").then((m) => ({ default: m.EncroachmentVisual })));
-const WorkflowVisual = lazy(() => import("@/components/sections/core-features/visuals/WorkflowVisual").then((m) => ({ default: m.WorkflowVisual })));
-const AlertsVisual = lazy(() => import("@/components/sections/core-features/visuals/AlertsVisual").then((m) => ({ default: m.AlertsVisual })));
-const IntegrationsVisual = lazy(() => import("@/components/sections/core-features/visuals/IntegrationsVisual").then((m) => ({ default: m.IntegrationsVisual })));
-const UploadVisual = lazy(() => import("@/components/sections/core-features/visuals/UploadVisual").then((m) => ({ default: m.UploadVisual })));
-const RRVisual = lazy(() => import("@/components/sections/core-features/visuals/RRVisual").then((m) => ({ default: m.RRVisual })));
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -88,7 +76,6 @@ type Detail = {
   headingAccent: string;
   description: string;
   bullets: Bullet[];
-  Visual: React.ComponentType;
 };
 
 const DETAILS: Record<string, Detail> = {
@@ -107,7 +94,6 @@ const DETAILS: Record<string, Detail> = {
       { icon: Download, text: "High-resolution map exports" },
       { icon: MapPinned, text: "Real-time location insights" },
     ],
-    Visual: GISVisual,
   },
   records: {
     eyebrow: "Digital Land Records",
@@ -124,7 +110,6 @@ const DETAILS: Record<string, Detail> = {
       { icon: Share2, text: "Instant document sharing" },
       { icon: ClipboardList, text: "Complete audit trail" },
     ],
-    Visual: RecordsVisual,
   },
   ownership: {
     eyebrow: "Ownership Management",
@@ -141,7 +126,6 @@ const DETAILS: Record<string, Detail> = {
       { icon: Link2, text: "Linked land parcels" },
       { icon: History, text: "Transparent ownership timeline" },
     ],
-    Visual: OwnershipVisual,
   },
   acquisition: {
     eyebrow: "Land Acquisition Management",
@@ -158,7 +142,6 @@ const DETAILS: Record<string, Detail> = {
       { icon: LayoutDashboard, text: "Acquisition status dashboard" },
       { icon: BarChart3, text: "Progress reporting" },
     ],
-    Visual: AcquisitionVisual,
   },
   litigation: {
     eyebrow: "Litigation Management",
@@ -175,7 +158,6 @@ const DETAILS: Record<string, Detail> = {
       { icon: Timer, text: "Legal timeline visualization" },
       { icon: FileBarChart, text: "Litigation reports" },
     ],
-    Visual: LitigationVisual,
   },
   valuation: {
     eyebrow: "Land Rate & Valuation",
@@ -192,7 +174,6 @@ const DETAILS: Record<string, Detail> = {
       { icon: Sliders, text: "Custom valuation parameters" },
       { icon: BarChart3, text: "Decision support analytics" },
     ],
-    Visual: ValuationVisual,
   },
   encroachment: {
     eyebrow: "Encroachment Detection",
@@ -209,7 +190,6 @@ const DETAILS: Record<string, Detail> = {
       { icon: Map, text: "GIS-based visualization" },
       { icon: FileWarning, text: "Automated reports" },
     ],
-    Visual: EncroachmentVisual,
   },
   workflow: {
     eyebrow: "Document Workflow & Approvals",
@@ -226,7 +206,6 @@ const DETAILS: Record<string, Detail> = {
       { icon: History, text: "Complete workflow history" },
       { icon: Rocket, text: "Faster processing" },
     ],
-    Visual: WorkflowVisual,
   },
   alerts: {
     eyebrow: "Alerts & Notifications",
@@ -243,7 +222,6 @@ const DETAILS: Record<string, Detail> = {
       { icon: Mail, text: "Email & SMS notifications" },
       { icon: Activity, text: "Real-time activity alerts" },
     ],
-    Visual: AlertsVisual,
   },
   integrations: {
     eyebrow: "Easy Integrations",
@@ -260,7 +238,6 @@ const DETAILS: Record<string, Detail> = {
       { icon: KeyRound, text: "Third-party authentication" },
       { icon: ShieldCheck, text: "Secure data exchange" },
     ],
-    Visual: IntegrationsVisual,
   },
   upload: {
     eyebrow: "Simple Data Upload",
@@ -277,7 +254,6 @@ const DETAILS: Record<string, Detail> = {
       { icon: AlertCircle, text: "Error reporting" },
       { icon: Rocket, text: "Quick migration tools" },
     ],
-    Visual: UploadVisual,
   },
   rr: {
     eyebrow: "R&R Management",
@@ -294,7 +270,6 @@ const DETAILS: Record<string, Detail> = {
       { icon: ClipboardType, text: "Compliance reporting" },
       { icon: LayoutDashboard, text: "Complete R&R dashboard" },
     ],
-    Visual: RRVisual,
   },
 };
 
@@ -317,7 +292,6 @@ export default function HeroInteractive() {
   const activeCat = CATEGORIES.find((c) => c.id === active)!;
   const activePalette = PALETTES[activeCat.palette];
   const detail = DETAILS[active];
-  const Visual = detail.Visual;
 
   // User interaction stops the auto-cycle permanently AND scrolls to the detail.
   const selectManually = (id: string, scroll = true) => {
@@ -615,7 +589,7 @@ export default function HeroInteractive() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -14 }}
               transition={{ duration: 0.45, ease: EASE }}
-              className="grid items-center gap-12 lg:grid-cols-[1.05fr_1fr] lg:gap-16"
+              className="grid items-center gap-10 lg:grid-cols-[1fr_1.2fr] lg:gap-12"
             >
               {/* COPY */}
               <div>
@@ -665,11 +639,18 @@ export default function HeroInteractive() {
                 </div>
               </div>
 
-              {/* VISUAL */}
-              <div>
-                <Suspense fallback={<div className="h-[420px] animate-pulse rounded-3xl border border-brand-navy/10 bg-brand-navy/[0.03]" />}>
-                  <Visual />
-                </Suspense>
+              {/* VISUAL — feature mockup image, blended into the page */}
+              <div className="relative">
+                <img
+                  src={`/feature-visuals/${activeCat.index}.png`}
+                  alt={`${detail.eyebrow} — Oxland`}
+                  width="1500"
+                  height="1050"
+                  loading="lazy"
+                  decoding="async"
+                  draggable={false}
+                  className="block h-auto w-full select-none mix-blend-multiply"
+                />
               </div>
             </motion.div>
           </AnimatePresence>

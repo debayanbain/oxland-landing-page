@@ -39,6 +39,18 @@ const jsonLdEntries = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
       gtag('js', new Date());
 
       gtag('config', 'G-C4620RB5D0');
+
+      // Lightweight click tracking — no GTM, no per-button wiring.
+      // Tracks EVERY button automatically; elements with data-track="event_name"
+      // get that clean name, everything else logs as "button_click" + its text.
+      document.addEventListener('click', function (e) {
+        var el = e.target.closest('[data-track], button, [role="button"], input[type="submit"]');
+        if (!el) return;
+        var name = el.getAttribute('data-track') || 'button_click';
+        var text = (el.innerText || el.value || el.getAttribute('aria-label') || '').trim().slice(0, 100);
+        gtag('event', name, { button_text: text });
+        if (window.clarity) window.clarity('event', name);
+      }, true);
     </script>
     <!-- Microsoft Clarity -->
     <script is:inline type="text/javascript">

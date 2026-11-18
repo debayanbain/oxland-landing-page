@@ -193,6 +193,7 @@ export default function PricingPlans() {
                   href="https://app.oxland.in/register"
                   target="_blank"
                   rel="noopener noreferrer"
+                  data-track="start_free_evaluation_click"
                   className="group/btn mt-4 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-brand-gradient px-6 py-3.5 text-sm font-semibold text-white shadow-soft transition-all hover:shadow-float"
                 >
                   Start 14-Day Free Evaluation
@@ -258,6 +259,7 @@ export default function PricingPlans() {
                   </div>
                   <button
                     type="button"
+                    data-track="book_enterprise_demo_click"
                     onClick={() => openContact("enterprise")}
                     className="group/btn mt-4 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-white px-6 py-3.5 text-sm font-semibold text-brand-navy shadow-soft transition-all hover:bg-white/90 hover:shadow-float"
                   >

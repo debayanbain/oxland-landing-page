@@ -145,6 +145,7 @@ export default function Navbar() {
           <div className="hidden items-center gap-1.5 lg:flex">
             <button
               type="button"
+              data-track="get_a_free_demo_click"
               onClick={() =>
                 window.dispatchEvent(
                   new CustomEvent("oxland:open-contact", { detail: { reason: "demo" } })
@@ -158,6 +159,7 @@ export default function Navbar() {
               href="https://youtu.be/NddqGC3FFts"
               target="_blank"
               rel="noopener noreferrer"
+              data-track="watch_video_click"
               className={cn(buttonVariants({ size: "sm" }), "group")}
             >
               <span className="grid h-[18px] w-[18px] shrink-0 place-items-center rounded-full bg-white/20 ring-1 ring-white/25 transition-transform duration-300 group-hover:scale-110">
@@ -265,6 +267,7 @@ export default function Navbar() {
                   <Button
                     variant="secondary"
                     size="sm"
+                    data-track="get_a_free_demo_click"
                     className="flex-1 rounded-full"
                     onClick={() => {
                       setOpen(false);
@@ -279,6 +282,7 @@ export default function Navbar() {
                     href="https://youtu.be/NddqGC3FFts"
                     target="_blank"
                     rel="noopener noreferrer"
+                    data-track="watch_video_click"
                     onClick={() => setOpen(false)}
                     className={cn(buttonVariants({ size: "sm" }), "flex-1 gap-1.5")}
                   >

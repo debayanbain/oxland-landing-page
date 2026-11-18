@@ -813,6 +813,7 @@ export default function Hero() {
                 href="https://app.oxland.in/register"
                 target="_blank"
                 rel="noopener noreferrer"
+                data-track="free_trial_click"
                 className={buttonVariants({ variant: "primary", size: "lg", className: "rounded-full" })}
               >
                 Free Trial <ArrowRight size={18} />
@@ -823,6 +824,7 @@ export default function Hero() {
                 href="https://app.oxland.in/register"
                 target="_blank"
                 rel="noopener noreferrer"
+                data-track="sign_in_click"
                 className={buttonVariants({ variant: "secondary", size: "lg", className: "rounded-full" })}
               >
                 Sign in
